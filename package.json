@@ -26,7 +26,7 @@
         "email": "wwponv158@gmail.com"
     },
     "publishConfig": {
-        "registry": "https://registry.npmjs.org"
+        "@kimkanghyune:registry": "https://npm.pkg.github.com"
     },
     "license": "GPL-3.0",
     "bugs": {
