@@ -44,19 +44,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          registry-url: https://registry.npmjs.org
-      - run: npm ci
-      - run: git config --global user.name "${{ github.actor }}"
-      - run: git config --global user.email "github-action-${{ github.actor }}@users.noreply.github.com"
-      - run: npm run build
-      - run: npm version ${{ steps.tag_version.outputs.new_tag }}
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
           registry-url: https://npm.pkg.github.com
       - run: npm ci
       - run: git config --global user.name "${{ github.actor }}"
