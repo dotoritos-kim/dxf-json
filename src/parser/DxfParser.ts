@@ -9,7 +9,7 @@ import { filterDummyBlocks } from './filterDummyBlocks';
 import type { ParsedDxf } from './types';
 import { Readable } from 'readable-stream';
 export default class DxfParser {
-    public parseSync(dxfString: string) {
+    parseSync(dxfString: string) {
         const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g);
         const scanner = new DxfArrayScanner(dxfLinesArray);
         if (!scanner.hasNext()) {
@@ -18,7 +18,7 @@ export default class DxfParser {
 
         return this.parseAll(scanner);
     }
-    public parseStream(stream: Readable) {
+    parseStream(stream: Readable) {
         let dxfString = "";
         const self = this;
         return new Promise<ParsedDxf>((res, rej) => {
@@ -43,7 +43,7 @@ export default class DxfParser {
         });
     }
 
-    public async parseFromUrl(url: string, encoding = "utf-8", init?: RequestInit | undefined) {
+    async parseFromUrl(url: string, encoding = "utf-8", init?: RequestInit | undefined) {
         const response = await fetch(url, init)
 
         if (!response.body) return null;
