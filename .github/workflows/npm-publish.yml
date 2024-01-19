@@ -51,6 +51,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm install
       - run: npm run build
-      - run: npm publish --access=public
+      - run: npm publish dxf-json@${{ steps.tag_version.outputs.new_tag }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
