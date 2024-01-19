@@ -1,0 +1,5 @@
+export enum ReservedLineweight {
+    Standard = -3,
+    ByLayer = -2,
+    ByBlock = -1,
+}
