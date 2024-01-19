@@ -1,5 +1,5 @@
 {
-    "name": "dxf-json",
+    "name": "@kimkanghyune/dxf-json",
     "version": "1.0.0",
     "description": "perfect dxf parser",
     "main": "./src/index.ts",
