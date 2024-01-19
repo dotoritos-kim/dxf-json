@@ -25,6 +25,9 @@
         "name": "kanghyune kim",
         "email": "wwponv158@gmail.com"
     },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    },
     "license": "GPL-3.0",
     "bugs": {
         "url": "https://github.com/kimkanghyune/dxf-json/issues",
