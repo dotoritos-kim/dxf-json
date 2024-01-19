@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "description": "perfect dxf parser",
     "main": "./src/index.ts",
-    "module": "./dist/index.js",
     "type": "module",
     "scripts": {
         "build": "tsc && webpack --mode production",
@@ -22,10 +21,14 @@
         "type-safe",
         "typescript"
     ],
-    "author": "kanghyune kim",
+    "author": {
+        "name": "kanghyune kim",
+        "email": "wwponv158@gmail.com"
+    },
     "license": "GPL-3.0",
     "bugs": {
-        "url": "https://github.com/kimkanghyune/dxf-json/issues"
+        "url": "https://github.com/kimkanghyune/dxf-json/issues",
+        "email": "wwponv158@gmail.com"
     },
     "homepage": "https://github.com/kimkanghyune/dxf-json#readme",
     "dependencies": {
