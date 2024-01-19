@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm test:parser
+      - run: npm run test:parser
   setup-build-deploy:
     name: Setup, Build, and Deploy
     runs-on: ubuntu-latest
