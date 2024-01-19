@@ -52,4 +52,4 @@ jobs:
     - run: npm version ${{ steps.tag_version.outputs.new_tag }}
     - run: npm publish
       env:
-        NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
