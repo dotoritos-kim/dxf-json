@@ -96,7 +96,9 @@ return parser.parseSync(buffer)
 parseStream:
 
 ```ts
+import fs from 'fs'
 const parser = new DxfParser();
+const fileStream = fs.createReadStream("dxf file path", { encoding: 'utf8' });
 return await parser.parseStream(fileStream);
 ```
 
