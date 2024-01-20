@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/kimkanghyune/dxf-json.git"
+        "url": "git+https://github.com/dotoritos-kim/dxf-json.git"
     },
     "keywords": [
         "dxf",
@@ -22,7 +22,7 @@
         "typescript"
     ],
     "author": {
-        "name": "kanghyune kim",
+        "name": "dotoritos-kim",
         "email": "wwponv158@gmail.com"
     },
     "publishConfig": {
@@ -30,10 +30,10 @@
     },
     "license": "GPL-3.0",
     "bugs": {
-        "url": "https://github.com/kimkanghyune/dxf-json/issues",
+        "url": "https://github.com/dotoritos-kim/dxf-json/issues",
         "email": "wwponv158@gmail.com"
     },
-    "homepage": "https://github.com/kimkanghyune/dxf-json#readme",
+    "homepage": "https://github.com/dotoritos-kim/dxf-json#readme",
     "dependencies": {
         "@fxts/core": "^0.23.0",
         "@swc/cli": "^0.1.63",
