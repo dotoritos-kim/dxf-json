@@ -17,7 +17,7 @@
 A library that reliably parses DXF files into JSON files without missing data.
 
 - It is typesafe.
-- Parse dxfs at high speed.
+- Parse dxf at high speed.
 - Lightweight library
 
 ## Features
