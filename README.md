@@ -166,7 +166,6 @@ export type DxfHeader = typeof DefaultDxfHeaderVariables & {
 ```
 
 ### blocks
-Record<string, DxfBlock> type
 
 DxfBlock:
 
@@ -217,8 +216,6 @@ interface CommonDxfEntity {
 
 ### tables
 
-tables:
-
 ```ts
 tables: {
     BLOCK_RECORD?: DxfTable<BlockRecordTableEntry>;
@@ -231,8 +228,6 @@ tables: {
 ```
 
 #### DxfTable
-
-DxfTable:
 
 ```ts
 interface DxfTable<T extends CommonDxfTableEntry> {
@@ -533,8 +528,6 @@ interface VPortTableEntry extends CommonDxfTableEntry {
 
 ### objects
 
-objects:
-
 ```ts
 objects: {
     byName: Record<string, CommonDXFObject[]>;
@@ -556,8 +549,6 @@ interface CommonDXFObject {
 ```
 
 #### DxfObject
-
-DxfObject:
 
 ```ts
 interface DxfObject {
