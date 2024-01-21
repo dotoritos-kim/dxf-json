@@ -1,15 +1,6 @@
 export * from './flooding';
 
-import { Vector2, Vector3 } from 'three';
-import type { Point2D, Point3D } from '../types';
-
-export function pointToVector2(point: Point3D | Point2D): Vector2 {
-    return new Vector2(point.x, point.y);
-}
-
-export function pointToVector3(point: Point3D | Point2D): Vector3 {
-    return new Vector3(point.x, point.y, (point as Point3D).z ?? 0);
-}
+import type { Point2D, Point3D } from 'types';
 
 export function classify<T>(
     iterable: Iterable<T>,
@@ -41,5 +32,19 @@ export function* generateIntegers(
 ) {
     for (let n = start; n !== end; n += increment) {
         yield n;
+    }
+}
+
+/**
+ * There might be some situation of ill conditioned points.
+ * This function ensure every values exists for possible
+ * missing data.
+ * @param point Any data parsed by `parsePoint`
+ */
+export function ensurePoint3D(point: Partial<Point2D | Point3D>): Point3D {
+    return {
+        x: point.x ?? 0,
+        y: point.y ?? 0,
+        z: (point as Point3D).z ?? 0,
     }
 }

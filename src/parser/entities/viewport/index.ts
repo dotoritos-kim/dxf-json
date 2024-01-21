@@ -1,11 +1,8 @@
 import type { ViewportEntity } from './types';
 import * as helpers from '../../ParseHelpers';
 import { parsePoint } from '../../shared/parsePoint';
-import {
-    pointToVector2,
-    pointToVector3,
-} from '../../../utils';
 import { CommonDxfEntity } from '../shared';
+import { ensurePoint3D } from '../../../utils';
 
 export default class ViewportParser {
     static ForEntityName = 'VIEWPORT';
@@ -39,7 +36,7 @@ function parseViewport(entity: ViewportEntity, scanner: any, curr: any) {
             entity.subclassMarker = curr.value;
             break;
         case 10:
-            entity.viewportCenter = pointToVector3(parsePoint(scanner));
+            entity.viewportCenter = ensurePoint3D(parsePoint(scanner));
             break;
         case 40:
             entity.width = curr.value;
@@ -54,22 +51,22 @@ function parseViewport(entity: ViewportEntity, scanner: any, curr: any) {
             entity.viewportId = curr.value;
             break;
         case 12:
-            entity.displayCenter = pointToVector2(parsePoint(scanner));
+            entity.displayCenter = parsePoint(scanner);
             break;
         case 13:
-            entity.snapBase = pointToVector2(parsePoint(scanner));
+            entity.snapBase = parsePoint(scanner);
             break;
         case 14:
-            entity.snapSpacing = pointToVector2(parsePoint(scanner));
+            entity.snapSpacing = parsePoint(scanner);
             break;
         case 15:
-            entity.gridSpacing = pointToVector2(parsePoint(scanner));
+            entity.gridSpacing = parsePoint(scanner);
             break;
         case 16:
-            entity.viewDirection = pointToVector3(parsePoint(scanner));
+            entity.viewDirection = ensurePoint3D(parsePoint(scanner));
             break;
         case 17:
-            entity.targetPoint = pointToVector3(parsePoint(scanner));
+            entity.targetPoint = ensurePoint3D(parsePoint(scanner));
             break;
         case 42:
             entity.perspectiveLensLength = curr.value;
@@ -112,13 +109,13 @@ function parseViewport(entity: ViewportEntity, scanner: any, curr: any) {
             entity.ucsPerViewport = curr.value;
             break;
         case 110:
-            entity.ucsOrigin = pointToVector3(parsePoint(scanner));
+            entity.ucsOrigin = ensurePoint3D(parsePoint(scanner));
             break;
         case 111:
-            entity.ucsXAxis = pointToVector3(parsePoint(scanner));
+            entity.ucsXAxis = ensurePoint3D(parsePoint(scanner));
             break;
         case 112:
-            entity.ucsYAxis = pointToVector3(parsePoint(scanner));
+            entity.ucsYAxis = ensurePoint3D(parsePoint(scanner));
             break;
         case 345:
             entity.ucsId = curr.value;
