@@ -18,6 +18,8 @@
             "./node_modules/@types" // 설정 안할시 기본적으로 ./node_modules/@types
         ],
         "baseUrl": "./src",
+        "declaration": true,
+        "emitDeclarationOnly": true,
         "plugins": [
             {
                 "transform": "typia/lib/transform"
