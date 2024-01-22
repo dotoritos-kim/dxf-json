@@ -14,8 +14,8 @@ type ErrorOptions = {
     cause: Error
 } | undefined
 
-/** Options for {@link DxfParser} construction. */
-export class DxfParserOptions {
+/** Options for {@link DxfStreamParser} construction. */
+export class DxfStreamParserOptions {
     /** Encoding label.
      * See https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings
      */
@@ -40,7 +40,7 @@ export class DxfParsingError extends Error {
 }
 
 
-export default class DxfParser extends EventTarget {
+export default class DxfStreamParser extends EventTarget {
 
     public dxf: ParsedDxf = {
         // @ts-ignore
@@ -56,7 +56,7 @@ export default class DxfParser extends EventTarget {
 
     private readonly _decoder: TextDecoder
 
-    constructor(options: DxfParserOptions = new DxfParserOptions()) {
+    constructor(options: DxfStreamParserOptions = new DxfStreamParserOptions()) {
         super()
         this._decoder = new TextDecoder(options.encoding, {
             fatal: options.encodingFailureFatal
