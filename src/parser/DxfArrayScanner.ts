@@ -117,7 +117,7 @@ export default class DxfArrayScanner {
  * @param value
  * @returns {*}
  */
-function parseGroupValue(code: number, value: string) {
+export function parseGroupValue(code: number, value: string) {
     if (code <= 9) return value;
     if (code >= 10 && code <= 59) return parseFloat(value.trim());
     if (code >= 60 && code <= 99) return parseInt(value.trim());
