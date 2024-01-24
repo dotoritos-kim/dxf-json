@@ -84,6 +84,12 @@ I was able to get a lot of ideas from the  [dxf-parser](https://github.com/gdses
 
 ## How do I use it?
 
+npm package:
+
+```sh
+npm i dxf-json
+```
+
 build:
 
 ```sh
