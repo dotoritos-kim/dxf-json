@@ -1,13 +1,9 @@
-import { parseHeader } from './header';
-import { parseTables } from './tables';
-import { parseBlocks } from './blocks';
-import { parseEntities } from './entities';
-import { parseObjects } from './objects';
-import { isMatched } from './shared';
-import { filterDummyBlocks } from './filterDummyBlocks';
-import type { ParsedDxf } from './types';
+
+import { parseGroupValue, ScannerGroup } from 'parser/DxfArrayScanner';
+import { isMatched } from 'parser/shared';
+import { ParsedDxf } from 'parser/types';
 import { Readable } from 'readable-stream';
-import { parseGroupValue, ScannerGroup } from './DxfArrayScanner';
+import { parsePoint } from './streamShared/parseData';
 
 
 type ErrorOptions = {
@@ -55,12 +51,14 @@ export default class DxfStreamParser extends EventTarget {
     };
 
     private readonly _decoder: TextDecoder
+    private readonly _pointParser: parsePoint;
 
     constructor(options: DxfStreamParserOptions = new DxfStreamParserOptions()) {
         super()
         this._decoder = new TextDecoder(options.encoding, {
             fatal: options.encodingFailureFatal
         })
+        this._pointParser = new parsePoint()
     }
 
     private _finalChunkSeen: boolean = false
@@ -68,7 +66,12 @@ export default class DxfStreamParser extends EventTarget {
     private _curGroupCode: number | null = null
     private _curLineNum = 1
 
-    private Feed(input: BufferSource | null, isFinalChunk = false): void {
+    private _eof = false;
+    private _curValue: ScannerGroup = { code: 0, value: 0 }
+    private _curSection: string = ""
+    private _currVarName: string = ""
+
+    private Feed(input: ArrayBuffer | null, isFinalChunk = false): void {
         const s = this._decoder.decode(input ?? undefined, { stream: !isFinalChunk })
         this.FeedString(s, isFinalChunk)
     }
@@ -90,23 +93,57 @@ export default class DxfStreamParser extends EventTarget {
     private _Finalize() {
     }
 
-    async FeedFile(file: File, abortSignal?: AbortSignal): Promise<void> {
-        const size = file.size
+    async FeedFile(file: ArrayBuffer, abortSignal?: AbortSignal): Promise<void> {
+        const size = file.byteLength
         const CHUNK_SIZE = 0x10000
         for (let offset = 0; offset < size; offset += CHUNK_SIZE) {
             abortSignal?.throwIfAborted()
             const chunkSize = Math.min(size - offset, CHUNK_SIZE)
-            const buf = await file.slice(offset, offset + chunkSize).arrayBuffer()
+            const buf = await file.slice(offset, offset + chunkSize)
             this.Feed(buf, offset + chunkSize >= size)
         }
     }
 
     private _ProcessCurChunk(): void {
         for (const s of this._ConsumeCurChunkLines()) {
+
             this._ProcessLine(s)
             this._curLineNum++
+            if (!this._eof) {
+
+                switch (this._curSection) {
+                    case "HEADER":
+                        let headerValue = this._curValue.value
+                        if (this._curValue.code === 9) {
+                            this._currVarName = headerValue;
+                        }
+                        else if (this._curValue.code === 10) {
+                            this._pointParser.parseStart(this._curValue)
+                        }
+                        else if (
+                            this._pointParser.startCode === this._curValue.code ||
+                            this._pointParser.startCode + 10 === this._curValue.code ||
+                            this._pointParser.startCode + 20 === this._curValue.code
+                        ) {
+                            headerValue = this._pointParser.setPoint(this._curValue)
+                        }
+                        else {
+                            if (this._currVarName) this.dxf.header[this._currVarName] = headerValue;
+                        }
+                        break;
+                    case "BLOCKS":
+                        break;
+                    case "ENTITIES":
+                        break;
+                    case "TABLES":
+                        break;
+                    case "OBJECTS":
+                        break;
+                }
+            }
         }
     }
+
     private *_ConsumeCurChunkLines(): IterableIterator<string> {
         let pos = 0
         const n = this._curChunk.length
@@ -134,7 +171,6 @@ export default class DxfStreamParser extends EventTarget {
             this._curChunk = this._curChunk.substring(pos)
         }
     }
-
     private _ProcessLine(line: string): void {
         if (this._curGroupCode === null) {
             const codeStr = line.trim()
@@ -145,8 +181,35 @@ export default class DxfStreamParser extends EventTarget {
             return
         }
         const token = new Token(this._curGroupCode, line)
-        //:TODO
-        // We need to develop a classification function with the same concept as ParseAll.
+
+
+        if (!isMatched(token, 0, 'EOF')) {
+            switch (token.value) {
+                case "SECTION":
+                    this._curSection = "SECTION"
+                    break;
+                case "HEADER":
+                    this._curSection = "HEADER"
+                    break;
+                case "BLOCKS":
+                    this._curSection = "BLOCKS"
+                    break;
+                case "ENTITIES":
+                    this._curSection = "ENTITIES"
+                    break;
+                case "TABLES":
+                    this._curSection = "TABLES"
+                    break;
+                case "OBJECTS":
+                    this._curSection = "OBJECTS"
+                    break;
+            }
+            this._eof = false
+        }
+        if (isMatched(token, 0, 'EOF')) {
+            this._eof = true
+        }
+        this._curValue = token
         this._curGroupCode = null
     }
     private _Error(msg: string, cause: any | null = null) {
@@ -159,6 +222,7 @@ export default class DxfStreamParser extends EventTarget {
 }
 
 
+
 class Token {
     readonly code: number
     readonly value: string | number | boolean
@@ -167,15 +231,4 @@ class Token {
         this.code = code
         this.value = parseGroupValue(code, valueStr)
     }
-}
-
-/**
- * Parse a boolean according to a 1 or 0 value
- * @param str
- * @returns {boolean}
- */
-function parseBoolean(str: string) {
-    if (str === '0') return false;
-    if (str === '1') return true;
-    throw TypeError("String '" + str + "' cannot be cast to Boolean type");
 }
