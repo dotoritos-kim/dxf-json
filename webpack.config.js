@@ -39,9 +39,6 @@ export default {
                         }
                     }
                 },
-                resolve: {
-                    fullySpecified: false,
-                }
             },
         ],
     },
