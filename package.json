@@ -5,6 +5,7 @@
     "main": "./src/index.ts",
     "type": "module",
     "module": "./dist/bundle.js",
+    "types": "./dist/index.d.ts",
     "scripts": {
         "build": "tsc --declaration && webpack --mode production",
         "test:parser": "jest --silent=false"
