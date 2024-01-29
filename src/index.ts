@@ -1,6 +1,6 @@
 import DxfParser from './parser/DxfParser'
 
 
-export {
+export default {
     DxfParser,
 };
