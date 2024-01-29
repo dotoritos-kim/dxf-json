@@ -2,7 +2,7 @@
     "name": "dxf-json",
     "version": "1.0.0",
     "description": "perfect dxf parser",
-    "main": "./dist/bundle.js",
+    "main": "./dist/index.d.ts",
     "type": "module",
     "module": "./dist/bundle.js",
     "types": "./dist/index.d.ts",
@@ -59,7 +59,7 @@
         "dist"
     ],
     "exports": {
-        "import": "./dist/bundle.js",
-        "require": "./dist/bundle.js"
+        ".": "./dist/bundle.js",
+        "./dist": "./dist/index.js"
     }
 }
