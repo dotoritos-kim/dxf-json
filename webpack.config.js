@@ -1,6 +1,7 @@
 import path from "path";
-
+import resolveTypeScriptPluginModule from 'resolve-typescript-plugin';
 const __dirname = path.resolve();
+const ResolveTypeScriptPlugin = resolveTypeScriptPluginModule;
 
 export default {
     mode: 'production',
@@ -23,6 +24,13 @@ export default {
             '...',
         ],
         modules: ['src', 'node_modules'],
+        extensionAlias: {
+            '.js': ['.ts', '.tsx', '.js', '.jsx'],
+            '.jsx': ['.tsx', '.jsx'],
+            '.mjs': ['.mts', '.mjs'],
+            '.cjs': ['.cts', '.cjs'],
+        },
+        plugins: [new ResolveTypeScriptPlugin()]
     },
     module: {
         rules: [

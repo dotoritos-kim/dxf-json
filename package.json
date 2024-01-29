@@ -60,6 +60,6 @@
     ],
     "exports": {
         ".": "./dist/bundle.js",
-        "./dist": "./dist/index.js"
+        "./dist": "./dist/bundle.js"
     }
 }
