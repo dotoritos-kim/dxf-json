@@ -31,6 +31,13 @@ export default {
                 exclude: /(node_modules|__tests__)/,
                 use: {
                     loader: 'swc-loader',
+                    options: {
+                        jsc: {
+                            parser: {
+                                syntax: "typescript"
+                            }
+                        }
+                    }
                 },
                 resolve: {
                     fullySpecified: false,

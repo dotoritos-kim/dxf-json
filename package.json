@@ -6,7 +6,7 @@
     "type": "module",
     "module": "./dist/bundle.js",
     "scripts": {
-        "build": "webpack --mode production",
+        "build": "tsc --declaration && webpack --mode production",
         "test:parser": "jest --silent=false"
     },
     "repository": {

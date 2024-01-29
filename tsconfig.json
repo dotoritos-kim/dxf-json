@@ -19,6 +19,7 @@
         ],
         "baseUrl": "./src",
         "declaration": true,
+        "declarationDir": "./dist",
         "emitDeclarationOnly": true,
         "plugins": [
             {
