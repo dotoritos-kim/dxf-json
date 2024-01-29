@@ -57,5 +57,9 @@
     },
     "files": [
         "dist"
-    ]
+    ],
+    "exports": {
+        "import": "./dist/bundle.js",
+        "require": "./dist/bundle.js"
+    }
 }

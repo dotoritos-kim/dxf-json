@@ -25,7 +25,8 @@
             {
                 "transform": "typia/lib/transform"
             }
-        ]
+        ],
+        "isolatedModules": true
     },
     "include": [
         "./src/**/*" // build 시 포함
