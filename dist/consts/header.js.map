@@ -1,1 +1,0 @@
-{"version":3,"file":"header.js","sourceRoot":"","sources":["../../src/consts/header.ts"],"names":[],"mappings":";;;AAAA,2DAAwD;AAE3C,QAAA,yBAAyB,GAAG;IACrC,MAAM,EAAE,MAAM;IACd,cAAc,EAAE,CAAC;IACjB,cAAc,EAAE,YAAY;IAC5B,aAAa,EAAE,cAAc;IAC7B,QAAQ,EAAE,qCAAiB,CAAC,GAAG;IAC/B,QAAQ,EAAE,EAAE;CACf,CAAC"}

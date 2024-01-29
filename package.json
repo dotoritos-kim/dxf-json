@@ -7,7 +7,7 @@
     "types": "./dist/index.d.ts",
     "module": "./dist/index.js",
     "scripts": {
-        "build": "tsc && webpack --mode production",
+        "build": "webpack --mode production",
         "test:parser": "jest --silent=false"
     },
     "repository": {
