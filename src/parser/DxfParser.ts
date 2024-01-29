@@ -1,3 +1,4 @@
+import fs from "fs";
 import DxfArrayScanner from './DxfArrayScanner';
 import { parseHeader } from './header';
 import { parseTables } from './tables';
@@ -18,7 +19,7 @@ export default class DxfParser {
 
         return this.parseAll(scanner);
     }
-    parseStream(stream: Readable) {
+    parseStream(stream: Readable | fs.ReadStream) {
         let dxfString = "";
         const self = this;
         return new Promise<ParsedDxf>((res, rej) => {
