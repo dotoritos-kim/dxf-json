@@ -9,7 +9,14 @@ export default {
         path: `${__dirname}/dist`,
         filename: 'bundle.js',
         publicPath: '/',
+        library: {
+            type: "module",
+        },
     },
+    experiments: {
+        outputModule: true,
+    },
+
     entry: './src/index.ts',
     resolve: {
         alias: {
