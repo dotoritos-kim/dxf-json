@@ -10,6 +10,7 @@ export default {
         filename: 'bundle.js',
         publicPath: '/',
         chunkFormat: 'module',
+        library: 'DxfParser',
         libraryTarget: 'umd'
     },
     experiments: {
