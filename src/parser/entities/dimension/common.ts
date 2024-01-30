@@ -1,8 +1,8 @@
-import DxfArrayScanner, { ScannerGroup } from 'parser/DxfArrayScanner';
-import { Point3D } from 'types';
+import DxfArrayScanner, { type ScannerGroup } from '@src/parser/DxfArrayScanner';
+import { Point3D } from '@src/types';
 import * as helpers from '../../ParseHelpers';
 import { parsePoint } from '../../shared/parsePoint';
-import { AlignedDimensionEntity, AngularDimensionEntity, DimensionEntity, DimensionEntityCommon, OrdinateDimensionEntity, RadialDiameterDimensionEntity } from './types';
+import type { AlignedDimensionEntity, AngularDimensionEntity, DimensionEntity, OrdinateDimensionEntity, RadialDiameterDimensionEntity } from './types';
 
 /**
  * @returns Return `false` if curr is not related to common dimension group
