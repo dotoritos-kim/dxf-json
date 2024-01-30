@@ -13,6 +13,7 @@ export default {
             type: 'module',
         },
         chunkFormat: 'module',
+        libraryTarget: 'commonjs2'
     },
     experiments: {
         outputModule: true,
