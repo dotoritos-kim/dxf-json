@@ -17,7 +17,6 @@
             "./src/types/express.d.ts", // 타입(*.d.ts)파일을 가져올 디렉토리 설정
             "./node_modules/@types" // 설정 안할시 기본적으로 ./node_modules/@types
         ],
-        "baseUrl": "./src",
         "declaration": true,
         "declarationDir": "./dist",
         "emitDeclarationOnly": true,
