@@ -1,8 +1,27 @@
 {
     "jsc": {
         "parser": {
-            "syntax": "typescript"
+            "syntax": "typescript",
+            "tsx": false,
+            "decorators": true,
+            "dynamicImport": true
         },
-        "target": "es2019"
-    }
+        "target": "es2020",
+        "minify": {
+            "compress": true
+        }
+    },
+    "isModule": true,
+    "module": {
+        // You can specify "commonjs", "es6", "amd", "umd"
+        "type": "commonjs",
+        "strict": false,
+        "strictMode": true,
+        "lazy": false,
+        "noInterop": false,
+        "ignoreDynamic": false
+    },
+    "sourceMaps": true,
+    "minify": true,
+    "inlineSourcesContent": true
 }

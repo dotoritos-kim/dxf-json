@@ -10,8 +10,9 @@ export default {
         filename: 'bundle.js',
         publicPath: '/',
         library: {
-            type: "module",
+            type: 'module',
         },
+        chunkFormat: 'module',
     },
     experiments: {
         outputModule: true,
@@ -46,13 +47,6 @@ export default {
                 exclude: /(node_modules|__tests__)/,
                 use: {
                     loader: 'swc-loader',
-                    options: {
-                        jsc: {
-                            parser: {
-                                syntax: "typescript"
-                            }
-                        }
-                    }
                 },
             },
         ],
