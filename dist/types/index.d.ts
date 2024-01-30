@@ -1,6 +1,5 @@
 export * from './color';
 export * from './dxfHeader';
-export * from './entity';
 export interface Point2D {
     x: number;
     y: number;

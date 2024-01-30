@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci
+      - run: npm install
       - run: npm run test:parser
   setup-build-deploy:
     needs: build
@@ -45,7 +45,7 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
-      - run: npm ci
+      - run: npm install
       - run: git config --global user.name "${{ github.actor }}"
       - run: git config --global user.email "github-action-${{ github.actor }}@users.noreply.github.com"
       - run: npm run build

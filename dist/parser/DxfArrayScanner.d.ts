@@ -36,3 +36,12 @@ export default class DxfArrayScanner {
  */
     isEOF(): boolean;
 }
+/**
+ * Parse a value to its proper type.
+ * See pages 3 - 10 of the AutoCad DXF 2012 reference given at the top of this file
+ *
+ * @param code
+ * @param value
+ * @returns {*}
+ */
+export declare function parseGroupValue(code: number, value: string): string | number | boolean;
