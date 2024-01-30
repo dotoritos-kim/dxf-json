@@ -35,6 +35,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
           release_branches: main
+          # fix: - patch, feat: - minor, BREAKING CHANGE: - major
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1

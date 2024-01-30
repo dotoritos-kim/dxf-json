@@ -9,19 +9,19 @@ export default {
         path: `${__dirname}/dist`,
         filename: 'bundle.js',
         publicPath: '/',
-        chunkFormat: 'module',
         library: {
             name: 'DxfParser',
             type: 'umd',
             export: 'DxfParser'
         },
+        module: true,
+        pathinfo: true,
         globalObject: 'typeof self !== \'undefined\' ? self : this',
         libraryTarget: 'commonjs2'
     },
     experiments: {
         outputModule: true,
     },
-
     entry: './src/index.ts',
     resolve: {
         alias: {
