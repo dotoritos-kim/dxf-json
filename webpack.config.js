@@ -13,7 +13,7 @@ export default {
             type: 'module',
         },
         chunkFormat: 'module',
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'umd'
     },
     experiments: {
         outputModule: true,
