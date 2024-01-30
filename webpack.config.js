@@ -10,7 +10,12 @@ export default {
         filename: 'bundle.js',
         publicPath: '/',
         chunkFormat: 'module',
-        library: 'DxfParser',
+        library: {
+            name: 'DxfParser',
+            type: 'umd',
+            export: 'DxfParser'
+        },
+        globalObject: 'typeof self !== \'undefined\' ? self : this',
         libraryTarget: 'commonjs2'
     },
     experiments: {
