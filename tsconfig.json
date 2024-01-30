@@ -25,7 +25,10 @@
                 "transform": "typia/lib/transform"
             }
         ],
-        "isolatedModules": true
+        "isolatedModules": true,
+        "paths": {
+            "@src/*": ["./src/*"]
+        }
     },
     "include": [
         "./src/**/*" // build 시 포함

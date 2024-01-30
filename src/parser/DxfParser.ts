@@ -1,6 +1,5 @@
 
-import DxfArrayScanner, { parseGroupValue } from './DxfArrayScanner';
-import fs from "fs";
+import DxfArrayScanner from './DxfArrayScanner';
 import { parseHeader } from './header';
 import { parseTables } from './tables';
 import { parseBlocks } from './blocks';
@@ -9,12 +8,8 @@ import { parseObjects } from './objects';
 import { isMatched } from './shared';
 import { filterDummyBlocks } from './filterDummyBlocks';
 import type { ParsedDxf } from './types';
-import { Readable } from 'readable-stream';
+import type { Readable } from 'readable-stream';
 
-
-type ErrorOptions = {
-    cause: Error
-} | undefined
 
 /** Options for {@link DxfParser} construction. */
 export class DxfParserOptions {
@@ -47,7 +42,7 @@ export default class DxfParser extends EventTarget {
 
         return this.parseAll(scanner);
     }
-    parseStream(stream: Readable | fs.ReadStream) {
+    parseStream(stream: Readable) {
         let dxfString = "";
         const self = this;
         return new Promise<ParsedDxf>((res, rej) => {

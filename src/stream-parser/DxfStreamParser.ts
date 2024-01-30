@@ -1,8 +1,6 @@
-
-import { parseGroupValue, ScannerGroup } from 'parser/DxfArrayScanner';
-import { isMatched } from 'parser/shared';
-import { ParsedDxf } from 'parser/types';
-import { Readable } from 'readable-stream';
+import { parseGroupValue, type ScannerGroup } from '@src/parser/DxfArrayScanner';
+import { isMatched } from '@src/parser/shared';
+import type { ParsedDxf } from '@src/parser/types';
 import { parsePoint } from './streamShared/parseData';
 
 

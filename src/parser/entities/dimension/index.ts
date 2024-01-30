@@ -1,4 +1,4 @@
-import DxfArrayScanner, { ScannerGroup } from 'parser/DxfArrayScanner';
+import DxfArrayScanner, { type ScannerGroup } from '../../DxfArrayScanner';
 import { isMatched } from '../../shared';
 import { parseDimension } from './common';
 import { DimensionEntity } from './types';
