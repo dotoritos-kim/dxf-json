@@ -1,5 +1,6 @@
+
+import DxfArrayScanner, { parseGroupValue } from './DxfArrayScanner';
 import fs from "fs";
-import DxfArrayScanner from './DxfArrayScanner';
 import { parseHeader } from './header';
 import { parseTables } from './tables';
 import { parseBlocks } from './blocks';
@@ -9,7 +10,34 @@ import { isMatched } from './shared';
 import { filterDummyBlocks } from './filterDummyBlocks';
 import type { ParsedDxf } from './types';
 import { Readable } from 'readable-stream';
-export default class DxfParser {
+
+
+type ErrorOptions = {
+    cause: Error
+} | undefined
+
+/** Options for {@link DxfParser} construction. */
+export class DxfParserOptions {
+    /** Encoding label.
+     * See https://developer.mozilla.org/en-US/docs/Web/API/Encoding_API/Encodings
+     */
+    encoding: string = "utf-8"
+    /** Throw `TypeError` when encountering invalid encoded data when true. When false, the decoder
+     * will substitute malformed data with a replacement character.
+     */
+    encodingFailureFatal: boolean = false
+}
+
+
+export default class DxfParser extends EventTarget {
+    private readonly _decoder: TextDecoder
+
+    constructor(options: DxfParserOptions = new DxfParserOptions()) {
+        super()
+        this._decoder = new TextDecoder(options.encoding, {
+            fatal: options.encodingFailureFatal
+        })
+    }
     parseSync(dxfString: string) {
         const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g);
         const scanner = new DxfArrayScanner(dxfLinesArray);
@@ -44,28 +72,26 @@ export default class DxfParser {
         });
     }
 
-    async parseFromUrl(url: string, encoding = "utf-8", init?: RequestInit | undefined) {
+    async parseFromUrl(url: string, init?: RequestInit | undefined) {
         const response = await fetch(url, init)
 
         if (!response.body) return null;
 
         const reader = response.body.getReader()
         let buffer = ""
-        let decoder = new TextDecoder(encoding)
 
         while (true) {
             const { done, value } = await reader.read()
             if (done) {
-                buffer += decoder.decode(new ArrayBuffer(0), { stream: false })
+                buffer += this._decoder.decode(new ArrayBuffer(0), { stream: false })
                 break
             }
-            buffer += decoder.decode(value, { stream: true })
+            buffer += this._decoder.decode(value, { stream: true })
         }
         return this.parseSync(buffer)
     }
 
-
-    parseAll(scanner: DxfArrayScanner) {
+    private parseAll(scanner: DxfArrayScanner) {
         const dxf: ParsedDxf = {
             // @ts-ignore
             header: {},
