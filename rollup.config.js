@@ -22,18 +22,11 @@ export default {
           dynamicImport: true
         },
         target: "es2020",
-        minify: {
-          "compress": true
-        }
       },
       isModule: true,
       module: {
-        type: "commonjs",
-        strict: false,
-        strictMode: true,
-        lazy: false,
-        noInterop: false,
-        ignoreDynamic: false
+        type: "es6",
+        strictMode: true
       },
       sourceMaps: true,
       minify: true,

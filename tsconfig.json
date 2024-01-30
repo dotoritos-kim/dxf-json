@@ -6,7 +6,7 @@
         "emitDecoratorMetadata": true, // 데코레이터가 있는 선언에 대해 특정 타입의 메타 데이터를 내보내는 실험적인 지원
         "skipLibCheck": true, // 정의 파일 타입 체크 여부
         "moduleResolution": "node", // commonJS -> node 에서 동작
-        "module": "commonjs", // import 문법
+        "module": "ES2020", // import 문법
         "strict": true, // 타입 검사 엄격하게
         "pretty": true, // error 메시지 예쁘게
         "sourceMap": true, // 소스맵 파일 생성 -> .ts가 .js 파일로 트랜스 시 .js.map 생성

@@ -2,9 +2,13 @@
     "name": "dxf-json",
     "version": "1.0.0",
     "description": "perfect dxf parser",
-    "main": "./dist/index.d.ts",
     "type": "module",
-    "module": "./dist/bundle.js",
+    "main": "./dist/bundle.cjs",
+    "module": "./dist/bundle.mjs",
+    "exports": {
+        "import": "./dist/bundle.mjs",
+        "require": "./dist/bundle.cjs"
+    },
     "types": "./dist/index.d.ts",
     "scripts": {
         "build": "tsc && rollup --config",
@@ -56,9 +60,5 @@
     },
     "files": [
         "dist"
-    ],
-    "exports": {
-        ".": "./dist/bundle.js",
-        "./dist": "./dist/bundle.js"
-    }
+    ]
 }
