@@ -1,4 +1,4 @@
-import { isMatched } from '..';
+import { isMatched } from '../isMatched';
 import type { ScannerGroup } from '../../DxfArrayScanner';
 import type DxfArrayScanner from '../../DxfArrayScanner';
 import { parsePoint } from '../parsePoint';
