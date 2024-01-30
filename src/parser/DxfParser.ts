@@ -1,4 +1,6 @@
+
 import DxfArrayScanner, { parseGroupValue } from './DxfArrayScanner';
+import fs from "fs";
 import { parseHeader } from './header';
 import { parseTables } from './tables';
 import { parseBlocks } from './blocks';
@@ -45,7 +47,7 @@ export default class DxfParser extends EventTarget {
 
         return this.parseAll(scanner);
     }
-    parseStream(stream: Readable) {
+    parseStream(stream: Readable | fs.ReadStream) {
         let dxfString = "";
         const self = this;
         return new Promise<ParsedDxf>((res, rej) => {
