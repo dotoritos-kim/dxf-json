@@ -11,7 +11,7 @@ export default {
         publicPath: '/',
         chunkFormat: 'module',
         library: 'DxfParser',
-        libraryTarget: 'umd'
+        libraryTarget: 'commonjs2'
     },
     experiments: {
         outputModule: true,
