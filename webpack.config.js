@@ -9,9 +9,6 @@ export default {
         path: `${__dirname}/dist`,
         filename: 'bundle.js',
         publicPath: '/',
-        library: {
-            type: 'module',
-        },
         chunkFormat: 'module',
         libraryTarget: 'umd'
     },
