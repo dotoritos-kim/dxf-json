@@ -215,7 +215,7 @@ interface CommonDxfEntity {
     plotStyleHardId?: string;
     shadowMode?: ShadowMode;
     xdata?: XData;
-    ownerDictionaryHardId?: string | number | boolean;
+    ownerdictionaryHardId?: string | number | boolean;
     ownerDictionarySoftId?: string | number | boolean;
 }
 ```

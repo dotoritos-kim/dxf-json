@@ -22,17 +22,9 @@ import { TextEntityParser } from './text';
 import { HatchEntityParser } from './hatch';
 import Viewport from './viewport';
 import { CommonDxfEntity } from './shared';
-import { Face3DEntityParser } from './face3D';
-import { Solid3DEntityParser } from './solid3D';
-import { SurfaceEntityParser } from './surface';
-import { BodyEntityParser } from './body';
 
 const Parsers = Object.fromEntries(
     [
-        Solid3DEntityParser,
-        Face3DEntityParser,
-        SurfaceEntityParser,
-        BodyEntityParser,
         ArcEntityParser,
         AttDefEntityParser,
         AttributeEntityParser,

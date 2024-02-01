@@ -59,7 +59,7 @@ export function checkCommonEntityProperties(entity: CommonDxfEntity, curr: Scann
             }
             break;
         case 360:
-            entity.ownerDictionaryHardId = curr.value;
+            entity.ownerdictionaryHardId = curr.value;
             break;
         case 67:
             entity.isInPaperSpace = !!curr.value;
