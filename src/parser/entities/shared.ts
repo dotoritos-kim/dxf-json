@@ -29,7 +29,7 @@ export interface CommonDxfEntity {
     plotStyleHardId?: string;
     shadowMode?: ShadowMode;
     xdata?: XData;
-    ownerdictionaryHardId?: string | number | boolean;
+    ownerDictionaryHardId?: string | number | boolean;
     ownerDictionarySoftId?: string | number | boolean;
 }
 
