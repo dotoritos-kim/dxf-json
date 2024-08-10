@@ -5,6 +5,8 @@ name: dxf-json package
 
 on:
   push:
+    tags:
+      - '*'
     branches:
       - main
 
