@@ -1,3 +1,4 @@
+import { CommonDxfEntity } from '../shared';
 import type {
     DefaultLightingType,
     OrthographicType,
@@ -7,16 +8,14 @@ import type {
 } from '../../../consts';
 import type { Point2D, Point3D } from '../../../types';
 
-export interface ViewportEntity {
+export interface ViewportEntity extends CommonDxfEntity {
     type: 'VIEWPORT';
     subclassMarker: string;
-    handle?: string;
-    layer?: string;
     viewportCenter: Point3D; // WCS
     width: number; // paper space unit
     height: number; // paper space unit
     status: number; // -1: ON but off scren, 0: OFF, positive: ON and active
-    viewportId: string;
+    viewportId: number;
     displayCenter: Point2D; // DCS, viewportCenter가 화면 상 displayCenter에 와야된다는 뜻
     snapBase: Point2D;
     snapSpacing: Point2D;

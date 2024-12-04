@@ -96,6 +96,9 @@ function parseViewport(entity: ViewportEntity, scanner: any, curr: any) {
         case 90:
             entity.statusBitFlags = curr.value;
             break;
+        case 330:
+            entity.ownerBlockRecordSoftId = curr.value;
+            break;
         case 340:
             entity.clippingBoundaryId = curr.value;
             break;
@@ -170,6 +173,8 @@ function parseViewport(entity: ViewportEntity, scanner: any, curr: any) {
         case 91:
             entity.softPointer = curr.value;
             break;
+        default:
+            return false;
     }
     return true;
 }
