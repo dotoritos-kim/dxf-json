@@ -1,7 +1,7 @@
 {
-  "name": "@mlightcad/dxf-json",
+  "name": "dxf-json",
   "version": "1.0.0",
-  "description": "forked version of dxf-json",
+  "description": "perfect dxf parser",
   "type": "module",
   "main": "./dist/bundle.cjs",
   "module": "./dist/bundle.mjs",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mlight-lee/dxf-json.git"
+    "url": "git+https://github.com/dotoritos-kim/dxf-json.git"
   },
   "keywords": [
     "dxf",
@@ -28,11 +28,22 @@
     "type-safe",
     "typescript"
   ],
+  "author": {
+    "name": "kanghyune kim",
+    "email": "wwponv158@gmail.com"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "contributors": [
+    "phryxia"
+  ],
   "license": "GPL-3.0",
-  "homepage": "https://github.com/mlight-lee/dxf-json",
+  "bugs": {
+    "url": "https://github.com/dotoritos-kim/dxf-json/issues",
+    "email": "wwponv158@gmail.com"
+  },
+  "homepage": "https://github.com/dotoritos-kim/dxf-json#readme",
   "dependencies": {
     "@fxts/core": "^1.0.1"
   },
