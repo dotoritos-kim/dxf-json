@@ -11,6 +11,7 @@ import { AttributeEntityParser } from "./attribute";
 import { CircleEntityParser } from "./circle";
 import Dimension from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
+import { ImageEntityParser } from "./image";
 import { InsertEntityParser } from "./insert";
 import { LeaderEntityParser } from "./leader";
 import { LineEntityParser } from "./line/parser";
@@ -18,12 +19,15 @@ import { LWPolylineParser } from "./lwpolyline";
 import { MTextEntityParser } from "./mtext/parser";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
+import { RayEntityParser } from "./ray";
 import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
+import { TableEntityParser } from "./table";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
 import Viewport from "./viewport";
+import { XlineEntityParser } from "./xline";
 import { CommonDxfEntity } from "./shared";
 
 const Parsers = Object.fromEntries(
@@ -34,6 +38,7 @@ const Parsers = Object.fromEntries(
     CircleEntityParser,
     Dimension,
     EllipseEntityParser,
+    ImageEntityParser,
     InsertEntityParser,
     LeaderEntityParser,
     LineEntityParser,
@@ -41,12 +46,15 @@ const Parsers = Object.fromEntries(
     MTextEntityParser,
     PointEntityParser,
     PolylineParser,
+    RayEntityParser,
     SectionEntityParser,
     SolidEntityParser,
     SplineEntityParser,
+    TableEntityParser,
     TextEntityParser,
     HatchEntityParser,
     Viewport,
+    XlineEntityParser,
   ].map((parser) => [parser.ForEntityName, new parser()])
 );
 

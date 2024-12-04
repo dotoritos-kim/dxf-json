@@ -71,6 +71,7 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 310,
         name: 'proxyEntity',
+        isMultiple: true,
         parser: Identity,
     },
     {
@@ -96,7 +97,7 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 62,
         name: 'colorIndex',
-        parser(curr, scanner, entity) {
+        parser(curr, _scanner, entity) {
             const colorIndex = curr.value;
             entity.color = getAcadColor(Math.abs(colorIndex));
             return colorIndex;
@@ -129,6 +130,9 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     },
     {
         code: 100, // AcDbEntity를 소모시키기 위함
+    },
+    {
+        code: 160, // Unknown data
     },
     {
         code: 330,
