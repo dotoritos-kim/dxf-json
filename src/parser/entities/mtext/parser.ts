@@ -137,14 +137,13 @@ export const MTextEntityParserSnippets: DXFParserSnippet[] = [
     {
         code: 3,
         name: 'text',
-        parser(curr, scanner, entity) {
-            // Code 1에다 추가로 더 달아야 함
-            return (entity.text ?? '') + curr.value;
-        },
+        isMultiple: true,
+        parser: Identity,
     },
     {
         code: 1,
         name: 'text',
+        isMultiple: true,
         parser: Identity,
     },
     {
