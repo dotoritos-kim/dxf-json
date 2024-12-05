@@ -16,8 +16,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: npm ci
-      - run: npm run test:parser
+      - run: npm install
+      
   setup-build-deploy:
     needs: build
     name: Setup, Build, and Deploy
@@ -33,6 +33,9 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: false
+          release_branches: main
+          # fix: - patch, feat: - minor, BREAKING CHANGE: - major
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
@@ -45,11 +48,11 @@ jobs:
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
-      - run: npm ci
+      - run: npm install
       - run: git config --global user.name "${{ github.actor }}"
       - run: git config --global user.email "github-action-${{ github.actor }}@users.noreply.github.com"
       - run: npm run build
-      - run: npm version ${{ steps.tag_version.outputs.new_tag }} --force
+      - run: npm version ${{ steps.tag_version.outputs.new_tag }}  -f
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,8 +1,8 @@
 import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex';
 import DxfArrayScanner, { ScannerGroup } from './DxfArrayScanner';
-import { CommonDxfEntity, skipApplicationGroups } from './entities/shared';
+import { skipApplicationGroups, type CommonDxfEntity } from './entities/shared';
 import { ViewportEntity } from './entities/viewport/types';
-import { isMatched } from './shared';
+import { isMatched } from './shared/isMatched';
 import { parseXData } from './shared/xdata';
 
 /**

@@ -1,6 +1,7 @@
 import type DxfArrayScanner from '../DxfArrayScanner';
 import { ScannerGroup } from '../DxfArrayScanner';
 import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
+import { ImageDefSnippets } from './imageDef';
 import { LayoutSnippets } from './layout';
 import { CommonObjectSnippets } from './common';
 import { PlotSettingsSnippets } from './plotSettings';
@@ -12,6 +13,7 @@ const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
     LAYOUT: LayoutSnippets,
     PLOTSETTINGS: PlotSettingsSnippets,
     DICTIONARY: DictionarySnippets,
+    IMAGEDEF: ImageDefSnippets,
 };
 
 export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {

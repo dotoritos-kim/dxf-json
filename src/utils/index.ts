@@ -1,6 +1,6 @@
 export * from './flooding';
 
-import type { Point2D, Point3D } from 'types';
+import type { Point2D, Point3D } from '@src/types'
 
 export function classify<T>(
     iterable: Iterable<T>,
