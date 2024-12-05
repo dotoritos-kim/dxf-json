@@ -11,7 +11,7 @@ export interface MTextEntity extends CommonDxfEntity {
     width: number;
     attachmentPoint: AttachmentPoint;
     drawingDirection: MTextDrawingDirection;
-    text: string;
+    text: string[];
     styleName: string;
     extrusionDirection: Point3D;
     direction: Point3D;
