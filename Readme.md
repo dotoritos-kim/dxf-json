@@ -7,6 +7,7 @@ Entity:
 - image
 - ray
 - table
+- wipeout
 - xline
 
 Objects:

@@ -27,6 +27,7 @@ import { TableEntityParser } from "./table";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
 import Viewport from "./viewport";
+import { WipeoutEntityParser } from "./wipeout";
 import { XlineEntityParser } from "./xline";
 import { CommonDxfEntity } from "./shared";
 
@@ -54,6 +55,7 @@ const Parsers = Object.fromEntries(
     TextEntityParser,
     HatchEntityParser,
     Viewport,
+    WipeoutEntityParser,
     XlineEntityParser,
   ].map((parser) => [parser.ForEntityName, new parser()])
 );

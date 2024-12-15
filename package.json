@@ -1,6 +1,6 @@
 {
   "name": "@mlightcad/dxf-json",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "forked version of dxf-json",
   "type": "module",
   "main": "./dist/bundle.cjs",
