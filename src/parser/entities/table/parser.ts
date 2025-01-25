@@ -13,6 +13,7 @@ export class TableEntityParser {
         const entity = {} as TableEntity;
         while (!scanner.isEOF()) {
             if (curr.code === 0) {
+                scanner.rewind();
                 break;
             }
 
