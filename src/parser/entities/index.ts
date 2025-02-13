@@ -79,7 +79,8 @@ export function parseEntities(
 				ensureHandle(entity);
 				entities.push(entity);
 			} else {
-				console.warn(`Unsupported ENTITY type: ${curr.value}`);
+				if (scanner.debug)
+					console.warn(`Unsupported ENTITY type: ${curr.value}`);
 			}
 		}
 
