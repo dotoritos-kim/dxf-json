@@ -19,7 +19,10 @@ export interface DXFParserSnippet {
     // 만약 Abort 심볼이 반환될 경우 값에 대입하지 않고 읽은 것을 한 칸 되돌리고
     // 종료함
     parser?(curr: ScannerGroup, scanner: DxfArrayScanner, entity: any): any;
-    isMultiple?: boolean; // code가 여러 번 들어올 수 있는 경우, true로 표기
+    /** When specific group code can be read multiple times, set this `true` */
+    isMultiple?: boolean;
+    /** When isMultiple is `true`, save array when `false`, replace as is when `true` */
+    isReducible?: boolean; 
 
     // https://github.com/connect-for-you/cadview-front/issues/41
     // 이 스니펫을 기점으로 맥락을 바꿈
@@ -61,7 +64,7 @@ export function createParser(
                 snippetMap[curr.code].pop();
             }
 
-            const { name, parser, isMultiple } = snippet;
+            const { name, parser, isMultiple, isReducible } = snippet;
             const parsedValue = parser?.(curr, scanner, target);
 
             if (parsedValue === Abort) {
@@ -72,7 +75,7 @@ export function createParser(
             if (name) {
                 const [leaf, fieldName] = getObjectByPath(target, name);
 
-                if (isMultiple) {
+                if (isMultiple && !isReducible) {
                     // default value is injected via prototype, therefore have to check their own properties
                     if (!Object.prototype.hasOwnProperty.call(leaf, fieldName)) {
                         leaf[fieldName] = [];

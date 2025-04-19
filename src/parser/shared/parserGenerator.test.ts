@@ -123,6 +123,61 @@ describe('createParser', () => {
         expect(curr.code).toBe(2);
     });
 
+    describe('isReducible', () => {
+        it('should return multiple values as array when isReducible is false', () => {
+            const parse = createParser([
+                {
+                    code: 1,
+                    name: 'a',
+                    isMultiple: true,
+                    parser: Identity,
+                },
+            ]);
+
+            const scanner = new DxfArrayScanner([
+                '1',
+                'x',
+                '1',
+                'x',
+                'EOF',
+            ]);
+
+            const obj = {} as any;
+            let curr = scanner.next();
+            parse(curr, scanner, obj);
+
+            expect(obj.a instanceof Array).toBeTruthy();
+        })
+
+        it('should return reduced single value when isReducible is true', () => {
+            const parse = createParser([
+                {
+                    code: 10,
+                    name: 'a',
+                    isMultiple: true,
+                    isReducible: true,
+                    // replace as sum with its previous value
+                    parser: (curr, _, obj) => (obj.a ?? 0) + curr.value,
+                },
+            ]);
+
+            const scanner = new DxfArrayScanner([
+                '10',
+                '1',
+                '10',
+                '2',
+                'EOF',
+            ]);
+
+            const obj = {} as any;
+            let curr = scanner.next();
+            parse(curr, scanner, obj);
+
+            expect(obj.a instanceof Array).toBeFalsy();
+            expect(obj.a).toBe(3)
+        })
+    })
+
     it('pushContext가 걸린 경우, 새로 생긴 맥락부터 뒤져본다.', () => {
         const parse = createParser([
             {
