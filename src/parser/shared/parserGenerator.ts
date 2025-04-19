@@ -73,9 +73,8 @@ export function createParser(
                 const [leaf, fieldName] = getObjectByPath(target, name);
 
                 if (isMultiple) {
-                    // prototype으로 디폴트값 넣어준 경우 nullish coalescing으로 해결 안됨 
-                    // @ts-ignore
-                    if (!Object.hasOwn(leaf, fieldName)) {
+                    // default value is injected via prototype, therefore have to check their own properties
+                    if (!Object.prototype.hasOwnProperty.call(leaf, fieldName)) {
                         leaf[fieldName] = [];
                     }
                     leaf[fieldName].push(parsedValue);
@@ -158,8 +157,7 @@ function getObjectByPath(target: any, path: string) {
     let currentTarget = target;
     for (let depth = 0; depth < fragments.length - 1; ++depth) {
         const currentName = fragments[depth];
-        // @ts-ignore
-        if (!Object.hasOwn(currentTarget, currentName)) {
+        if (!Object.prototype.hasOwnProperty.call(currentTarget, currentName)) {
             currentTarget[currentName] = {};
         }
         currentTarget = currentTarget[currentName];
