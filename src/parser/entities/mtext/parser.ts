@@ -19,8 +19,8 @@ const DefaultMTextEntity = {
 
 export const MTextEntityParserSnippets: DXFParserSnippet[] = [
     {
-        // 얘는 원래 순수 MTEXT에는 없으나 ATTRIB에 내장된 MTEXT에는 있다
-        // 만약 ATTRIB에만 이걸 놔두면, ATTRIB를 제외했을 때 터지는 경우가 생김
+        // This is not in pure MTEXT but exists in MTEXT embedded in ATTRIB
+        // For compatibility with ATTRIB, this was added
         code: 46,
         name: 'annotationHeight',
         parser: Identity,
@@ -28,7 +28,7 @@ export const MTextEntityParserSnippets: DXFParserSnippet[] = [
     {
         code: 101,
         parser(curr, scanner) {
-            // 정체불명인데 기존 로직에 있어서 보존
+            // Not sure what this does, it's ancient code
             skipEmbeddedObject(scanner);
         },
     },
@@ -86,7 +86,7 @@ export const MTextEntityParserSnippets: DXFParserSnippet[] = [
     {
         code: [...generateIntegers(430, 440)], // named color
         name: 'backgroundColor',
-        parser: Identity, // 당장은 테이블 보기 힘들어서 놔둠 추후에 rgb화 필요
+        parser: Identity, // why this was separate from below one?
     },
     {
         code: [...generateIntegers(420, 430)], // rgb
@@ -114,10 +114,10 @@ export const MTextEntityParserSnippets: DXFParserSnippet[] = [
         parser: Identity, // radian
     },
     {
-        code: 43, // vertical height of characters, 미사용
+        code: 43, // vertical height of characters, this is not used in AutoCAd
     },
     {
-        code: 42, // horizontal width of characters, 미사용
+        code: 42, // horizontal width of characters, this is not used in AutoCAd
     },
     {
         code: 11,
