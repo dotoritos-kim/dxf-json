@@ -138,16 +138,18 @@ export const MTextEntityParserSnippets: DXFParserSnippet[] = [
         code: 3,
         name: 'text',
         parser(curr, _, entity) {
-            // When there are more than 255 characters, code 3 will be presented
-            return (entity.text ?? '') + curr.value;
+            entity._code3text = (entity._code3text ?? '') + curr.value;
+            return entity._code3text + (entity._code1text ?? '');
         },
+        isMultiple: true,
+        isReducible: true,
     },
     {
         code: 1,
         name: 'text',
         parser(curr, _, entity) {
-            // Code 3 may occur before code 1
-            return curr.value + (entity.text ?? '')
+            entity._code1text = curr.value;
+            return (entity._code3text ?? '') + entity._code1text;
         },
     },
     {
