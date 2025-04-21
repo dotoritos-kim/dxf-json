@@ -4,6 +4,7 @@ export * from "./circle";
 export * from "./dimension";
 export * from "./ellipse";
 export * from "./hatch";
+export type * from './image'
 export * from "./insert";
 export * from "./leader";
 export * from "./line";
