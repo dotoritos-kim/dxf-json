@@ -12,6 +12,7 @@ export * from "./lwpolyline";
 export * from "./mtext";
 export * from "./point";
 export * from "./polyline";
+export type * from "./ray"
 export * from "./section";
 export * from "./solid";
 export * from "./spline";

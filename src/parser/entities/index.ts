@@ -19,6 +19,7 @@ import { LWPolylineParser } from "./lwpolyline";
 import { MTextEntityParser } from "./mtext/parser";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
+import { RayParser } from "./ray";
 import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
@@ -43,6 +44,7 @@ const Parsers = Object.fromEntries(
     MTextEntityParser,
     PointEntityParser,
     PolylineParser,
+    RayParser,
     SectionEntityParser,
     SolidEntityParser,
     SplineEntityParser,
