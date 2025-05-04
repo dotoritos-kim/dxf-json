@@ -1,6 +1,6 @@
 import type { ColorIndex, ColorInstance } from '../../types';
 import DxfArrayScanner, { ScannerGroup } from '../DxfArrayScanner';
-import { getAcadColor } from '../ParseHelpers';
+import { getAcadColor } from '../getAcadColor';
 import { isMatched } from '../shared';
 import {
     DXFParserSnippet,
