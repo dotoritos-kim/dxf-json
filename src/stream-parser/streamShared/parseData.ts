@@ -1,5 +1,5 @@
-import { ScannerGroup } from 'parser/DxfArrayScanner';
-import type { Point2D, Point3D } from '../../types';
+import type { ScannerGroup } from "@src/parser/DxfArrayScanner";
+import type { Point3D } from '../../types';
 
 
 
