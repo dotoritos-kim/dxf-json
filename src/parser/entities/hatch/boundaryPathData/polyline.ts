@@ -1,6 +1,6 @@
 import { parsePoint } from '../../../shared/parsePoint';
 import {
-    DXFParserSnippet,
+    type DXFParserSnippet,
     Identity,
     ToBoolean,
 } from '../../../shared/parserGenerator';

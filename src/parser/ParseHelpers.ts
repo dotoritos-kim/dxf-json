@@ -1,5 +1,5 @@
-
-import DxfArrayScanner, { ScannerGroup } from './DxfArrayScanner';
+import type DxfArrayScanner from './DxfArrayScanner';
+import type { ScannerGroup } from './DxfArrayScanner';
 import { skipApplicationGroups, type CommonDxfEntity } from './entities/shared';
 import { isMatched } from './shared/isMatched';
 import { parseXData } from './shared/xdata';

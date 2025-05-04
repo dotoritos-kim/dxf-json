@@ -1,9 +1,10 @@
+import type DxfArrayScanner from '../DxfArrayScanner';
+import type { ScannerGroup } from '../DxfArrayScanner';
 import {
 	createParser,
 	DXFParserSnippet,
 	Identity,
 } from "../shared/parserGenerator";
-import DxfArrayScanner, { ScannerGroup } from "../DxfArrayScanner";
 import { isMatched } from "../shared";
 import type { DxfTable } from "./types";
 import { parseBlockRecordTable } from "./blockRecord";

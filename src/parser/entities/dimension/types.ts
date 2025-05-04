@@ -1,4 +1,4 @@
-import {
+import type {
     AttachmentPoint,
     DimensionTextLineSpacing,
     DimensionType,
