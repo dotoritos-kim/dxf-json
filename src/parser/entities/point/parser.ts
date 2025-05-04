@@ -1,4 +1,5 @@
-import DxfArrayScanner, { ScannerGroup } from '../../DxfArrayScanner';
+import type DxfArrayScanner from "../../DxfArrayScanner";
+import type { ScannerGroup } from "../../DxfArrayScanner";
 import {
     createParser,
     DXFParserSnippet,

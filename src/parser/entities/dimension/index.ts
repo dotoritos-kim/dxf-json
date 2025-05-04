@@ -1,7 +1,8 @@
-import DxfArrayScanner, { type ScannerGroup } from '../../DxfArrayScanner';
+import type DxfArrayScanner from '../../DxfArrayScanner';
+import type { ScannerGroup } from '../../DxfArrayScanner';
 import { isMatched } from '../../shared';
 import { parseDimension } from './common';
-import { DimensionEntity } from './types';
+import type { DimensionEntity } from './types';
 
 export default class DimensionParser {
     static ForEntityName = 'DIMENSION';

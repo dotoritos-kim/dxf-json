@@ -1,5 +1,6 @@
-import DxfArrayScanner, { type ScannerGroup } from '@src/parser/DxfArrayScanner';
-import { Point3D } from '@src/types';
+import type DxfArrayScanner from '../../DxfArrayScanner';
+import type { ScannerGroup } from '../../DxfArrayScanner';
+import type { Point3D } from '@src/types';
 import * as helpers from '../../ParseHelpers';
 import { parsePoint } from '../../shared/parsePoint';
 import type { AlignedDimensionEntity, AngularDimensionEntity, DimensionEntity, OrdinateDimensionEntity, RadialDiameterDimensionEntity } from './types';

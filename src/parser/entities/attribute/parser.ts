@@ -11,7 +11,7 @@ import {
 import { isMatched } from '../../shared';
 import { CommonEntitySnippets } from '../shared';
 import { MTextEntityParserSnippets } from '../mtext';
-import { AttributeEntity } from './types';
+import type { AttributeEntity } from './types';
 
 const DefaultAttributeEntity = {
     thickness: 0,

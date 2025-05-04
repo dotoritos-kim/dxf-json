@@ -1,5 +1,5 @@
-export * from './color';
-export * from './dxfHeader';
+export type * from './color';
+export type * from './dxfHeader';
 
 export interface Point2D {
     x: number;

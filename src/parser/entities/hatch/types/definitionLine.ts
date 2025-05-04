@@ -1,4 +1,4 @@
-import { Point2D } from '../../../../types';
+import type { Point2D } from '@src/types';
 
 /*
  * offset이란 선과 선 사이의 간격을 만드는 벡터이다.
