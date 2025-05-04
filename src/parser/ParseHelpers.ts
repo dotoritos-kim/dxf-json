@@ -1,18 +1,9 @@
-import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex';
+
 import DxfArrayScanner, { ScannerGroup } from './DxfArrayScanner';
 import { skipApplicationGroups, type CommonDxfEntity } from './entities/shared';
-import { ViewportEntity } from './entities/viewport/types';
 import { isMatched } from './shared/isMatched';
 import { parseXData } from './shared/xdata';
-
-/**
- * Returns the truecolor value of the given AutoCad color index value
- * @param {import('../types').ColorIndex} index
- * @return {import('../types').ColorInstance} truecolor value as a number
- */
-export function getAcadColor(index: number) {
-    return AUTO_CAD_COLOR_INDEX[index];
-}
+import { getAcadColor } from './getAcadColor';
 
 /** Some entities may contain embedded object which is started by group 101. All the rest data until
  * end of entity should not be interpreted as entity attributes. There is no documentation for this

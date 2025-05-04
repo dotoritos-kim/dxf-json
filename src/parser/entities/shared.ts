@@ -1,6 +1,6 @@
 import type { ColorIndex, ColorInstance } from '../../types';
 import DxfArrayScanner, { ScannerGroup } from '../DxfArrayScanner';
-import { getAcadColor } from '../ParseHelpers';
+import { getAcadColor } from '../getAcadColor';
 import { isMatched } from '../shared';
 import {
     DXFParserSnippet,
@@ -96,7 +96,7 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 62,
         name: 'colorIndex',
-        parser(curr, scanner, entity) {
+        parser(curr, _, entity) {
             const colorIndex = curr.value;
             entity.color = getAcadColor(Math.abs(colorIndex));
             return colorIndex;

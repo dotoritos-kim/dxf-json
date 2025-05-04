@@ -1,8 +1,5 @@
 
 import DxfArrayScanner from "./DxfArrayScanner";
-
-import DxfArrayScanner, { parseGroupValue } from "./DxfArrayScanner";
-import fs from "fs";
 import { parseHeader } from "./header";
 import { parseTables } from "./tables";
 import { parseBlocks } from "./blocks";
