@@ -1,7 +1,6 @@
 
 import DxfArrayScanner, { ScannerGroup } from './DxfArrayScanner';
 import { skipApplicationGroups, type CommonDxfEntity } from './entities/shared';
-import { ViewportEntity } from './entities/viewport/types';
 import { isMatched } from './shared/isMatched';
 import { parseXData } from './shared/xdata';
 import { getAcadColor } from './getAcadColor';
