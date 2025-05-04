@@ -1,9 +1,11 @@
+
 export * from "./types";
 export * from "./shared";
 
 import type DxfArrayScanner from "../DxfArrayScanner";
 import { ScannerGroup } from "../DxfArrayScanner";
 import { ensureHandle, isMatched } from "../shared";
+
 
 import { ArcEntityParser } from "./arc";
 import { AttDefEntityParser } from "./attdef";
@@ -28,30 +30,31 @@ import { HatchEntityParser } from "./hatch";
 import Viewport from "./viewport";
 import { CommonDxfEntity } from "./shared";
 
+import { MultiLeaderEntityParser } from "./multileader";
+
 const Parsers = Object.fromEntries(
-  [
-    ArcEntityParser,
-    AttDefEntityParser,
-    AttributeEntityParser,
-    CircleEntityParser,
-    Dimension,
-    EllipseEntityParser,
-    ImageEntityParser,
-    InsertEntityParser,
-    LeaderEntityParser,
-    LineEntityParser,
-    LWPolylineParser,
-    MTextEntityParser,
-    PointEntityParser,
-    PolylineParser,
-    RayParser,
-    SectionEntityParser,
-    SolidEntityParser,
-    SplineEntityParser,
-    TextEntityParser,
-    HatchEntityParser,
-    Viewport,
-  ].map((parser) => [parser.ForEntityName, new parser()])
+	[
+		ArcEntityParser,
+		AttDefEntityParser,
+		AttributeEntityParser,
+		CircleEntityParser,
+		Dimension,
+		EllipseEntityParser,
+		InsertEntityParser,
+		LeaderEntityParser,
+		LineEntityParser,
+		LWPolylineParser,
+		MTextEntityParser,
+		MultiLeaderEntityParser,
+		PointEntityParser,
+		PolylineParser,
+		SectionEntityParser,
+		SolidEntityParser,
+		SplineEntityParser,
+		TextEntityParser,
+		HatchEntityParser,
+		Viewport,
+	].map((parser) => [parser.ForEntityName, new parser()])
 );
 
 /**
