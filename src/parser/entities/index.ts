@@ -26,6 +26,9 @@ import { Face3DEntityParser } from './face3D';
 import { Solid3DEntityParser } from './solid3D';
 import { SurfaceEntityParser } from './surface';
 import { BodyEntityParser } from './body';
+import { Ole2FrameParser } from './ole2frame';
+import { WipeoutParser } from './wipeout';
+import { SeqendEntityParser } from './seqend';
 
 const Parsers = Object.fromEntries(
     [
@@ -52,6 +55,9 @@ const Parsers = Object.fromEntries(
         TextEntityParser,
         HatchEntityParser,
         Viewport,
+        Ole2FrameParser,
+        WipeoutParser,
+        SeqendEntityParser
     ].map((parser) => [parser.ForEntityName, new parser()]),
 );
 
