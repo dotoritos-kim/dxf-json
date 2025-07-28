@@ -1,6 +1,7 @@
+import { parseExtensions } from '@src/parser/shared/extensions/parser';
 import type DxfArrayScanner from './DxfArrayScanner';
 import type { ScannerGroup } from './DxfArrayScanner';
-import { skipApplicationGroups, type CommonDxfEntity } from './entities/shared';
+import type { CommonDxfEntity } from './entities/shared';
 import { isMatched } from './shared/isMatched';
 import { parseXData } from './shared/xdata';
 import { getAcadColor } from './getAcadColor';
@@ -31,7 +32,7 @@ export function skipEmbeddedObject(scanner: DxfArrayScanner) {
  */
 export function checkCommonEntityProperties(entity: CommonDxfEntity, curr: ScannerGroup, scanner: DxfArrayScanner) {
     if (isMatched(curr, 102)) {
-        skipApplicationGroups(curr, scanner);
+        parseExtensions(curr, scanner, entity);
         return true;
     }
 
@@ -43,14 +44,7 @@ export function checkCommonEntityProperties(entity: CommonDxfEntity, curr: Scann
             entity.handle = curr.value as string;
             break;
         case 330:
-            if (!entity.ownerDictionarySoftId) {
-                entity.ownerDictionarySoftId = curr.value;
-            } else {
-                entity.ownerBlockRecordSoftId = curr.value;
-            }
-            break;
-        case 360:
-            entity.ownerdictionaryHardId = curr.value;
+            entity.ownerBlockRecordSoftId = curr.value;
             break;
         case 67:
             entity.isInPaperSpace = !!curr.value;
