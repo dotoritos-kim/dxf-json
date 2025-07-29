@@ -1,7 +1,7 @@
-import type { ColorIndex, ColorInstance } from '../../types';
-import DxfArrayScanner, { ScannerGroup } from '../DxfArrayScanner';
-import { getAcadColor } from '../ParseHelpers';
-import { isMatched } from '../shared';
+import type { ScannerGroup } from '@src/parser/DxfArrayScanner';
+import { parseExtensions } from '@src/parser/shared/extensions/parser';
+import type { ColorIndex, ColorInstance } from '@src/types';
+import { getAcadColor } from '../getAcadColor';
 import {
     DXFParserSnippet,
     Identity,
@@ -29,8 +29,12 @@ export interface CommonDxfEntity {
     plotStyleHardId?: string;
     shadowMode?: ShadowMode;
     xdata?: XData;
-    ownerdictionaryHardId?: string | number | boolean;
-    ownerDictionarySoftId?: string | number | boolean;
+    /** 
+     * Application specific extension by their application-name. 
+     * As it differs by application, you have to parse by your own.
+     * Note that group codes 102 for brackets are not included in the array.
+     * */
+    extensions?: Record<string, ScannerGroup[]>
 }
 
 export enum ShadowMode {
@@ -96,7 +100,7 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 62,
         name: 'colorIndex',
-        parser(curr, scanner, entity) {
+        parser(curr, _, entity) {
             const colorIndex = curr.value;
             entity.color = getAcadColor(Math.abs(colorIndex));
             return colorIndex;
@@ -137,15 +141,15 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     },
     {
         code: 102, // {ACAD_XDICTIONARY
-        parser: skipApplicationGroups,
+        parser: parseExtensions,
     },
     {
         code: 102, // {ACAD_REACTORS
-        parser: skipApplicationGroups,
+        parser: parseExtensions,
     },
     {
         code: 102, // {application_name
-        parser: skipApplicationGroups,
+        parser: parseExtensions,
     },
     {
         code: 5,
@@ -153,14 +157,3 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
         parser: Identity,
     },
 ];
-
-export function skipApplicationGroups(
-    curr: ScannerGroup,
-    scanner: DxfArrayScanner,
-) {
-    curr = scanner.next();
-    while (!isMatched(curr, 102) && !isMatched(curr, 0, 'EOF')) {
-        curr = scanner.next();
-    }
-    // } 까지 소비
-}

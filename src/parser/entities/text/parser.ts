@@ -8,7 +8,7 @@ import {
 } from '../../shared/parserGenerator';
 import { CommonEntitySnippets } from '../shared';
 import { TextHorizontalAlign, TextVerticalAlign } from './consts';
-import { TextEntity } from './types';
+import type { TextEntity } from './types';
 
 export const DefaultTextEntity = {
     thickness: 0,

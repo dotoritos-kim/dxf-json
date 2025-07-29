@@ -1,3 +1,4 @@
+
 import DxfArrayScanner from "./DxfArrayScanner";
 import { parseHeader } from "./header";
 import { parseTables } from "./tables";

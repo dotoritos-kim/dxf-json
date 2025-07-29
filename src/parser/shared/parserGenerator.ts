@@ -1,7 +1,9 @@
+
 import { isMatched } from './isMatched';
 import type DxfArrayScanner from '../DxfArrayScanner';
 import { ScannerGroup } from '../DxfArrayScanner';
 import { parsePoint } from './parsePoint';
+
 
 export const Abort = Symbol();
 
@@ -27,20 +29,21 @@ export interface DXFParserSnippet {
     // https://github.com/connect-for-you/cadview-front/issues/41
     // 이 스니펫을 기점으로 맥락을 바꿈
     pushContext?: boolean;
+
 }
 
 // 만약 파서가 어떤 유의미한 snippet도 찾지 못한 경우 전진하지 말고 false 반환
 // 만약 파서가 유의미한 snippet을 찾아서 사용한 경우 반드시 한 칸 전진시키고 true 반환
 // 즉 새로운 애를 하나는 무조건 읽어놓음
 export type DXFParser = (
-    curr: ScannerGroup,
-    scanner: DxfArrayScanner,
-    target: any,
+	curr: ScannerGroup,
+	scanner: DxfArrayScanner,
+	target: any
 ) => boolean;
 
 export function createParser(
-    snippets: DXFParserSnippet[],
-    defaultObject?: any,
+	snippets: DXFParserSnippet[],
+	defaultObject?: any
 ): DXFParser {
     return (curr, scanner, target) => {
         const snippetMaps = createSnippetMaps(snippets);
@@ -102,45 +105,47 @@ export function createParser(
     };
 }
 
-function createSnippetMaps(snippets: DXFParserSnippet[]) {
-    return snippets.reduce(
-        (acc, snippet) => {
-            if (snippet.pushContext) {
-                acc.push({});
-            }
+function createSnippetMaps(snippets: DXFParserSnippet[], debug?: boolean) {
+	return snippets.reduce(
+		(acc, snippet) => {
+			if (snippet.pushContext) {
+				acc.push({});
+			}
 
-            const context = acc[acc.length - 1];
-            const codes =
-                typeof snippet.code === 'number'
-                    ? [snippet.code]
-                    : snippet.code;
+			const context = acc[acc.length - 1];
+			const codes =
+				typeof snippet.code === "number"
+					? [snippet.code]
+					: snippet.code;
 
-            for (const code of codes) {
-                const bin = (context[code] ??= []);
+			for (const code of codes) {
+				const bin = (context[code] ??= []);
 
-                if (snippet.isMultiple && bin.length) {
-                    console.warn(
-                        `Snippet ${bin.at(-1)!.name
-                        } for code(${code}) is shadowed by ${snippet.name}`,
-                    );
-                }
-                bin.push(snippet);
-            }
+				if (snippet.isMultiple && bin.length) {
+					if (debug)
+						console.warn(
+							`Snippet ${
+								bin.at(-1)!.name
+							} for code(${code}) is shadowed by ${snippet.name}`
+						);
+				}
+				bin.push(snippet);
+			}
 
-            return acc;
-        },
-        [{}] as Record<number, DXFParserSnippet[]>[],
-    );
+			return acc;
+		},
+		[{}] as Record<number, DXFParserSnippet[]>[]
+	);
 }
 
 function findSnippetMap(
-    snippetMaps: Record<number, DXFParserSnippet[]>[],
-    code: number,
-    contextIndex: number,
+	snippetMaps: Record<number, DXFParserSnippet[]>[],
+	code: number,
+	contextIndex: number
 ) {
-    return snippetMaps.find(
-        (map, index) => index >= contextIndex && map[code]?.length,
-    );
+	return snippetMaps.find(
+		(map, index) => index >= contextIndex && map[code]?.length
+	);
 }
 
 /**
@@ -169,13 +174,13 @@ function getObjectByPath(target: any, path: string) {
 }
 
 export function Identity({ value }: ScannerGroup) {
-    return value;
+	return value;
 }
 
 export function PointParser(_: any, scanner: DxfArrayScanner) {
-    return parsePoint(scanner);
+	return parsePoint(scanner);
 }
 
 export function ToBoolean({ value }: ScannerGroup) {
-    return !!value;
+	return !!value;
 }

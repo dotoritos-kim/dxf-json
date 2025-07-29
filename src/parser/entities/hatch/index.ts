@@ -1,4 +1,5 @@
-export * from "./types";
+export type * from "./types";
+
 import type DxfArrayScanner from "../../DxfArrayScanner";
 import type { ScannerGroup } from "../../DxfArrayScanner";
 import {

@@ -1,5 +1,5 @@
+import type { Point2D } from '@src/types';
 import type { BoundaryPathEdgeType } from '../../../../consts/hatch';
-import type { Point2D } from '../../../../types';
 
 interface BoundaryPathBase {
     boundaryPathTypeFlag: number; // bit combination of BoundaryPathTypeFlag

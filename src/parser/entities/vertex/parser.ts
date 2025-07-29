@@ -7,7 +7,7 @@ import {
     Identity,
 } from '../../shared/parserGenerator';
 import { CommonEntitySnippets } from '../shared';
-import { VertexEntity } from './types';
+import type { VertexEntity } from './types';
 
 const DefaultVertexEntity = {
     startWidth: 0,

@@ -1,3 +1,4 @@
+
 export * from "./types";
 export * from "./shared";
 
@@ -5,11 +6,12 @@ import type DxfArrayScanner from "../DxfArrayScanner";
 import { ScannerGroup } from "../DxfArrayScanner";
 import { ensureHandle, isMatched } from "../shared";
 
+
 import { ArcEntityParser } from "./arc";
 import { AttDefEntityParser } from "./attdef";
 import { AttributeEntityParser } from "./attribute";
 import { CircleEntityParser } from "./circle";
-import Dimension from "./dimension";
+import { DimensionParser } from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
 import { ImageEntityParser } from "./image";
 import { InsertEntityParser } from "./insert";
@@ -25,33 +27,36 @@ import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
-import Viewport from "./viewport";
+import { ViewportParser } from "./viewport";
 import { CommonDxfEntity } from "./shared";
 
+import { MultiLeaderEntityParser } from "./multileader";
+
 const Parsers = Object.fromEntries(
-  [
-    ArcEntityParser,
-    AttDefEntityParser,
-    AttributeEntityParser,
-    CircleEntityParser,
-    Dimension,
-    EllipseEntityParser,
+	[
+		ArcEntityParser,
+		AttDefEntityParser,
+		AttributeEntityParser,
+		CircleEntityParser,
+		DimensionParser,
+		EllipseEntityParser,
     ImageEntityParser,
-    InsertEntityParser,
-    LeaderEntityParser,
-    LineEntityParser,
-    LWPolylineParser,
-    MTextEntityParser,
-    PointEntityParser,
-    PolylineParser,
+		InsertEntityParser,
+		LeaderEntityParser,
+		LineEntityParser,
+		LWPolylineParser,
+		MTextEntityParser,
+		MultiLeaderEntityParser,
+		PointEntityParser,
+		PolylineParser,
     RayParser,
-    SectionEntityParser,
-    SolidEntityParser,
-    SplineEntityParser,
-    TextEntityParser,
-    HatchEntityParser,
-    Viewport,
-  ].map((parser) => [parser.ForEntityName, new parser()])
+		SectionEntityParser,
+		SolidEntityParser,
+		SplineEntityParser,
+		TextEntityParser,
+		HatchEntityParser,
+		ViewportParser,
+	].map((parser) => [parser.ForEntityName, new parser()])
 );
 
 /**
