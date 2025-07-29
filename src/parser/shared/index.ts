@@ -1,4 +1,6 @@
 export * from './isMatched'
+export * from './xdata'
+export * from './extensions/parser'
 
 let lastHandle = 0;
 
