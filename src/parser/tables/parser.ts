@@ -10,7 +10,7 @@ import type { DxfTable } from "./types";
 import { parseBlockRecordTable } from "./blockRecord";
 import { parseDimStyle } from "./dimStyle";
 import { parseLayerTable } from "./layer";
-import { parseLTypeTable } from "./ltype/parser";
+import { parseLTypeTable } from "./ltype";
 import { parseStyleTable } from "./style";
 import { parseVPortTable } from "./vport";
 

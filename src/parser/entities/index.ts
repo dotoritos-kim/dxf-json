@@ -17,9 +17,9 @@ import { FaceEntityParser } from "./face";
 import { ImageEntityParser } from "./image";
 import { InsertEntityParser } from "./insert";
 import { LeaderEntityParser } from "./leader";
-import { LineEntityParser } from "./line/parser";
+import { LineEntityParser } from "./line";
 import { LWPolylineParser } from "./lwpolyline";
-import { MTextEntityParser } from "./mtext/parser";
+import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
 import { RayParser } from "./ray";
@@ -28,6 +28,7 @@ import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
+import { VertexParser } from "./vertex";
 import { ViewportParser } from "./viewport";
 import { CommonDxfEntity } from "./shared";
 
@@ -57,6 +58,7 @@ const Parsers = Object.fromEntries(
 		SplineEntityParser,
 		TextEntityParser,
 		HatchEntityParser,
+    VertexParser,
 		ViewportParser,
 	].map((parser) => [parser.ForEntityName, new parser()])
 );
