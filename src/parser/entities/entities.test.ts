@@ -82,5 +82,57 @@ EOF
             expect(entities[0].handle).toBe('entity-0');
             expect(entities[1].handle).toBe('entity-1');
         });
+
+        it('should parse app extension properly', () => {
+            const content = ` 0
+LINE
+ 5
+entity-0
+102
+{ACAD_REACTORS
+330
+soft-id
+102
+}
+102
+{ACAD_XDICTIONARY
+360
+hard-id
+102
+}
+102
+{FOO
+2
+bar
+102
+}
+330
+D9B071D01A0ACD38
+  100
+AcDbLine
+  100
+AcDbEntity
+  0
+ENDSEC
+  0
+EOF`.split('\n')
+            const scanner = new DxfArrayScanner(content)
+            let curr = scanner.next()
+
+            const entities = parseEntities(curr, scanner)
+            
+            expect(entities.length).toBe(1)
+            expect(entities[0].extensions).toMatchObject({
+                'ACAD_REACTORS': [
+                    { code: 330, value: 'soft-id' },
+                ],
+                'ACAD_XDICTIONARY': [
+                    { code: 360, value: 'hard-id' },
+                ],
+                'FOO': [
+                    { code: 2, value: 'bar' },
+                ]
+            })
+        })
     });
 });
