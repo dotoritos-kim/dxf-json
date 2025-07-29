@@ -1,3 +1,5 @@
+export type * from './types'
+
 import type DxfArrayScanner from '../DxfArrayScanner';
 import { ScannerGroup } from '../DxfArrayScanner';
 import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
