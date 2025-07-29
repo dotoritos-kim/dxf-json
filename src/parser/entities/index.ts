@@ -27,7 +27,7 @@ import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
-import Viewport from "./viewport";
+import { ViewportParser } from "./viewport";
 import { CommonDxfEntity } from "./shared";
 
 import { MultiLeaderEntityParser } from "./multileader";
@@ -53,7 +53,7 @@ const Parsers = Object.fromEntries(
 		SplineEntityParser,
 		TextEntityParser,
 		HatchEntityParser,
-		Viewport,
+		ViewportParser,
 	].map((parser) => [parser.ForEntityName, new parser()])
 );
 
