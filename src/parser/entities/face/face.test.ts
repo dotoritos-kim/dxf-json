@@ -4,7 +4,7 @@ import DxfArrayScanner from "@src/parser/DxfArrayScanner"
 import { FaceEntityParser } from "./parser"
 
 describe('3DFACE', () => {
-    test('integration test', () => {
+    test('basic case', () => {
       const content = readFileSync(join(__dirname, './tc0.partial_dxf'), 'utf-8')
       const scanner = new DxfArrayScanner(content.split('\n'))
         const parser = new FaceEntityParser()
@@ -26,7 +26,7 @@ describe('3DFACE', () => {
         })
     })
 
-    test('integration test', () => {
+    test('permutated vertices case', () => {
       const content = readFileSync(join(__dirname, './tc1.partial_dxf'), 'utf-8')
       const scanner = new DxfArrayScanner(content.split('\n'))
         const parser = new FaceEntityParser()
