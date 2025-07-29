@@ -3,6 +3,7 @@ export type * from "./attdef";
 export type * from "./circle";
 export type * from "./dimension";
 export type * from "./ellipse";
+export type * from './face'
 export type * from "./hatch";
 export type * from './image'
 export type * from "./insert";
