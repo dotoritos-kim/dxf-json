@@ -1,5 +1,5 @@
 import DxfArrayScanner from '../DxfArrayScanner';
-import { createParser, Identity } from './parserGenerator';
+import { createParser, getObjectByPath, Identity } from './parserGenerator';
 
 describe('createParser', () => {
     it('snippet을 소모하고 name이 있으면 object에 넣어야 한다.', () => {
@@ -217,3 +217,35 @@ describe('createParser', () => {
         expect(obj.c).toBe('x');
     });
 });
+
+describe('getObjectByPath', () => {
+    it('should set value directly when path length is 1', () => {
+        const root = {} as any
+        expect(getObjectByPath(root, 'x')).toMatchObject([root, 'x'])
+        expect(root).toMatchObject({ })
+    })
+
+    it('should set value as object when path length is 2 and path is string', () => {
+        const root = {} as any
+        expect(getObjectByPath(root, 'x.y')).toMatchObject([root.x, 'y'])
+        expect(root).toMatchObject({ x: {} })
+    })
+
+    it('should set value as array when path length is 2 and path is number', () => {
+        const root = {} as any
+        expect(getObjectByPath(root, 'x.0')).toMatchObject([root.x, 0])
+        expect(root).toMatchObject({ x: [] })
+    })
+
+    describe('should set nested value properly', () => {
+        test('tc0', () => {
+            const root = {} as any
+            expect(getObjectByPath(root, 'x.y.z')).toMatchObject([root.x.y, 'z'])
+        })
+
+        test('tc1', () => {
+            const root = {} as any
+            expect(getObjectByPath(root, 'x.0.z')).toMatchObject([root.x[0], 'z'])
+        })
+    })
+})
