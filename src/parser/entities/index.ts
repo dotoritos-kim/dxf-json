@@ -13,6 +13,7 @@ import { AttributeEntityParser } from "./attribute";
 import { CircleEntityParser } from "./circle";
 import { DimensionParser } from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
+import { FaceEntityParser } from "./face";
 import { ImageEntityParser } from "./image";
 import { InsertEntityParser } from "./insert";
 import { LeaderEntityParser } from "./leader";
@@ -40,6 +41,7 @@ const Parsers = Object.fromEntries(
 		CircleEntityParser,
 		DimensionParser,
 		EllipseEntityParser,
+    FaceEntityParser,
     ImageEntityParser,
 		InsertEntityParser,
 		LeaderEntityParser,
