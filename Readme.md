@@ -32,38 +32,48 @@ The goal of this library is to fully analyze dxf files from AutoCad and convert 
 
 ## Coverage
 
-Block:
+### Block
 
-- The BLOCKS section of the DXF file contains an entry for each block reference in the drawing.
+The BLOCKS section of the DXF file contains an entry for each block reference in the drawing.
 
-Header:
+### Header
 
-- Most headers can be loaded. All that remains is to add types and add descriptions.
+Most headers can be loaded. All that remains is to add types and add descriptions.
 
-Entity:
+### ENTITY
 
-- arc
-- attdef
-- attribute
-- circle
-- dimension
-- ellipse
-- hatch
-- insert
-- leader
-- line
-- lwpolyline
-- mtext
-- point
-- polyline
-- section
-- solid
-- spline
-- text
-- vertex
-- viewport
+Note that application extension block (ex: starts with 102 code `{ACAD_REACTORS`) and xdata (ex: starts with 1001 code) are supported
 
-Tables:
+<details>
+
+- 3DFACE
+- ARC
+- ATTDEF
+- ATTRIBUTE
+- CIRCLE
+- DIMENSION
+- ELLIPSE
+- HATCH
+- IMAGE
+- INSERT
+- LEADER
+- LINE
+- LWPOLYLINE
+- MTEXT
+- MULTILIEADER
+- POINT
+- POLYLINE
+- RAY
+- SECTION
+- SOLID
+- SPLINE
+- TEXT
+- VERTEX
+- VIEWPORT
+
+</details>
+
+### Tables
 
 - blockRecord
 - dimStyle
@@ -72,7 +82,7 @@ Tables:
 - style
 - vport
 
-Objects:
+### Objects
 
 - dictionary
 - layout
