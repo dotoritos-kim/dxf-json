@@ -11,7 +11,7 @@ import { ArcEntityParser } from "./arc";
 import { AttDefEntityParser } from "./attdef";
 import { AttributeEntityParser } from "./attribute";
 import { CircleEntityParser } from "./circle";
-import Dimension from "./dimension";
+import { DimensionParser } from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
 import { ImageEntityParser } from "./image";
 import { InsertEntityParser } from "./insert";
@@ -27,7 +27,7 @@ import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
-import Viewport from "./viewport";
+import { ViewportParser } from "./viewport";
 import { CommonDxfEntity } from "./shared";
 
 import { MultiLeaderEntityParser } from "./multileader";
@@ -38,8 +38,9 @@ const Parsers = Object.fromEntries(
 		AttDefEntityParser,
 		AttributeEntityParser,
 		CircleEntityParser,
-		Dimension,
+		DimensionParser,
 		EllipseEntityParser,
+    ImageEntityParser,
 		InsertEntityParser,
 		LeaderEntityParser,
 		LineEntityParser,
@@ -48,12 +49,13 @@ const Parsers = Object.fromEntries(
 		MultiLeaderEntityParser,
 		PointEntityParser,
 		PolylineParser,
+    RayParser,
 		SectionEntityParser,
 		SolidEntityParser,
 		SplineEntityParser,
 		TextEntityParser,
 		HatchEntityParser,
-		Viewport,
+		ViewportParser,
 	].map((parser) => [parser.ForEntityName, new parser()])
 );
 

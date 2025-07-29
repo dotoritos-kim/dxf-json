@@ -6,3 +6,4 @@ export * from "./header";
 export * from "./objects";
 export * from "./shared";
 export * from "./tables";
+export * from './getAcadColor'
