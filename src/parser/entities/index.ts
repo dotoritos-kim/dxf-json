@@ -22,6 +22,7 @@ export * from "./section";
 export * from "./solid";
 export * from "./spline";
 export * from "./text";
+export * from "./tolerance";
 export * from "./vertex";
 export * from "./viewport";
 export * from "./wipeout";
@@ -55,6 +56,7 @@ import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
+import { ToleranceEntityParser } from "./tolerance";
 import { HatchEntityParser } from "./hatch";
 import { VertexParser } from "./vertex";
 import { ViewportParser } from "./viewport";
@@ -89,6 +91,7 @@ const Parsers = Object.fromEntries(
 		SolidEntityParser,
 		SplineEntityParser,
 		TextEntityParser,
+		ToleranceEntityParser,
 		HatchEntityParser,
     VertexParser,
 		ViewportParser,
