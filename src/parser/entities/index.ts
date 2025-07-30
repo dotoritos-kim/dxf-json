@@ -24,6 +24,7 @@ export * from "./spline";
 export * from "./text";
 export * from "./vertex";
 export * from "./viewport";
+export * from "./wipeout";
 export * from "./xline";
 export * from "./shared";
 
@@ -57,6 +58,7 @@ import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
 import { VertexParser } from "./vertex";
 import { ViewportParser } from "./viewport";
+import { WipeoutEntityParser } from "./wipeout";
 import { XLineEntityParser } from "./xline";
 import { CommonDxfEntity } from "./shared";
 
@@ -90,6 +92,7 @@ const Parsers = Object.fromEntries(
 		HatchEntityParser,
     VertexParser,
 		ViewportParser,
+		WipeoutEntityParser,
 		XLineEntityParser,
 	].map((parser) => [parser.ForEntityName, new parser()])
 );
