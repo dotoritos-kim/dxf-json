@@ -24,6 +24,7 @@ export * from "./spline";
 export * from "./text";
 export * from "./vertex";
 export * from "./viewport";
+export * from "./xline";
 export * from "./shared";
 
 import type DxfArrayScanner from "../DxfArrayScanner";
@@ -56,6 +57,7 @@ import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
 import { VertexParser } from "./vertex";
 import { ViewportParser } from "./viewport";
+import { XLineEntityParser } from "./xline";
 import { CommonDxfEntity } from "./shared";
 
 import { MultiLeaderEntityParser } from "./multileader";
@@ -88,6 +90,7 @@ const Parsers = Object.fromEntries(
 		HatchEntityParser,
     VertexParser,
 		ViewportParser,
+		XLineEntityParser,
 	].map((parser) => [parser.ForEntityName, new parser()])
 );
 
