@@ -20,6 +20,7 @@ export * from "./ray";
 export * from "./region";
 export * from "./section";
 export * from "./solid";
+export * from "./solid3d";
 export * from "./spline";
 export * from "./text";
 export * from "./tolerance";
@@ -54,6 +55,7 @@ import { RayParser } from "./ray";
 import { RegionEntityParser } from "./region";
 import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
+import { Solid3DEntityParser } from "./solid3d";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
 import { ToleranceEntityParser } from "./tolerance";
@@ -89,6 +91,7 @@ const Parsers = Object.fromEntries(
 		RegionEntityParser,
 		SectionEntityParser,
 		SolidEntityParser,
+		Solid3DEntityParser,
 		SplineEntityParser,
 		TextEntityParser,
 		ToleranceEntityParser,
