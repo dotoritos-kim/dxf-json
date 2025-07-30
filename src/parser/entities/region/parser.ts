@@ -8,13 +8,11 @@ import {
 import { CommonEntitySnippets, createLongStringSnippet } from '../shared';
 import type { RegionEntity } from './types';
 
-
-
 const RegionEntityParserSnippets: DXFParserSnippet[] = [
     ...createLongStringSnippet('data'),
     {
         code: 70,
-        name: 'formatVersion',
+        name: 'version',
         parser: Identity,
     },
     {

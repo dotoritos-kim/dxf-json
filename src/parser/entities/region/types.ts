@@ -4,7 +4,7 @@ export interface RegionEntity extends CommonDxfEntity {
     type: 'REGION';
     subclassMarker: 'AcDbModelerGeometry';
     /** Modeler format version number (currently = 1) */
-    formatVersion: number;
+    version: number;
     /** Proprietary data */
     data: string;
 }
