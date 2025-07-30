@@ -2,6 +2,7 @@
 export * from "./arc";
 export * from "./attdef";
 export * from './attribute'
+export * from "./body";
 export * from "./circle";
 export * from "./dimension";
 export * from "./ellipse";
@@ -32,6 +33,7 @@ import { ensureHandle, isMatched } from "../shared";
 import { ArcEntityParser } from "./arc";
 import { AttDefEntityParser } from "./attdef";
 import { AttributeEntityParser } from "./attribute";
+import { BodyEntityParser } from "./body";
 import { CircleEntityParser } from "./circle";
 import { DimensionParser } from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
@@ -61,6 +63,7 @@ const Parsers = Object.fromEntries(
 		ArcEntityParser,
 		AttDefEntityParser,
 		AttributeEntityParser,
+		BodyEntityParser,
 		CircleEntityParser,
 		DimensionParser,
 		EllipseEntityParser,
