@@ -49,13 +49,6 @@ export enum OrthographicType {
     RIGHT = 6,
 }
 
-export enum ShadePlotMode {
-    AS_DISPLAYED = 0,
-    WIREFRAME = 1,
-    HIDDEN = 2,
-    RENDERED = 3,
-}
-
 export enum DefaultLightingType {
     ONE_DISTANT_LIGHT = 0,
     TWO_DISTANT_LIGHTS = 1,

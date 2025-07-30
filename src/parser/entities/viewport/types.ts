@@ -1,11 +1,11 @@
+import type { Point2D, Point3D } from '@src/types';
 import type {
     DefaultLightingType,
     OrthographicType,
     RenderMode,
-    ShadePlotMode,
     UCSPerViewport,
-} from '../../../consts';
-import type { Point2D, Point3D } from '../../../types';
+} from '@src/consts';
+import type { ShadePlotMode } from '@src/parser/objects';
 
 export interface ViewportEntity {
     type: 'VIEWPORT';

@@ -1,6 +1,6 @@
-import type { HydratedDxfObject, DxfDictionary, DxfObject } from './types';
+import type { HydratedDxfObject, DxfDictionary, CommonDXFObject } from './types';
 
-export function createObjectTree(objects: DxfObject[]) {
+export function createObjectTree(objects: CommonDXFObject[]) {
     const objectMap = Object.fromEntries(
         objects.map((object) => [object.handle, object as HydratedDxfObject]),
     );

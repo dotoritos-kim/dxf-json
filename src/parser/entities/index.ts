@@ -1,5 +1,27 @@
 
-export type * from "./types";
+export * from "./arc";
+export * from "./attdef";
+export * from './attribute'
+export * from "./circle";
+export * from "./dimension";
+export * from "./ellipse";
+export * from './face'
+export * from "./hatch";
+export * from './image'
+export * from "./insert";
+export * from "./leader";
+export * from "./line";
+export * from "./lwpolyline";
+export * from "./mtext";
+export * from "./point";
+export * from "./polyline";
+export * from "./ray";
+export * from "./section";
+export * from "./solid";
+export * from "./spline";
+export * from "./text";
+export * from "./vertex";
+export * from "./viewport";
 export * from "./shared";
 
 import type DxfArrayScanner from "../DxfArrayScanner";
