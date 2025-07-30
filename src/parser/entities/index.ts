@@ -17,6 +17,7 @@ export * from "./mtext";
 export * from "./point";
 export * from "./polyline";
 export * from "./ray";
+export * from "./region";
 export * from "./section";
 export * from "./solid";
 export * from "./spline";
@@ -47,6 +48,7 @@ import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
 import { RayParser } from "./ray";
+import { RegionEntityParser } from "./region";
 import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
@@ -78,6 +80,7 @@ const Parsers = Object.fromEntries(
 		PointEntityParser,
 		PolylineParser,
     RayParser,
+		RegionEntityParser,
 		SectionEntityParser,
 		SolidEntityParser,
 		SplineEntityParser,
