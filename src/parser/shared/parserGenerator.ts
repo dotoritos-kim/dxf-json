@@ -158,19 +158,36 @@ function findSnippetMap(
  * @param target .으로 구분된 경로
  * @param path
  * @return [finalTargetObject, name]
+ * @internal
  */
-function getObjectByPath(target: any, path: string) {
+export function getObjectByPath(target: any, path: string): [any, string | number] {
     const fragments = path.split('.');
 
-    let currentTarget = target;
-    for (let depth = 0; depth < fragments.length - 1; ++depth) {
-        const currentName = fragments[depth];
-        if (!Object.prototype.hasOwnProperty.call(currentTarget, currentName)) {
-            currentTarget[currentName] = {};
-        }
-        currentTarget = currentTarget[currentName];
+    if (!fragments.length) {
+        throw new Error('[parserGenerator::getObjectByPath] Invalid empty path')
     }
-    return [currentTarget, fragments.at(-1)!];
+
+    let parent = target;
+    for (let depth = 0; depth < fragments.length - 1; ++depth) {
+        const currentName = refineName(fragments[depth]);
+        const nextName = refineName(fragments[depth + 1]);
+
+        if (!Object.prototype.hasOwnProperty.call(parent, currentName)) {
+            if (typeof nextName === 'number') {
+                parent[currentName] = [];
+            } else {
+                parent[currentName] = {};
+            }
+        }
+        parent = parent[currentName];
+    }
+    return [parent, refineName(fragments.at(-1)!)];
+}
+
+function refineName(name: string): string | number {
+    const num = Number.parseInt(name)
+    if (Number.isNaN(num)) return name
+    return num
 }
 
 export function Identity({ value }: ScannerGroup) {

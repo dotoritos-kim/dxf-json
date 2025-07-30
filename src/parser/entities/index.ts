@@ -1,5 +1,27 @@
 
-export type * from "./types";
+export * from "./arc";
+export * from "./attdef";
+export * from './attribute'
+export * from "./circle";
+export * from "./dimension";
+export * from "./ellipse";
+export * from './face'
+export * from "./hatch";
+export * from './image'
+export * from "./insert";
+export * from "./leader";
+export * from "./line";
+export * from "./lwpolyline";
+export * from "./mtext";
+export * from "./point";
+export * from "./polyline";
+export * from "./ray";
+export * from "./section";
+export * from "./solid";
+export * from "./spline";
+export * from "./text";
+export * from "./vertex";
+export * from "./viewport";
 export * from "./shared";
 
 import type DxfArrayScanner from "../DxfArrayScanner";
@@ -13,12 +35,13 @@ import { AttributeEntityParser } from "./attribute";
 import { CircleEntityParser } from "./circle";
 import { DimensionParser } from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
+import { FaceEntityParser } from "./face";
 import { ImageEntityParser } from "./image";
 import { InsertEntityParser } from "./insert";
 import { LeaderEntityParser } from "./leader";
-import { LineEntityParser } from "./line/parser";
+import { LineEntityParser } from "./line";
 import { LWPolylineParser } from "./lwpolyline";
-import { MTextEntityParser } from "./mtext/parser";
+import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
 import { RayParser } from "./ray";
@@ -27,6 +50,7 @@ import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
+import { VertexParser } from "./vertex";
 import { ViewportParser } from "./viewport";
 import { CommonDxfEntity } from "./shared";
 
@@ -40,6 +64,7 @@ const Parsers = Object.fromEntries(
 		CircleEntityParser,
 		DimensionParser,
 		EllipseEntityParser,
+    FaceEntityParser,
     ImageEntityParser,
 		InsertEntityParser,
 		LeaderEntityParser,
@@ -55,6 +80,7 @@ const Parsers = Object.fromEntries(
 		SplineEntityParser,
 		TextEntityParser,
 		HatchEntityParser,
+    VertexParser,
 		ViewportParser,
 	].map((parser) => [parser.ForEntityName, new parser()])
 );

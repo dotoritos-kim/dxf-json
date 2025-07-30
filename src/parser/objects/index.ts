@@ -1,12 +1,15 @@
 export type * from './types'
+export * from './dictionary'
+export * from './layout'
+export * from './plotSettings'
 
 import type DxfArrayScanner from '../DxfArrayScanner';
 import { ScannerGroup } from '../DxfArrayScanner';
 import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
 import { LayoutSnippets } from './layout';
-import { CommonObjectSnippets } from './common';
+import { CommonObjectSnippets } from './shared';
 import { PlotSettingsSnippets } from './plotSettings';
-import { DictionarySnippets } from './dictionary';
+import { DictionarySnippets } from './dictionary'
 import { createObjectTree } from './treefy';
 import { classify } from '../../utils';
 
