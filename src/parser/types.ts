@@ -1,15 +1,8 @@
 import type { DxfHeader } from '../types/dxfHeader';
 import type { DxfBlock } from './blocks/types';
 import type { CommonDxfEntity } from './entities/shared';
-import type { CommonDXFObject } from './objects/common';
-import type { DxfObject } from './objects/types';
-import { BlockRecordTableEntry } from './tables/blockRecord';
-import { DimStylesTableEntry } from './tables/dimStyle';
-import { LayerTableEntry } from './tables/layer';
-import { LTypeTableEntry } from './tables/ltype';
-import { StyleTableEntry } from './tables/style';
-import { DxfTable } from './tables/types';
-import { VPortTableEntry } from './tables/vport';
+import type { CommonDXFObject } from './objects';
+import type { BlockRecordTableEntry, DimStylesTableEntry, LayerTableEntry, LTypeTableEntry, StyleTableEntry, DxfTable, VPortTableEntry } from './tables';
 
 export interface ParsedDxf {
     header: DxfHeader;
@@ -25,6 +18,6 @@ export interface ParsedDxf {
     };
     objects: {
         byName: Record<string, CommonDXFObject[]>;
-        byTree?: DxfObject;
+        byTree?: CommonDXFObject;
     };
 }

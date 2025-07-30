@@ -1,5 +1,4 @@
-import { DXFParserSnippet, Identity } from '../shared/parserGenerator';
-import type { CommonDXFObject } from './common';
+import { DXFParserSnippet, Identity } from '@src/parser/shared/parserGenerator';
 
 export const PlotSettingsSnippets: DXFParserSnippet[] = [
     {
@@ -163,69 +162,3 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
         parser: Identity,
     },
 ];
-
-export enum PlotPaperUnit {
-    INCHES = 0,
-    MILLIMETERS = 1,
-    PIXELS = 2,
-}
-
-export enum PlotType {
-    LAST_SCREEN_DISPLAY = 0,
-    DRAWING_EXTENTS = 1,
-    DRAWING_LIMITS = 2,
-    VIEW_SPECIFIED = 3, // specified in plotViewName
-    WINDOW_SPECIFIED = 4, // specified in plotViewName
-    LAYOUT_INFORMATION = 5,
-}
-
-export enum ShadePlotMode {
-    AS_DISPLAYED = 0,
-    WIREFRAME = 1,
-    HIDDEN = 2,
-    RENDERED = 3,
-}
-
-export enum ShadePlotResolution {
-    DRAFT = 0,
-    PREVIEW = 1,
-    NORMAL = 2,
-    PRESENTATION = 3,
-    MAXIMUM = 4,
-    CUSTOM = 5,
-}
-
-export interface PlotSettingDXFObject extends CommonDXFObject {
-    subclassMarker: 'AcDbPlotSettings7';
-    pageSetupName: string;
-    configName: string;
-    paperSize: string;
-    plotViewName: string;
-    marginLeft: number;
-    marginBottom: number;
-    marginRight: number;
-    marginTop: number;
-    paperWidth: number;
-    paperHeight: number;
-    plotOriginX: number;
-    plotOriginY: number;
-    windowAreaXMin: number;
-    windowAreaYMin: number;
-    windowAreaXMax: number;
-    windowAreaYMax: number;
-    printScaleNominator: number;
-    printScaleDenominator: number;
-    layoutFlag: number;
-    plotPaperUnit: PlotPaperUnit;
-    plotRotation: 0 | 1 | 2 | 3;
-    plotType: PlotType;
-    currentStyleSheet: string;
-    standardScaleType: number; // see https://help.autodesk.com/view/OARX/2023/ENU/?guid=GUID-1113675E-AB07-4567-801A-310CDE0D56E9
-    shadePlotMode: ShadePlotMode;
-    shadePlotResolution: ShadePlotResolution;
-    shadePlotCustomDPI?: number; // 100 ~ 32767
-    scaleFactor: number;
-    imageOriginX: number;
-    imageOriginY: number;
-    shadePlotId: string;
-}

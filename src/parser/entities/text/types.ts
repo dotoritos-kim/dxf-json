@@ -1,6 +1,6 @@
 import type { Point3D } from '../../../types';
 import type { CommonDxfEntity } from '../shared';
-import { TextHorizontalAlign, TextVerticalAlign } from './consts';
+import type { TextHorizontalAlign, TextVerticalAlign } from './consts';
 
 export interface TextEntity extends CommonDxfEntity {
     type: 'TEXT';

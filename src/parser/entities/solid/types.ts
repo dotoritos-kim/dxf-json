@@ -1,4 +1,4 @@
-import { Point3D } from '../../../types';
+import type { Point3D } from '../../../types';
 import type { CommonDxfEntity } from '../shared';
 
 export interface SolidEntity extends CommonDxfEntity {

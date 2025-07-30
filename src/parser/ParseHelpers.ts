@@ -1,18 +1,10 @@
-import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex';
-import DxfArrayScanner, { ScannerGroup } from './DxfArrayScanner';
-import { skipApplicationGroups, type CommonDxfEntity } from './entities/shared';
-import { ViewportEntity } from './entities/viewport/types';
+import { parseExtensions } from '@src/parser/shared/extensions/parser';
+import type DxfArrayScanner from './DxfArrayScanner';
+import type { ScannerGroup } from './DxfArrayScanner';
+import type { CommonDxfEntity } from './entities/shared';
 import { isMatched } from './shared/isMatched';
 import { parseXData } from './shared/xdata';
-
-/**
- * Returns the truecolor value of the given AutoCad color index value
- * @param {import('../types').ColorIndex} index
- * @return {import('../types').ColorInstance} truecolor value as a number
- */
-export function getAcadColor(index: number) {
-    return AUTO_CAD_COLOR_INDEX[index];
-}
+import { getAcadColor } from './getAcadColor';
 
 /** Some entities may contain embedded object which is started by group 101. All the rest data until
  * end of entity should not be interpreted as entity attributes. There is no documentation for this
@@ -40,7 +32,7 @@ export function skipEmbeddedObject(scanner: DxfArrayScanner) {
  */
 export function checkCommonEntityProperties(entity: CommonDxfEntity, curr: ScannerGroup, scanner: DxfArrayScanner) {
     if (isMatched(curr, 102)) {
-        skipApplicationGroups(curr, scanner);
+        parseExtensions(curr, scanner, entity);
         return true;
     }
 
@@ -52,14 +44,7 @@ export function checkCommonEntityProperties(entity: CommonDxfEntity, curr: Scann
             entity.handle = curr.value as string;
             break;
         case 330:
-            if (!entity.ownerDictionarySoftId) {
-                entity.ownerDictionarySoftId = curr.value;
-            } else {
-                entity.ownerBlockRecordSoftId = curr.value;
-            }
-            break;
-        case 360:
-            entity.ownerdictionaryHardId = curr.value;
+            entity.ownerBlockRecordSoftId = curr.value;
             break;
         case 67:
             entity.isInPaperSpace = !!curr.value;

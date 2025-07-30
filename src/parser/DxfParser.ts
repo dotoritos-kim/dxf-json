@@ -1,3 +1,4 @@
+
 import DxfArrayScanner from "./DxfArrayScanner";
 import { parseHeader } from "./header";
 import { parseTables } from "./tables";
@@ -5,7 +6,6 @@ import { parseBlocks } from "./blocks";
 import { parseEntities } from "./entities";
 import { parseObjects } from "./objects";
 import { isMatched } from "./shared";
-import { filterDummyBlocks } from "./filterDummyBlocks";
 import type { ParsedDxf } from "./types";
 import type { Readable } from "readable-stream";
 
@@ -120,6 +120,6 @@ export class DxfParser extends EventTarget {
       }
       curr = scanner.next();
     }
-    return filterDummyBlocks(dxf);
+    return dxf;
   }
 }

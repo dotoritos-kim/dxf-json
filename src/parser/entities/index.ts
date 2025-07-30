@@ -1,53 +1,88 @@
-export * from "./types";
+
+export * from "./arc";
+export * from "./attdef";
+export * from './attribute'
+export * from "./circle";
+export * from "./dimension";
+export * from "./ellipse";
+export * from './face'
+export * from "./hatch";
+export * from './image'
+export * from "./insert";
+export * from "./leader";
+export * from "./line";
+export * from "./lwpolyline";
+export * from "./mtext";
+export * from "./point";
+export * from "./polyline";
+export * from "./ray";
+export * from "./section";
+export * from "./solid";
+export * from "./spline";
+export * from "./text";
+export * from "./vertex";
+export * from "./viewport";
 export * from "./shared";
 
 import type DxfArrayScanner from "../DxfArrayScanner";
 import { ScannerGroup } from "../DxfArrayScanner";
 import { ensureHandle, isMatched } from "../shared";
 
+
 import { ArcEntityParser } from "./arc";
 import { AttDefEntityParser } from "./attdef";
 import { AttributeEntityParser } from "./attribute";
 import { CircleEntityParser } from "./circle";
-import Dimension from "./dimension";
+import { DimensionParser } from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
+import { FaceEntityParser } from "./face";
+import { ImageEntityParser } from "./image";
 import { InsertEntityParser } from "./insert";
 import { LeaderEntityParser } from "./leader";
-import { LineEntityParser } from "./line/parser";
+import { LineEntityParser } from "./line";
 import { LWPolylineParser } from "./lwpolyline";
-import { MTextEntityParser } from "./mtext/parser";
+import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
+import { RayParser } from "./ray";
 import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
 import { HatchEntityParser } from "./hatch";
-import Viewport from "./viewport";
+import { VertexParser } from "./vertex";
+import { ViewportParser } from "./viewport";
 import { CommonDxfEntity } from "./shared";
 
+import { MultiLeaderEntityParser } from "./multileader";
+
 const Parsers = Object.fromEntries(
-  [
-    ArcEntityParser,
-    AttDefEntityParser,
-    AttributeEntityParser,
-    CircleEntityParser,
-    Dimension,
-    EllipseEntityParser,
-    InsertEntityParser,
-    LeaderEntityParser,
-    LineEntityParser,
-    LWPolylineParser,
-    MTextEntityParser,
-    PointEntityParser,
-    PolylineParser,
-    SectionEntityParser,
-    SolidEntityParser,
-    SplineEntityParser,
-    TextEntityParser,
-    HatchEntityParser,
-    Viewport,
-  ].map((parser) => [parser.ForEntityName, new parser()])
+	[
+		ArcEntityParser,
+		AttDefEntityParser,
+		AttributeEntityParser,
+		CircleEntityParser,
+		DimensionParser,
+		EllipseEntityParser,
+    FaceEntityParser,
+    ImageEntityParser,
+		InsertEntityParser,
+		LeaderEntityParser,
+		LineEntityParser,
+		LWPolylineParser,
+		MTextEntityParser,
+		MultiLeaderEntityParser,
+		PointEntityParser,
+		PolylineParser,
+    RayParser,
+		SectionEntityParser,
+		SolidEntityParser,
+		SplineEntityParser,
+		TextEntityParser,
+		HatchEntityParser,
+    VertexParser,
+		ViewportParser,
+	].map((parser) => [parser.ForEntityName, new parser()])
 );
 
 /**

@@ -1,3 +1,2 @@
-export * from './types';
-export * from './consts';
+export type * from './types';
 export * from './parser';

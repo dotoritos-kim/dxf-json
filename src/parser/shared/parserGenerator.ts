@@ -1,7 +1,9 @@
+
 import { isMatched } from './isMatched';
 import type DxfArrayScanner from '../DxfArrayScanner';
 import { ScannerGroup } from '../DxfArrayScanner';
 import { parsePoint } from './parsePoint';
+
 
 export const Abort = Symbol();
 
@@ -19,25 +21,29 @@ export interface DXFParserSnippet {
     // 만약 Abort 심볼이 반환될 경우 값에 대입하지 않고 읽은 것을 한 칸 되돌리고
     // 종료함
     parser?(curr: ScannerGroup, scanner: DxfArrayScanner, entity: any): any;
-    isMultiple?: boolean; // code가 여러 번 들어올 수 있는 경우, true로 표기
+    /** When specific group code can be read multiple times, set this `true` */
+    isMultiple?: boolean;
+    /** When isMultiple is `true`, save array when `false`, replace as is when `true` */
+    isReducible?: boolean; 
 
     // https://github.com/connect-for-you/cadview-front/issues/41
     // 이 스니펫을 기점으로 맥락을 바꿈
     pushContext?: boolean;
+
 }
 
 // 만약 파서가 어떤 유의미한 snippet도 찾지 못한 경우 전진하지 말고 false 반환
 // 만약 파서가 유의미한 snippet을 찾아서 사용한 경우 반드시 한 칸 전진시키고 true 반환
 // 즉 새로운 애를 하나는 무조건 읽어놓음
 export type DXFParser = (
-    curr: ScannerGroup,
-    scanner: DxfArrayScanner,
-    target: any,
+	curr: ScannerGroup,
+	scanner: DxfArrayScanner,
+	target: any
 ) => boolean;
 
 export function createParser(
-    snippets: DXFParserSnippet[],
-    defaultObject?: any,
+	snippets: DXFParserSnippet[],
+	defaultObject?: any
 ): DXFParser {
     return (curr, scanner, target) => {
         const snippetMaps = createSnippetMaps(snippets);
@@ -61,7 +67,7 @@ export function createParser(
                 snippetMap[curr.code].pop();
             }
 
-            const { name, parser, isMultiple } = snippet;
+            const { name, parser, isMultiple, isReducible } = snippet;
             const parsedValue = parser?.(curr, scanner, target);
 
             if (parsedValue === Abort) {
@@ -72,10 +78,9 @@ export function createParser(
             if (name) {
                 const [leaf, fieldName] = getObjectByPath(target, name);
 
-                if (isMultiple) {
-                    // prototype으로 디폴트값 넣어준 경우 nullish coalescing으로 해결 안됨 
-                    // @ts-ignore
-                    if (!Object.hasOwn(leaf, fieldName)) {
+                if (isMultiple && !isReducible) {
+                    // default value is injected via prototype, therefore have to check their own properties
+                    if (!Object.prototype.hasOwnProperty.call(leaf, fieldName)) {
                         leaf[fieldName] = [];
                     }
                     leaf[fieldName].push(parsedValue);
@@ -100,45 +105,47 @@ export function createParser(
     };
 }
 
-function createSnippetMaps(snippets: DXFParserSnippet[]) {
-    return snippets.reduce(
-        (acc, snippet) => {
-            if (snippet.pushContext) {
-                acc.push({});
-            }
+function createSnippetMaps(snippets: DXFParserSnippet[], debug?: boolean) {
+	return snippets.reduce(
+		(acc, snippet) => {
+			if (snippet.pushContext) {
+				acc.push({});
+			}
 
-            const context = acc[acc.length - 1];
-            const codes =
-                typeof snippet.code === 'number'
-                    ? [snippet.code]
-                    : snippet.code;
+			const context = acc[acc.length - 1];
+			const codes =
+				typeof snippet.code === "number"
+					? [snippet.code]
+					: snippet.code;
 
-            for (const code of codes) {
-                const bin = (context[code] ??= []);
+			for (const code of codes) {
+				const bin = (context[code] ??= []);
 
-                if (snippet.isMultiple && bin.length) {
-                    console.warn(
-                        `Snippet ${bin.at(-1)!.name
-                        } for code(${code}) is shadowed by ${snippet.name}`,
-                    );
-                }
-                bin.push(snippet);
-            }
+				if (snippet.isMultiple && bin.length) {
+					if (debug)
+						console.warn(
+							`Snippet ${
+								bin.at(-1)!.name
+							} for code(${code}) is shadowed by ${snippet.name}`
+						);
+				}
+				bin.push(snippet);
+			}
 
-            return acc;
-        },
-        [{}] as Record<number, DXFParserSnippet[]>[],
-    );
+			return acc;
+		},
+		[{}] as Record<number, DXFParserSnippet[]>[]
+	);
 }
 
 function findSnippetMap(
-    snippetMaps: Record<number, DXFParserSnippet[]>[],
-    code: number,
-    contextIndex: number,
+	snippetMaps: Record<number, DXFParserSnippet[]>[],
+	code: number,
+	contextIndex: number
 ) {
-    return snippetMaps.find(
-        (map, index) => index >= contextIndex && map[code]?.length,
-    );
+	return snippetMaps.find(
+		(map, index) => index >= contextIndex && map[code]?.length
+	);
 }
 
 /**
@@ -151,30 +158,46 @@ function findSnippetMap(
  * @param target .으로 구분된 경로
  * @param path
  * @return [finalTargetObject, name]
+ * @internal
  */
-function getObjectByPath(target: any, path: string) {
+export function getObjectByPath(target: any, path: string): [any, string | number] {
     const fragments = path.split('.');
 
-    let currentTarget = target;
-    for (let depth = 0; depth < fragments.length - 1; ++depth) {
-        const currentName = fragments[depth];
-        // @ts-ignore
-        if (!Object.hasOwn(currentTarget, currentName)) {
-            currentTarget[currentName] = {};
-        }
-        currentTarget = currentTarget[currentName];
+    if (!fragments.length) {
+        throw new Error('[parserGenerator::getObjectByPath] Invalid empty path')
     }
-    return [currentTarget, fragments.at(-1)!];
+
+    let parent = target;
+    for (let depth = 0; depth < fragments.length - 1; ++depth) {
+        const currentName = refineName(fragments[depth]);
+        const nextName = refineName(fragments[depth + 1]);
+
+        if (!Object.prototype.hasOwnProperty.call(parent, currentName)) {
+            if (typeof nextName === 'number') {
+                parent[currentName] = [];
+            } else {
+                parent[currentName] = {};
+            }
+        }
+        parent = parent[currentName];
+    }
+    return [parent, refineName(fragments.at(-1)!)];
+}
+
+function refineName(name: string): string | number {
+    const num = Number.parseInt(name)
+    if (Number.isNaN(num)) return name
+    return num
 }
 
 export function Identity({ value }: ScannerGroup) {
-    return value;
+	return value;
 }
 
 export function PointParser(_: any, scanner: DxfArrayScanner) {
-    return parsePoint(scanner);
+	return parsePoint(scanner);
 }
 
 export function ToBoolean({ value }: ScannerGroup) {
-    return !!value;
+	return !!value;
 }
