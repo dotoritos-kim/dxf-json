@@ -4,7 +4,7 @@ export interface BodyEntity extends CommonDxfEntity {
     type: 'BODY';
     subclassMarker: 'AcDbModelerGeometry';
     /** Modeler format version number (currently = 1) */
-    formatVersion: number;
+    version: number;
     /** Proprietary data */
     data: string;
 }

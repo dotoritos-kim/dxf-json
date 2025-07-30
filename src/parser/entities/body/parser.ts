@@ -8,16 +8,11 @@ import {
 import { CommonEntitySnippets, createLongStringSnippet } from '../shared';
 import type { BodyEntity } from './types';
 
-const DefaultBodyEntity = {
-    modelerFormatVersionNumber: 1,
-    proprietaryData: [],
-};
-
 const BodyEntityParserSnippets: DXFParserSnippet[] = [
     ...createLongStringSnippet('data'),
     {
         code: 70,
-        name: 'formatVersion',
+        name: 'version',
         parser: Identity,
     },
     {
@@ -30,7 +25,7 @@ const BodyEntityParserSnippets: DXFParserSnippet[] = [
 
 export class BodyEntityParser {
     static ForEntityName = 'BODY';
-    private parser = createParser(BodyEntityParserSnippets, DefaultBodyEntity);
+    private parser = createParser(BodyEntityParserSnippets);
 
     parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup) {
         const entity = {} as any;
