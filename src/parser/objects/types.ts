@@ -1,12 +1,11 @@
-export interface DxfObject {
-    name: string;
-    handle: string;
+export interface CommonDXFObject {
+    ownerObjectId: string;
+    ownerDictionaryIdHard: string;
     ownerDictionaryIdSoft: string;
-    ownerDictionaryIdHard?: string;
-    ownerObjectId?: string;
+    handle: string;
 }
 
-export interface HydratedDxfObject extends DxfObject {
+export interface HydratedDxfObject extends CommonDXFObject {
     ownerDictionarySoft?: HydratedDxfObject;
     ownerDictionaryHard?: HydratedDxfObject;
     ownerObject?: HydratedDxfObject;
