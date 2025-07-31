@@ -201,3 +201,7 @@ export function PointParser(_: any, scanner: DxfArrayScanner) {
 export function ToBoolean({ value }: ScannerGroup) {
 	return !!value;
 }
+
+export function Trim({ value }: ScannerGroup): string {
+    return value.trim();
+}

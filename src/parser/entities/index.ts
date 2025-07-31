@@ -13,6 +13,7 @@ export * from "./insert";
 export * from "./leader";
 export * from "./line";
 export * from "./lwpolyline";
+export * from './mesh'
 export * from "./mtext";
 export * from "./point";
 export * from "./polyline";
@@ -48,6 +49,7 @@ import { InsertEntityParser } from "./insert";
 import { LeaderEntityParser } from "./leader";
 import { LineEntityParser } from "./line";
 import { LWPolylineParser } from "./lwpolyline";
+import { MeshEntityParser } from "./mesh";
 import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
@@ -83,6 +85,7 @@ const Parsers = Object.fromEntries(
 		LeaderEntityParser,
 		LineEntityParser,
 		LWPolylineParser,
+    MeshEntityParser,
 		MTextEntityParser,
 		MultiLeaderEntityParser,
 		PointEntityParser,
