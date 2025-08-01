@@ -22,7 +22,7 @@
         "emitDeclarationOnly": true,
         "plugins": [
             {
-                "transform": "typia/lib/transform"
+            "transform": "typia/lib/transform"
             }
         ],
         "isolatedModules": true,
@@ -31,10 +31,7 @@
         }
     },
     "include": [
-        "./src/**/*" // build 시 포함
+        "./src/**/*",
+        "scripts/**/*"
     ],
-    "exclude": [
-        "node_modules", // build 시 제외
-        "tests"
-    ]
 }
