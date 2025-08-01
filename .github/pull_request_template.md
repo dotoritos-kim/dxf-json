@@ -1,4 +1,4 @@
 Click preview and choose a template
 
-- [Changes](?template=changes)
-- [Release](?template=release)
+- [Changes](?template=changes.md)
+- [Release](?template=release.md)
