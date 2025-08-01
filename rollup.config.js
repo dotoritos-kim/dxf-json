@@ -14,6 +14,7 @@ export default {
   ],
   plugins: [
     swc({
+      tsconfig: './tsconfig.build.json',
       jsc: {
         parser: {
           syntax: "typescript",
