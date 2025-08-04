@@ -1,3 +1,4 @@
+import { parseExtensions } from '../shared';
 import { DXFParserSnippet, Identity } from '../shared/parserGenerator';
 
 export const CommonObjectSnippets: DXFParserSnippet[] = [
@@ -7,38 +8,16 @@ export const CommonObjectSnippets: DXFParserSnippet[] = [
         parser: Identity,
     },
     {
-        code: 102,
-        // end of ACAD_XDICTIONARY
+        code: 102, // {ACAD_XDICTIONARY
+        parser: parseExtensions,
     },
     {
-        code: 360,
-        name: 'ownerDictionaryIdHard',
-        parser: Identity,
+        code: 102, // {ACAD_REACTORS
+        parser: parseExtensions,
     },
     {
-        code: 102,
-        // start of ACAD_XDICTIONARY
-    },
-    {
-        code: 102,
-        // end of ACAD_REACTOR
-    },
-    {
-        code: 330,
-        name: 'ownerDictionaryIdSoft',
-        parser: Identity,
-    },
-    {
-        code: 102,
-        // start of ACAD_REACTOR
-    },
-    {
-        code: 102,
-        // end of application defined
-    },
-    {
-        code: 102,
-        // start of application defined
+        code: 102, // {application_name
+        parser: parseExtensions,
     },
     {
         code: 5,

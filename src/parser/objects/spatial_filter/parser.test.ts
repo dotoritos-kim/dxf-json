@@ -43,6 +43,11 @@ describe("SPATIAL_FILTER", () => {
         [16, 17, 18, 19],
         [20, 21, 22, 23],
       ],
+      extensions: {
+        ACAD_REACTORS: [
+          { code: 330, value: "9827" }
+        ]
+      }
     });
     expect(isReadOnce).toBe(true);
   });
@@ -86,6 +91,14 @@ describe("SPATIAL_FILTER", () => {
         [16, 17, 18, 19],
         [20, 21, 22, 23],
       ],
+      extensions: {
+        ACAD_REACTORS: [
+          { code: 330, value: "9827" }
+        ],
+        ACAD_XDICTIONARY: [
+          { code: 360, value: "8738" }
+        ]
+      }
     });
     expect(isReadOnce).toBe(true);
   });
