@@ -28,7 +28,7 @@ export function parseXData(curr: ScannerGroup, scanner: DxfArrayScanner) {
     const stack = [xdata.value] as any[][];
 
     while (!isMatched(curr, 0, 'EOF') && curr.code >= 1000) {
-        const top = stack.at(-1)!;
+        const top = stack[stack.length - 1];
 
         switch (curr.code) {
             case 1002:
@@ -36,7 +36,7 @@ export function parseXData(curr: ScannerGroup, scanner: DxfArrayScanner) {
                     stack.push([]);
                 } else {
                     stack.pop();
-                    stack.at(-1)?.push(top);
+                    stack[stack.length - 1]?.push(top);
                 }
                 break;
             case 1000: // string

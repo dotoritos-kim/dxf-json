@@ -56,7 +56,8 @@ export function createParser(
                 curr.code,
                 contextIndex,
             );
-            const snippet = snippetMap?.[curr.code].at(-1);
+            const snippetsForCode = snippetMap?.[curr.code]
+            const snippet = snippetsForCode?.[snippetsForCode.length - 1]
 
             if (!snippetMap || !snippet) {
                 scanner.rewind();
@@ -125,7 +126,7 @@ function createSnippetMaps(snippets: DXFParserSnippet[], debug?: boolean) {
 					if (debug)
 						console.warn(
 							`Snippet ${
-								bin.at(-1)!.name
+								bin[bin.length - 1].name
 							} for code(${code}) is shadowed by ${snippet.name}`
 						);
 				}
@@ -181,7 +182,7 @@ export function getObjectByPath(target: any, path: string): [any, string | numbe
         }
         parent = parent[currentName];
     }
-    return [parent, refineName(fragments.at(-1)!)];
+    return [parent, refineName(fragments[fragments.length - 1])];
 }
 
 function refineName(name: string): string | number {
