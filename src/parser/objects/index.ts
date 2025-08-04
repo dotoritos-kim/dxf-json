@@ -1,4 +1,5 @@
 export type * from './types'
+export * from './consts'
 export * from './dictionary'
 export * from './layout'
 export * from './plotSettings'
