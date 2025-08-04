@@ -13,7 +13,6 @@ import { CommonObjectSnippets } from './shared';
 import { PlotSettingsSnippets } from './plotSettings';
 import { DictionarySnippets } from './dictionary'
 import { SpatialFilterSnippets } from './spatial_filter';
-import { createObjectTree } from './treefy';
 import { classify } from '../../utils';
 
 const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
@@ -49,6 +48,5 @@ export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
 
     return {
         byName: classify(result, ({ name }) => name),
-        byTree: createObjectTree(result),
     };
 }
