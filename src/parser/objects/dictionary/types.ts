@@ -1,5 +1,5 @@
 import type { CommonDXFObject } from "../types";
-import type { RecordCloneFlag } from "./consts";
+import type { RecordCloneFlag } from "../consts";
 
 export interface DictionaryDXFObject extends CommonDXFObject {
     subclassMarker: 'AcDbDictionary';
