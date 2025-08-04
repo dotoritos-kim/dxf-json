@@ -30,63 +30,107 @@ A library that reliably parses DXF files into JSON files without missing data.
 
 The goal of this library is to fully analyze dxf files from AutoCad and convert them to json files.
 
-## Coverage
+<details><summary>Current Coverage</summary>
 
-### Block
+For `dev` branch status, see [#52](https://github.com/dotoritos-kim/dxf-json/issues/52)
 
-The BLOCKS section of the DXF file contains an entry for each block reference in the drawing.
+Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/ENU/?guid=GUID-235B22E0-A567-4CF6-92D3-38A2306D73F3)
 
-### Header
-
-Most headers can be loaded. All that remains is to add types and add descriptions.
-
-### ENTITY
-
-Note that application extension block (ex: starts with 102 code `{ACAD_REACTORS`) and xdata (ex: starts with 1001 code) are supported
-
-<details>
-
-- 3DFACE
-- ARC
-- ATTDEF
-- ATTRIBUTE
-- CIRCLE
-- DIMENSION
-- ELLIPSE
-- HATCH
-- IMAGE
-- INSERT
-- LEADER
-- LINE
-- LWPOLYLINE
-- MTEXT
-- MULTILIEADER
-- POINT
-- POLYLINE
-- RAY
-- SECTION
-- SOLID
-- SPLINE
-- TEXT
-- VERTEX
-- VIEWPORT
+- [x] HEADER Section
+- [ ] CLASSES Section
+- [ ] TABLES Section
+  - [ ] APPID
+  - [x] BLOCK_RECORD
+  - [x] DIMSTYLE
+  - [x] LAYER
+  - [x] LTYPE
+  - [x] STYLE
+  - [ ] UCS
+  - [ ] VIEW
+  - [x] VPORT
+- [x] BLOCKS Section
+- [ ] ENTITIES Section
+  - [x] 3DFACE
+  - [ ] 3DSOLID
+  - [ ] ACAD_PROXY_ENTITY
+  - [x] ARC
+  - [x] ATTDEF
+  - [x] ATTRIB
+  - [ ] BODY
+  - [x] CIRCLE
+  - [ ] COORDINATION MODEL
+  - [x] DIMENSION
+  - [x] ELLIPSE
+  - [x] HATCH
+  - [ ] HELIX
+  - [x] IMAGE
+  - [x] INSERT
+  - [x] LEADER
+  - [ ] LIGHT
+  - [x] LINE
+  - [x] LWPOLYLINE
+  - [ ] MESH
+  - [x] MLEADER
+  - [ ] MLEADERSTYLE
+  - [ ] MLINE
+  - [x] MTEXT
+  - [ ] OLEFRAME
+  - [ ] OLE2FRAME
+  - [x] POINT
+  - [x] POLYLINE
+  - [x] RAY
+  - [ ] REGION
+  - [x] SECTION
+  - [ ] SEQEND
+  - [ ] SHAPE
+  - [x] SOLID
+  - [x] SPLINE
+  - [ ] SUND
+  - [ ] SURFACE
+  - [ ] TABLE
+  - [x] TEXT
+  - [ ] TOLERANCE
+  - [ ] TRACE
+  - [ ] UNDERLAY
+  - [x] VERTEX
+  - [x] VIEWPORT
+  - [ ] WIPEOUT
+  - [ ] XLINE
+- [ ] OBJECTS Section
+  - [ ] DATATABLE
+  - [x] DICTIONARY
+  - [ ] DICTIONARYVAR
+  - [ ] DIMASSOC
+  - [ ] FIELD
+  - [ ] GEODATA
+  - [ ] GROUP
+  - [ ] IDBUFFER
+  - [ ] IMAGEDEF
+  - [ ] IMAGEDEF_REACTOR
+  - [ ] LAYER_FILTER
+  - [ ] LAYER_INDEX
+  - [x] LAYOUT
+  - [ ] LIGHTLIST
+  - [ ] MATERIAL
+  - [ ] MLINESTYLE
+  - [ ] OBJECT_PTR
+  - [x] PLOTSETTINGS
+  - [ ] RASTERVARIABLES
+  - [ ] RENDER
+  - [ ] SECTION
+  - [ ] SORTENSTABLE
+  - [ ] SPATIAL_FILTER
+  - [ ] SPATIAL_INDEX
+  - [ ] SUNSTUDY
+  - [ ] TABLESTYLE
+  - [ ] UNDERLAYDEFINITION
+  - [ ] VBA_PROJECT
+  - [ ] VISUALSTYLE
+  - [ ] WIPEOUTVARIABLES
+  - [ ] XRECORD
+- [ ] THUMBNAILIMAGE Section
 
 </details>
-
-### Tables
-
-- blockRecord
-- dimStyle
-- layer
-- ltype
-- style
-- vport
-
-### Objects
-
-- dictionary
-- layout
-- plotSettings
 
 ## Reference
 
