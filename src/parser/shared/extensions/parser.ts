@@ -24,6 +24,7 @@ export function parseExtensions(curr: ScannerGroup, scanner: DxfArrayScanner, en
         parseApplicationGroup(curr, scanner, entity.extensions[appName])
         curr = scanner.next()
     }
+    scanner.rewind()
 }
 
 function skipInvalidExtension(curr: ScannerGroup, scanner: DxfArrayScanner) {
