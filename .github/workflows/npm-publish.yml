@@ -22,6 +22,7 @@ jobs:
     needs: build
     name: Setup, Build, and Deploy
     runs-on: ubuntu-latest
+    if: ${{ startsWith(github.event.head_commit.message, 'fix') || startsWith(github.event.head_commit.message, 'feat') }}
     permissions:
       packages: write
       contents: write
@@ -35,8 +36,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
           release_branches: main
-          custom_release_rules: chore:patch:miscellaneous things,docs:patch:change of documentation
-          # fix: - patch, feat: - minor, BREAKING CHANGE: - major
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
