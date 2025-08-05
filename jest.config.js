@@ -16,5 +16,5 @@ export default {
         ],
     },
     testEnvironment: 'node',
-    transformIgnorePatterns: [],
+    setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
 };
