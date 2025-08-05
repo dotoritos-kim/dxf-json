@@ -6,7 +6,7 @@
     "build": "tsc",
     "print": "vite-node src/script/print.ts"
   },
-  "devDependencies": {
+  "dependencies": {
     "dxf-json": "file:.."
   }
 }
