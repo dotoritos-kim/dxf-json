@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "print": "vite-node src/script/print.ts"
   },
   "devDependencies": {
