@@ -12,8 +12,8 @@
   },
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc && rollup --config",
-    "test": "jest --silent=false",
+    "build": "rm -r dist && tsc && rollup --config",
+    "test": "jest --silent=false && npm run build && npm run typetest",
     "analyze": "depcruise src --include-only \".*(types|index|consts).ts\" -T dot | dot -Grankdir=TD -Gsplines=ortho -T svg > dependency-graph.svg",
     "new": "vite-node scripts/create-snippet.ts",
     "typetest": "npm --workspace=integration-test run build"
