@@ -1,0 +1,11 @@
+{
+  "name": "integration-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "print": "vite-node src/script/print.ts"
+  },
+  "devDependencies": {
+    "dxf-json": "file:.."
+  }
+}
