@@ -1,4 +1,4 @@
-import type { ScannerGroup } from "@src/parser/DxfArrayScanner";
+import type { ScannerGroup } from "../../DxfArrayScanner";
 import type { CommonDXFObject } from "../types";
 import type { RecordCloneFlag } from "../consts";
 

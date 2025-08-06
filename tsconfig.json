@@ -26,9 +26,6 @@
             }
         ],
         "isolatedModules": true,
-        "paths": {
-            "@src/*": ["./src/*"]
-        }
     },
     "include": [
         "./src/**/*",

@@ -1,12 +1,11 @@
-import type DxfArrayScanner from "@src/parser/DxfArrayScanner";
-import type { ScannerGroup } from "@src/parser/DxfArrayScanner";
-import { isMatched } from "@src/parser/shared";
+import type { DxfArrayScanner, ScannerGroup } from "../../DxfArrayScanner";
+import { isMatched } from "../../shared";
 import {
   DXFParserSnippet,
   Identity,
   ToBoolean,
   PointParser,
-} from "@src/parser/shared/parserGenerator";
+} from "../../shared/parserGenerator";
 
 export const SpatialFilterSnippets: DXFParserSnippet[] = [
   {

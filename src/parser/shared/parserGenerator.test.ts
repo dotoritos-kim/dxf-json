@@ -1,4 +1,4 @@
-import DxfArrayScanner from '../DxfArrayScanner';
+import { DxfArrayScanner } from '../DxfArrayScanner';
 import { createParser, getObjectByPath, Identity } from './parserGenerator';
 
 describe('createParser', () => {

@@ -1,6 +1,5 @@
-import { isMatched } from '@src/parser/shared';
-import type DxfArrayScanner from '../../DxfArrayScanner';
-import type { ScannerGroup } from '../../DxfArrayScanner';
+import { isMatched } from '../../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
 import {
     createParser,
     DXFParserSnippet,

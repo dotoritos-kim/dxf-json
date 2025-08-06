@@ -1,4 +1,4 @@
-import { DXFParserSnippet, Identity } from '@src/parser/shared/parserGenerator';
+import { DXFParserSnippet, Identity } from '../../shared/parserGenerator';
 
 export const PlotSettingsSnippets: DXFParserSnippet[] = [
     {

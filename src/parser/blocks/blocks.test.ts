@@ -1,4 +1,4 @@
-import DxfArrayScanner from '../DxfArrayScanner';
+import { DxfArrayScanner } from '../DxfArrayScanner';
 import { parseBlock, parseBlocks } from '.';
 import { isMatched } from '../shared';
 

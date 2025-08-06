@@ -16,8 +16,7 @@ export interface ScannerGroup {
  * @param data - an array where each element represents a line in the dxf file
  * @constructor
  */
-
-export default class DxfArrayScanner {
+export class DxfArrayScanner {
 	private _pointer: number;
 	private _eof: boolean;
 
@@ -165,3 +164,5 @@ function parseBoolean(str: string) {
 	if (str === "1") return true;
 	throw TypeError("String '" + str + "' cannot be cast to Boolean type");
 }
+
+export default DxfArrayScanner

@@ -1,4 +1,4 @@
-import type { Point2D, Point3D } from '@src/types'
+import type { Point2D, Point3D } from '../../../types'
 import type { CommonDXFObject } from '../types'
 
 export interface SpatialFilterDXFObject extends CommonDXFObject {

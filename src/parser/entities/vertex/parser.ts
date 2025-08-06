@@ -1,6 +1,5 @@
 import { generateIntegers } from '../../../utils';
-import type DxfArrayScanner from '../../DxfArrayScanner';
-import type { ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
 import {
     createParser,
     DXFParserSnippet,

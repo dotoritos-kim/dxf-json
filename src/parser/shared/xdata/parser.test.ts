@@ -1,4 +1,4 @@
-import DxfArrayScanner from '../../DxfArrayScanner';
+import { DxfArrayScanner } from '../../DxfArrayScanner';
 import { parseXData } from './parser';
 
 describe('xdata:parser', () => {

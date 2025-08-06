@@ -1,13 +1,13 @@
-import type { ScannerGroup } from '@src/parser/DxfArrayScanner';
-import { parseExtensions } from '@src/parser/shared/extensions/parser';
-import type { ColorIndex, ColorInstance } from '@src/types';
+import type { ScannerGroup } from '../DxfArrayScanner'; 
+import { parseExtensions } from '../shared'; 
+import type { ColorIndex, ColorInstance } from '../../types'
 import { getAcadColor } from '../getAcadColor';
 import {
-    DXFParserSnippet,
+    type DXFParserSnippet,
     Identity,
     ToBoolean,
 } from '../shared/parserGenerator';
-import { XData, XDataParserSnippets } from '../shared/xdata';
+import { type XData, XDataParserSnippets } from '../shared/xdata';
 
 export interface CommonDxfEntity {
     type: string;

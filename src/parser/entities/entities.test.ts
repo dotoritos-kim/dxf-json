@@ -1,5 +1,5 @@
+import { DxfArrayScanner } from '../DxfArrayScanner';
 import { parseEntities } from '.';
-import DxfArrayScanner from '../DxfArrayScanner';
 
 describe('ENTITIES section', () => {
     describe('parseEntities', () => {

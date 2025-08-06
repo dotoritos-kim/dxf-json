@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import { join } from "path";
-import DxfArrayScanner from "@src/parser/DxfArrayScanner";
-import { createParser } from "@src/parser/shared/parserGenerator";
+import { DxfArrayScanner } from "../../DxfArrayScanner";
+import { createParser } from "../../shared/parserGenerator";
 import { CommonObjectSnippets } from "../shared";
 import { SpatialFilterSnippets } from "./parser";
 

@@ -1,4 +1,4 @@
-import { type DXFParserSnippet, Identity } from '@src/parser/shared/parserGenerator';
+import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator';
 
 /*
   XRECORD OBJECT has no fixed form.

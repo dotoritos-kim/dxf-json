@@ -1,5 +1,5 @@
-import type { Point2D, Point3D } from "@src/types";
-import type { OrthographicType } from "@src/consts";
+import type { Point2D, Point3D } from "../../../types"
+import type { OrthographicType } from "../../../consts";
 import type { PlotSettingDXFObject } from "../plotSettings";
 import type { LayoutControlFlag } from "./consts";
 

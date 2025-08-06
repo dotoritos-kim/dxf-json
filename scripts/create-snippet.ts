@@ -44,9 +44,8 @@ writeFileSync(join(fullPath, 'types.ts'), `export interface ${entityName} {}`);
 writeFileSync(join(fullPath, 'consts.ts'), 'export {}');
 
 // Create a parser file
-writeFileSync(join(fullPath, 'parser.ts'), `import type DxfArrayScanner from '@src/parser/DxfArrayScanner';
-import type { ScannerGroup } from '@src/parser/DxfArrayScanner';
-import { type DXFParserSnippet, Identity } from '@src/parser/shared/parserGenerator';
+writeFileSync(join(fullPath, 'parser.ts'), `import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator';
 
 export const ${snippetName}: DXFParserSnippet[] = [
   {
@@ -64,8 +63,8 @@ const requiredDefaultSnippets = moduleType === 'objects' ? 'CommonObjectSnippets
 
 writeFileSync(join(fullPath, 'parser.test.ts'), `import { readFileSync } from 'fs'
 import { join } from 'path'
-import DxfArrayScanner from '@src/parser/DxfArrayScanner'
-import { createParser } from '@src/parser/shared/parserGenerator'
+import { DxfArrayScanner } from '../../DxfArrayScanner'
+import { createParser } from '../../shared/parserGenerator'
 import { ${snippetName} } from './parser'
 import { ${requiredDefaultSnippets} } from '../shared'
 

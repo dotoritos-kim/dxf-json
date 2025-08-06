@@ -1,5 +1,5 @@
 import type { Point2D, Point3D } from '../../types';
-import type DxfArrayScanner from '../DxfArrayScanner';
+import type { DxfArrayScanner } from '../DxfArrayScanner';
 
 /**
  * Parses the 2D or 3D coordinate, vector, or point. When complete,

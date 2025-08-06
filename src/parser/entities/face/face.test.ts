@@ -1,6 +1,6 @@
 import { readFileSync } from "fs"
 import { join } from "path"
-import DxfArrayScanner from "@src/parser/DxfArrayScanner"
+import { DxfArrayScanner } from '../../DxfArrayScanner'
 import { FaceEntityParser } from "./parser"
 
 describe('3DFACE', () => {

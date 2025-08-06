@@ -31,8 +31,7 @@ export * from "./wipeout";
 export * from "./xline";
 export * from "./shared";
 
-import type DxfArrayScanner from "../DxfArrayScanner";
-import { ScannerGroup } from "../DxfArrayScanner";
+import type { DxfArrayScanner, ScannerGroup } from "../DxfArrayScanner";
 import { ensureHandle, isMatched } from "../shared";
 
 
