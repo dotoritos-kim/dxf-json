@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { DxfArrayScanner } from '../DxfArrayScanner';
 import { parseBlock, parseBlocks } from '.';
 import { isMatched } from '../shared';

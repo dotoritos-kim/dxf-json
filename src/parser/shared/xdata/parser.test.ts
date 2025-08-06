@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { DxfArrayScanner } from '../../DxfArrayScanner';
 import { parseXData } from './parser';
 
