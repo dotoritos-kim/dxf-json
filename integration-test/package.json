@@ -3,8 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "print": "vite-node src/script/print.ts"
+    "build": "tsc --project ./tsconfig.json",
+    "print": "vite-node src/script/print.ts",
+    "test": "vitest run --config ../vite.config.ts"
   },
   "dependencies": {
     "dxf-json": "file:.."

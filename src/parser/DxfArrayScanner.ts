@@ -164,5 +164,3 @@ function parseBoolean(str: string) {
 	if (str === "1") return true;
 	throw TypeError("String '" + str + "' cannot be cast to Boolean type");
 }
-
-export default DxfArrayScanner

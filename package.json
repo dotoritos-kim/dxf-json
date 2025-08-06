@@ -5,15 +5,14 @@
   "type": "module",
   "main": "./dist/bundle.cjs",
   "module": "./dist/bundle.mjs",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     "import": "./dist/bundle.mjs",
-    "require": "./dist/bundle.cjs",
-    "types": "./dist/index.d.ts"
+    "require": "./dist/bundle.cjs"
   },
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "rm -rf ./dist && tsc --project tsconfig.build.json && rollup --config",
-    "test": "vitest run --config ./vite.config.ts && npm run build && npm run typetest",
+    "test": "vitest run --config ./vite.config.ts && npm run typetest",
     "test-dev": "vitest --config ./vite.config.ts",
     "analyze": "depcruise src --include-only \".*(types|index|consts).ts\" -T dot | dot -Grankdir=TD -Gsplines=ortho -T svg > dependency-graph.svg",
     "new": "vite-node scripts/create-snippet.ts",
@@ -66,6 +65,7 @@
     "dist"
   ],
   "workspaces": [
+    ".",
     "integration-test"
   ]
 }
