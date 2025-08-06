@@ -19,17 +19,13 @@ export interface ScannerGroup {
 
 export default class DxfArrayScanner {
 	private _pointer: number;
-	private _data: string[];
 	private _eof: boolean;
-	public debug: boolean = true;
 
 	lastReadGroup: ScannerGroup = { code: 0, value: 0 };
 
-	constructor(data: string[], debug?: boolean) {
+	constructor(public _data: string[], public debug = false) {
 		this._pointer = 0;
-		this._data = data;
 		this._eof = false;
-		this.debug = debug ?? true;
 	}
 
 	next() {
@@ -53,7 +49,7 @@ export default class DxfArrayScanner {
 		}
 
 		const code = parseInt(this._data[this._pointer++], 10);
-		const value = parseGroupValue(code, this._data[this._pointer++]);
+		const value = parseGroupValue(code, this._data[this._pointer++], this.debug);
 		const group = { code, value };
 
 		if (isMatched(group, 0, "EOF")) {
@@ -84,7 +80,8 @@ export default class DxfArrayScanner {
 
 		group.value = parseGroupValue(
 			group.code,
-			this._data[this._pointer + 1]
+			this._data[this._pointer + 1],
+			this.debug
 		);
 
 		return group;
@@ -124,7 +121,7 @@ export default class DxfArrayScanner {
  * @param value
  * @returns {*}
  */
-export function parseGroupValue(code: number, value: string) {
+export function parseGroupValue(code: number, value: string, isDebugMode = false) {
 	if (code <= 9) return value;
 	if (code >= 10 && code <= 59) return parseFloat(value.trim());
 	if (code >= 60 && code <= 99) return parseInt(value.trim());
@@ -149,10 +146,12 @@ export function parseGroupValue(code: number, value: string) {
 	if (code >= 1010 && code <= 1059) return parseFloat(value.trim());
 	if (code >= 1060 && code <= 1071) return parseInt(value.trim());
 
-	console.log("WARNING: Group code does not have a defined type: %j", {
-		code: code,
-		value: value,
-	});
+	if (isDebugMode) {
+		console.warn("WARNING: Group code does not have a defined type: %j", {
+			code: code,
+			value: value,
+		});
+	}
 	return value;
 }
 

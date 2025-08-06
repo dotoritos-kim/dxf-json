@@ -30,9 +30,9 @@ export class DxfParser extends EventTarget {
       fatal: options.encodingFailureFatal,
     });
   }
-  parseSync(dxfString: string) {
+  parseSync(dxfString: string, isDebugMode = false): ParsedDxf {
     const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g);
-    const scanner = new DxfArrayScanner(dxfLinesArray);
+    const scanner = new DxfArrayScanner(dxfLinesArray, isDebugMode);
     if (!scanner.hasNext()) {
       throw Error("Empty file");
     }

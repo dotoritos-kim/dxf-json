@@ -112,7 +112,7 @@ const Parsers = Object.fromEntries(
  */
 export function parseEntities(
   curr: ScannerGroup,
-  scanner: DxfArrayScanner
+  scanner: DxfArrayScanner,
 ): CommonDxfEntity[] {
   let entities: any[] = [];
 
@@ -135,7 +135,7 @@ export function parseEntities(
         entity.type = entityType;
         ensureHandle(entity);
         entities.push(entity);
-      } else {
+      } else if (scanner.debug) {
         console.warn(`Unsupported ENTITY type: ${curr.value}`);
       }
     }
