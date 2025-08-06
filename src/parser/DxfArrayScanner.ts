@@ -19,17 +19,13 @@ export interface ScannerGroup {
 
 export default class DxfArrayScanner {
 	private _pointer: number;
-	private _data: string[];
 	private _eof: boolean;
-	public debug: boolean = true;
 
 	lastReadGroup: ScannerGroup = { code: 0, value: 0 };
 
-	constructor(data: string[], debug?: boolean) {
+	constructor(public _data: string[], public debug = false) {
 		this._pointer = 0;
-		this._data = data;
 		this._eof = false;
-		this.debug = debug ?? true;
 	}
 
 	next() {
