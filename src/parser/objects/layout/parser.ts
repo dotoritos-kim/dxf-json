@@ -2,7 +2,7 @@ import {
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '@src/parser/shared/parserGenerator';
+} from '../../shared/parserGenerator';
 import { PlotSettingsSnippets } from '../plotSettings';
 
 // Snippet이 code별로 스택에 들어가기 때문에 일부로 역순으로 적음

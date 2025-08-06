@@ -1,4 +1,4 @@
-import DxfArrayScanner, { ScannerGroup } from "@src/parser/DxfArrayScanner";
+import type { DxfArrayScanner, ScannerGroup } from "../../DxfArrayScanner";
 import { isMatched } from "../isMatched";
 
 /** @internal */

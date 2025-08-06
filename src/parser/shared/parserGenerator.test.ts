@@ -1,4 +1,5 @@
-import DxfArrayScanner from '../DxfArrayScanner';
+import { describe, it, test, expect } from 'vitest';
+import { DxfArrayScanner } from '../DxfArrayScanner';
 import { createParser, getObjectByPath, Identity } from './parserGenerator';
 
 describe('createParser', () => {

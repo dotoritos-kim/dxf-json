@@ -1,7 +1,6 @@
 
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
 import { isMatched } from './isMatched';
-import type DxfArrayScanner from '../DxfArrayScanner';
-import { ScannerGroup } from '../DxfArrayScanner';
 import { parsePoint } from './parsePoint';
 
 

@@ -1,9 +1,9 @@
 import {
   parseGroupValue,
   type ScannerGroup,
-} from "@src/parser/DxfArrayScanner";
-import { isMatched } from "@src/parser/shared";
-import type { ParsedDxf } from "@src/parser/types";
+} from "../parser/DxfArrayScanner";
+import { isMatched } from "../parser/shared";
+import type { ParsedDxf } from "../parser/types";
 import { parsePoint } from "./streamShared/parseData";
 
 type ErrorOptions =

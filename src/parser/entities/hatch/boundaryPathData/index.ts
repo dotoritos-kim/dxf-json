@@ -1,6 +1,5 @@
 import { BoundaryPathTypeFlag } from '../../../../consts';
-import type DxfArrayScanner from '../../../DxfArrayScanner';
-import type { ScannerGroup } from '../../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../../DxfArrayScanner';
 import { createParser } from '../../../shared/parserGenerator';
 import { EdgeBoundaryPathDataSnippets } from './edge';
 import { PolylineSnippets } from './polyline';

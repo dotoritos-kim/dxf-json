@@ -1,8 +1,7 @@
-import type DxfArrayScanner from '@src/parser/DxfArrayScanner';
-import type { ScannerGroup } from '@src/parser/DxfArrayScanner';
-import { DXFParserSnippet, Identity, PointParser, createParser } from '@src/parser/shared/parserGenerator';
-import type { FaceEntity } from './types';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner'
+import { DXFParserSnippet, Identity, PointParser, createParser } from '../../shared/parserGenerator'
 import { CommonEntitySnippets } from '../shared';
+import type { FaceEntity } from './types';
 
 const FaceEntityParserSnippets: DXFParserSnippet[] = [
     {

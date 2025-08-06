@@ -1,9 +1,14 @@
 {
   "extends": "./tsconfig.json",  
-    "exclude": [
-        "node_modules",
-        "**/*.test.ts",
-        "scripts",
-        "integration-test"
-    ]
+  "compilerOptions": {
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "sourceMap": true,
+    "outDir": "./dist"
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["**/*.test.ts"]
 }

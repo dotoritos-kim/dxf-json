@@ -2,7 +2,7 @@ import {
     DXFParserSnippet,
     Identity,
     ToBoolean,
-} from '@src/parser/shared/parserGenerator';
+} from '../../shared/parserGenerator';
 import type { DictionaryDXFObject } from './types';
 
 export const DictionarySnippets: DXFParserSnippet[] = [

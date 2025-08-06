@@ -5,8 +5,7 @@ export * from './layout'
 export * from './plotSettings'
 export * from './spatial_filter'
 
-import type DxfArrayScanner from '../DxfArrayScanner';
-import { ScannerGroup } from '../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
 import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
 import { LayoutSnippets } from './layout';
 import { CommonObjectSnippets } from './shared';

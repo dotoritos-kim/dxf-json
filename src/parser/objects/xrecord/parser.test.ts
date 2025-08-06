@@ -1,7 +1,8 @@
+import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import DxfArrayScanner from '@src/parser/DxfArrayScanner'
-import { createParser } from '@src/parser/shared/parserGenerator'
+import { DxfArrayScanner } from '../../DxfArrayScanner'
+import { createParser } from '../../shared/parserGenerator'
 import { XRecordDXFObjectSnippet } from './parser'
 import { CommonObjectSnippets } from '../shared'
 import { RecordCloneFlag } from '../consts'
