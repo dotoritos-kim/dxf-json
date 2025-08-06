@@ -8,7 +8,9 @@ export function parseExtensions(curr: ScannerGroup, scanner: DxfArrayScanner, en
         curr = scanner.next();
 
         if (!rawValue.startsWith('{')) {
-            console.warn(`Invalid application group, expected to start with "{" but received: ${rawValue}`);
+            if (scanner.debug) {
+                console.warn(`Invalid application group, expected to start with "{" but received: ${rawValue}`);
+            }
             
             skipInvalidExtension(curr, scanner) // after this, scanner points at the next group of 102 }
             curr = scanner.next() 

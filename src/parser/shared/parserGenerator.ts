@@ -59,7 +59,7 @@ export function createParser(
 	defaultObject?: any
 ): DXFParser {
     return (curr, scanner, target) => {
-        const snippetMaps = createSnippetMaps(snippets);
+        const snippetMaps = createSnippetMaps(snippets, scanner.debug);
         let isReadOnce = false;
         let contextIndex = snippetMaps.length - 1;
 
@@ -119,7 +119,7 @@ export function createParser(
     };
 }
 
-function createSnippetMaps(snippets: DXFParserSnippet[], debug?: boolean) {
+function createSnippetMaps(snippets: DXFParserSnippet[], isDebugMode = false) {
 	return snippets.reduce(
 		(acc, snippet) => {
 			if (snippet.pushContext) {
@@ -135,13 +135,12 @@ function createSnippetMaps(snippets: DXFParserSnippet[], debug?: boolean) {
 			for (const code of codes) {
 				const bin = (context[code] ??= []);
 
-				if (snippet.isMultiple && bin.length) {
-					if (debug)
-						console.warn(
-							`Snippet ${
-								bin[bin.length - 1].name
-							} for code(${code}) is shadowed by ${snippet.name}`
-						);
+				if (snippet.isMultiple && bin.length && isDebugMode) {
+                    console.warn(
+                        `Snippet ${
+                            bin[bin.length - 1].name
+                        } for code(${code}) is shadowed by ${snippet.name}`
+                    );
 				}
 				bin.push(snippet);
 			}
