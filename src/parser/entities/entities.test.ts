@@ -1,5 +1,6 @@
+import { describe, it, expect } from 'vitest';
+import { DxfArrayScanner } from '../DxfArrayScanner';
 import { parseEntities } from '.';
-import DxfArrayScanner from '../DxfArrayScanner';
 
 describe('ENTITIES section', () => {
     describe('parseEntities', () => {

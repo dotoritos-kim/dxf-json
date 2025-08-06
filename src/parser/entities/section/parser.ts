@@ -5,8 +5,7 @@ import {
     PointParser,
 } from '../../shared/parserGenerator';
 import { CommonEntitySnippets } from '../shared';
-import type DxfArrayScanner from '../../DxfArrayScanner';
-import type { ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
 
 const DefaultSectionEntity = {
     vertices: [],

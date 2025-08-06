@@ -1,0 +1,1628 @@
+{
+  "header": {
+    "$ACADVER": "AC1032",
+    "$ACADMAINTVER": 248,
+    "$DWGCODEPAGE": "ANSI_949",
+    "$LASTSAVEDBY": "rayelxia",
+    "$REQUIREDVERSIONS": 0,
+    "$INSBASE": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$EXTMIN": {
+      "x": 100000000000000000000,
+      "y": 100000000000000000000,
+      "z": 100000000000000000000
+    },
+    "$EXTMAX": {
+      "x": -100000000000000000000,
+      "y": -100000000000000000000,
+      "z": -100000000000000000000
+    },
+    "$LIMMIN": {
+      "x": 0,
+      "y": 0
+    },
+    "$LIMMAX": {
+      "x": 420,
+      "y": 297
+    },
+    "$ORTHOMODE": 0,
+    "$REGENMODE": 1,
+    "$FILLMODE": 1,
+    "$QTEXTMODE": 0,
+    "$MIRRTEXT": 0,
+    "$LTSCALE": 1,
+    "$ATTMODE": 1,
+    "$TEXTSIZE": 2.5,
+    "$TRACEWID": 1,
+    "$TEXTSTYLE": "Standard",
+    "$CLAYER": "0",
+    "$CELTYPE": "ByLayer",
+    "$CECOLOR": 256,
+    "$CELTSCALE": 1,
+    "$DISPSILH": 0,
+    "$DIMSCALE": 1,
+    "$DIMASZ": 2.5,
+    "$DIMEXO": 0.625,
+    "$DIMDLI": 3.75,
+    "$DIMRND": 0,
+    "$DIMDLE": 0,
+    "$DIMEXE": 1.25,
+    "$DIMTP": 0,
+    "$DIMTM": 0,
+    "$DIMTXT": 2.5,
+    "$DIMCEN": 2.5,
+    "$DIMTSZ": 0,
+    "$DIMTOL": 0,
+    "$DIMLIM": 0,
+    "$DIMTIH": 0,
+    "$DIMTOH": 0,
+    "$DIMSE1": 0,
+    "$DIMSE2": 0,
+    "$DIMTAD": 1,
+    "$DIMZIN": 8,
+    "$DIMBLK": "",
+    "$DIMASO": 1,
+    "$DIMSHO": 1,
+    "$DIMPOST": "",
+    "$DIMAPOST": "",
+    "$DIMALT": 0,
+    "$DIMALTD": 3,
+    "$DIMALTF": 0.03937007874016,
+    "$DIMLFAC": 1,
+    "$DIMTOFL": 1,
+    "$DIMTVP": 0,
+    "$DIMTIX": 0,
+    "$DIMSOXD": 0,
+    "$DIMSAH": 0,
+    "$DIMBLK1": "",
+    "$DIMBLK2": "",
+    "$DIMSTYLE": "ISO-25",
+    "$DIMCLRD": 0,
+    "$DIMCLRE": 0,
+    "$DIMCLRT": 0,
+    "$DIMTFAC": 1,
+    "$DIMGAP": 0.625,
+    "$DIMJUST": 0,
+    "$DIMSD1": 0,
+    "$DIMSD2": 0,
+    "$DIMTOLJ": 0,
+    "$DIMTZIN": 8,
+    "$DIMALTZ": 0,
+    "$DIMALTTZ": 0,
+    "$DIMUPT": 0,
+    "$DIMDEC": 2,
+    "$DIMTDEC": 2,
+    "$DIMALTU": 2,
+    "$DIMALTTD": 3,
+    "$DIMTXSTY": "Standard",
+    "$DIMAUNIT": 0,
+    "$DIMADEC": 0,
+    "$DIMALTRND": 0,
+    "$DIMAZIN": 0,
+    "$DIMDSEP": 44,
+    "$DIMATFIT": 3,
+    "$DIMFRAC": 0,
+    "$DIMLDRBLK": "",
+    "$DIMLUNIT": 2,
+    "$DIMLWD": -2,
+    "$DIMLWE": -2,
+    "$DIMTMOVE": 0,
+    "$DIMFXL": 1,
+    "$DIMFXLON": 0,
+    "$DIMJOGANG": 0.7853981633974483,
+    "$DIMTFILL": 0,
+    "$DIMTFILLCLR": 0,
+    "$DIMARCSYM": 0,
+    "$DIMLTYPE": "",
+    "$DIMLTEX1": "",
+    "$DIMLTEX2": "",
+    "$DIMTXTDIRECTION": 0,
+    "$LUNITS": 2,
+    "$LUPREC": 4,
+    "$SKETCHINC": 1,
+    "$FILLETRAD": 0,
+    "$AUNITS": 0,
+    "$AUPREC": 0,
+    "$MENU": ".",
+    "$ELEVATION": 0,
+    "$PELEVATION": 0,
+    "$THICKNESS": 0,
+    "$LIMCHECK": 0,
+    "$CHAMFERA": 0,
+    "$CHAMFERB": 0,
+    "$CHAMFERC": 0,
+    "$CHAMFERD": 0,
+    "$SKPOLY": 0,
+    "$TDCREATE": 2460893.597881945,
+    "$TDUCREATE": 2460893.222881944,
+    "$TDUPDATE": 2460893.5984375,
+    "$TDUUPDATE": 2460893.2234375,
+    "$TDINDWG": 0.0005555556,
+    "$TDUSRTIMER": 0.0005555556,
+    "$USRTIMER": 1,
+    "$ANGBASE": 0,
+    "$ANGDIR": 0,
+    "$PDMODE": 0,
+    "$PDSIZE": 0,
+    "$PLINEWID": 0,
+    "$SPLFRAME": 0,
+    "$SPLINETYPE": 6,
+    "$SPLINESEGS": 8,
+    "$HANDSEED": "2BD",
+    "$SURFTAB1": 6,
+    "$SURFTAB2": 6,
+    "$SURFTYPE": 6,
+    "$SURFU": 6,
+    "$SURFV": 6,
+    "$UCSBASE": "",
+    "$UCSNAME": "",
+    "$UCSORG": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$UCSXDIR": {
+      "x": 1,
+      "y": 0,
+      "z": 0
+    },
+    "$UCSYDIR": {
+      "x": 0,
+      "y": 1,
+      "z": 0
+    },
+    "$UCSORTHOREF": "",
+    "$UCSORTHOVIEW": 0,
+    "$UCSORGTOP": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$UCSORGBOTTOM": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$UCSORGLEFT": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$UCSORGRIGHT": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$UCSORGFRONT": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$UCSORGBACK": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSBASE": "",
+    "$PUCSNAME": "",
+    "$PUCSORG": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSXDIR": {
+      "x": 1,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSYDIR": {
+      "x": 0,
+      "y": 1,
+      "z": 0
+    },
+    "$PUCSORTHOREF": "",
+    "$PUCSORTHOVIEW": 0,
+    "$PUCSORGTOP": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSORGBOTTOM": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSORGLEFT": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSORGRIGHT": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSORGFRONT": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PUCSORGBACK": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$USERI1": 0,
+    "$USERI2": 0,
+    "$USERI3": 0,
+    "$USERI4": 0,
+    "$USERI5": 0,
+    "$USERR1": 0,
+    "$USERR2": 0,
+    "$USERR3": 0,
+    "$USERR4": 0,
+    "$USERR5": 0,
+    "$WORLDVIEW": 1,
+    "$SHADEDGE": 3,
+    "$SHADEDIF": 70,
+    "$TILEMODE": 1,
+    "$MAXACTVP": 64,
+    "$PINSBASE": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PLIMCHECK": 0,
+    "$PEXTMIN": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PEXTMAX": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "$PLIMMIN": {
+      "x": 0,
+      "y": 0
+    },
+    "$PLIMMAX": {
+      "x": 12,
+      "y": 9
+    },
+    "$UNITMODE": 0,
+    "$VISRETAIN": 1,
+    "$PLINEGEN": 0,
+    "$PSLTSCALE": 1,
+    "$TREEDEPTH": 3020,
+    "$CMLSTYLE": "Standard",
+    "$CMLJUST": 0,
+    "$CMLSCALE": 20,
+    "$PROXYGRAPHICS": 1,
+    "$MEASUREMENT": 1,
+    "$CELWEIGHT": -1,
+    "$ENDCAPS": 0,
+    "$JOINSTYLE": 0,
+    "$LWDISPLAY": false,
+    "$INSUNITS": 4,
+    "$HYPERLINKBASE": "",
+    "$STYLESHEET": "",
+    "$XEDIT": true,
+    "$CEPSNTYPE": 0,
+    "$PSTYLEMODE": true,
+    "$FINGERPRINTGUID": "{98D5CF05-7354-E84E-98E1-C1B80ABC152B}",
+    "$VERSIONGUID": "{8CE659F2-131E-9843-AC8F-C29E1F128BE2}",
+    "$EXTNAMES": true,
+    "$PSVPSCALE": 0,
+    "$OLESTARTUP": false,
+    "$SORTENTS": 127,
+    "$INDEXCTL": 0,
+    "$HIDETEXT": 1,
+    "$XCLIPFRAME": 2,
+    "$HALOGAP": 0,
+    "$OBSCOLOR": 257,
+    "$OBSLTYPE": 0,
+    "$INTERSECTIONDISPLAY": 0,
+    "$INTERSECTIONCOLOR": 257,
+    "$DIMASSOC": 2,
+    "$PROJECTNAME": "",
+    "$CAMERADISPLAY": false,
+    "$LENSLENGTH": 50,
+    "$CAMERAHEIGHT": 0,
+    "$STEPSPERSEC": 2,
+    "$STEPSIZE": 6,
+    "$3DDWFPREC": 2,
+    "$PSOLWIDTH": 5,
+    "$PSOLHEIGHT": 80,
+    "$LOFTANG1": 1.570796326794896,
+    "$LOFTANG2": 1.570796326794896,
+    "$LOFTMAG1": 0,
+    "$LOFTMAG2": 0,
+    "$LOFTPARAM": 7,
+    "$LOFTNORMALS": 1,
+    "$LATITUDE": 37.795,
+    "$LONGITUDE": -122.394,
+    "$NORTHDIRECTION": 0,
+    "$TIMEZONE": -8000,
+    "$LIGHTGLYPHDISPLAY": 1,
+    "$TILEMODELIGHTSYNCH": 1,
+    "$CMATERIAL": "EC",
+    "$SOLIDHIST": 0,
+    "$SHOWHIST": 1,
+    "$DWFFRAME": 2,
+    "$DGNFRAME": 0,
+    "$REALWORLDSCALE": true,
+    "$INTERFERECOLOR": 1,
+    "$INTERFEREOBJVS": "F9",
+    "$INTERFEREVPVS": "F6",
+    "$CSHADOW": 0,
+    "$SHADOWPLANELOCATION": 0
+  },
+  "blocks": {
+    "*Model_Space": {
+      "handle": "20",
+      "ownerHandle": "1F",
+      "layer": "0",
+      "name": "*Model_Space",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "name2": "*Model_Space",
+      "xrefPath": ""
+    },
+    "*Paper_Space": {
+      "handle": "D4",
+      "ownerHandle": "D2",
+      "paperSpace": true,
+      "layer": "0",
+      "name": "*Paper_Space",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "name2": "*Paper_Space",
+      "xrefPath": ""
+    },
+    "*Paper_Space0": {
+      "handle": "D8",
+      "ownerHandle": "D6",
+      "paperSpace": true,
+      "layer": "0",
+      "name": "*Paper_Space0",
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "name2": "*Paper_Space0",
+      "xrefPath": ""
+    }
+  },
+  "entities": [],
+  "tables": {
+    "VPORT": {
+      "entries": [
+        {
+          "handle": "EA",
+          "ownerObjectId": "8",
+          "subclassMarker": "AcDbViewportTableRecord",
+          "name": "*Active",
+          "standardFlag": 0,
+          "lowerLeftCorner": {
+            "x": 0,
+            "y": 0
+          },
+          "upperRightCorner": {
+            "x": 1,
+            "y": 1
+          },
+          "center": {
+            "x": 3011.473057713179,
+            "y": 1440.684066268786
+          },
+          "snapBasePoint": {
+            "x": 0,
+            "y": 0
+          },
+          "snapSpacing": {
+            "x": 10,
+            "y": 10
+          },
+          "gridSpacing": {
+            "x": 10,
+            "y": 10
+          },
+          "viewDirectionFromTarget": {
+            "x": 0,
+            "y": 0,
+            "z": 1
+          },
+          "viewTarget": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          }
+        }
+      ],
+      "name": "VPORT",
+      "handle": "8",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 1
+    },
+    "LTYPE": {
+      "entries": [
+        {
+          "handle": "14",
+          "ownerObjectId": "5",
+          "subclassMarker": "AcDbLinetypeTableRecord",
+          "name": "ByBlock",
+          "standardFlag": 0,
+          "description": "",
+          "numberOfLineTypes": 0,
+          "totalPatternLength": 0
+        },
+        {
+          "handle": "15",
+          "ownerObjectId": "5",
+          "subclassMarker": "AcDbLinetypeTableRecord",
+          "name": "ByLayer",
+          "standardFlag": 0,
+          "description": "",
+          "numberOfLineTypes": 0,
+          "totalPatternLength": 0
+        },
+        {
+          "handle": "16",
+          "ownerObjectId": "5",
+          "subclassMarker": "AcDbLinetypeTableRecord",
+          "name": "Continuous",
+          "standardFlag": 0,
+          "description": "Solid line",
+          "numberOfLineTypes": 0,
+          "totalPatternLength": 0
+        }
+      ],
+      "name": "LTYPE",
+      "handle": "5",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 1
+    },
+    "LAYER": {
+      "entries": [
+        {
+          "handle": "10",
+          "ownerObjectId": "2",
+          "subclassMarker": "AcDbLayerTableRecord",
+          "name": "0",
+          "standardFlag": 0,
+          "colorIndex": 7,
+          "lineType": "Continuous",
+          "lineweight": -3,
+          "plotStyleNameObjectId": "F",
+          "materialObjectId": "EE"
+        }
+      ],
+      "name": "LAYER",
+      "handle": "2",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 1
+    },
+    "STYLE": {
+      "entries": [
+        {
+          "handle": "11",
+          "ownerObjectId": "3",
+          "subclassMarker": "AcDbTextStyleTableRecord",
+          "name": "Standard",
+          "standardFlag": 0,
+          "fixedTextHeight": 0,
+          "widthFactor": 1,
+          "obliqueAngle": 0,
+          "textGenerationFlag": 0,
+          "lastHeight": 2.5,
+          "font": "arial.ttf",
+          "bigFont": "",
+          "extendedFont": "Arial"
+        },
+        {
+          "handle": "132",
+          "ownerObjectId": "3",
+          "subclassMarker": "AcDbTextStyleTableRecord",
+          "name": "주석",
+          "standardFlag": 0,
+          "fixedTextHeight": 0,
+          "widthFactor": 1,
+          "obliqueAngle": 0,
+          "textGenerationFlag": 0,
+          "lastHeight": 2.5,
+          "font": "arial.ttf",
+          "bigFont": "",
+          "extendedFont": "AnnotativeData"
+        }
+      ],
+      "name": "STYLE",
+      "handle": "3",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 2
+    },
+    "VIEW": {
+      "entries": [],
+      "name": "VIEW",
+      "handle": "6",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 0
+    },
+    "UCS": {
+      "entries": [],
+      "name": "UCS",
+      "handle": "7",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 0
+    },
+    "APPID": {
+      "entries": [],
+      "name": "APPID",
+      "handle": "9",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 8
+    },
+    "DIMSTYLE": {
+      "entries": [
+        {
+          "handle": "1B0",
+          "ownerObjectId": "A",
+          "subclassMarker": "AcDbDimStyleTableRecord",
+          "name": "Standard",
+          "standardFlag": 0,
+          "DIMTXSTY": "11"
+        },
+        {
+          "handle": "137",
+          "ownerObjectId": "A",
+          "subclassMarker": "AcDbDimStyleTableRecord",
+          "name": "주석",
+          "standardFlag": 0,
+          "DIMSCALE": 0,
+          "DIMASZ": 2.5,
+          "DIMEXO": 0.625,
+          "DIMDLI": 3.75,
+          "DIMEXE": 1.25,
+          "DIMTIH": 0,
+          "DIMTOH": 0,
+          "DIMTAD": 1,
+          "DIMZIN": 8,
+          "DIMTXT": 2.5,
+          "DIMCEN": 2.5,
+          "DIMALTF": 0.03937007874016,
+          "DIMGAP": 0.625,
+          "DIMALTD": 3,
+          "DIMTOFL": 1,
+          "DIMDEC": 2,
+          "DIMTDEC": 2,
+          "DIMALTTD": 3,
+          "DIMDSEP": 44,
+          "DIMTOLJ": 0,
+          "DIMTZIN": 8,
+          "DIMTXSTY": "11"
+        },
+        {
+          "handle": "27",
+          "ownerObjectId": "A",
+          "subclassMarker": "AcDbDimStyleTableRecord",
+          "name": "ISO-25",
+          "standardFlag": 0,
+          "DIMASZ": 2.5,
+          "DIMEXO": 0.625,
+          "DIMDLI": 3.75,
+          "DIMEXE": 1.25,
+          "DIMTIH": 0,
+          "DIMTOH": 0,
+          "DIMTAD": 1,
+          "DIMZIN": 8,
+          "DIMTXT": 2.5,
+          "DIMCEN": 2.5,
+          "DIMALTF": 0.03937007874016,
+          "DIMGAP": 0.625,
+          "DIMALTD": 3,
+          "DIMTOFL": 1,
+          "DIMDEC": 2,
+          "DIMTDEC": 2,
+          "DIMALTTD": 3,
+          "DIMDSEP": 44,
+          "DIMTOLJ": 0,
+          "DIMTZIN": 8,
+          "DIMTXSTY": "11"
+        }
+      ],
+      "name": "DIMSTYLE",
+      "handle": "A",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 3
+    },
+    "BLOCK_RECORD": {
+      "entries": [
+        {
+          "handle": "1F",
+          "ownerObjectId": "1",
+          "subclassMarker": "AcDbBlockTableRecord",
+          "name": "*Model_Space",
+          "layoutObjects": "22",
+          "insertionUnits": 0,
+          "explodability": 1,
+          "scalability": 0
+        },
+        {
+          "handle": "D2",
+          "ownerObjectId": "1",
+          "subclassMarker": "AcDbBlockTableRecord",
+          "name": "*Paper_Space",
+          "layoutObjects": "D3",
+          "insertionUnits": 0,
+          "explodability": 1,
+          "scalability": 0
+        },
+        {
+          "handle": "D6",
+          "ownerObjectId": "1",
+          "subclassMarker": "AcDbBlockTableRecord",
+          "name": "*Paper_Space0",
+          "layoutObjects": "D7",
+          "insertionUnits": 0,
+          "explodability": 1,
+          "scalability": 0
+        }
+      ],
+      "name": "BLOCK_RECORD",
+      "handle": "1",
+      "ownerObjectId": "0",
+      "subclassMarker": "AcDbSymbolTable",
+      "maxNumberOfEntries": 1
+    }
+  },
+  "objects": {
+    "byName": {
+      "DICTIONARY": [
+        {
+          "name": "DICTIONARY",
+          "handle": "C",
+          "ownerObjectId": "0",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "ACAD_CIP_PREVIOUS_PRODUCT_INFO",
+              "objectId": "216"
+            },
+            {
+              "name": "ACAD_COLOR",
+              "objectId": "6B"
+            },
+            {
+              "name": "ACAD_DETAILVIEWSTYLE",
+              "objectId": "21B"
+            },
+            {
+              "name": "ACAD_GROUP",
+              "objectId": "D"
+            },
+            {
+              "name": "ACAD_LAST_SAVED_VERSION_INFO",
+              "objectId": "2B9"
+            },
+            {
+              "name": "ACAD_LAYOUT",
+              "objectId": "1A"
+            },
+            {
+              "name": "ACAD_MATERIAL",
+              "objectId": "6A"
+            },
+            {
+              "name": "ACAD_MLEADERSTYLE",
+              "objectId": "12D"
+            },
+            {
+              "name": "ACAD_MLINESTYLE",
+              "objectId": "17"
+            },
+            {
+              "name": "ACAD_PLOTSETTINGS",
+              "objectId": "19"
+            },
+            {
+              "name": "ACAD_PLOTSTYLENAME",
+              "objectId": "E"
+            },
+            {
+              "name": "ACAD_SCALELIST",
+              "objectId": "10C"
+            },
+            {
+              "name": "ACAD_SECTIONVIEWSTYLE",
+              "objectId": "219"
+            },
+            {
+              "name": "ACAD_TABLESTYLE",
+              "objectId": "7E"
+            },
+            {
+              "name": "ACAD_VISUALSTYLE",
+              "objectId": "EF"
+            },
+            {
+              "name": "ACDB_RECOMPOSE_DATA",
+              "objectId": "2BC"
+            },
+            {
+              "name": "AcDbVariableDictionary",
+              "objectId": "5E"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "1FF",
+          "ownerObjectId": "2",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "ACAD_LAYERSTATES"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "13C",
+          "ownerObjectId": "10",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "1CE",
+          "ownerObjectId": "1F",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "6B",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "21B",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "Metric50",
+              "objectId": "21C"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "D",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "1A",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "Model",
+              "objectId": "22"
+            },
+            {
+              "name": "배치1",
+              "objectId": "D3"
+            },
+            {
+              "name": "배치2",
+              "objectId": "D7"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "6A",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "ByBlock",
+              "objectId": "ED"
+            },
+            {
+              "name": "ByLayer",
+              "objectId": "EC"
+            },
+            {
+              "name": "Global",
+              "objectId": "EE"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "12D",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "Standard",
+              "objectId": "12E"
+            },
+            {
+              "name": "주석",
+              "objectId": "13B"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "17",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "Standard",
+              "objectId": "18"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "19",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "10C",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "A0",
+              "objectId": "10D"
+            },
+            {
+              "name": "A1",
+              "objectId": "1BE"
+            },
+            {
+              "name": "A2",
+              "objectId": "1BF"
+            },
+            {
+              "name": "A3",
+              "objectId": "1C0"
+            },
+            {
+              "name": "A4",
+              "objectId": "1C1"
+            },
+            {
+              "name": "A5",
+              "objectId": "1C2"
+            },
+            {
+              "name": "A6",
+              "objectId": "1C3"
+            },
+            {
+              "name": "A7",
+              "objectId": "1C4"
+            },
+            {
+              "name": "A8",
+              "objectId": "1C5"
+            },
+            {
+              "name": "A9",
+              "objectId": "1C6"
+            },
+            {
+              "name": "B0",
+              "objectId": "1C7"
+            },
+            {
+              "name": "B1",
+              "objectId": "1C8"
+            },
+            {
+              "name": "B2",
+              "objectId": "1C9"
+            },
+            {
+              "name": "B3",
+              "objectId": "1CA"
+            },
+            {
+              "name": "B4",
+              "objectId": "1CB"
+            },
+            {
+              "name": "B5",
+              "objectId": "1CC"
+            },
+            {
+              "name": "B6",
+              "objectId": "1CD"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "219",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "Metric50",
+              "objectId": "21A"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "7E",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "Standard",
+              "objectId": "7F"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "EF",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "2dWireframe",
+              "objectId": "F5"
+            },
+            {
+              "name": "Basic",
+              "objectId": "F4"
+            },
+            {
+              "name": "Brighten",
+              "objectId": "FB"
+            },
+            {
+              "name": "ColorChange",
+              "objectId": "FF"
+            },
+            {
+              "name": "Conceptual",
+              "objectId": "F8"
+            },
+            {
+              "name": "Dim",
+              "objectId": "FA"
+            },
+            {
+              "name": "EdgeColorOff",
+              "objectId": "1E6"
+            },
+            {
+              "name": "Facepattern",
+              "objectId": "FE"
+            },
+            {
+              "name": "Flat",
+              "objectId": "F0"
+            },
+            {
+              "name": "FlatWithEdges",
+              "objectId": "F1"
+            },
+            {
+              "name": "Gouraud",
+              "objectId": "F2"
+            },
+            {
+              "name": "GouraudWithEdges",
+              "objectId": "F3"
+            },
+            {
+              "name": "Hidden",
+              "objectId": "F7"
+            },
+            {
+              "name": "JitterOff",
+              "objectId": "1E4"
+            },
+            {
+              "name": "Linepattern",
+              "objectId": "FD"
+            },
+            {
+              "name": "OverhangOff",
+              "objectId": "1E5"
+            },
+            {
+              "name": "Realistic",
+              "objectId": "F9"
+            },
+            {
+              "name": "Shaded",
+              "objectId": "1F3"
+            },
+            {
+              "name": "Shaded with edges",
+              "objectId": "1F2"
+            },
+            {
+              "name": "Shades of Gray",
+              "objectId": "1EF"
+            },
+            {
+              "name": "Sketchy",
+              "objectId": "1F0"
+            },
+            {
+              "name": "Thicken",
+              "objectId": "FC"
+            },
+            {
+              "name": "Wireframe",
+              "objectId": "F6"
+            },
+            {
+              "name": "X-Ray",
+              "objectId": "1F1"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "5E",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "C"
+              }
+            ]
+          },
+          "ownerObjectId": "C",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "CANNOSCALE",
+              "objectId": "146"
+            },
+            {
+              "name": "CENTEREXE",
+              "objectId": "259"
+            },
+            {
+              "name": "CENTERLTYPEFILE",
+              "objectId": "25A"
+            },
+            {
+              "name": "CMLEADERSTYLE",
+              "objectId": "145"
+            },
+            {
+              "name": "CTABLESTYLE",
+              "objectId": "84"
+            },
+            {
+              "name": "CVIEWDETAILSTYLE",
+              "objectId": "227"
+            },
+            {
+              "name": "CVIEWSECTIONSTYLE",
+              "objectId": "228"
+            },
+            {
+              "name": "DIMASSOC",
+              "objectId": "5F"
+            },
+            {
+              "name": "HIDETEXT",
+              "objectId": "63"
+            },
+            {
+              "name": "LAYEREVAL",
+              "objectId": "1AE"
+            },
+            {
+              "name": "LAYERNOTIFY",
+              "objectId": "1AF"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "200",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "1FF"
+              }
+            ]
+          },
+          "ownerObjectId": "1FF",
+          "subclassMarker": "AcDbDictionary",
+          "recordCloneFlag": 1
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "205",
+          "ownerObjectId": "22",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "1F9",
+          "ownerObjectId": "ED",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "FBXASSET"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "1F7",
+          "ownerObjectId": "EC",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "FBXASSET"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "173",
+          "ownerObjectId": "EE",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "BUMPTILE"
+            }
+          ]
+        },
+        {
+          "name": "DICTIONARY",
+          "handle": "162",
+          "ownerObjectId": "7F",
+          "subclassMarker": "AcDbDictionary",
+          "isHardOwned": true,
+          "recordCloneFlag": 1,
+          "entries": [
+            {
+              "name": "ACAD_ROUNDTRIP_2008_TABLESTYLE_CELLSTYLEMAP"
+            }
+          ]
+        }
+      ],
+      "LAYOUT": [
+        {
+          "name": "LAYOUT",
+          "handle": "22",
+          "extensions": {
+            "ACAD_XDICTIONARY": [
+              {
+                "code": 360,
+                "value": "205"
+              }
+            ],
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "1A"
+              }
+            ]
+          },
+          "paperSpaceTableId": "1A",
+          "subclassMarker": "AcDbLayout",
+          "pageSetupName": "",
+          "configName": "none_device",
+          "paperSize": "ISO_A4_(210.00_x_297.00_MM)",
+          "plotViewName": "",
+          "marginLeft": 7.5,
+          "marginBottom": 20,
+          "marginRight": 7.5,
+          "marginTop": 20,
+          "paperWidth": 210,
+          "paperHeight": 297,
+          "plotOriginX": 11.54999923706054,
+          "plotOriginY": -13.65000009536743,
+          "windowAreaXMin": 0,
+          "windowAreaXMax": 0,
+          "windowAreaYMin": 0,
+          "windowAreaYMax": 0,
+          "printScaleNominator": 1,
+          "printScaleDenominator": 8.704084754739808,
+          "layoutFlag": 11952,
+          "paperUnit": 1,
+          "plotRotation": 0,
+          "plotType": 0,
+          "currentStyleSheet": "",
+          "standardScaleType": 0,
+          "scaleFactor": 0.1148885871608098,
+          "shadePlotMode": 0,
+          "shadePlotResolution": 2,
+          "shadePlotCustomDPI": 300,
+          "imageOriginX": 0,
+          "imageOriginY": 0,
+          "layoutName": "Model",
+          "controlFlag": 1,
+          "tabOrder": 0,
+          "minLimit": {
+            "x": 0,
+            "y": 0
+          },
+          "maxLimit": {
+            "x": 12,
+            "y": 9
+          },
+          "insertionBase": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "minExtent": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "maxExtent": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "elevation": 0,
+          "ucsOrigin": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "ucsXAxis": {
+            "x": 1,
+            "y": 0,
+            "z": 0
+          },
+          "ucsYAxis": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "orthographicType": 0,
+          "ownerObjectId": "1F",
+          "viewportId": "EA"
+        },
+        {
+          "name": "LAYOUT",
+          "handle": "D3",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "1A"
+              }
+            ]
+          },
+          "paperSpaceTableId": "1A",
+          "subclassMarker": "AcDbLayout",
+          "pageSetupName": "",
+          "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
+          "paperSize": "",
+          "plotViewName": "",
+          "marginLeft": 0,
+          "marginBottom": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+          "paperWidth": 0,
+          "paperHeight": 0,
+          "plotOriginX": 0,
+          "plotOriginY": 0,
+          "windowAreaXMin": 0,
+          "windowAreaXMax": 0,
+          "windowAreaYMin": 0,
+          "windowAreaYMax": 0,
+          "printScaleNominator": 1,
+          "printScaleDenominator": 1,
+          "layoutFlag": 688,
+          "paperUnit": 0,
+          "plotRotation": 0,
+          "plotType": 5,
+          "currentStyleSheet": "",
+          "standardScaleType": 16,
+          "scaleFactor": 1,
+          "shadePlotMode": 0,
+          "shadePlotResolution": 2,
+          "shadePlotCustomDPI": 300,
+          "imageOriginX": 0,
+          "imageOriginY": 0,
+          "layoutName": "배치1",
+          "controlFlag": 1,
+          "tabOrder": 1,
+          "minLimit": {
+            "x": 0,
+            "y": 0
+          },
+          "maxLimit": {
+            "x": 12,
+            "y": 9
+          },
+          "insertionBase": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "minExtent": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "maxExtent": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "elevation": 0,
+          "ucsOrigin": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "ucsXAxis": {
+            "x": 1,
+            "y": 0,
+            "z": 0
+          },
+          "ucsYAxis": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "orthographicType": 0,
+          "ownerObjectId": "D2"
+        },
+        {
+          "name": "LAYOUT",
+          "handle": "D7",
+          "extensions": {
+            "ACAD_REACTORS": [
+              {
+                "code": 330,
+                "value": "1A"
+              }
+            ]
+          },
+          "paperSpaceTableId": "1A",
+          "subclassMarker": "AcDbLayout",
+          "pageSetupName": "",
+          "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
+          "paperSize": "",
+          "plotViewName": "",
+          "marginLeft": 0,
+          "marginBottom": 0,
+          "marginRight": 0,
+          "marginTop": 0,
+          "paperWidth": 0,
+          "paperHeight": 0,
+          "plotOriginX": 0,
+          "plotOriginY": 0,
+          "windowAreaXMin": 0,
+          "windowAreaXMax": 0,
+          "windowAreaYMin": 0,
+          "windowAreaYMax": 0,
+          "printScaleNominator": 1,
+          "printScaleDenominator": 1,
+          "layoutFlag": 688,
+          "paperUnit": 0,
+          "plotRotation": 0,
+          "plotType": 5,
+          "currentStyleSheet": "",
+          "standardScaleType": 16,
+          "scaleFactor": 1,
+          "shadePlotMode": 0,
+          "shadePlotResolution": 2,
+          "shadePlotCustomDPI": 300,
+          "imageOriginX": 0,
+          "imageOriginY": 0,
+          "layoutName": "배치2",
+          "controlFlag": 1,
+          "tabOrder": 2,
+          "minLimit": {
+            "x": 0,
+            "y": 0
+          },
+          "maxLimit": {
+            "x": 12,
+            "y": 9
+          },
+          "insertionBase": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "minExtent": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "maxExtent": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "elevation": 0,
+          "ucsOrigin": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+          },
+          "ucsXAxis": {
+            "x": 1,
+            "y": 0,
+            "z": 0
+          },
+          "ucsYAxis": {
+            "x": 0,
+            "y": 1,
+            "z": 0
+          },
+          "orthographicType": 0,
+          "ownerObjectId": "D6"
+        }
+      ]
+    }
+  }
+}

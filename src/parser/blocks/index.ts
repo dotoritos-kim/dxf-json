@@ -1,7 +1,6 @@
 export type * from './types'
 
-import type DxfArrayScanner from '../DxfArrayScanner';
-import type { ScannerGroup } from '../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
 import { parseEntities } from '../entities';
 import { parsePoint } from '../shared/parsePoint';
 import { ensureHandle, isMatched } from '../shared';

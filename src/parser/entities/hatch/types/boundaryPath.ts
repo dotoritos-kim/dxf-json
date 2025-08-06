@@ -1,4 +1,4 @@
-import type { Point2D } from '@src/types';
+import type { Point2D } from '../../../../types';
 import type { BoundaryPathEdgeType } from '../../../../consts/hatch';
 
 interface BoundaryPathBase {

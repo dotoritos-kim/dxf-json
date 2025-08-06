@@ -1,40 +1,15 @@
 {
     "compilerOptions": {
-        "target": "es2020", // 어떤 버전으로 컴파일
-        "allowSyntheticDefaultImports": true, // default export가 없는 모듈에서 default imports를 허용
-        "experimentalDecorators": true, // decorator 실험적 허용
-        "emitDecoratorMetadata": true, // 데코레이터가 있는 선언에 대해 특정 타입의 메타 데이터를 내보내는 실험적인 지원
-        "skipLibCheck": true, // 정의 파일 타입 체크 여부
-        "moduleResolution": "node", // commonJS -> node 에서 동작
-        "module": "ES2020", // import 문법
-        "strict": true, // 타입 검사 엄격하게
-        "pretty": true, // error 메시지 예쁘게
-        "sourceMap": true, // 소스맵 파일 생성 -> .ts가 .js 파일로 트랜스 시 .js.map 생성
-        "outDir": "./dist", // 트랜스 파일 (.js) 저장 경로
-        "allowJs": true, // js 파일 ts에서 import 허용
-        "esModuleInterop": true, // ES6 모듈 사양을 준수하여 CommonJS 모듈을 가져올 수 있게 허용
-        "typeRoots": [
-            "./src/types/express.d.ts", // 타입(*.d.ts)파일을 가져올 디렉토리 설정
-            "./node_modules/@types" // 설정 안할시 기본적으로 ./node_modules/@types
-        ],
-        "declaration": true,
-        "declarationDir": "./dist",
-        "emitDeclarationOnly": true,
-        "plugins": [
-            {
-                "transform": "typia/lib/transform"
-            }
-        ],
-        "isolatedModules": true,
-        "paths": {
-            "@src/*": ["./src/*"]
-        }
+        "target": "es2020",
+        "module": "es2020",
+        "moduleResolution": "bundler",
+        "strict": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "isolatedModules": true
     },
     "include": [
-        "./src/**/*" // build 시 포함
+        "./src/**/*",
+        "./scripts/**/*"
     ],
-    "exclude": [
-        "node_modules", // build 시 제외
-        "tests"
-    ]
 }

@@ -1,7 +1,6 @@
 
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
 import { isMatched } from './isMatched';
-import type DxfArrayScanner from '../DxfArrayScanner';
-import { ScannerGroup } from '../DxfArrayScanner';
 import { parsePoint } from './parsePoint';
 
 
@@ -15,11 +14,24 @@ export interface DXFParserSnippet {
     code: number | number[]; // 복수의 코드를 다 한 곳으로 몰아넣기
     name?: string; // 파싱한 값을 넣을 오브젝트 속성 명, 없으면 등록 안하고 패스함
 
-    // 추가로 더 읽어야 할 때만 scanner 사용하고, 새 값은 읽어놓지 말 것
-    // 반환되는 값이 entity[name]에 대입되므로 특별한 경우엔 entity 건들지 말고
-    // 사용할 경우, 최종값이 반환되도록 잘 건드릴 것
-    // 만약 Abort 심볼이 반환될 경우 값에 대입하지 않고 읽은 것을 한 칸 되돌리고
-    // 종료함
+    /**
+     * Define how to parse starting from given current group.
+     * If it's not defined, current group will be ignored.
+     * 
+     * Note that `parser` must consume their own domain's groups only.
+     * If parser read group code which is not their domain,
+     * you must call `scanner.rewind()` to reposition the scanner.
+     * 
+     * @param curr current scanner group
+     * @param scanner current scanner object
+     * @param entity target object where parsed value be written. 
+     *               you may mutate this object for complex situation, 
+     *               but you must return assigining value.
+     * @return parsed value or `Abort` symbol.
+     *         If returned value is not `Abort`, it will be assigned to `entity[name]`
+     *         If returned value is `Abort`, caller will rewind the scanner by one group.
+     *         It's very rare to return `Abort`.
+     */
     parser?(curr: ScannerGroup, scanner: DxfArrayScanner, entity: any): any;
     /** When specific group code can be read multiple times, set this `true` */
     isMultiple?: boolean;
@@ -46,7 +58,7 @@ export function createParser(
 	defaultObject?: any
 ): DXFParser {
     return (curr, scanner, target) => {
-        const snippetMaps = createSnippetMaps(snippets);
+        const snippetMaps = createSnippetMaps(snippets, scanner.debug);
         let isReadOnce = false;
         let contextIndex = snippetMaps.length - 1;
 
@@ -56,7 +68,8 @@ export function createParser(
                 curr.code,
                 contextIndex,
             );
-            const snippet = snippetMap?.[curr.code].at(-1);
+            const snippetsForCode = snippetMap?.[curr.code]
+            const snippet = snippetsForCode?.[snippetsForCode.length - 1]
 
             if (!snippetMap || !snippet) {
                 scanner.rewind();
@@ -105,7 +118,7 @@ export function createParser(
     };
 }
 
-function createSnippetMaps(snippets: DXFParserSnippet[], debug?: boolean) {
+function createSnippetMaps(snippets: DXFParserSnippet[], isDebugMode = false) {
 	return snippets.reduce(
 		(acc, snippet) => {
 			if (snippet.pushContext) {
@@ -121,13 +134,12 @@ function createSnippetMaps(snippets: DXFParserSnippet[], debug?: boolean) {
 			for (const code of codes) {
 				const bin = (context[code] ??= []);
 
-				if (snippet.isMultiple && bin.length) {
-					if (debug)
-						console.warn(
-							`Snippet ${
-								bin.at(-1)!.name
-							} for code(${code}) is shadowed by ${snippet.name}`
-						);
+				if (snippet.isMultiple && bin.length && isDebugMode) {
+                    console.warn(
+                        `Snippet ${
+                            bin[bin.length - 1].name
+                        } for code(${code}) is shadowed by ${snippet.name}`
+                    );
 				}
 				bin.push(snippet);
 			}
@@ -181,7 +193,7 @@ export function getObjectByPath(target: any, path: string): [any, string | numbe
         }
         parent = parent[currentName];
     }
-    return [parent, refineName(fragments.at(-1)!)];
+    return [parent, refineName(fragments[fragments.length - 1])];
 }
 
 function refineName(name: string): string | number {
@@ -200,4 +212,8 @@ export function PointParser(_: any, scanner: DxfArrayScanner) {
 
 export function ToBoolean({ value }: ScannerGroup) {
 	return !!value;
+}
+
+export function Trim({ value }: ScannerGroup): string {
+    return value.trim();
 }

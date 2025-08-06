@@ -9,3 +9,5 @@ node_modules/
 *.tgz
 dist
 dependency-graph.svg
+.claude
+CLAUDE.md

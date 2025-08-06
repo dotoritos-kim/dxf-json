@@ -14,14 +14,11 @@ export default {
   ],
   plugins: [
     swc({
+      tsconfig: 'tsconfig.build.json',
       jsc: {
         parser: {
           syntax: "typescript",
-          tsx: false,
-          decorators: true,
-          dynamicImport: true
         },
-        target: "es2020",
       },
       isModule: true,
       module: {
@@ -30,7 +27,6 @@ export default {
       },
       sourceMaps: true,
       minify: true,
-      inlineSourcesContent: true
   }),
   ],
 }

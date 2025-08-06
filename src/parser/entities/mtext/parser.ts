@@ -1,5 +1,4 @@
-import type DxfArrayScanner from '../../DxfArrayScanner';
-import type { ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
 import { generateIntegers } from '../../../utils';
 import { skipEmbeddedObject } from '../../ParseHelpers';
 import {
@@ -8,7 +7,7 @@ import {
     Identity,
     PointParser,
 } from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
+import { CommonEntitySnippets, createLongStringSnippet } from '../shared';
 import type { MTextEntity } from './types';
 
 const DefaultMTextEntity = {
@@ -134,24 +133,7 @@ export const MTextEntityParserSnippets: DXFParserSnippet[] = [
         name: 'styleName',
         parser: Identity,
     },
-    {
-        code: 3,
-        name: 'text',
-        parser(curr, _, entity) {
-            entity._code3text = (entity._code3text ?? '') + curr.value;
-            return entity._code3text + (entity._code1text ?? '');
-        },
-        isMultiple: true,
-        isReducible: true,
-    },
-    {
-        code: 1,
-        name: 'text',
-        parser(curr, _, entity) {
-            entity._code1text = curr.value;
-            return (entity._code3text ?? '') + entity._code1text;
-        },
-    },
+    ...createLongStringSnippet('text'),
     {
         code: 72,
         name: 'drawingDirection',

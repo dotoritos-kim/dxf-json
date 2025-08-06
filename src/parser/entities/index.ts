@@ -2,6 +2,7 @@
 export * from "./arc";
 export * from "./attdef";
 export * from './attribute'
+export * from "./body";
 export * from "./circle";
 export * from "./dimension";
 export * from "./ellipse";
@@ -12,26 +13,32 @@ export * from "./insert";
 export * from "./leader";
 export * from "./line";
 export * from "./lwpolyline";
+export * from './mesh'
 export * from "./mtext";
 export * from "./point";
 export * from "./polyline";
 export * from "./ray";
+export * from "./region";
 export * from "./section";
 export * from "./solid";
+export * from "./solid3d";
 export * from "./spline";
 export * from "./text";
+export * from "./tolerance";
 export * from "./vertex";
 export * from "./viewport";
+export * from "./wipeout";
+export * from "./xline";
 export * from "./shared";
 
-import type DxfArrayScanner from "../DxfArrayScanner";
-import { ScannerGroup } from "../DxfArrayScanner";
+import type { DxfArrayScanner, ScannerGroup } from "../DxfArrayScanner";
 import { ensureHandle, isMatched } from "../shared";
 
 
 import { ArcEntityParser } from "./arc";
 import { AttDefEntityParser } from "./attdef";
 import { AttributeEntityParser } from "./attribute";
+import { BodyEntityParser } from "./body";
 import { CircleEntityParser } from "./circle";
 import { DimensionParser } from "./dimension";
 import { EllipseEntityParser } from "./ellipse";
@@ -41,17 +48,23 @@ import { InsertEntityParser } from "./insert";
 import { LeaderEntityParser } from "./leader";
 import { LineEntityParser } from "./line";
 import { LWPolylineParser } from "./lwpolyline";
+import { MeshEntityParser } from "./mesh";
 import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
 import { RayParser } from "./ray";
+import { RegionEntityParser } from "./region";
 import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
+import { Solid3DEntityParser } from "./solid3d";
 import { SplineEntityParser } from "./spline";
 import { TextEntityParser } from "./text";
+import { ToleranceEntityParser } from "./tolerance";
 import { HatchEntityParser } from "./hatch";
 import { VertexParser } from "./vertex";
 import { ViewportParser } from "./viewport";
+import { WipeoutEntityParser } from "./wipeout";
+import { XLineEntityParser } from "./xline";
 import { CommonDxfEntity } from "./shared";
 
 import { MultiLeaderEntityParser } from "./multileader";
@@ -61,6 +74,7 @@ const Parsers = Object.fromEntries(
 		ArcEntityParser,
 		AttDefEntityParser,
 		AttributeEntityParser,
+		BodyEntityParser,
 		CircleEntityParser,
 		DimensionParser,
 		EllipseEntityParser,
@@ -70,18 +84,24 @@ const Parsers = Object.fromEntries(
 		LeaderEntityParser,
 		LineEntityParser,
 		LWPolylineParser,
+    MeshEntityParser,
 		MTextEntityParser,
 		MultiLeaderEntityParser,
 		PointEntityParser,
 		PolylineParser,
     RayParser,
+		RegionEntityParser,
 		SectionEntityParser,
 		SolidEntityParser,
+		Solid3DEntityParser,
 		SplineEntityParser,
 		TextEntityParser,
+		ToleranceEntityParser,
 		HatchEntityParser,
     VertexParser,
 		ViewportParser,
+		WipeoutEntityParser,
+		XLineEntityParser,
 	].map((parser) => [parser.ForEntityName, new parser()])
 );
 
@@ -91,7 +111,7 @@ const Parsers = Object.fromEntries(
  */
 export function parseEntities(
   curr: ScannerGroup,
-  scanner: DxfArrayScanner
+  scanner: DxfArrayScanner,
 ): CommonDxfEntity[] {
   let entities: any[] = [];
 
@@ -114,7 +134,7 @@ export function parseEntities(
         entity.type = entityType;
         ensureHandle(entity);
         entities.push(entity);
-      } else {
+      } else if (scanner.debug) {
         console.warn(`Unsupported ENTITY type: ${curr.value}`);
       }
     }

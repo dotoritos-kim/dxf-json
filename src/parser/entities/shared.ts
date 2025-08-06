@@ -1,13 +1,13 @@
-import type { ScannerGroup } from '@src/parser/DxfArrayScanner';
-import { parseExtensions } from '@src/parser/shared/extensions/parser';
-import type { ColorIndex, ColorInstance } from '@src/types';
+import type { ScannerGroup } from '../DxfArrayScanner'; 
+import { parseExtensions } from '../shared'; 
+import type { ColorIndex, ColorInstance } from '../../types'
 import { getAcadColor } from '../getAcadColor';
 import {
-    DXFParserSnippet,
+    type DXFParserSnippet,
     Identity,
     ToBoolean,
 } from '../shared/parserGenerator';
-import { XData, XDataParserSnippets } from '../shared/xdata';
+import { type XData, XDataParserSnippets } from '../shared/xdata';
 
 export interface CommonDxfEntity {
     type: string;
@@ -157,3 +157,33 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
         parser: Identity,
     },
 ];
+
+/**
+ * This embeds the text separated in mulitple code 1 and code 3.
+ * Note that this inject _code3text to ensure the order, 
+ * and this shouldn't be used for public.
+ * 
+ * @internal
+ */
+export function createLongStringSnippet(fieldName: string): DXFParserSnippet[] {
+    return [
+        {
+            code: 3,
+            name: fieldName,
+            parser(curr, _, entity) {
+                entity._code3text = (entity._code3text ?? '') + curr.value;
+                return entity._code3text + (entity._code1text ?? '');
+            },
+            isMultiple: true,
+            isReducible: true,
+        },
+        {
+            code: 1,
+            name: fieldName,
+            parser(curr, _, entity) {
+                entity._code1text = curr.value;
+                return (entity._code3text ?? '') + entity._code1text;
+            },
+        }
+    ]
+}

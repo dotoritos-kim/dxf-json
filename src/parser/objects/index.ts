@@ -1,22 +1,24 @@
 export type * from './types'
+export * from './consts'
 export * from './dictionary'
 export * from './layout'
 export * from './plotSettings'
+export * from './spatial_filter'
 
-import type DxfArrayScanner from '../DxfArrayScanner';
-import { ScannerGroup } from '../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
 import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
 import { LayoutSnippets } from './layout';
 import { CommonObjectSnippets } from './shared';
 import { PlotSettingsSnippets } from './plotSettings';
 import { DictionarySnippets } from './dictionary'
-import { createObjectTree } from './treefy';
+import { SpatialFilterSnippets } from './spatial_filter';
 import { classify } from '../../utils';
 
 const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
     LAYOUT: LayoutSnippets,
     PLOTSETTINGS: PlotSettingsSnippets,
     DICTIONARY: DictionarySnippets,
+    SPATIAL_FILTER: SpatialFilterSnippets,
 };
 
 export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
@@ -45,6 +47,5 @@ export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
 
     return {
         byName: classify(result, ({ name }) => name),
-        byTree: createObjectTree(result),
     };
 }
