@@ -59,7 +59,7 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
     },
     {
         code: 72,
-        name: 'paperUnit',
+        name: 'plotPaperUnit',
         parser: Identity,
     },
     {
@@ -74,7 +74,7 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
     },
     {
         code: 142,
-        name: 'printScaleNominator',
+        name: 'printScaleNumerator',
         parser: Identity,
     },
     {
