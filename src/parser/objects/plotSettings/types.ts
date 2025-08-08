@@ -33,5 +33,5 @@ export interface PlotSettingDXFObject extends CommonDXFObject {
     scaleFactor: number;
     imageOriginX: number;
     imageOriginY: number;
-    shadePlotId: string;
+    shadePlotId?: string;
 }
