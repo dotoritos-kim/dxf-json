@@ -4,7 +4,8 @@
 npm i
 ```
 
-> [!NOTE] `analyze` command uses graphviz `dot`. You may have to install it manually, depends on your environment. For more information, checkout https://www.graphviz.org/download/
+> [!NOTE] 
+> `analyze` command uses graphviz `dot`. You may have to install it manually, depends on your environment. For more information, checkout https://www.graphviz.org/download/
 
 Welcome! Thank you for your will of open source contribution. Please read the following description when you contribute your work.
 

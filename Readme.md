@@ -14,7 +14,8 @@
 
 DXF parser with rich type definitions.
 
-> [!CAUTION] This is parser is not in stable state yet. Until version 1.0, we may often change name or type of the variables. We're adding rich unit/integration test, but there might be unexpected bug or uncovered situation. Note that [official DXF specification](https://documentation.help/AutoCAD-DXF/) is poorly documented, so that many informations are missing and even errors exist. Use your own risk. Thank you for your consideration.
+> [!CAUTION] 
+> This is parser is not in stable state yet. Until version 1.0, we may often change name or type of the variables. We're adding rich unit/integration test, but there might be unexpected bug or uncovered situation. Note that [official DXF specification](https://documentation.help/AutoCAD-DXF/) is poorly documented, so that many informations are missing and even errors exist. Use your own risk. Thank you for your consideration.
 
 ## Quick Start
 
@@ -40,7 +41,8 @@ const lwPolylines = parsedDxf.entities.filter(entity => entity.type === 'LWPOLYL
 - Support both ESM and CJS
 - Support TypeScript
 
-> [!NOTE] We support standard specification of dxf and AutoCAD features only. We're trying our best to support universal dxf files, but we don't support 3rd party specification.
+> [!NOTE] 
+> We support standard specification of dxf and AutoCAD features only. We're trying our best to support universal dxf files, but we don't support 3rd party specification.
 
 <details><summary>Current Coverage</summary>
 
@@ -144,7 +146,8 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
 
 </details>
 
-> [!NOTE] The documentation is not ready, but you can check the source code for used types [#1](https://github.com/dotoritos-kim/dxf-json/blob/main/src/parser/types.ts) and [#2](https://github.com/dotoritos-kim/dxf-json/blob/main/integration-test/src/types/import-test.ts)
+> [!NOTE] 
+> The documentation is not ready, but you can check the source code for used types [#1](https://github.com/dotoritos-kim/dxf-json/blob/main/src/parser/types.ts) and [#2](https://github.com/dotoritos-kim/dxf-json/blob/main/integration-test/src/types/import-test.ts)
 
 ### `parseSync`
 
