@@ -69,7 +69,7 @@ export const LayoutSnippets: DXFParserSnippet[] = [
     },
     {
         code: 12,
-        name: 'insertionBase',
+        name: 'insertionPoint',
         parser: PointParser,
     },
     {
