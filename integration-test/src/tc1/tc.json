@@ -1,0 +1,27 @@
+{
+  "objects": {
+    "byName": {
+      "SPATIAL_FILTER": [
+        {
+          "handle": "2D4",
+          "ownerObjectId": "2D3",
+          "subclassMarker": "AcDbSpatialFilter",
+          "boundaryCount": 2,
+          "boundaryVertices": [
+            { "x": 272, "y": 356 },
+            { "x": 992, "y": 696 }
+          ],
+          "normal": { "x": 0, "y": 0, "z": 1 },
+          "isClipBoundaryDisplayed": true,
+          "isFrontClipping": false,
+          "isBackClipping": false,
+          "wcsToOCSTransform": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]],
+          "ocsToWCSTransform": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]],
+          "extensions": {
+            "ACAD_REACTORS": [{ "code": 330, "value": "2D3" }]
+          }
+        }
+      ]
+    }
+  }
+}
