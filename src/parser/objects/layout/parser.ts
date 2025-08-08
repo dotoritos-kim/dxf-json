@@ -8,11 +8,6 @@ import { PlotSettingsSnippets } from '../plotSettings';
 // Snippet이 code별로 스택에 들어가기 때문에 일부로 역순으로 적음
 export const LayoutSnippets: DXFParserSnippet[] = [
     {
-        code: 333,
-        name: 'shadePlotId',
-        parser: Identity,
-    },
-    {
         code: 346,
         name: 'orthographicUcsId',
         parser: Identity,
