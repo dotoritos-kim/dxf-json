@@ -16,7 +16,8 @@
     "test-dev": "vitest --config ./vite.config.ts",
     "analyze": "depcruise src --include-only \".*(types|index|consts).ts\" -T dot | dot -Grankdir=TD -Gsplines=ortho -T svg > dependency-graph.svg",
     "new": "vite-node scripts/create-snippet.ts",
-    "typetest": "npm --workspace=integration-test run build"
+    "typetest": "npm --workspace=integration-test run build",
+    "print": "vite-node ./scripts/print.ts"
   },
   "repository": {
     "type": "git",
