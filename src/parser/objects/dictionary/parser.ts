@@ -3,6 +3,7 @@ import {
     Identity,
     ToBoolean,
 } from '../../shared/parserGenerator';
+import { CommonObjectSnippets } from '../shared';
 import type { DictionaryDXFObject } from './types';
 
 export const DictionarySnippets: DXFParserSnippet[] = [
@@ -42,6 +43,7 @@ export const DictionarySnippets: DXFParserSnippet[] = [
         name: 'subclassMarker',
         parser: Identity,
     },
+    ...CommonObjectSnippets
 ];
 
 

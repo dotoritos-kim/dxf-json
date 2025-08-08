@@ -1,4 +1,5 @@
 import { DXFParserSnippet, Identity } from '../../shared/parserGenerator';
+import { CommonObjectSnippets } from '../shared';
 
 export const PlotSettingsSnippets: DXFParserSnippet[] = [
     {
@@ -58,7 +59,7 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
     },
     {
         code: 72,
-        name: 'paperUnit',
+        name: 'plotPaperUnit',
         parser: Identity,
     },
     {
@@ -73,7 +74,7 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
     },
     {
         code: 142,
-        name: 'printScaleNominator',
+        name: 'printScaleNumerator',
         parser: Identity,
     },
     {
@@ -83,12 +84,12 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
     },
     {
         code: 140,
-        name: 'windowAreaYMin',
+        name: 'windowAreaXMax',
         parser: Identity,
     },
     {
         code: 49,
-        name: 'windowAreaXMax',
+        name: 'windowAreaYMin',
         parser: Identity,
     },
     {
@@ -161,4 +162,5 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
         name: 'subclassMarker',
         parser: Identity,
     },
+    ...CommonObjectSnippets
 ];

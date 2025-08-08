@@ -3,17 +3,13 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { DxfArrayScanner } from "../../DxfArrayScanner";
 import { createParser } from "../../shared/parserGenerator";
-import { CommonObjectSnippets } from "../shared";
 import { SpatialFilterSnippets } from "./parser";
 
 describe("SPATIAL_FILTER", () => {
   test("tc0", () => {
     const content = readFileSync(join(__dirname, "./tc0.partial_dxf"), "utf-8");
     const scanner = new DxfArrayScanner(content.split("\n"));
-    const parser = createParser([
-      ...SpatialFilterSnippets,
-      ...CommonObjectSnippets,
-    ]);
+    const parser = createParser(SpatialFilterSnippets);
     let curr = scanner.next();
     curr = scanner.next(); // skip 0 code
 
@@ -56,10 +52,7 @@ describe("SPATIAL_FILTER", () => {
   test("tc1", () => {
     const content = readFileSync(join(__dirname, "./tc1.partial_dxf"), "utf-8");
     const scanner = new DxfArrayScanner(content.split("\n"));
-    const parser = createParser([
-      ...SpatialFilterSnippets,
-      ...CommonObjectSnippets,
-    ]);
+    const parser = createParser(SpatialFilterSnippets);
     let curr = scanner.next();
     curr = scanner.next(); // skip 0 code
 

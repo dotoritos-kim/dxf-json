@@ -1368,7 +1368,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "1A",
+          "paperSpaceTableId": "1F",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "none_device",
@@ -1386,10 +1386,10 @@
           "windowAreaXMax": 0,
           "windowAreaYMin": 0,
           "windowAreaYMax": 0,
-          "printScaleNominator": 1,
+          "printScaleNumerator": 1,
           "printScaleDenominator": 8.704084754739808,
           "layoutFlag": 11952,
-          "paperUnit": 1,
+          "plotPaperUnit": 1,
           "plotRotation": 0,
           "plotType": 0,
           "currentStyleSheet": "",
@@ -1411,7 +1411,7 @@
             "x": 12,
             "y": 9
           },
-          "insertionBase": {
+          "insertionPoint": {
             "x": 0,
             "y": 0,
             "z": 0
@@ -1443,7 +1443,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "1F",
+          "ownerObjectId": "1A",
           "viewportId": "EA"
         },
         {
@@ -1457,7 +1457,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "1A",
+          "paperSpaceTableId": "D2",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
@@ -1475,10 +1475,10 @@
           "windowAreaXMax": 0,
           "windowAreaYMin": 0,
           "windowAreaYMax": 0,
-          "printScaleNominator": 1,
+          "printScaleNumerator": 1,
           "printScaleDenominator": 1,
           "layoutFlag": 688,
-          "paperUnit": 0,
+          "plotPaperUnit": 0,
           "plotRotation": 0,
           "plotType": 5,
           "currentStyleSheet": "",
@@ -1500,7 +1500,7 @@
             "x": 12,
             "y": 9
           },
-          "insertionBase": {
+          "insertionPoint": {
             "x": 0,
             "y": 0,
             "z": 0
@@ -1532,7 +1532,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "D2"
+          "ownerObjectId": "1A"
         },
         {
           "name": "LAYOUT",
@@ -1545,7 +1545,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "1A",
+          "paperSpaceTableId": "D6",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
@@ -1563,10 +1563,10 @@
           "windowAreaXMax": 0,
           "windowAreaYMin": 0,
           "windowAreaYMax": 0,
-          "printScaleNominator": 1,
+          "printScaleNumerator": 1,
           "printScaleDenominator": 1,
           "layoutFlag": 688,
-          "paperUnit": 0,
+          "plotPaperUnit": 0,
           "plotRotation": 0,
           "plotType": 5,
           "currentStyleSheet": "",
@@ -1588,7 +1588,7 @@
             "x": 12,
             "y": 9
           },
-          "insertionBase": {
+          "insertionPoint": {
             "x": 0,
             "y": 0,
             "z": 0
@@ -1620,7 +1620,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "D6"
+          "ownerObjectId": "1A"
         }
       ]
     }

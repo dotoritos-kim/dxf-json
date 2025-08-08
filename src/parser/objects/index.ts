@@ -8,7 +8,6 @@ export * from './spatial_filter'
 import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
 import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
 import { LayoutSnippets } from './layout';
-import { CommonObjectSnippets } from './shared';
 import { PlotSettingsSnippets } from './plotSettings';
 import { DictionarySnippets } from './dictionary'
 import { SpatialFilterSnippets } from './spatial_filter';
@@ -29,7 +28,7 @@ export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
         const snippets = ObjectSchemas[objectName];
 
         if (curr.code === 0 && snippets?.length) {
-            const parser = createParser([...CommonObjectSnippets, ...snippets]);
+            const parser = createParser(snippets);
             const parsedObject = { name: objectName } as any;
 
             curr = scanner.next();
