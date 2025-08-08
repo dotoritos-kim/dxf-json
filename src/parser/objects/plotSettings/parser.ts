@@ -84,12 +84,12 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
     },
     {
         code: 140,
-        name: 'windowAreaYMin',
+        name: 'windowAreaXMax',
         parser: Identity,
     },
     {
         code: 49,
-        name: 'windowAreaXMax',
+        name: 'windowAreaYMin',
         parser: Identity,
     },
     {
