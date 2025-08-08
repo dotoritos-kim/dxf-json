@@ -3,15 +3,17 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import { DxfArrayScanner } from "../../DxfArrayScanner";
 import { createParser } from "../../shared/parserGenerator";
-import { PlotSettingsSnippets } from './parser';
-import type { PlotSettingDXFObject } from './types';
+import { LayoutSnippets } from './parser';
+import type { LayoutDXFObject } from './types';
 import { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from '../plotSettings/consts';
+import { LayoutControlFlag } from '.';
+import { OrthographicType } from '../../..';
 
 describe("PLOTSETTINGS", () => {
   test("tc0", () => {
     const content = readFileSync(join(__dirname, "./tc0.partial_dxf"), "utf-8");
     const scanner = new DxfArrayScanner(content.split("\n"));
-    const parser = createParser(PlotSettingsSnippets);
+    const parser = createParser(LayoutSnippets);
     let curr = scanner.next();
     curr = scanner.next(); // skip 0 code
 
@@ -19,9 +21,9 @@ describe("PLOTSETTINGS", () => {
 
     const isReadOnce = parser(curr, scanner, obj);
 
-    expect(obj).toMatchObject<PlotSettingDXFObject>({
-      subclassMarker: "AcDbPlotSettings",
-      handle: 'D9B071D01A0ACD3B',      
+    expect(obj).toMatchObject<LayoutDXFObject>({
+      subclassMarker: "AcDbLayout",
+      handle: 'D9B071D01A0ACD3B',
       extensions: {
         ACAD_REACTORS: [{ code: 330, value: "D9B071D01A0ACD33" }],
         ACAD_XDICTIONARY: [{ code: 360, value: "D9B071D01A0C52C8" }],
@@ -57,6 +59,21 @@ describe("PLOTSETTINGS", () => {
       scaleFactor: 1477,
       imageOriginX: 48138,
       imageOriginY: 11587,
+      layoutName: 'Model',
+      controlFlag: LayoutControlFlag.PSLTSCALE,
+      tabOrder: 0,
+      minLimit: { x: 1, y: 2 },
+      maxLimit: { x: 3, y: 4 },
+      insertionPoint: { x: 1, y: 2, z: 3},
+      minExtent: { x: 11, y: 22, z: 33 },
+      maxExtent: { x: 44, y: 55, z: 66 },
+      elevation: 999,
+      ucsOrigin: { x: 11, y: 22, z: 33 },
+      ucsXAxis: { x: 1, y: 0, z: 0},
+      ucsYAxis: { x: 0, y: 1, z: 0},
+      orthographicType: OrthographicType.NON_ORTHOGRAPHIC,
+      paperSpaceTableId: 'D9B071D01A0ACD38',
+      viewportId: 'D9B071D01A0C032B'
     });
     expect(isReadOnce).toBe(true);
   });
