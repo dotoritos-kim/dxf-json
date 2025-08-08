@@ -1,4 +1,5 @@
 import { DXFParserSnippet, Identity } from '../../shared/parserGenerator';
+import { CommonObjectSnippets } from '../shared';
 
 export const PlotSettingsSnippets: DXFParserSnippet[] = [
     {
@@ -161,4 +162,5 @@ export const PlotSettingsSnippets: DXFParserSnippet[] = [
         name: 'subclassMarker',
         parser: Identity,
     },
+    ...CommonObjectSnippets
 ];
