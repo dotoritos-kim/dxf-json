@@ -18,7 +18,9 @@ export const DictionarySnippets: DXFParserSnippet[] = [
             curr = scanner.next();
 
             if (curr.code === 350) {
-                entry.objectId = curr.value;
+                entry.objectSoftId = curr.value;
+            } else if (curr.code === 360) {
+                entry.objectHardId = curr.value;
             } else {
                 // 만약 본인 토큰 아니면 스트림에 되돌려놔야 함
                 scanner.rewind();
