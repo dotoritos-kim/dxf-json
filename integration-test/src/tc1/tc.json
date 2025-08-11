@@ -3,6 +3,7 @@
     "byName": {
       "SPATIAL_FILTER": [
         {
+          "name": "SPATIAL_FILTER",
           "handle": "2D4",
           "ownerObjectId": "2D3",
           "subclassMarker": "AcDbSpatialFilter",

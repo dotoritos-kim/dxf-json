@@ -1,7 +1,16 @@
 import type { ScannerGroup } from "../DxfArrayScanner";
 
 export interface CommonDXFObject {
-    ownerObjectId: string;    
+    /** Similar to CommonDXFEntity['type']. They're in captial letter */
+    name: string;
+    /**
+     * Represented by hexadecimal string
+     *  
+     * In DXF, every entities/objects are belongs to some others.
+     * Root object is defined as '0' which doesn't actually exist.
+     * */
+    ownerObjectId: string;
+    /** Represented by hexadecimal string, which is unique value */
     handle: string;
     /** 
      * Application specific extension by their application-name. 

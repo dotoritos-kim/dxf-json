@@ -4,6 +4,7 @@ import { join } from "path";
 import { DxfArrayScanner } from "../../DxfArrayScanner";
 import { createParser } from "../../shared/parserGenerator";
 import { SpatialFilterSnippets } from "./parser";
+import type { SpatialFilterDXFObject } from "./types";
 
 describe("SPATIAL_FILTER", () => {
   test("tc0", () => {
@@ -13,11 +14,13 @@ describe("SPATIAL_FILTER", () => {
     let curr = scanner.next();
     curr = scanner.next(); // skip 0 code
 
-    const obj = {} as any;
+    const obj = { name: 'SPATIAL_FILTER' } as any;
 
     const isReadOnce = parser(curr, scanner, obj);
 
-    expect(obj).toMatchObject({
+    expect(obj).toMatchObject<SpatialFilterDXFObject>({
+      name: "SPATIAL_FILTER",
+      ownerObjectId: "9827",
       subclassMarker: "AcDbSpatialFilter",
       handle: "handle",
       boundaryCount: 2,
@@ -56,12 +59,14 @@ describe("SPATIAL_FILTER", () => {
     let curr = scanner.next();
     curr = scanner.next(); // skip 0 code
 
-    const obj = {} as any;
+    const obj = { name: 'SPATIAL_FILTER' } as any;
 
     const isReadOnce = parser(curr, scanner, obj);
 
-    expect(obj).toMatchObject({
+    expect(obj).toMatchObject<SpatialFilterDXFObject>({
+      name: "SPATIAL_FILTER",
       subclassMarker: "AcDbSpatialFilter",
+      ownerObjectId: '9827',
       handle: "handle",
       boundaryCount: 2,
       boundaryVertices: [
