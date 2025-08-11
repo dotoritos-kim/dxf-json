@@ -15,11 +15,12 @@ describe("PLOTSETTINGS", () => {
     let curr = scanner.next();
     curr = scanner.next(); // skip 0 code
 
-    const obj = {} as any;
+    const obj = { name: 'PLOTSETTINGS' } as any;
 
     const isReadOnce = parser(curr, scanner, obj);
 
     expect(obj).toMatchObject<PlotSettingDXFObject>({
+      name: 'PLOTSETTINGS',
       subclassMarker: "AcDbPlotSettings",
       handle: 'D9B071D01A0C0BB2',      
       extensions: {

@@ -4,6 +4,7 @@ import { describe, expect, test } from "vitest";
 import { DxfArrayScanner } from '../../DxfArrayScanner';
 import { createParser } from '../../shared/parserGenerator';
 import { DictionarySnippets } from './parser';
+import type { DictionaryDXFObject } from './types';
 
 describe("DICTIONARY parser", () => {
     test('tc0', () => {
@@ -14,11 +15,12 @@ describe("DICTIONARY parser", () => {
       let curr = scanner.next()
       curr = scanner.next(); // skip 0
 
-      const obj: any = {}
+      const obj: any = { name: 'DICTIONARY' }
 
       parser(curr, scanner, obj)
 
-      expect(obj).toMatchObject({
+      expect(obj).toMatchObject<DictionaryDXFObject>({
+        name: 'DICTIONARY',
         handle: "2D2",
         ownerObjectId: "2C6",
         subclassMarker: "AcDbDictionary",

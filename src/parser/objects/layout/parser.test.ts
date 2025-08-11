@@ -6,7 +6,7 @@ import { createParser } from "../../shared/parserGenerator";
 import { LayoutSnippets } from './parser';
 import type { LayoutDXFObject } from './types';
 import { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from '../plotSettings/consts';
-import { LayoutControlFlag } from '.';
+import { LayoutControlFlag } from './consts';
 import { OrthographicType } from '../../..';
 
 describe("PLOTSETTINGS", () => {
@@ -17,11 +17,12 @@ describe("PLOTSETTINGS", () => {
     let curr = scanner.next();
     curr = scanner.next(); // skip 0 code
 
-    const obj = {} as any;
+    const obj = { name: 'LAYOUT' } as any;
 
     const isReadOnce = parser(curr, scanner, obj);
 
     expect(obj).toMatchObject<LayoutDXFObject>({
+      name: 'LAYOUT',
       subclassMarker: "AcDbLayout",
       handle: 'D9B071D01A0ACD3B',
       extensions: {
