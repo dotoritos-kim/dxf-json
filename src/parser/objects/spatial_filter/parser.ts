@@ -6,6 +6,7 @@ import {
   ToBoolean,
   PointParser,
 } from "../../shared/parserGenerator";
+import { CommonObjectSnippets } from "../shared";
 
 export const SpatialFilterSnippets: DXFParserSnippet[] = [
   {
@@ -74,11 +75,7 @@ export const SpatialFilterSnippets: DXFParserSnippet[] = [
   {
     code: 100, // skip AcDbFilter
   },
-  {
-    code: 5,
-    name: "handle",
-    parser: Identity,
-  },
+  ...CommonObjectSnippets
 ];
 
 function matrixParser(curr: ScannerGroup, scanner: DxfArrayScanner) {

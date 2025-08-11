@@ -1,4 +1,5 @@
 import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator';
+import { CommonObjectSnippets } from '../shared';
 
 /*
   XRECORD OBJECT has no fixed form.
@@ -28,7 +29,8 @@ export const XRecordDXFObjectSnippet: DXFParserSnippet[] = [
     code: 100,
     name: 'subclassMarker',
     parser: Identity,
-  }
+  },
+  ...CommonObjectSnippets
 ]
 
 function checkXRecordGroup(code: number): boolean {

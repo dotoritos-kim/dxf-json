@@ -24,5 +24,4 @@ export interface LayoutDXFObject
     viewportId: string;
     namedUcsId?: string;
     orthographicUcsId?: string;
-    shadePlotId: string;
 }

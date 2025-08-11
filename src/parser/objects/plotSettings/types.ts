@@ -2,7 +2,7 @@ import type { CommonDXFObject } from "../types";
 import type { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from "./consts";
 
 export interface PlotSettingDXFObject extends CommonDXFObject {
-    subclassMarker: 'AcDbPlotSettings7';
+    subclassMarker: 'AcDbPlotSettings';
     pageSetupName: string;
     configName: string;
     paperSize: string;
@@ -19,7 +19,7 @@ export interface PlotSettingDXFObject extends CommonDXFObject {
     windowAreaYMin: number;
     windowAreaXMax: number;
     windowAreaYMax: number;
-    printScaleNominator: number;
+    printScaleNumerator: number;
     printScaleDenominator: number;
     layoutFlag: number;
     plotPaperUnit: PlotPaperUnit;
@@ -33,5 +33,5 @@ export interface PlotSettingDXFObject extends CommonDXFObject {
     scaleFactor: number;
     imageOriginX: number;
     imageOriginY: number;
-    shadePlotId: string;
+    shadePlotId?: string;
 }

@@ -706,71 +706,71 @@
           "entries": [
             {
               "name": "ACAD_CIP_PREVIOUS_PRODUCT_INFO",
-              "objectId": "216"
+              "objectSoftId": "216"
             },
             {
               "name": "ACAD_COLOR",
-              "objectId": "6B"
+              "objectSoftId": "6B"
             },
             {
               "name": "ACAD_DETAILVIEWSTYLE",
-              "objectId": "21B"
+              "objectSoftId": "21B"
             },
             {
               "name": "ACAD_GROUP",
-              "objectId": "D"
+              "objectSoftId": "D"
             },
             {
               "name": "ACAD_LAST_SAVED_VERSION_INFO",
-              "objectId": "2B9"
+              "objectSoftId": "2B9"
             },
             {
               "name": "ACAD_LAYOUT",
-              "objectId": "1A"
+              "objectSoftId": "1A"
             },
             {
               "name": "ACAD_MATERIAL",
-              "objectId": "6A"
+              "objectSoftId": "6A"
             },
             {
               "name": "ACAD_MLEADERSTYLE",
-              "objectId": "12D"
+              "objectSoftId": "12D"
             },
             {
               "name": "ACAD_MLINESTYLE",
-              "objectId": "17"
+              "objectSoftId": "17"
             },
             {
               "name": "ACAD_PLOTSETTINGS",
-              "objectId": "19"
+              "objectSoftId": "19"
             },
             {
               "name": "ACAD_PLOTSTYLENAME",
-              "objectId": "E"
+              "objectSoftId": "E"
             },
             {
               "name": "ACAD_SCALELIST",
-              "objectId": "10C"
+              "objectSoftId": "10C"
             },
             {
               "name": "ACAD_SECTIONVIEWSTYLE",
-              "objectId": "219"
+              "objectSoftId": "219"
             },
             {
               "name": "ACAD_TABLESTYLE",
-              "objectId": "7E"
+              "objectSoftId": "7E"
             },
             {
               "name": "ACAD_VISUALSTYLE",
-              "objectId": "EF"
+              "objectSoftId": "EF"
             },
             {
               "name": "ACDB_RECOMPOSE_DATA",
-              "objectId": "2BC"
+              "objectSoftId": "2BC"
             },
             {
               "name": "AcDbVariableDictionary",
-              "objectId": "5E"
+              "objectSoftId": "5E"
             }
           ]
         },
@@ -835,7 +835,7 @@
           "entries": [
             {
               "name": "Metric50",
-              "objectId": "21C"
+              "objectSoftId": "21C"
             }
           ]
         },
@@ -871,15 +871,15 @@
           "entries": [
             {
               "name": "Model",
-              "objectId": "22"
+              "objectSoftId": "22"
             },
             {
               "name": "배치1",
-              "objectId": "D3"
+              "objectSoftId": "D3"
             },
             {
               "name": "배치2",
-              "objectId": "D7"
+              "objectSoftId": "D7"
             }
           ]
         },
@@ -900,15 +900,15 @@
           "entries": [
             {
               "name": "ByBlock",
-              "objectId": "ED"
+              "objectSoftId": "ED"
             },
             {
               "name": "ByLayer",
-              "objectId": "EC"
+              "objectSoftId": "EC"
             },
             {
               "name": "Global",
-              "objectId": "EE"
+              "objectSoftId": "EE"
             }
           ]
         },
@@ -929,11 +929,11 @@
           "entries": [
             {
               "name": "Standard",
-              "objectId": "12E"
+              "objectSoftId": "12E"
             },
             {
               "name": "주석",
-              "objectId": "13B"
+              "objectSoftId": "13B"
             }
           ]
         },
@@ -954,7 +954,7 @@
           "entries": [
             {
               "name": "Standard",
-              "objectId": "18"
+              "objectSoftId": "18"
             }
           ]
         },
@@ -990,71 +990,71 @@
           "entries": [
             {
               "name": "A0",
-              "objectId": "10D"
+              "objectSoftId": "10D"
             },
             {
               "name": "A1",
-              "objectId": "1BE"
+              "objectSoftId": "1BE"
             },
             {
               "name": "A2",
-              "objectId": "1BF"
+              "objectSoftId": "1BF"
             },
             {
               "name": "A3",
-              "objectId": "1C0"
+              "objectSoftId": "1C0"
             },
             {
               "name": "A4",
-              "objectId": "1C1"
+              "objectSoftId": "1C1"
             },
             {
               "name": "A5",
-              "objectId": "1C2"
+              "objectSoftId": "1C2"
             },
             {
               "name": "A6",
-              "objectId": "1C3"
+              "objectSoftId": "1C3"
             },
             {
               "name": "A7",
-              "objectId": "1C4"
+              "objectSoftId": "1C4"
             },
             {
               "name": "A8",
-              "objectId": "1C5"
+              "objectSoftId": "1C5"
             },
             {
               "name": "A9",
-              "objectId": "1C6"
+              "objectSoftId": "1C6"
             },
             {
               "name": "B0",
-              "objectId": "1C7"
+              "objectSoftId": "1C7"
             },
             {
               "name": "B1",
-              "objectId": "1C8"
+              "objectSoftId": "1C8"
             },
             {
               "name": "B2",
-              "objectId": "1C9"
+              "objectSoftId": "1C9"
             },
             {
               "name": "B3",
-              "objectId": "1CA"
+              "objectSoftId": "1CA"
             },
             {
               "name": "B4",
-              "objectId": "1CB"
+              "objectSoftId": "1CB"
             },
             {
               "name": "B5",
-              "objectId": "1CC"
+              "objectSoftId": "1CC"
             },
             {
               "name": "B6",
-              "objectId": "1CD"
+              "objectSoftId": "1CD"
             }
           ]
         },
@@ -1075,7 +1075,7 @@
           "entries": [
             {
               "name": "Metric50",
-              "objectId": "21A"
+              "objectSoftId": "21A"
             }
           ]
         },
@@ -1096,7 +1096,7 @@
           "entries": [
             {
               "name": "Standard",
-              "objectId": "7F"
+              "objectSoftId": "7F"
             }
           ]
         },
@@ -1117,99 +1117,99 @@
           "entries": [
             {
               "name": "2dWireframe",
-              "objectId": "F5"
+              "objectSoftId": "F5"
             },
             {
               "name": "Basic",
-              "objectId": "F4"
+              "objectSoftId": "F4"
             },
             {
               "name": "Brighten",
-              "objectId": "FB"
+              "objectSoftId": "FB"
             },
             {
               "name": "ColorChange",
-              "objectId": "FF"
+              "objectSoftId": "FF"
             },
             {
               "name": "Conceptual",
-              "objectId": "F8"
+              "objectSoftId": "F8"
             },
             {
               "name": "Dim",
-              "objectId": "FA"
+              "objectSoftId": "FA"
             },
             {
               "name": "EdgeColorOff",
-              "objectId": "1E6"
+              "objectSoftId": "1E6"
             },
             {
               "name": "Facepattern",
-              "objectId": "FE"
+              "objectSoftId": "FE"
             },
             {
               "name": "Flat",
-              "objectId": "F0"
+              "objectSoftId": "F0"
             },
             {
               "name": "FlatWithEdges",
-              "objectId": "F1"
+              "objectSoftId": "F1"
             },
             {
               "name": "Gouraud",
-              "objectId": "F2"
+              "objectSoftId": "F2"
             },
             {
               "name": "GouraudWithEdges",
-              "objectId": "F3"
+              "objectSoftId": "F3"
             },
             {
               "name": "Hidden",
-              "objectId": "F7"
+              "objectSoftId": "F7"
             },
             {
               "name": "JitterOff",
-              "objectId": "1E4"
+              "objectSoftId": "1E4"
             },
             {
               "name": "Linepattern",
-              "objectId": "FD"
+              "objectSoftId": "FD"
             },
             {
               "name": "OverhangOff",
-              "objectId": "1E5"
+              "objectSoftId": "1E5"
             },
             {
               "name": "Realistic",
-              "objectId": "F9"
+              "objectSoftId": "F9"
             },
             {
               "name": "Shaded",
-              "objectId": "1F3"
+              "objectSoftId": "1F3"
             },
             {
               "name": "Shaded with edges",
-              "objectId": "1F2"
+              "objectSoftId": "1F2"
             },
             {
               "name": "Shades of Gray",
-              "objectId": "1EF"
+              "objectSoftId": "1EF"
             },
             {
               "name": "Sketchy",
-              "objectId": "1F0"
+              "objectSoftId": "1F0"
             },
             {
               "name": "Thicken",
-              "objectId": "FC"
+              "objectSoftId": "FC"
             },
             {
               "name": "Wireframe",
-              "objectId": "F6"
+              "objectSoftId": "F6"
             },
             {
               "name": "X-Ray",
-              "objectId": "1F1"
+              "objectSoftId": "1F1"
             }
           ]
         },
@@ -1230,47 +1230,47 @@
           "entries": [
             {
               "name": "CANNOSCALE",
-              "objectId": "146"
+              "objectSoftId": "146"
             },
             {
               "name": "CENTEREXE",
-              "objectId": "259"
+              "objectSoftId": "259"
             },
             {
               "name": "CENTERLTYPEFILE",
-              "objectId": "25A"
+              "objectSoftId": "25A"
             },
             {
               "name": "CMLEADERSTYLE",
-              "objectId": "145"
+              "objectSoftId": "145"
             },
             {
               "name": "CTABLESTYLE",
-              "objectId": "84"
+              "objectSoftId": "84"
             },
             {
               "name": "CVIEWDETAILSTYLE",
-              "objectId": "227"
+              "objectSoftId": "227"
             },
             {
               "name": "CVIEWSECTIONSTYLE",
-              "objectId": "228"
+              "objectSoftId": "228"
             },
             {
               "name": "DIMASSOC",
-              "objectId": "5F"
+              "objectSoftId": "5F"
             },
             {
               "name": "HIDETEXT",
-              "objectId": "63"
+              "objectSoftId": "63"
             },
             {
               "name": "LAYEREVAL",
-              "objectId": "1AE"
+              "objectSoftId": "1AE"
             },
             {
               "name": "LAYERNOTIFY",
-              "objectId": "1AF"
+              "objectSoftId": "1AF"
             }
           ]
         },
@@ -1332,7 +1332,24 @@
           "recordCloneFlag": 1,
           "entries": [
             {
-              "name": "BUMPTILE"
+              "name": "BUMPTILE",
+              "objectHardId": "175"
+            },
+            {
+              "name": "DIFFUSETILE",
+              "objectHardId": "174"
+            },
+            {
+              "name": "FBXASSET",
+              "objectHardId": "1FB"
+            },
+            {
+              "name": "OPACITYTILE",
+              "objectHardId": "176"
+            },
+            {
+              "name": "REFLECTIONTILE",
+              "objectHardId": "177"
             }
           ]
         },
@@ -1368,7 +1385,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "1A",
+          "paperSpaceTableId": "1F",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "none_device",
@@ -1386,10 +1403,10 @@
           "windowAreaXMax": 0,
           "windowAreaYMin": 0,
           "windowAreaYMax": 0,
-          "printScaleNominator": 1,
+          "printScaleNumerator": 1,
           "printScaleDenominator": 8.704084754739808,
           "layoutFlag": 11952,
-          "paperUnit": 1,
+          "plotPaperUnit": 1,
           "plotRotation": 0,
           "plotType": 0,
           "currentStyleSheet": "",
@@ -1411,7 +1428,7 @@
             "x": 12,
             "y": 9
           },
-          "insertionBase": {
+          "insertionPoint": {
             "x": 0,
             "y": 0,
             "z": 0
@@ -1443,7 +1460,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "1F",
+          "ownerObjectId": "1A",
           "viewportId": "EA"
         },
         {
@@ -1457,7 +1474,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "1A",
+          "paperSpaceTableId": "D2",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
@@ -1475,10 +1492,10 @@
           "windowAreaXMax": 0,
           "windowAreaYMin": 0,
           "windowAreaYMax": 0,
-          "printScaleNominator": 1,
+          "printScaleNumerator": 1,
           "printScaleDenominator": 1,
           "layoutFlag": 688,
-          "paperUnit": 0,
+          "plotPaperUnit": 0,
           "plotRotation": 0,
           "plotType": 5,
           "currentStyleSheet": "",
@@ -1500,7 +1517,7 @@
             "x": 12,
             "y": 9
           },
-          "insertionBase": {
+          "insertionPoint": {
             "x": 0,
             "y": 0,
             "z": 0
@@ -1532,7 +1549,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "D2"
+          "ownerObjectId": "1A"
         },
         {
           "name": "LAYOUT",
@@ -1545,7 +1562,7 @@
               }
             ]
           },
-          "paperSpaceTableId": "1A",
+          "paperSpaceTableId": "D6",
           "subclassMarker": "AcDbLayout",
           "pageSetupName": "",
           "configName": "C:\\Documents and Settings\\basas\\Application Data\\Autodesk\\AutoCAD 2005\\R16.1\\enu\\plotters\\Default Windows System Printer.pc3",
@@ -1563,10 +1580,10 @@
           "windowAreaXMax": 0,
           "windowAreaYMin": 0,
           "windowAreaYMax": 0,
-          "printScaleNominator": 1,
+          "printScaleNumerator": 1,
           "printScaleDenominator": 1,
           "layoutFlag": 688,
-          "paperUnit": 0,
+          "plotPaperUnit": 0,
           "plotRotation": 0,
           "plotType": 5,
           "currentStyleSheet": "",
@@ -1588,7 +1605,7 @@
             "x": 12,
             "y": 9
           },
-          "insertionBase": {
+          "insertionPoint": {
             "x": 0,
             "y": 0,
             "z": 0
@@ -1620,7 +1637,7 @@
             "z": 0
           },
           "orthographicType": 0,
-          "ownerObjectId": "D6"
+          "ownerObjectId": "1A"
         }
       ]
     }
