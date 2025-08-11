@@ -11,10 +11,7 @@ describe('XRecordParser parser', () => {
   test('tc0', () => {
       const content = readFileSync(join(__dirname, "./tc0.partial_dxf"), "utf-8");
       const scanner = new DxfArrayScanner(content.split("\n"));
-      const parser = createParser([ 
-        ...XRecordDXFObjectSnippet,
-        ...CommonObjectSnippets,
-      ]);
+      const parser = createParser(XRecordDXFObjectSnippet);
 
       let curr = scanner.next();
       curr = scanner.next(); // skip 0
