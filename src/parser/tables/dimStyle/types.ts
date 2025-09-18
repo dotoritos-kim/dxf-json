@@ -129,7 +129,7 @@ export type DimStylesTableEntry = {
     DIMCLRD: number;
     DIMCLRE: number;
     DIMCLRT: number;
-    DIMADEC?: number;
+    DIMADEC: number;
     DIMUNIT?: number;
     DIMDEC: number;
     DIMTDEC: number;
@@ -159,6 +159,3 @@ export type DimStylesTableEntry = {
     DIMLWE: number;
 } & CommonDxfTableEntry;
 
-export type StyleResolver = <Name extends DimStyleVariable>(
-    variableName: Name,
-) => DimStylesTableEntry[Name];
