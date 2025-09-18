@@ -9,3 +9,4 @@ export * from "./measurement";
 export * from "./obscuredLineTypes";
 export * from "./scene";
 export * from "./viewport";
+export * from './plotStyleType'

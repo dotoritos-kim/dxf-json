@@ -1,5 +1,6 @@
 import type { ScannerGroup } from '../DxfArrayScanner'; 
 import { parseExtensions } from '../shared'; 
+import type { PlotStyleType } from '../../consts/plotStyleType';
 import type { ColorIndex, ColorInstance } from '../../types'
 import { getAcadColor } from '../getAcadColor';
 import {
@@ -26,6 +27,7 @@ export interface CommonDxfEntity {
     color?: ColorInstance;
     colorName?: string;
     transparency?: number;
+    plotStyleType?: PlotStyleType
     plotStyleHardId?: string;
     shadowMode?: ShadowMode;
     xdata?: XData;
@@ -55,6 +57,11 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 390,
         name: 'plotStyleHardId',
+        parser: Identity,
+    },
+    {
+        code: 380,
+        name: 'plotStyleType',
         parser: Identity,
     },
     {
