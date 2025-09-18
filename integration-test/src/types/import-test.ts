@@ -111,6 +111,7 @@ import type {
   MultiLeaderLeaderSection,
   MultiLeaderLeaderLine,
   MultiLeaderBreak,
+  PlotStyleType,
   PointEntity,
   PolylineEntity,
   RayEntity,
