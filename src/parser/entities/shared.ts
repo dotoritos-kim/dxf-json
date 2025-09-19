@@ -2,7 +2,6 @@ import type { ScannerGroup } from '../DxfArrayScanner';
 import { parseExtensions } from '../shared'; 
 import type { PlotStyleType } from '../../consts/plotStyleType';
 import type { ColorIndex, ColorInstance } from '../../types'
-import { getAcadColor } from '../getAcadColor';
 import {
     type DXFParserSnippet,
     Identity,
@@ -20,11 +19,26 @@ export interface CommonDxfEntity {
     materialObjectHardId?: string;
     colorIndex?: ColorIndex;
     lineweight?: number; // 문서에는 무조건 있다고 하는데, 실제로는 없는 경우 많음
-    lineTypeScale?: number; // default = 1
+    /** @default 1 If not presented */
+    lineTypeScale?: number;
     isVisible?: boolean;
     proxyByte?: number;
     proxyEntity?: string;
+    /** 
+     * A 24-bit color value that should be dealt with in terms of bytes with values of 0 to 255.
+     * 
+     * The lowest byte is the blue value, the middle byte is the green value, and the third byte is the red value. The top byte is always 0. 
+     * 
+     * The group code cannot be used by custom entities for their own data because 
+     * the group code is reserved for AcDbEntity, class-level color data and AcDbEntity, class-level transparency data
+     * 
+     * @note From v0.9.0, if there is no explicit 420 group code, no fallback will be given.
+     */
     color?: ColorInstance;
+    /**
+     * The group code cannot be used by custom entities for their own data because 
+     * the group code is reserved for AcDbEntity, class-level color data and AcDbEntity, class-level transparency data
+     */
     colorName?: string;
     transparency?: number;
     plotStyleType?: PlotStyleType
@@ -107,11 +121,7 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 62,
         name: 'colorIndex',
-        parser(curr, _, entity) {
-            const colorIndex = curr.value;
-            entity.color = getAcadColor(Math.abs(colorIndex));
-            return colorIndex;
-        },
+        parser: Identity,
     },
     {
         code: 347,
