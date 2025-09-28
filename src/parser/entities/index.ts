@@ -1,19 +1,18 @@
-
 export * from "./arc";
 export * from "./attdef";
-export * from './attribute'
+export * from "./attribute";
 export * from "./body";
 export * from "./circle";
 export * from "./dimension";
 export * from "./ellipse";
-export * from './face'
+export * from "./face";
 export * from "./hatch";
-export * from './image'
+export * from "./image";
 export * from "./insert";
 export * from "./leader";
 export * from "./line";
 export * from "./lwpolyline";
-export * from './mesh'
+export * from "./mesh";
 export * from "./mtext";
 export * from "./point";
 export * from "./polyline";
@@ -34,7 +33,6 @@ export * from "./shared";
 import type { DxfArrayScanner, ScannerGroup } from "../DxfArrayScanner";
 import { ensureHandle, isMatched } from "../shared";
 
-
 import { ArcEntityParser } from "./arc";
 import { AttDefEntityParser } from "./attdef";
 import { AttributeEntityParser } from "./attribute";
@@ -52,12 +50,13 @@ import { MeshEntityParser } from "./mesh";
 import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
-import { RayParser } from "./ray";
+import { RayEntityParser } from "./ray";
 import { RegionEntityParser } from "./region";
 import { SectionEntityParser } from "./section";
 import { SolidEntityParser } from "./solid";
 import { Solid3DEntityParser } from "./solid3d";
 import { SplineEntityParser } from "./spline";
+import { TableEntityParser } from "./table";
 import { TextEntityParser } from "./text";
 import { ToleranceEntityParser } from "./tolerance";
 import { HatchEntityParser } from "./hatch";
@@ -78,27 +77,28 @@ const Parsers = Object.fromEntries(
 		CircleEntityParser,
 		DimensionParser,
 		EllipseEntityParser,
-    FaceEntityParser,
-    ImageEntityParser,
+		FaceEntityParser,
+		ImageEntityParser,
 		InsertEntityParser,
 		LeaderEntityParser,
 		LineEntityParser,
 		LWPolylineParser,
-    MeshEntityParser,
+		MeshEntityParser,
 		MTextEntityParser,
 		MultiLeaderEntityParser,
 		PointEntityParser,
 		PolylineParser,
-    RayParser,
+		RayEntityParser,
 		RegionEntityParser,
 		SectionEntityParser,
 		SolidEntityParser,
 		Solid3DEntityParser,
 		SplineEntityParser,
+		TableEntityParser,
 		TextEntityParser,
 		ToleranceEntityParser,
 		HatchEntityParser,
-    VertexParser,
+		VertexParser,
 		ViewportParser,
 		WipeoutEntityParser,
 		XLineEntityParser,
@@ -110,36 +110,36 @@ const Parsers = Object.fromEntries(
  * should be on the start of the first entity already.
  */
 export function parseEntities(
-  curr: ScannerGroup,
-  scanner: DxfArrayScanner,
+	curr: ScannerGroup,
+	scanner: DxfArrayScanner
 ): CommonDxfEntity[] {
-  let entities: any[] = [];
+	let entities: any[] = [];
 
-  while (!isMatched(curr, 0, "EOF")) {
-    if (curr.code === 0) {
-      // BLOCK 섹션 안에 ENTITY 섹션이 있을 수도 있고
-      // ENTITY 섹션만 따로 있을 수도 있음
-      // BLOCK 섹션 안에 들어있는 ENTITY는 ENDBLK으로 끝남
-      if (curr.value === "ENDBLK" || curr.value === "ENDSEC") {
-        scanner.rewind();
-        break;
-      }
+	while (!isMatched(curr, 0, "EOF")) {
+		if (curr.code === 0) {
+			// BLOCK 섹션 안에 ENTITY 섹션이 있을 수도 있고
+			// ENTITY 섹션만 따로 있을 수도 있음
+			// BLOCK 섹션 안에 들어있는 ENTITY는 ENDBLK으로 끝남
+			if (curr.value === "ENDBLK" || curr.value === "ENDSEC") {
+				scanner.rewind();
+				break;
+			}
 
-      const handler = Parsers[curr.value];
-      if (handler) {
-        const entityType = curr.value;
-        curr = scanner.next();
+			const handler = Parsers[curr.value];
+			if (handler) {
+				const entityType = curr.value;
+				curr = scanner.next();
 
-        const entity = handler.parseEntity(scanner, curr) as any;
-        entity.type = entityType;
-        ensureHandle(entity);
-        entities.push(entity);
-      } else if (scanner.debug) {
-        console.warn(`Unsupported ENTITY type: ${curr.value}`);
-      }
-    }
+				const entity = handler.parseEntity(scanner, curr) as any;
+				entity.type = entityType;
+				ensureHandle(entity);
+				entities.push(entity);
+			} else if (scanner.debug) {
+				console.warn(`Unsupported ENTITY type: ${curr.value}`);
+			}
+		}
 
-    curr = scanner.next();
-  }
-  return entities;
+		curr = scanner.next();
+	}
+	return entities;
 }
