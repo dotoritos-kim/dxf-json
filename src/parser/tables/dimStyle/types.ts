@@ -139,7 +139,7 @@ export type DimStylesTableEntry = {
     DIMFRAC: number;
     DIMLUNIT: number;
     DIMDSEP: string;
-    DIMTMOVE: undefined; // 미사용
+    DIMTMOVE: number;
     DIMJUST: DimensionTextHorizontal;
     DIMSD1: 0 | 1;
     DIMSD2: 0 | 1;
