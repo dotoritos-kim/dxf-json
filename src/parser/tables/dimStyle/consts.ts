@@ -322,12 +322,11 @@ export const DimStyleVariablesSchema = [
         defaultValueImperial: '.',
     },
     // Controls the format of dimension text when it is moved
-    // 뷰어에는 필요없어서 주석처리
-    // {
-    //     name: 'DIMTMOVE',
-    //     code: 279,
-    //     defaultValue: 0,
-    // },
+    {
+        name: 'DIMTMOVE',
+        code: 279,
+        defaultValue: 0,
+    },
     // Horizontal justification of dimension text
     {
         name: 'DIMJUST',
