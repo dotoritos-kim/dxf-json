@@ -7,7 +7,7 @@ import type { AlignedDimensionEntity, AngularDimensionEntity, DimensionEntity, O
 /**
  * @returns Return `false` if curr is not related to common dimension group
  */
-export function parseDimension(entity: DimensionEntity, curr: ScannerGroup, scanner: DxfArrayScanner) {
+export function parseDimension(entity: any, curr: ScannerGroup, scanner: DxfArrayScanner) {
     switch (curr.code) {
         case 100:
             entity.subclassMarker = curr.value;
@@ -37,8 +37,13 @@ export function parseDimension(entity: DimensionEntity, curr: ScannerGroup, scan
             (entity as AlignedDimensionEntity | AngularDimensionEntity | OrdinateDimensionEntity).subDefinitionPoint2 = parsePoint(scanner) as Point3D;
             break;
         case 15:
-            // for angular, radial, diameter
-            (entity as AngularDimensionEntity | RadialDiameterDimensionEntity).centerPoint = parsePoint(scanner) as Point3D;
+            if (entity.subclassMarker === 'AcDbAngularDimension') {
+                entity.centerPoint = parsePoint(scanner)
+            } else if (entity.subclassMarker === 'AcDbRadialDimension' || entity.subclassMarker === 'AcDbDiametricDimension') {
+                entity.subDefinitionPoint = parsePoint(scanner)
+            } else {
+                parsePoint(scanner)
+            }
             break;
         case 16:
             // for angular
