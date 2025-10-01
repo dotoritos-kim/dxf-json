@@ -49,6 +49,7 @@ import { LeaderEntityParser } from "./leader";
 import { LineEntityParser } from "./line";
 import { LWPolylineParser } from "./lwpolyline";
 import { MeshEntityParser } from "./mesh";
+import { MLineEntityParser } from "./mline";
 import { MTextEntityParser } from "./mtext";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
@@ -85,6 +86,7 @@ const Parsers = Object.fromEntries(
 		LineEntityParser,
 		LWPolylineParser,
     MeshEntityParser,
+    MLineEntityParser,
 		MTextEntityParser,
 		MultiLeaderEntityParser,
 		PointEntityParser,
