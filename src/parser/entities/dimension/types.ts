@@ -6,6 +6,13 @@ import type { Point3D } from '../../../types';
 import type { DimStyleVariables } from '../../tables/dimStyle/types';
 import type { CommonDxfEntity } from '../shared';
 
+/**
+ * Base type of *DIMENSION* entities.
+ * 
+ * @note In AutoCAD 2025, *DIMENSION* can have DIMSTYLE override not only in `xdata`
+ * but directly at the object itself. In this case, object may have DimStyle fields.
+ * @see DimStyleVariables
+ */
 export interface DimensionEntityCommon extends CommonDxfEntity, Partial<DimStyleVariables> {
     type: 'DIMENSION';
     /** 
@@ -73,9 +80,18 @@ export interface DimensionEntityCommon extends CommonDxfEntity, Partial<DimStyle
 }
 
 /**
- * `AcDbAlignedDimension` means 
+ * Type for linear and aligned dimension.
+ * 
+ * @note In AutoCAD 2025, *DIMENSION* can have DIMSTYLE override not only in `xdata`
+ * but directly at the object itself. In this case, object may have DimStyle fields.
  */
 export interface AlignedDimensionEntity extends DimensionEntityCommon {
+    /**
+     * Be aware of the naming: `AcDbAlignedDimension` is represented as "linear dimension"
+     * in AutoCAD, while `AcDbRotatedDimension` is represented as "aligned dimension".
+     * 
+     * This is so confusing, but as we're following DXF spec, we used the one in data as is.
+     */
     subclassMarker: 'AcDbAlignedDimension' | 'AcDbRotatedDimension';
     /** Insertion point for clones of a dimension—Baseline and Continue (in OCS) */
     insertionPoint?: Point3D;
@@ -99,10 +115,13 @@ export interface AlignedDimensionEntity extends DimensionEntityCommon {
 }
 
 /**
- * AngularDimension is used to describe arc length or degree of angle.
- * 
- * This is the most confusing part of DIMENSION entity, so read carefuly
+ * `AngularDimension` is used to describe arc length or degree of angle.
+ *
+ * This is the most confusing part of *DIMENSION* entity, so read carefuly
  * every comment of each properties before you use it.
+ *
+ * @note In AutoCAD 2025, *DIMENSION* can have DIMSTYLE override not only in `xdata`
+ * but directly at the object itself. In this case, object may have DimStyle fields.
  */
 export interface AngularDimensionEntity extends DimensionEntityCommon {
     /** 
@@ -146,6 +165,9 @@ export interface AngularDimensionEntity extends DimensionEntityCommon {
  * 
  * Note that `definitionPoint` of `OrdinateDimension` doesn't matter at all, 
  * as the actual points are defined in `subDefinitionPoint1` and `subDefinitionPoint2`. 
+ * 
+ * @note In AutoCAD 2025, *DIMENSION* can have DIMSTYLE override not only in `xdata`
+ * but directly at the object itself. In this case, object may have DimStyle fields.
  */
 export interface OrdinateDimensionEntity extends DimensionEntityCommon {
     subclassMarker: 'AcDbOrdinateDimension';
@@ -167,6 +189,9 @@ export interface OrdinateDimensionEntity extends DimensionEntityCommon {
  * In `AcDbRadialDimension`, `definitionPoint` specifies the center of circle.
  * 
  * In `AcDbDiametricDimension`, `definitionPoint` specifies the one end of diameter line.
+ * 
+ * @note In AutoCAD 2025, *DIMENSION* can have DIMSTYLE override not only in `xdata`
+ * but directly at the object itself. In this case, object may have DimStyle fields.
  */
 export interface RadialDiameterDimensionEntity extends DimensionEntityCommon {
     subclassMarker: 'AcDbRadialDimension' | 'AcDbDiametricDimension';
@@ -180,6 +205,9 @@ export interface RadialDiameterDimensionEntity extends DimensionEntityCommon {
     leaderLength: number;
 }
 
+/**
+ * Combined type of *DIMENSION* entity.
+ */
 export type DimensionEntity = DimensionEntityCommon &
     (
         | Partial<AlignedDimensionEntity>
