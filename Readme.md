@@ -86,7 +86,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [x] MESH
   - [x] MLEADER
   - [ ] MLEADERSTYLE
-  - [ ] MLINE
+  - [x] MLINE
   - [x] MTEXT
   - [ ] OLEFRAME
   - [ ] OLE2FRAME

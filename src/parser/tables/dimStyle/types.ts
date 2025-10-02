@@ -85,9 +85,7 @@ export interface DimStyleVariableSchema {
     defaultValueImperial?: string | number;
 }
 
-export type DimStylesTableEntry = {
-    subclassMarker: 'AcDbDimStyleTableRecord';
-    styleName: string;
+export type DimStyleVariables = {
     DIMPOST?: string;
     DIMAPOST?: string;
     DIMBLK_OBSOLETE?: string;
@@ -139,7 +137,7 @@ export type DimStylesTableEntry = {
     DIMFRAC: number;
     DIMLUNIT: number;
     DIMDSEP: string;
-    DIMTMOVE: undefined; // 미사용
+    DIMTMOVE: number;
     DIMJUST: DimensionTextHorizontal;
     DIMSD1: 0 | 1;
     DIMSD2: 0 | 1;
@@ -157,5 +155,10 @@ export type DimStylesTableEntry = {
     DIMBLK2?: string;
     DIMLWD: number;
     DIMLWE: number;
-} & CommonDxfTableEntry;
+}
+
+export type DimStylesTableEntry = DimStyleVariables & CommonDxfTableEntry & {
+    styleName: string;
+    subclassMarker: 'AcDbDimStyleTableRecord';
+};
 

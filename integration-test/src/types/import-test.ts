@@ -36,6 +36,8 @@ import {
   RenderMode,
   UCSPerViewport,
   OrthographicType,
+  MLineFlags,
+  MLineJustification,
   DefaultLightingType,
   // ENTITY
   ShadowMode,
@@ -106,6 +108,9 @@ import type {
   LWPolylineEntity,
   LWPolylineVertex,
   MeshEntity,
+  MLineEntity,
+  MLineSegment,
+  MLineElement,
   MTextEntity,
   MultiLeaderEntity,
   MultiLeaderLeaderSection,

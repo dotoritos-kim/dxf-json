@@ -1,175 +1,263 @@
-import * as helpers from '../../ParseHelpers';
-import { parsePoint } from '../../shared/parsePoint';
-import { ensurePoint3D } from '../../../utils';
-import type { CommonDxfEntity } from '../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import {
+    createParser,
+    DXFParserSnippet,
+    Identity,
+    PointParser,
+    ToBoolean,
+} from '../../shared/parserGenerator';
+import { CommonEntitySnippets } from '../shared';
 import type { ViewportEntity } from './types';
+
+const ViewportParserSnippets: DXFParserSnippet[] = [
+    {
+        code: [335, 343, 344, 91],
+        name: 'softPointers',
+        isMultiple: true,
+        parser: Identity,
+    },
+    {
+        code: 361,
+        name: 'sunId',
+        parser: Identity,
+    },
+    {
+        code: 431,
+        name: 'ambientLightColorName',
+        parser: Identity,
+    },
+    {
+        code: 421,
+        name: 'ambientLightColorInstance',
+        parser: Identity,
+    },
+    {
+        code: 63,
+        name: 'ambientLightColorIndex',
+        parser: Identity,
+    },
+    {
+        code: 142,
+        name: 'contrast',
+        parser: Identity,
+    },
+    {
+        code: 141,
+        name: 'brightness',
+        parser: Identity,
+    },
+    {
+        code: 282,
+        name: 'defaultLightingType',
+        parser: Identity,
+    },
+    {
+        code: 292,
+        name: 'isDefaultLighting',
+        parser: ToBoolean
+    },
+    {
+        code: 348,
+        name: 'visualStyleId',
+        parser: Identity,
+    },
+    {
+        code: 333,
+        name: 'shadePlotId',
+        parser: Identity,
+    },
+    {
+        code: 332,
+        name: 'backgroundId',
+        parser: Identity,
+    },
+    {
+        code: 61,
+        name: 'majorGridFrequency',
+        parser: Identity,
+    },
+    {
+        code: 170,
+        name: 'shadePlotMode',
+        parser: Identity,
+    },
+    {
+        code: 146,
+        name: 'elevation',
+        parser: Identity,
+    },
+    {
+        code: 79,
+        name: 'orthographicType',
+        parser: Identity,
+    },
+    {
+        code: 346,
+        name: 'ucsBaseId',
+        parser: Identity,
+    },
+    {
+        code: 345,
+        name: 'ucsId',
+        parser: Identity,
+    },
+    {
+        code: 112,
+        name: 'ucsYAxis',
+        parser: PointParser,
+    },
+    {
+        code: 111,
+        name: 'ucsXAxis',
+        parser: PointParser,
+    },
+    {
+        code: 110,
+        name: 'ucsOrigin',
+        parser: PointParser,
+    },
+    {
+        code: 74,
+        name: 'iconFlag',
+        parser: Identity,
+    },
+    {
+        code: 71,
+        name: 'ucsPerViewport',
+        parser: Identity,
+    },
+    {
+        code: 281,
+        name: 'renderMode',
+        parser: Identity,
+    },
+    {
+        code: 1,
+        name: 'sheetName',
+        parser: Identity,
+    },
+    {
+        code: 340,
+        name: 'clippingBoundaryId',
+        parser: Identity,
+    },
+    {
+        code: 90,
+        name: 'statusBitFlags',
+        parser: Identity,
+    },
+    {
+        code: 331,
+        name: 'frozenLayerIds',
+        isMultiple: true,
+        parser: Identity,
+    },
+    {
+        code: 72,
+        name: 'circleZoomPercent',
+        parser: Identity,
+    },
+    {
+        code: 51,
+        name: 'viewTwistAngle',
+        parser: Identity,
+    },
+    {
+        code: 50,
+        name: 'snapAngle',
+        parser: Identity,
+    },
+    {
+        code: 45,
+        name: 'viewHeight',
+        parser: Identity,
+    },
+    {
+        code: 44,
+        name: 'backClipZ',
+        parser: Identity,
+    },
+    {
+        code: 43,
+        name: 'frontClipZ',
+        parser: Identity,
+    },
+    {
+        code: 42,
+        name: 'perspectiveLensLength',
+        parser: Identity,
+    },
+    {
+        code: 17,
+        name: 'targetPoint',
+        parser: PointParser,
+    },
+    {
+        code: 16,
+        name: 'viewDirection',
+        parser: PointParser,
+    },
+    {
+        code: 15,
+        name: 'gridSpacing',
+        parser: PointParser,
+    },
+    {
+        code: 14,
+        name: 'snapSpacing',
+        parser: PointParser,
+    },
+    {
+        code: 13,
+        name: 'snapBase',
+        parser: PointParser,
+    },
+    {
+        code: 12,
+        name: 'displayCenter',
+        parser: PointParser,
+    },
+    {
+        code: 69,
+        name: 'viewportId',
+        parser: Identity,
+    },
+    {
+        code: 68,
+        name: 'status',
+        parser: Identity,
+    },
+    {
+        code: 41,
+        name: 'height',
+        parser: Identity,
+    },
+    {
+        code: 40,
+        name: 'width',
+        parser: Identity,
+    },
+    {
+        code: 10,
+        name: 'viewportCenter',
+        parser: PointParser,
+    },
+    {
+        code: 100,
+        name: 'subclassMarker',
+        parser: Identity,
+        pushContext: true,
+    },
+    ...CommonEntitySnippets,
+]
 
 export class ViewportParser {
     static ForEntityName = 'VIEWPORT';
 
-    parseEntity(scanner: any, curr: any) {
+    parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup): ViewportEntity {
         const entity = {} as ViewportEntity;
-
-        while (curr !== 'EOF') {
-            if (curr.code === 0) {
-                scanner.rewind();
-                return entity;
-            }
-
-            if (!parseViewport(entity, scanner, curr)) {
-                helpers.checkCommonEntityProperties(entity as CommonDxfEntity, curr, scanner);
-            }
-            curr = scanner.next();
-        }
-
+        const parser = createParser(ViewportParserSnippets);
+        parser(curr, scanner, entity);
         return entity;
     }
-}
-
-function parseViewport(entity: ViewportEntity, scanner: any, curr: any) {
-    if (curr === 'EOF') return false;
-
-    switch (curr.code) {
-        case 0:
-            return false;
-        case 100:
-            entity.subclassMarker = curr.value;
-            break;
-        case 10:
-            entity.viewportCenter = ensurePoint3D(parsePoint(scanner));
-            break;
-        case 40:
-            entity.width = curr.value;
-            break;
-        case 41:
-            entity.height = curr.value;
-            break;
-        case 68:
-            entity.status = curr.value;
-            break;
-        case 69:
-            entity.viewportId = curr.value;
-            break;
-        case 12:
-            entity.displayCenter = parsePoint(scanner);
-            break;
-        case 13:
-            entity.snapBase = parsePoint(scanner);
-            break;
-        case 14:
-            entity.snapSpacing = parsePoint(scanner);
-            break;
-        case 15:
-            entity.gridSpacing = parsePoint(scanner);
-            break;
-        case 16:
-            entity.viewDirection = ensurePoint3D(parsePoint(scanner));
-            break;
-        case 17:
-            entity.targetPoint = ensurePoint3D(parsePoint(scanner));
-            break;
-        case 42:
-            entity.perspectiveLensLength = curr.value;
-            break;
-        case 43:
-            entity.frontClipZ = curr.value;
-            break;
-        case 44:
-            entity.backClipZ = curr.value;
-            break;
-        case 45:
-            entity.viewHeight = curr.value;
-            break;
-        case 50:
-            entity.snapAngle = curr.value;
-            break;
-        case 51:
-            entity.viewTwistAngle = curr.value;
-            break;
-        case 72:
-            entity.circleZoomPercent = curr.value;
-            break;
-        case 331:
-            entity.frozenLayerIds ??= [];
-            entity.frozenLayerIds.push(curr.value);
-            break;
-        case 90:
-            entity.statusBitFlags = curr.value;
-            break;
-        case 340:
-            entity.clippingBoundaryId = curr.value;
-            break;
-        case 1:
-            entity.sheetName = curr.value;
-            break;
-        case 281:
-            entity.renderMode = curr.value;
-            break;
-        case 71:
-            entity.ucsPerViewport = curr.value;
-            break;
-        case 110:
-            entity.ucsOrigin = ensurePoint3D(parsePoint(scanner));
-            break;
-        case 111:
-            entity.ucsXAxis = ensurePoint3D(parsePoint(scanner));
-            break;
-        case 112:
-            entity.ucsYAxis = ensurePoint3D(parsePoint(scanner));
-            break;
-        case 345:
-            entity.ucsId = curr.value;
-            break;
-        case 346:
-            entity.ucsBaseId = curr.value;
-            break;
-        case 79:
-            entity.orthographicType = curr.value;
-            break;
-        case 146:
-            entity.elevation = curr.value;
-            break;
-        case 170:
-            entity.shadePlotMode = curr.value;
-            break;
-        case 61:
-            entity.majorGridFrequency = curr.value;
-            break;
-        case 332:
-            entity.backgroundId = curr.value;
-            break;
-        case 333:
-            entity.shadePlotId = curr.value;
-            break;
-        case 348:
-            entity.visualStyleId = curr.value;
-            break;
-        case 292:
-            entity.isDefaultLighting = !!curr.value;
-            break;
-        case 282:
-            entity.defaultLightingType = curr.value;
-            break;
-        case 141:
-            entity.brightness = curr.value;
-            break;
-        case 142:
-            entity.contrast = curr.value;
-            break;
-        case 63: // 타입이 조금씩 다름 셋 중 하나로 표현된다는 뜻인듯
-        case 421:
-        case 431:
-            entity.ambientLightColor = curr.value;
-            break;
-        case 361:
-            entity.sunId = curr.value;
-            break;
-        case 335:
-        case 343:
-        case 344:
-        case 91:
-            entity.softPointer = curr.value;
-            break;
-    }
-    return true;
 }

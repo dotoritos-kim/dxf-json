@@ -33,9 +33,10 @@ export enum RenderMode {
     GOURAUD_SHADED_WITH_WIREFRAME = 6,
 }
 
-// viewport가 개별 ucs를 가지고 있는지 여부
 export enum UCSPerViewport {
+    /** The UCS will not change when this viewport becomes active. */
     UCS_UNCHANGED = 0,
+    /** This viewport stores its own UCS which will become the current UCS whenever the viewport is activated */
     HAS_OWN_UCS = 1,
 }
 
