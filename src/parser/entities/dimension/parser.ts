@@ -109,6 +109,7 @@ function getSnippetForType(subclassMarker: string): DXFParser | null {
         case 'AcDbAlignedDimension':
             return createParser(AlignedDimensionSnippets)
         case 'AcDb3PointAngularDimension':
+        case 'AcDb2LineAngularDimension':
             return createParser(AngularDimensionSnippets)
         case 'AcDbOrdinateDimension':
             return createParser(OrdinateDimensionSnippets)
