@@ -4,6 +4,7 @@ export * from './dictionary'
 export * from './layout'
 export * from './plotSettings'
 export * from './spatial_filter'
+export * from './xrecord'
 
 import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
 import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
