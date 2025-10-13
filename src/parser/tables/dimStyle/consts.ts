@@ -424,6 +424,12 @@ export const DimStyleVariablesSchema = [
         name: 'DIMBLK2',
         code: 344,
     },
+    // Sets the linetype of the dimension line.
+    {
+        name: 'DIMLTYPE',
+        code: 345,
+        defaultValue: '',
+    },
     // Sets the linetype of the first extension line.
     {
         name: 'DIMLTEX1',
