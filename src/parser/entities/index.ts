@@ -14,7 +14,9 @@ export * from "./leader";
 export * from "./line";
 export * from "./lwpolyline";
 export * from './mesh'
+export * from './mline'
 export * from "./mtext";
+export * from "./multileader";
 export * from "./point";
 export * from "./polyline";
 export * from "./ray";
@@ -51,6 +53,7 @@ import { LWPolylineParser } from "./lwpolyline";
 import { MeshEntityParser } from "./mesh";
 import { MLineEntityParser } from "./mline";
 import { MTextEntityParser } from "./mtext";
+import { MultiLeaderEntityParser } from "./multileader";
 import { PointEntityParser } from "./point";
 import { PolylineParser } from "./polyline";
 import { RayParser } from "./ray";
@@ -67,8 +70,6 @@ import { ViewportParser } from "./viewport";
 import { WipeoutEntityParser } from "./wipeout";
 import { XLineEntityParser } from "./xline";
 import { CommonDxfEntity } from "./shared";
-
-import { MultiLeaderEntityParser } from "./multileader";
 
 const Parsers = Object.fromEntries(
 	[
