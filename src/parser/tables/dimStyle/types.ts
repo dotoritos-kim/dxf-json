@@ -34,6 +34,7 @@ export type DimStyleVariable =
     | 'DIMLFAC'
     | 'DIMLTEX1'
     | 'DIMLTEX2'
+    | 'DIMLTYPE'
     | 'DIMTVP'
     | 'DIMTFAC'
     | 'DIMGAP'
@@ -176,6 +177,12 @@ export type DimStyleVariables = {
      */
     DIMFXLON: 0 | 1;
     DIMLUNIT: number;
+    /**
+     * Sets the linetype of the dimension line. The value is `BYLAYER`, `BYBLOCK`, or the name of a linetype.
+     * 
+     * @see https://help.autodesk.com/view/ACD/2024/ENU/?guid=GUID-08054AEC-6DB4-4E69-B992-C6D8FC0021EC
+     */
+    DIMLTYPE: string;
     DIMDSEP: string;
     DIMTMOVE: number;
     DIMJUST: DimensionTextHorizontal;
