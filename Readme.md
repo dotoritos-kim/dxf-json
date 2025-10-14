@@ -68,6 +68,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [x] 3DSOLID
   - [ ] ACAD_PROXY_ENTITY
   - [x] ARC
+  - [x] ARC_DIMENSION
   - [x] ATTDEF
   - [x] ATTRIB
   - [x] BODY
