@@ -1,4 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, test } from 'vitest';
+import { readFileSync } from 'fs'
+import { join } from 'path'
 import { DxfArrayScanner } from '../DxfArrayScanner';
 import { parseEntities } from '.';
 
@@ -136,4 +138,16 @@ EOF`.split('\n')
             })
         })
     });
+
+    test('tc0', () => {  
+      const content = readFileSync(join(__dirname, './tc0.partial_dxf'), 'utf-8');
+      const scanner = new DxfArrayScanner(content.split('\n'));
+      let curr = scanner.next()
+      const entities = parseEntities(curr, scanner)
+
+      expect(entities[0]).toMatchObject({
+        proxyByte: 254,
+        proxyEntity: '2C080000470000000C0000001300000000000000880000001D000000000000000000F03F0000000000000000000000000000000000000000000000000000000000000000000000000000F03F0000000000000000000000000000000000000000000000000000000000000000000000000000F03F0000000000000000000000000000000000000000000000000000000000000000000000000000F03F0C00000016000000070000C30C00000017000000FDFFFFFF0C00000012000000FF7F000054000000200000000200000000000000000074400200000000A03E4000000000000000000000000000007440FEFFFFFFFF9F444000000000000000000000'
+      })
+    })
 });
