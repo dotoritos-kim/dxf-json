@@ -124,11 +124,10 @@ export interface AlignedDimensionEntity extends DimensionEntityCommon {
  * but directly at the object itself. In this case, object may have DimStyle fields.
  */
 export interface AngularDimensionEntity extends DimensionEntityCommon {
-    /** 
-     * There are two ways to represent angular dimension, but for some reason,
-     * AutoCAD uses only one subclass marker for angular dimension.
+    /**
+     * @note subclass marker doesn't related to 3-point or 4-point mode.
      */
-    subclassMarker: 'AcDb3PointAngularDimension';
+    subclassMarker: 'AcDb3PointAngularDimension' | 'AcDb2LineAngularDimension';
     /** 
      * Point defined by group code `(13, 23, 33)`. 
      * This is used to determine the first extension line.

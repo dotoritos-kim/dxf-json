@@ -7,8 +7,14 @@
   "module": "./dist/bundle.mjs",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    "import": "./dist/bundle.mjs",
-    "require": "./dist/bundle.cjs"
+    "import": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/bundle.mjs"
+    },
+    "require": {
+      "types": "./dist/types/index.d.ts",
+      "default": "./dist/bundle.cjs"
+    }
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc --project tsconfig.build.json && rollup --config",

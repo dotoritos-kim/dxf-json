@@ -308,6 +308,18 @@ export const DimStyleVariablesSchema = [
         code: 276,
         defaultValue: 0,
     },
+    // Sets the total length of the extension lines starting from the dimension line toward the dimension origin.
+    {
+        name: 'DIMFXL',
+        code: 49,
+        defaultValue: 1,
+    },
+    // Controls whether extension lines are set to a fixed length.
+    {
+        name: 'DIMFXLON',
+        code: 290,
+        defaultValue: 0,
+    },
     // Specifies units for all nonangular dimensions
     {
         name: 'DIMLUNIT',
@@ -411,6 +423,24 @@ export const DimStyleVariablesSchema = [
     {
         name: 'DIMBLK2',
         code: 344,
+    },
+    // Sets the linetype of the dimension line.
+    {
+        name: 'DIMLTYPE',
+        code: 345,
+        defaultValue: '',
+    },
+    // Sets the linetype of the first extension line.
+    {
+        name: 'DIMLTEX1',
+        code: 346,
+        defaultValue: '',
+    },
+    // Sets the linetype of the second extension line.
+    {
+        name: 'DIMLTEX2',
+        code: 347,
+        defaultValue: '',
     },
     // Lineweight value for dimension lines
     {

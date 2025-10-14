@@ -80,6 +80,44 @@ describe('DIMENSION', () => {
     })
   })
 
+  test('AcDb2LineAngularDimension', () => {
+    const content = readFileSync(join(__dirname, './angular-tc1.partial_dxf'), 'utf-8')
+    const scanner = new DxfArrayScanner(content.split('\n'))
+    const parser = new DimensionParser()
+
+    let curr = scanner.next() 
+    curr = scanner.next() // skip first line
+    const entity = parser.parseEntity(scanner, curr)
+    entity.type = 'DIMENSION'
+
+    expect(entity).toMatchObject<AngularDimensionEntity>({
+      type: 'DIMENSION',
+      subclassMarker: 'AcDb2LineAngularDimension',
+      handle: '2C3',
+      ownerBlockRecordSoftId: '1F',
+      layer: '0',
+      version: 0,
+      name: '*D2',
+      definitionPoint: { x: 0, y: 0, z: 0 },
+      textPoint: { x: 50, y: 20, z: 0 },
+      dimensionType: 34,
+      attachmentPoint: AttachmentPoint.MiddleCenter,
+      measurement: 1,
+      styleName: 'ISO-25',
+      subDefinitionPoint1: { x: 0, y: 0, z: 0 },
+      subDefinitionPoint2: { x: 50, y: 0, z: 0 },
+      centerPoint: { x: 50, y: 50, z: 0 },
+      arcPoint: { x: 48, y: 12, z: 0 },
+      DIMTIH: 0,
+      DIMTOH: 0,
+      DIMSE1: 0,
+      extensions: {
+        ACAD_XDICTIONARY: [{ code: 360, value: '2D1' }],
+        ACAD_REACTORS: [{ code: 330, value: '2DB' }]
+      }
+    })
+  })
+
   test('AcDbAlignedDimension - Aligned', () => {
     const content = readFileSync(join(__dirname, './aligned.partial_dxf'), 'utf-8')
     const scanner = new DxfArrayScanner(content.split('\n'))
