@@ -40,6 +40,7 @@ import {
   MLineJustification,
   DefaultLightingType,
   // ENTITY
+  ArcSymbolType,
   ShadowMode,
   AttributeFlag,
   AttDefMTextFlag,
@@ -78,6 +79,7 @@ import type {
   // ENTITY
   CommonDxfEntity,
   ArcEntity,
+  ArcDimensionEntity,
   AttdefEntity,
   AttributeEntity,
   BodyEntity,

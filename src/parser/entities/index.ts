@@ -1,5 +1,6 @@
 
 export * from "./arc";
+export * from './arc_dimension';
 export * from "./attdef";
 export * from './attribute'
 export * from "./body";
@@ -38,6 +39,7 @@ import { ensureHandle, isMatched } from "../shared";
 
 
 import { ArcEntityParser } from "./arc";
+import { ArcDimensionParser } from "./arc_dimension";
 import { AttDefEntityParser } from "./attdef";
 import { AttributeEntityParser } from "./attribute";
 import { BodyEntityParser } from "./body";
@@ -74,6 +76,7 @@ import { CommonDxfEntity } from "./shared";
 const Parsers = Object.fromEntries(
 	[
 		ArcEntityParser,
+    ArcDimensionParser,
 		AttDefEntityParser,
 		AttributeEntityParser,
 		BodyEntityParser,
