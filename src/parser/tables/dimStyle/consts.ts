@@ -17,6 +17,7 @@ export const DimStyleVariablesSchema = [
     {
         name: 'DIMAPOST',
         code: 4,
+        defaultValue: '',
     },
     {
         name: 'DIMBLK_OBSOLETE',
@@ -87,61 +88,28 @@ export const DimStyleVariablesSchema = [
         code: 48,
         defaultValue: 0,
     },
-    // Size of dimension text
+    // Sets the total length of the extension lines starting from the dimension line toward the dimension origin.
     {
-        name: 'DIMTXT',
-        code: 140,
-        defaultValue: 2.5,
-        defaultValueImperial: 0.28,
-    },
-    // Controls placement of center marks or centerlines
-    {
-        name: 'DIMCEN',
-        code: 141,
-        defaultValue: 2.5,
-        defaultValueImperial: 0.09,
-    },
-    // Controls size of dimension line tick marks drawn instead of arrowheads
-    {
-        name: 'DIMTSZ',
-        code: 142,
-        defaultValue: 0,
-    },
-    // Alternate units dimension scale factor
-    {
-        name: 'DIMALTF',
-        code: 143,
-        defaultValue: 25.4,
-    },
-    // Scale factor for linear dimension values
-    {
-        name: 'DIMLFAC',
-        code: 144,
+        name: 'DIMFXL',
+        code: 49,
         defaultValue: 1,
     },
-    // Vertical position of text above or below dimension line if dimtad is 0
+    // Determines the angle of the transverse segment of the dimension line in a jogged radius dimension.
     {
-        name: 'DIMTVP',
-        code: 145,
+        name: 'DIMJOGANG',
+        code: 50,
+        defaultValue: 45,
+    },
+    // Controls the background of dimension text.
+    {
+        name: 'DIMTFILL',
+        code: 69,
         defaultValue: 0,
     },
-    // Scale factor for fractional or tolerance text size
+    // Sets the color for the text background in dimensions.
     {
-        name: 'DIMTFAC',
-        code: 146,
-        defaultValue: 1,
-    },
-    // Gap size between dimension line and dimension text
-    {
-        name: 'DIMGAP',
-        code: 147,
-        defaultValue: 0.625,
-        defaultValueImperial: 0.09,
-    },
-    // Rounding value for alternate dimension units
-    {
-        name: 'DIMALTRND',
-        code: 148,
+        name: 'DIMTFILLCLR',
+        code: 70,
         defaultValue: 0,
     },
     // Toggles creation of appended tolerance dimensions
@@ -203,6 +171,69 @@ export const DimStyleVariablesSchema = [
         code: 79,
         defaultValue: DimensionZeroSuppressionAngular.None,
     },
+    // Controls display of the arc symbol in an arc length dimension.
+    {
+        name: 'DIMARCSYM',
+        code: 90,
+        defaultValue: 0,
+    },
+    // Size of dimension text
+    {
+        name: 'DIMTXT',
+        code: 140,
+        defaultValue: 2.5,
+        defaultValueImperial: 0.28,
+    },
+    // Controls placement of center marks or centerlines
+    {
+        name: 'DIMCEN',
+        code: 141,
+        defaultValue: 2.5,
+        defaultValueImperial: 0.09,
+    },
+    // Controls size of dimension line tick marks drawn instead of arrowheads
+    {
+        name: 'DIMTSZ',
+        code: 142,
+        defaultValue: 0,
+    },
+    // Alternate units dimension scale factor
+    {
+        name: 'DIMALTF',
+        code: 143,
+        defaultValue: 25.4,
+    },
+    // Scale factor for linear dimension values
+    {
+        name: 'DIMLFAC',
+        code: 144,
+        defaultValue: 1,
+    },
+    // Vertical position of text above or below dimension line if dimtad is 0
+    {
+        name: 'DIMTVP',
+        code: 145,
+        defaultValue: 0,
+    },
+    // Scale factor for fractional or tolerance text size
+    {
+        name: 'DIMTFAC',
+        code: 146,
+        defaultValue: 1,
+    },
+    // Gap size between dimension line and dimension text
+    {
+        name: 'DIMGAP',
+        code: 147,
+        defaultValue: 0.625,
+        defaultValueImperial: 0.09,
+    },
+    // Rounding value for alternate dimension units
+    {
+        name: 'DIMALTRND',
+        code: 148,
+        defaultValue: 0,
+    },
     // Enables or disables alternate units dimensioning
     {
         name: 'DIMALT',
@@ -263,6 +294,7 @@ export const DimStyleVariablesSchema = [
     {
         name: 'DIMADEC',
         code: 179,
+        defaultValue: 0,
     },
     // Obsolete, now use DIMLUNIT AND DIMFRAC
     {
@@ -293,8 +325,8 @@ export const DimStyleVariablesSchema = [
     {
         name: 'DIMALTTD',
         code: 274,
-        defaultValue: 2,
-        defaultValueImperial: 4,
+        defaultValue: 3,
+        defaultValueImperial: 2,
     },
     // Unit format for angular dimension values
     {
@@ -308,18 +340,6 @@ export const DimStyleVariablesSchema = [
         code: 276,
         defaultValue: 0,
     },
-    // Sets the total length of the extension lines starting from the dimension line toward the dimension origin.
-    {
-        name: 'DIMFXL',
-        code: 49,
-        defaultValue: 1,
-    },
-    // Controls whether extension lines are set to a fixed length.
-    {
-        name: 'DIMFXLON',
-        code: 290,
-        defaultValue: 0,
-    },
     // Specifies units for all nonangular dimensions
     {
         name: 'DIMLUNIT',
@@ -330,8 +350,8 @@ export const DimStyleVariablesSchema = [
     {
         name: 'DIMDSEP',
         code: 278,
-        defaultValue: ',',
-        defaultValueImperial: '.',
+        defaultValue: 44,
+        defaultValueImperial: 46,
     },
     // Controls the format of dimension text when it is moved
     {
@@ -399,30 +419,47 @@ export const DimStyleVariablesSchema = [
         code: 289,
         defaultValue: 3,
     },
+    // Controls whether extension lines are set to a fixed length.
+    {
+        name: 'DIMFXLON',
+        code: 290,
+        defaultValue: 0,
+    },
+    // Specifies the reading direction of the dimension text.
+    {
+        name: 'DIMTXTDIRECTION',
+        code: 294,
+        defaultValue: 0,
+    },
     // Text style used for dimension text by name
     {
         name: 'DIMTXSTY',
         code: 340,
+        defaultValue: 'Standard',
     },
     // Specify arrowhead used for leaders by name
     {
         name: 'DIMLDRBLK',
         code: 341,
+        defaultValue: '',
     },
     // Block type to use for both arrowheads, handle of referenced block
     {
         name: 'DIMBLK',
         code: 342,
+        defaultValue: '',
     },
     // Block type to use for first arrowhead, handle of referenced block
     {
         name: 'DIMBLK1',
         code: 343,
+        defaultValue: '',
     },
     // Block type to use for first arrowhead, handle of referenced block
     {
         name: 'DIMBLK2',
         code: 344,
+        defaultValue: '',
     },
     // Sets the linetype of the dimension line.
     {
@@ -450,7 +487,7 @@ export const DimStyleVariablesSchema = [
     },
     // Lineweight value for extension lines
     {
-        name: 'DIMLWD',
+        name: 'DIMLWE',
         code: 372,
         defaultValue: -2,
     },
