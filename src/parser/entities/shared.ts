@@ -22,7 +22,25 @@ export interface CommonDxfEntity {
     /** @default 1 If not presented */
     lineTypeScale?: number;
     isVisible?: boolean;
+    /**
+     * Number of bytes in the proxy entity graphics represented in the sub-sequent `310` groups, 
+     * which are binary chunk records.
+     * 
+     * Parsed by group code `92` or `160`. Later one seems to be generated from 64-bit workstation.
+     * 
+     * @see https://ljh4timm.home.xs4all.nl/libdxf/doxygen/structdxf__mline__struct.html#a09e8e35e67156951f6437a63e1338081
+     */
     proxyByte?: number;
+    /**
+     * Arbitrary binary chunks with same representation and limits as 1004 group codes: 
+     * hexadecimal strings of up to 254 characters represent data chunks of up to 127 bytes
+     * 
+     * In `dxf-json`, these chunks are concatenated into a single string.
+     * 
+     * Parsed bygroup code `310`.
+     * 
+     * @see https://help.autodesk.com/view/OARX/2025/ENU/?guid=GUID-3F0380A5-1C15-464D-BC66-2C5F094BCFB9
+     */
     proxyEntity?: string;
     /** 
      * A 24-bit color value that should be dealt with in terms of bytes with values of 0 to 255.
@@ -96,10 +114,12 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
     {
         code: 310,
         name: 'proxyEntity',
-        parser: Identity,
+        isMultiple: true,
+        isReducible: true,
+        parser: (curr, _, entity) => (entity.proxyEntity ?? '') + curr.value,
     },
     {
-        code: 92,
+        code: [92, 160],
         name: 'proxyByte',
         parser: Identity,
     },
