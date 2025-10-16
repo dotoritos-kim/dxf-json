@@ -135,17 +135,13 @@ export class DxfStreamParser extends EventTarget {
 						} else {
 							if (this._currVarName) {
 								const name = this._currVarName;
-								// Preserve original key
-								this.dxf.header[name] = headerValue;
-								// Store normalized key variants together
-								const canonical = name.replace(/^\$+/, "");
+								// Store only canonical header key: "$" + uppercase(name without leading '$')
+								const canonical = name
+									.replace(/^\$+/, "")
+									.toUpperCase();
 								if (canonical) {
-									const upper = canonical.toUpperCase();
-									this.dxf.header[canonical] = headerValue; // no-dollar
 									this.dxf.header[`$${canonical}`] =
-										headerValue; // single-dollar
-									this.dxf.header[upper] = headerValue; // no-dollar + uppercase
-									this.dxf.header[`$${upper}`] = headerValue; // single-dollar + uppercase
+										headerValue;
 								}
 							}
 						}

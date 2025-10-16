@@ -13,19 +13,10 @@ export function parseHeader(curr: ScannerGroup, scanner: DxfArrayScanner) {
 
 	const setHeaderValue = (name: string | null, value: any) => {
 		if (!name) return;
-		// Preserve original key
-		header[name] = value;
-
-		// Strip leading '$' and add normalized uppercase variants
-		const canonical = name.replace(/^\$+/, "");
-		if (canonical) {
-			header[canonical] = value; // no-dollar
-			header[`$${canonical}`] = value; // single-dollar
-
-			const upper = canonical.toUpperCase();
-			header[upper] = value; // no-dollar + uppercase
-			header[`$${upper}`] = value; // single-dollar + uppercase
-		}
+		// Store only canonical header key: "$" + uppercase(name without leading '$')
+		const canonical = name.replace(/^\$+/, "").toUpperCase();
+		if (!canonical) return;
+		header[`$${canonical}`] = value;
 	};
 
 	while (!isMatched(curr, 0, "EOF")) {
