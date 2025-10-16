@@ -135,17 +135,17 @@ export class DxfStreamParser extends EventTarget {
 						} else {
 							if (this._currVarName) {
 								const name = this._currVarName;
-								// 원본 보존
+								// Preserve original key
 								this.dxf.header[name] = headerValue;
-								// 정규화된 키들 동시 저장
+								// Store normalized key variants together
 								const canonical = name.replace(/^\$+/, "");
 								if (canonical) {
 									const upper = canonical.toUpperCase();
-									this.dxf.header[canonical] = headerValue; // 무달러
+									this.dxf.header[canonical] = headerValue; // no-dollar
 									this.dxf.header[`$${canonical}`] =
-										headerValue; // 싱글달러
-									this.dxf.header[upper] = headerValue; // 무달러+대문자
-									this.dxf.header[`$${upper}`] = headerValue; // 싱글달러+대문자
+										headerValue; // single-dollar
+									this.dxf.header[upper] = headerValue; // no-dollar + uppercase
+									this.dxf.header[`$${upper}`] = headerValue; // single-dollar + uppercase
 								}
 							}
 						}

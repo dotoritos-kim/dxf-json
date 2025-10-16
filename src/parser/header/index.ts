@@ -2,7 +2,7 @@ import type { DxfArrayScanner, ScannerGroup } from "../DxfArrayScanner";
 import { parsePoint } from "../shared/parsePoint";
 import { isMatched } from "../shared";
 
-// scanner 위치는 읽히기 전이어야 함
+// Scanner must be positioned before reading
 export function parseHeader(curr: ScannerGroup, scanner: DxfArrayScanner) {
 	// interesting variables:
 	//  $ACADVER, $VIEWDIR, $VIEWSIZE, $VIEWCTR, $TDCREATE, $TDUPDATE
@@ -13,18 +13,18 @@ export function parseHeader(curr: ScannerGroup, scanner: DxfArrayScanner) {
 
 	const setHeaderValue = (name: string | null, value: any) => {
 		if (!name) return;
-		// 원본 그대로 보존
+		// Preserve original key
 		header[name] = value;
 
-		// 선행 $ 전부 제거 및 대문자 정규화
+		// Strip leading '$' and add normalized uppercase variants
 		const canonical = name.replace(/^\$+/, "");
 		if (canonical) {
-			header[canonical] = value; // 무달러
-			header[`$${canonical}`] = value; // 싱글달러
+			header[canonical] = value; // no-dollar
+			header[`$${canonical}`] = value; // single-dollar
 
 			const upper = canonical.toUpperCase();
-			header[upper] = value; // 무달러+대문자
-			header[`$${upper}`] = value; // 싱글달러+대문자
+			header[upper] = value; // no-dollar + uppercase
+			header[`$${upper}`] = value; // single-dollar + uppercase
 		}
 	};
 
