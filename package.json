@@ -58,15 +58,15 @@
     "@fxts/core": "^1.0.1"
   },
   "devDependencies": {
-    "@swc/core": "^1.3.107",
+    "@swc/core": "^1.13.5",
     "@types/readable-stream": "^4.0.10",
-    "@types/three": "^0.160.0",
+    "@types/three": "^0.180.0",
     "dependency-cruiser": "^17.0.0",
-    "rollup": "^4.9.6",
+    "rollup": "^4.52.5",
     "rollup-plugin-swc3": "^0.12.1",
     "typescript": "^5.3.3",
     "vite-node": "^3.2.4",
-    "vitest": "^3.2.4"
+    "vitest": "^4.0.3"
   },
   "files": [
     "dist"
