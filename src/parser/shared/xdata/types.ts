@@ -15,7 +15,4 @@ export interface XData {
   value: XDataEntry[];
 }
 
-export interface XDataEntry {
-  name?: string;
-  value: XDataEntry[] | number | string | Point3D;
-}
+export type XDataEntry = number | string | Point3D | XDataEntry[]
