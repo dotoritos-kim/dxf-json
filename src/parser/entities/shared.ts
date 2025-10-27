@@ -62,7 +62,7 @@ export interface CommonDxfEntity {
     plotStyleType?: PlotStyleType
     plotStyleHardId?: string;
     shadowMode?: ShadowMode;
-    xdata?: XData;
+    xdata?: XData[];
     /** 
      * Application specific extension by their application-name. 
      * As it differs by application, you have to parse by your own.

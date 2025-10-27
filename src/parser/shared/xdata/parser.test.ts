@@ -1,67 +1,84 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, test } from 'vitest';
+import { readFileSync } from 'fs'
+import { join } from 'path'
 import { DxfArrayScanner } from '../../DxfArrayScanner';
-import { parseXData } from './parser';
+import { XDataParserSnippets,  } from './parser';
+import { createParser } from '../parserGenerator';
+import type { XData } from './types';
 
 describe('xdata:parser', () => {
-    it('xdata entry를 순차적으로 파싱하여 배열로 반환해야 한다', () => {
-        const scanner = new DxfArrayScanner(
-            `1001
-ACAD
-1000
-DSTYLE
-1070
-171
-`.split('\n'),
-        );
-        const curr = scanner.next();
-        const result = parseXData(curr, scanner);
+    test('tc0', () => {
+        const content = readFileSync(join(__dirname, './tc0.partial_dxf'), 'utf-8')
+        const scanner = new DxfArrayScanner(content.split('\n'))
+        const parse = createParser(XDataParserSnippets)
 
-        expect(result.appName).toBe('ACAD');
-        expect(result.value.length).toBe(2);
-        expect(result.value[0].value).toBe('DSTYLE');
-        expect(result.value[1].value).toBe(171);
-    });
+        let curr = scanner.next() 
 
-    it('중첩된 xdata entry를 중첩된 배열로 반환해야 한다.', () => {
-        const scanner = new DxfArrayScanner(
-            `1001
-ACAD
-1000
-a
-1002
-{
-1000
-b
-1000
-c
-1002
-}
-1000
-d
-`.split('\n'),
-        );
-        const curr = scanner.next();
-        const result = parseXData(curr, scanner);
+        const placeholder = {} as any
 
-        expect(result.value).toMatchObject([
-            {
-                type: 'string',
-                value: 'a',
-            },
-            [
+        parse(curr, scanner, placeholder)
+        
+        expect(placeholder).toMatchObject<{ xdata: XData[] }>({
+            xdata: [
                 {
-                    type: 'string',
-                    value: 'b',
+                    appName: 'ACAD',
+                    value: [
+                        'DSTYLE',
+                        [
+                            288,
+                            1,
+                        ],
+                    ]
                 },
                 {
-                    type: 'string',
-                    value: 'c',
+                    appName: 'ACAD_DSTYLE_DIMRADIAL_EXTENSION',
+                    value: [
+                        387,
+                        1,
+                        388,
+                        0.0,
+                        390,
+                        0.0,
+                    ]
+                }
+            ]
+        })
+    })
+
+    test('tc1', () => {
+        const content = readFileSync(join(__dirname, './tc1.partial_dxf'), 'utf-8')
+        const scanner = new DxfArrayScanner(content.split('\n'))
+        const parse = createParser(XDataParserSnippets)
+
+        let curr = scanner.next() 
+
+        const placeholder = {} as any
+
+        parse(curr, scanner, placeholder)
+        
+        expect(placeholder).toMatchObject<{ xdata: XData[] }>({
+            xdata: [
+                {
+                    appName: 'ACAD',
+                    value: [
+                        'DSTYLE',
+                        [
+                            40,
+                            5.0,
+                            173,
+                            1,
+                            271,
+                            4,
+                            342,
+                            '0',
+                            343,
+                            '29E1C',
+                            344,
+                            '29E1C'
+                        ]
+                    ]
                 },
-            ],
-            {
-                type: 'string',
-                value: 'd',
-            },
-        ]);
-    });
+            ]
+        })
+    })
 });
