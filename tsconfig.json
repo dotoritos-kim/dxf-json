@@ -10,7 +10,8 @@
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "sourceMap": true
   },
   "include": ["./src/**/*", "./scripts/**/*"]
 }

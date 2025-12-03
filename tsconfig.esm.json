@@ -2,9 +2,9 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "declarationDir": "./dist/types",
-    "sourceMap": true,
-    "outDir": "./dist"
+    "declarationDir": "./dist/esm/types",
+    "module": "esnext",
+    "moduleResolution": "bundler"
   },
   "include": ["./src/**/*"],
   "exclude": ["**/*.test.ts"]

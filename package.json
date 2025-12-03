@@ -8,16 +8,16 @@
   "types": "./dist/types/index.d.ts",
   "exports": {
     "import": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/bundle.mjs"
+      "types": "./dist/esm/types/index.d.ts",
+      "default": "./dist/esm/bundle.mjs"
     },
     "require": {
-      "types": "./dist/types/index.d.ts",
-      "default": "./dist/bundle.cjs"
+      "types": "./dist/cjs/types/index.d.ts",
+      "default": "./dist/cjs/bundle.cjs"
     }
   },
   "scripts": {
-    "build": "rm -rf ./dist && tsc --project tsconfig.build.json && rollup --config",
+    "build": "rm -rf ./dist && tsc --project tsconfig.esm.json && tsc --project tsconfig.cjs.json && rollup --config",
     "test": "vitest run --config ./vite.config.ts && npm run typetest",
     "test-dev": "vitest --config ./vite.config.ts --silent=false",
     "analyze": "depcruise src --include-only \".*(types|index|consts).ts\" -T dot | dot -Grankdir=TD -Gsplines=ortho -T svg > dependency-graph.svg",
