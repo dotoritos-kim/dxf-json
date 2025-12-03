@@ -1,15 +1,15 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { MLineEntityParser } from './parser'
-import { MLineJustification } from './consts';
-import type { MLineEntity } from './types';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { MLineEntityParser } from './parser.ts'
+import { MLineJustification } from './consts.ts'
+import type { MLineEntity } from './types.ts'
 
 describe('MLineDXFEntity parser', () => {
   test('tc0', () => {
-    const content = readFileSync(join(__dirname, "./tc0.partial_dxf"), "utf-8");
-    const scanner = new DxfArrayScanner(content.split("\n"));
+    const content = readFileSync(join(__dirname, './tc0.partial_dxf'), 'utf-8')
+    const scanner = new DxfArrayScanner(content.split('\n'))
     const parseEntity = new MLineEntityParser()
 
     let curr = scanner.next()
@@ -47,8 +47,8 @@ describe('MLineDXFEntity parser', () => {
               parameterCount: 2,
               parameters: [-30, 0],
               fillCount: 0,
-            }
-          ]
+            },
+          ],
         },
         {
           position: { x: 40, y: 50, z: 0 },
@@ -64,8 +64,8 @@ describe('MLineDXFEntity parser', () => {
               parameterCount: 2,
               parameters: [-36, 0],
               fillCount: 0,
-            }
-          ]
+            },
+          ],
         },
         {
           position: { x: 100, y: 20, z: 0 },
@@ -81,8 +81,8 @@ describe('MLineDXFEntity parser', () => {
               parameterCount: 2,
               parameters: [-39, 0],
               fillCount: 0,
-            }
-          ]
+            },
+          ],
         },
         {
           position: { x: 130, y: 60, z: 0 },
@@ -98,10 +98,10 @@ describe('MLineDXFEntity parser', () => {
               parameterCount: 2,
               parameters: [-30, 0],
               fillCount: 0,
-            }
-          ]
-        }
-      ]
+            },
+          ],
+        },
+      ],
     })
   })
 })

@@ -1,28 +1,28 @@
-import { describe, test, expect } from 'vitest';
-import { readFileSync } from "fs";
-import { join } from "path";
-import { DxfArrayScanner } from "../../DxfArrayScanner";
-import { createParser } from "../../shared/parserGenerator";
-import { SpatialFilterSnippets } from "./parser";
-import type { SpatialFilterDXFObject } from "./types";
+import { describe, test, expect } from 'vitest'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { createParser } from '../../shared/parserGenerator.ts'
+import { SpatialFilterSnippets } from './parser.ts'
+import type { SpatialFilterDXFObject } from './types.ts'
 
-describe("SPATIAL_FILTER", () => {
-  test("tc0", () => {
-    const content = readFileSync(join(__dirname, "./tc0.partial_dxf"), "utf-8");
-    const scanner = new DxfArrayScanner(content.split("\n"));
-    const parser = createParser(SpatialFilterSnippets);
-    let curr = scanner.next();
-    curr = scanner.next(); // skip 0 code
+describe('SPATIAL_FILTER', () => {
+  test('tc0', () => {
+    const content = readFileSync(join(__dirname, './tc0.partial_dxf'), 'utf-8')
+    const scanner = new DxfArrayScanner(content.split('\n'))
+    const parser = createParser(SpatialFilterSnippets)
+    let curr = scanner.next()
+    curr = scanner.next() // skip 0 code
 
-    const obj = { name: 'SPATIAL_FILTER' } as any;
+    const obj = { name: 'SPATIAL_FILTER' } as any
 
-    const isReadOnce = parser(curr, scanner, obj);
+    const isReadOnce = parser(curr, scanner, obj)
 
     expect(obj).toMatchObject<SpatialFilterDXFObject>({
-      name: "SPATIAL_FILTER",
-      ownerObjectId: "9827",
-      subclassMarker: "AcDbSpatialFilter",
-      handle: "handle",
+      name: 'SPATIAL_FILTER',
+      ownerObjectId: '9827',
+      subclassMarker: 'AcDbSpatialFilter',
+      handle: 'handle',
       boundaryCount: 2,
       boundaryVertices: [
         { x: 1, y: 2 },
@@ -44,30 +44,28 @@ describe("SPATIAL_FILTER", () => {
         [20, 21, 22, 23],
       ],
       extensions: {
-        ACAD_REACTORS: [
-          { code: 330, value: "9827" }
-        ]
-      }
-    });
-    expect(isReadOnce).toBe(true);
-  });
+        ACAD_REACTORS: [{ code: 330, value: '9827' }],
+      },
+    })
+    expect(isReadOnce).toBe(true)
+  })
 
-  test("tc1", () => {
-    const content = readFileSync(join(__dirname, "./tc1.partial_dxf"), "utf-8");
-    const scanner = new DxfArrayScanner(content.split("\n"));
-    const parser = createParser(SpatialFilterSnippets);
-    let curr = scanner.next();
-    curr = scanner.next(); // skip 0 code
+  test('tc1', () => {
+    const content = readFileSync(join(__dirname, './tc1.partial_dxf'), 'utf-8')
+    const scanner = new DxfArrayScanner(content.split('\n'))
+    const parser = createParser(SpatialFilterSnippets)
+    let curr = scanner.next()
+    curr = scanner.next() // skip 0 code
 
-    const obj = { name: 'SPATIAL_FILTER' } as any;
+    const obj = { name: 'SPATIAL_FILTER' } as any
 
-    const isReadOnce = parser(curr, scanner, obj);
+    const isReadOnce = parser(curr, scanner, obj)
 
     expect(obj).toMatchObject<SpatialFilterDXFObject>({
-      name: "SPATIAL_FILTER",
-      subclassMarker: "AcDbSpatialFilter",
+      name: 'SPATIAL_FILTER',
+      subclassMarker: 'AcDbSpatialFilter',
       ownerObjectId: '9827',
-      handle: "handle",
+      handle: 'handle',
       boundaryCount: 2,
       boundaryVertices: [
         { x: 1, y: 2 },
@@ -91,14 +89,10 @@ describe("SPATIAL_FILTER", () => {
         [20, 21, 22, 23],
       ],
       extensions: {
-        ACAD_REACTORS: [
-          { code: 330, value: "9827" }
-        ],
-        ACAD_XDICTIONARY: [
-          { code: 360, value: "8738" }
-        ]
-      }
-    });
-    expect(isReadOnce).toBe(true);
-  });
-});
+        ACAD_REACTORS: [{ code: 330, value: '9827' }],
+        ACAD_XDICTIONARY: [{ code: 360, value: '8738' }],
+      },
+    })
+    expect(isReadOnce).toBe(true)
+  })
+})

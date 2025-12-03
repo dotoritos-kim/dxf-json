@@ -1,10 +1,15 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { ViewportParser } from './parser'
-import type { ViewportEntity } from './types';
-import { DefaultLightingType, OrthographicType, RenderMode, UCSPerViewport } from '../../..';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { ViewportParser } from './parser.ts'
+import type { ViewportEntity } from './types.ts'
+import {
+  DefaultLightingType,
+  OrthographicType,
+  RenderMode,
+  UCSPerViewport,
+} from '../../../consts/viewport.ts'
 
 describe('VIEWPORT', () => {
   test('subclassMarker', () => {
@@ -12,7 +17,7 @@ describe('VIEWPORT', () => {
     const scanner = new DxfArrayScanner(content.split('\n'))
     const parser = new ViewportParser()
 
-    let curr = scanner.next() 
+    let curr = scanner.next()
     curr = scanner.next() // skip first line
     const entity = parser.parseEntity(scanner, curr)
     entity.type = 'VIEWPORT'
@@ -59,7 +64,7 @@ describe('VIEWPORT', () => {
       defaultLightingType: DefaultLightingType.TWO_DISTANT_LIGHTS,
       brightness: 0,
       contrast: 0,
-      ambientLightColorIndex: 256
+      ambientLightColorIndex: 256,
     })
   })
 })

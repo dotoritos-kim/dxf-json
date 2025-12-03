@@ -1,4 +1,4 @@
-import type { ScannerGroup } from "../DxfArrayScanner";
+import type { ScannerGroup } from '../DxfArrayScanner.ts'
 
 /**
  * group이 `code`와 `value`를 갖는지 확인
@@ -6,5 +6,5 @@ import type { ScannerGroup } from "../DxfArrayScanner";
  */
 
 export function isMatched(group: ScannerGroup, code: number, value?: any) {
-    return group.code === code && (value == null || group.value === value);
+  return group.code === code && (value == null || group.value === value)
 }
