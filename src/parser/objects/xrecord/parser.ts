@@ -1,5 +1,5 @@
-import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator';
-import { CommonObjectSnippets } from '../shared';
+import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator.ts'
+import { CommonObjectSnippets } from '../shared.ts'
 
 /*
   XRECORD OBJECT has no fixed form.

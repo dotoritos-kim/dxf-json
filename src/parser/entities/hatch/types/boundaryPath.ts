@@ -1,5 +1,5 @@
-import type { Point2D } from '../../../../types';
-import type { BoundaryPathEdgeType } from '../../../../consts/hatch';
+import type { Point2D } from '../../../../types/shared.ts'
+import type { BoundaryPathEdgeType } from '../../../../consts/hatch.ts'
 
 interface BoundaryPathBase {
     boundaryPathTypeFlag: number; // bit combination of BoundaryPathTypeFlag

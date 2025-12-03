@@ -1,4 +1,4 @@
-import type { ScannerGroup } from "../DxfArrayScanner";
+import type { ScannerGroup } from '../DxfArrayScanner.ts';
 
 /**
  * group이 `code`와 `value`를 갖는지 확인

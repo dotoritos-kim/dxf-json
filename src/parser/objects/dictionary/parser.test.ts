@@ -1,10 +1,10 @@
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { describe, expect, test } from "vitest";
-import { DxfArrayScanner } from '../../DxfArrayScanner';
-import { createParser } from '../../shared/parserGenerator';
-import { DictionarySnippets } from './parser';
-import type { DictionaryDXFObject } from './types';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { createParser } from '../../shared/parserGenerator.ts'
+import { DictionarySnippets } from './parser.ts'
+import type { DictionaryDXFObject } from './types.ts'
 
 describe("DICTIONARY parser", () => {
     test('tc0', () => {

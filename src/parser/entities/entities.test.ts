@@ -1,8 +1,8 @@
-import { describe, it, expect, test } from 'vitest';
+import { describe, it, expect, test } from 'vitest'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../DxfArrayScanner';
-import { parseEntities } from '.';
+import { DxfArrayScanner } from '../DxfArrayScanner.ts'
+import { parseEntities } from './parser.ts'
 
 describe('ENTITIES section', () => {
     describe('parseEntities', () => {

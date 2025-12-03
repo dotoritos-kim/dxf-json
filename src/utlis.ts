@@ -1,4 +1,4 @@
-import type { Point2D, Point3D } from '../types'
+import type { Point2D, Point3D } from './types/shared.ts'
 
 export function classify<T>(
     iterable: Iterable<T>,

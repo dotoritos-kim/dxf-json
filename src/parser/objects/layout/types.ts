@@ -1,7 +1,7 @@
-import type { Point2D, Point3D } from "../../../types"
-import type { OrthographicType } from "../../../consts";
-import type { PlotSettingDXFObject } from "../plotSettings";
-import type { LayoutControlFlag } from "./consts";
+import type { Point2D, Point3D } from '../../../types/shared.ts'
+import type { OrthographicType } from '../../../consts/viewport.ts';
+import type { PlotSettingDXFObject } from '../plotSettings/types.ts';
+import type { LayoutControlFlag } from './consts.ts';
 
 
 export interface LayoutDXFObject

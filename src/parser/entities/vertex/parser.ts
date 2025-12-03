@@ -1,12 +1,12 @@
-import { generateIntegers } from '../../../utils';
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import { generateIntegers } from '../../../utlis.ts'
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
-import type { VertexEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets } from '../shared.ts'
+import type { VertexEntity } from './types.ts'
 
 const DefaultVertexEntity = {
     startWidth: 0,

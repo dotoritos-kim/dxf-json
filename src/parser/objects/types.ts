@@ -1,4 +1,4 @@
-import type { ScannerGroup } from "../DxfArrayScanner";
+import type { ScannerGroup } from '../DxfArrayScanner.ts';
 
 export interface CommonDXFObject {
     /** Similar to CommonDXFEntity['type']. They're in captial letter */

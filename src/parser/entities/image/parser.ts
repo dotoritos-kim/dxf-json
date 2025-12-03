@@ -1,13 +1,13 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { CommonEntitySnippets } from '../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { CommonEntitySnippets } from '../shared.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
     ToBoolean,
-} from '../../shared/parserGenerator';
-import type { ImageEntity } from './types'
+} from '../../shared/parserGenerator.ts';
+import type { ImageEntity } from './types.ts'
 
 const DefaultImageEntity = {
     brightness: 50,

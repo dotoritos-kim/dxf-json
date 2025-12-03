@@ -1,8 +1,8 @@
-import { BoundaryPathTypeFlag } from '../../../../consts';
-import type { DxfArrayScanner, ScannerGroup } from '../../../DxfArrayScanner';
-import { createParser } from '../../../shared/parserGenerator';
-import { EdgeBoundaryPathDataSnippets } from './edge';
-import { PolylineSnippets } from './polyline';
+import { BoundaryPathTypeFlag } from '../../../../consts/hatch.ts' 
+import type { DxfArrayScanner, ScannerGroup } from '../../../DxfArrayScanner.ts'
+import { createParser } from '../../../shared/parserGenerator.ts'
+import { EdgeBoundaryPathDataSnippets } from './edge.ts'
+import { PolylineSnippets } from './polyline.ts'
 
 export function parseBoundaryPathData(
     curr: ScannerGroup,

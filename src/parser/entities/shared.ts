@@ -1,13 +1,14 @@
-import type { ScannerGroup } from '../DxfArrayScanner'; 
-import { parseExtensions } from '../shared'; 
-import type { PlotStyleType } from '../../consts/plotStyleType';
-import type { ColorIndex, ColorInstance } from '../../types'
+import type { ScannerGroup } from '../DxfArrayScanner.ts' 
+import { parseExtensions } from '../shared/extensions/parser.ts' 
+import type { PlotStyleType } from '../../consts/plotStyleType.ts'
+import type { ColorIndex, ColorInstance } from '../../types/color.ts'
 import {
     type DXFParserSnippet,
     Identity,
     ToBoolean,
-} from '../shared/parserGenerator';
-import { type XData, XDataParserSnippets } from '../shared/xdata';
+} from '../shared/parserGenerator.ts';
+import { XDataParserSnippets } from '../shared/xdata/parser.ts'
+import type { XData } from '../shared/xdata/types.ts';
 
 export interface CommonDxfEntity {
     type: string;

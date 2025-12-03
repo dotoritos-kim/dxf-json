@@ -1,4 +1,5 @@
-import type { ColorCode, UndeterminedBlockColor } from '../consts';
+import type { ColorCode, UndeterminedBlockColor } from '../consts/color.ts'
+
 
 export type ColorIndex = ColorCode | number;
 

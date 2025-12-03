@@ -1,9 +1,9 @@
-import type { Point3D } from '../../../types';
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { isMatched } from '../isMatched';
-import { parsePoint } from '../parsePoint';
-import { DXFParserSnippet } from '../parserGenerator';
-import type { XData, XDataEntry } from './types';
+import type { Point3D } from '../../../types/shared.ts'
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { isMatched } from '../isMatched.ts'
+import { parsePoint } from '../parsePoint.ts'
+import { DXFParserSnippet } from '../parserGenerator.ts'
+import type { XData, XDataEntry } from './types.ts'
 
 export const XDataParserSnippets: DXFParserSnippet[] = [
     {

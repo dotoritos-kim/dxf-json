@@ -1,5 +1,5 @@
-import type { Point3D } from '../../../types';
-import type { TextEntity } from '../text';
+import type { Point3D } from '../../../types/shared.ts'
+import type { TextEntity } from '../text/types.ts'
 
 export interface AttdefEntity
     extends Omit<TextEntity, 'type' | 'subclassMarker'> {

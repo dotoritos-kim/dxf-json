@@ -2,8 +2,8 @@ import {
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import { PlotSettingsSnippets } from '../plotSettings';
+} from '../../shared/parserGenerator.ts';
+import { PlotSettingsSnippets } from '../plotSettings/parser.ts'
 
 // Snippet이 code별로 스택에 들어가기 때문에 일부로 역순으로 적음
 export const LayoutSnippets: DXFParserSnippet[] = [

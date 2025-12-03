@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import { DxfArrayScanner } from '../DxfArrayScanner';
-import { parseBlock, parseBlocks } from '.';
-import { isMatched } from '../shared';
+import { DxfArrayScanner } from '../DxfArrayScanner.ts'
+import { parseBlock, parseBlocks } from './parser.ts';
+import { isMatched } from '../shared/isMatched.ts';
 
 const content = ` 0
 BLOCK

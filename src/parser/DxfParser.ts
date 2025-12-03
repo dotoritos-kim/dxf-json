@@ -1,13 +1,13 @@
 
-import { DxfArrayScanner } from "./DxfArrayScanner";
-import { parseHeader } from "./header";
-import { parseTables } from "./tables";
-import { parseBlocks } from "./blocks";
-import { parseEntities } from "./entities";
-import { parseObjects } from "./objects";
-import { isMatched } from "./shared";
-import type { ParsedDxf } from "./types";
-import type { Readable } from "readable-stream";
+import { DxfArrayScanner } from './DxfArrayScanner.ts';
+import { parseHeader } from './header/parser.ts';
+import { parseTables } from './tables/parser.ts';
+import { parseBlocks } from './blocks/parser.ts';
+import { parseEntities } from './entities/parser.ts';
+import { parseObjects } from './objects/parser.ts';
+import { isMatched } from './shared/isMatched.ts';
+import type { ParsedDxf } from './types.ts';
+import type { Readable } from 'readable-stream';
 
 /** Options for {@link DxfParser} construction. */
 export class DxfParserOptions {

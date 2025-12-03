@@ -1,5 +1,5 @@
-import { DXFParserSnippet, Identity } from '../../shared/parserGenerator';
-import { CommonObjectSnippets } from '../shared';
+import { DXFParserSnippet, Identity } from '../../shared/parserGenerator.ts'
+import { CommonObjectSnippets } from '../shared.ts'
 
 export const PlotSettingsSnippets: DXFParserSnippet[] = [
     {

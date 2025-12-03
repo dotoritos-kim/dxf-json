@@ -1,5 +1,5 @@
-import type { Measurement } from '../consts';
-import type { DefaultDxfHeaderVariables } from '../consts/header';
+import type { Measurement } from '../consts/measurement.ts';
+import type { DefaultDxfHeaderVariables } from '../consts/header.ts'
 
 // 필요하면 추가
 export type DxfHeaderVariable =

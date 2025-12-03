@@ -1,6 +1,6 @@
-import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
-import { parsePoint } from '../shared/parsePoint';
-import { isMatched } from '../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner.ts'
+import { parsePoint } from '../shared/parsePoint.ts'
+import { isMatched } from '../shared/isMatched.ts'
 
 // scanner 위치는 읽히기 전이어야 함
 export function parseHeader(curr: ScannerGroup, scanner: DxfArrayScanner) {

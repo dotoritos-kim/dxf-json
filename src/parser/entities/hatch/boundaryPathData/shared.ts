@@ -1,4 +1,4 @@
-import { DXFParserSnippet, Identity } from '../../../shared/parserGenerator';
+import { DXFParserSnippet, Identity } from '../../../shared/parserGenerator.ts'
 
 export const CommonBoundaryPathDataSnippets: DXFParserSnippet[] = [
     {

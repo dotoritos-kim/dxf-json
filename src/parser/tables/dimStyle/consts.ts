@@ -4,8 +4,8 @@ import {
     DimensionToleranceTextVertical,
     DimensionZeroSuppression,
     DimensionZeroSuppressionAngular,
-} from '../../../consts';
-import type { DimStyleVariableSchema } from './types';
+} from '../../../consts/dimension.ts';
+import type { DimStyleVariableSchema } from './types.ts'
 
 export const DimStyleVariablesSchema = [
     // Prefix/suffix for primary units dimension values.

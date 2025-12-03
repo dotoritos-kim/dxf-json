@@ -1,5 +1,5 @@
-import type { ColorIndex, ColorInstance } from "../types/color";
-import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex';
+import type { ColorIndex, ColorInstance } from '../types/color.ts';
+import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex.ts'
 
 /**
  * Returns the truecolor value of the given AutoCad color index value

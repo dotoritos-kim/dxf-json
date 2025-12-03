@@ -1,11 +1,11 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from "fs";
 import { join } from "path";
-import { DxfArrayScanner } from "../../DxfArrayScanner";
-import { createParser } from "../../shared/parserGenerator";
-import { PlotSettingsSnippets } from './parser';
-import type { PlotSettingDXFObject } from './types';
-import { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from '../plotSettings/consts';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts';
+import { createParser } from '../../shared/parserGenerator.ts';
+import { PlotSettingsSnippets } from './parser.ts'
+import type { PlotSettingDXFObject } from './types.ts'
+import { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from '../plotSettings/consts.ts'
 
 describe("PLOTSETTINGS", () => {
   test("tc0", () => {

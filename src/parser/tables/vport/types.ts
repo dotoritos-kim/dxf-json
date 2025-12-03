@@ -2,9 +2,9 @@ import type {
     RenderMode,
     OrthographicType,
     DefaultLightingType,
-} from '../../../consts';
-import type { Point2D, Point3D } from '../../../types';
-import type { CommonDxfTableEntry } from '../types';
+} from '../../../consts/viewport.ts';
+import type { Point2D, Point3D } from '../../../types/shared.ts'
+import type { CommonDxfTableEntry } from '../types.ts'
 
 export interface VPortTableEntry extends CommonDxfTableEntry {
     subclassMarker: 'AcDbViewportTableRecord';

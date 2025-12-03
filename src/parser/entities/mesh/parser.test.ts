@@ -1,8 +1,8 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { MeshEntityParser } from "./parser"
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { MeshEntityParser } from './parser.ts'
 
 describe('MESH', () => {
   test('tc0', () => {

@@ -1,4 +1,4 @@
-import type { DxfArrayScanner } from './DxfArrayScanner';
+import type { DxfArrayScanner } from './DxfArrayScanner.ts'
 
 /** Some entities may contain embedded object which is started by group 101. All the rest data until
  * end of entity should not be interpreted as entity attributes. There is no documentation for this

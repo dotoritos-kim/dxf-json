@@ -1,4 +1,4 @@
-import type { CommonDxfTableEntry } from '../types';
+import type { CommonDxfTableEntry } from '../types.ts'
 
 export interface BlockRecordTableEntry extends CommonDxfTableEntry {
     subclassMarker: 'AcDbBlockTableRecord';

@@ -5,11 +5,11 @@ import type {
     HatchPatternType,
     HatchSolidFill,
     HatchStyle,
-} from '../../../../consts/hatch';
-import type { Point3D } from '../../../../types';
-import type { CommonDxfEntity } from '../../shared';
-import type { BoundaryPath } from './boundaryPath';
-import type { HatchDefinitionLine } from './definitionLine';
+} from '../../../../consts/hatch.ts';
+import type { Point3D } from '../../../../types/shared.ts'
+import type { CommonDxfEntity } from '../../shared.ts'
+import type { BoundaryPath } from './boundaryPath.ts'
+import type { HatchDefinitionLine } from './definitionLine.ts'
 
 interface HatchEntityBase extends CommonDxfEntity {
     type: 'HATCH';

@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { ViewportParser } from './parser'
-import type { ViewportEntity } from './types';
-import { DefaultLightingType, OrthographicType, RenderMode, UCSPerViewport } from '../../..';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { ViewportParser } from './parser.ts'
+import type { ViewportEntity } from './types.ts'
+import { DefaultLightingType, OrthographicType, RenderMode, UCSPerViewport } from '../../../consts/viewport.ts';
 
 describe('VIEWPORT', () => {
   test('subclassMarker', () => {

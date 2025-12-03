@@ -1,6 +1,6 @@
-import type { Point2D, Point3D } from '../../../types';
-import type { ImageClippingBoundaryType } from '../image';
-import type { CommonDxfEntity } from '../shared';
+import type { Point2D, Point3D } from '../../../types/shared.ts'
+import type { ImageClippingBoundaryType } from '../image/consts.ts'
+import type { CommonDxfEntity } from '../shared.ts'
 
 export interface WipeoutEntity extends CommonDxfEntity {
     type: 'WIPEOUT';

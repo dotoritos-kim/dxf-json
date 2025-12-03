@@ -1,14 +1,14 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { generateIntegers } from '../../../utils';
-import { skipEmbeddedObject } from '../../ParseHelpers';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { generateIntegers } from '../../../utlis.ts'
+import { skipEmbeddedObject } from '../../ParseHelpers.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets, createLongStringSnippet } from '../shared';
-import type { MTextEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets, createLongStringSnippet } from '../shared.ts'
+import type { MTextEntity } from './types.ts'
 
 const DefaultMTextEntity = {
     textStyle: 'STANDARD',

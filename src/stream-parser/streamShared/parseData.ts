@@ -1,5 +1,5 @@
-import type { ScannerGroup } from "../../parser/DxfArrayScanner";
-import type { Point3D } from '../../types';
+import type { ScannerGroup } from '../../parser/DxfArrayScanner.ts'
+import type { Point3D } from '../../types/shared.ts'
 
 
 

@@ -1,13 +1,13 @@
-import { BoundaryPathEdgeType } from '../../../../consts';
-import { parsePoint } from '../../../shared/parsePoint';
+import { BoundaryPathEdgeType } from '../../../../consts/hatch.ts'
+import { parsePoint } from '../../../shared/parsePoint.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
     ToBoolean,
-} from '../../../shared/parserGenerator';
-import { CommonBoundaryPathDataSnippets } from './shared';
+} from '../../../shared/parserGenerator.ts';
+import { CommonBoundaryPathDataSnippets } from './shared.ts'
 
 export const LineEdgeSnippets: DXFParserSnippet[] = [
     {

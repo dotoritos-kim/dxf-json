@@ -1,10 +1,10 @@
 import {
   parseGroupValue,
   type ScannerGroup,
-} from "../parser/DxfArrayScanner";
-import { isMatched } from "../parser/shared";
-import type { ParsedDxf } from "../parser/types";
-import { parsePoint } from "./streamShared/parseData";
+} from "../parser/DxfArrayScanner.ts";
+import { isMatched } from '../parser/shared/isMatched.ts';
+import type { ParsedDxf } from '../parser/types.ts';
+import { parsePoint } from './streamShared/parseData.ts';
 
 type ErrorOptions =
   | {

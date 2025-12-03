@@ -1,13 +1,13 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
-import { TextHorizontalAlign, TextVerticalAlign } from './consts';
-import type { TextEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets } from '../shared.ts'
+import { TextHorizontalAlign, TextVerticalAlign } from './consts.ts'
+import type { TextEntity } from './types.ts'
 
 export const DefaultTextEntity = {
     thickness: 0,

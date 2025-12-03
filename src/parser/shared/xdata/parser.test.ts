@@ -1,10 +1,10 @@
 import { describe, expect, test } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner';
-import { XDataParserSnippets,  } from './parser';
-import { createParser } from '../parserGenerator';
-import type { XData } from './types';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { XDataParserSnippets,  } from './parser.ts'
+import { createParser } from '../parserGenerator.ts'
+import type { XData } from './types.ts'
 
 describe('xdata:parser', () => {
     test('tc0', () => {

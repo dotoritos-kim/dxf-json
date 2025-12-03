@@ -7,9 +7,9 @@ import type {
     DimensionUnit,
     DimensionZeroSuppression,
     DimensionZeroSuppressionAngular,
-} from '../../../consts';
-import type { ArcSymbolType } from '../../entities/arc_dimension';
-import type { CommonDxfTableEntry } from '../types';
+} from '../../../consts/dimension.ts';
+import type { ArcSymbolType } from '../../entities/arc_dimension/consts.ts'
+import type { CommonDxfTableEntry } from '../types.ts'
 
 /**
  * Union of all possible dimension style variable names.

@@ -1,12 +1,12 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { CommonEntitySnippets } from '../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { CommonEntitySnippets } from '../shared.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import type { RayEntity } from './types'
+} from '../../shared/parserGenerator.ts';
+import type { RayEntity } from './types.ts'
 
 const RayEntityParserSnippets: DXFParserSnippet[] = [
     {

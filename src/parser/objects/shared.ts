@@ -1,5 +1,5 @@
-import { parseExtensions } from '../shared';
-import { DXFParserSnippet, Identity } from '../shared/parserGenerator';
+import { parseExtensions } from '../shared/extensions/parser.ts'
+import { DXFParserSnippet, Identity } from '../shared/parserGenerator.ts'
 
 export const CommonObjectSnippets: DXFParserSnippet[] = [
     {

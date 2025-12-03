@@ -1,7 +1,7 @@
-import type { Point3D } from '../../../types';
-import type { CommonDxfEntity } from '../shared';
-import type { VertexEntity } from '../vertex/types';
-import type { SmoothType } from './consts';
+import type { Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
+import type { VertexEntity } from '../vertex/types.ts'
+import type { SmoothType } from './consts.ts'
 
 export interface PolylineEntity extends CommonDxfEntity {
     type: 'POLYLINE';

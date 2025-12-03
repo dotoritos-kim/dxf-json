@@ -1,7 +1,7 @@
 import { describe, expect, test } from "vitest";
-import { InsertEntity, InsertEntityParser } from ".";
-import { DxfArrayScanner } from "../../DxfArrayScanner";
-import { PlotStyleType } from "../../..";
+import { InsertEntityParser } from "./parser.ts"; 
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts';
+import { PlotStyleType } from "../../../consts/plotStyleType.ts"; 
 
 describe("INSERT Entity", () => {
     test('tc0', () => {

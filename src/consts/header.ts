@@ -1,4 +1,4 @@
-import { ObscuredLineTypes } from './obscuredLineTypes';
+import { ObscuredLineTypes } from './obscuredLineTypes.ts'
 
 export const DefaultDxfHeaderVariables = {
     DRAGVS: 'NULL',

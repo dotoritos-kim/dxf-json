@@ -1,5 +1,5 @@
-import type { Point3D } from '../../types';
-import type { CommonDxfEntity } from '../entities/shared';
+import type { Point3D } from '../../types/shared.ts'
+import type { CommonDxfEntity } from '../entities/shared.ts'
 
 export interface DxfBlock {
     type: number; // bit flag of BlockTypeFlag

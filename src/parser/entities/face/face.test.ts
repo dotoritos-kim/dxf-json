@@ -1,8 +1,8 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from "fs"
 import { join } from "path"
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { FaceEntityParser } from "./parser"
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { FaceEntityParser } from './parser.ts'
 
 describe('3DFACE', () => {
     test('basic case', () => {

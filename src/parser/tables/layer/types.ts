@@ -1,5 +1,5 @@
-import type { ColorIndex } from '../../../types';
-import type { CommonDxfTableEntry } from '../types';
+import type { ColorIndex } from '../../../types/color.ts'
+import type { CommonDxfTableEntry } from '../types.ts'
 
 export interface LayerTableEntry extends CommonDxfTableEntry {
     subclassMarker: 'AcDbLayerTableRecord';

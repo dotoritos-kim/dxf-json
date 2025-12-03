@@ -1,6 +1,6 @@
-import type { ScannerGroup } from "../../DxfArrayScanner";
-import type { CommonDXFObject } from "../types";
-import type { RecordCloneFlag } from "../consts";
+import type { ScannerGroup } from '../../DxfArrayScanner.ts';
+import type { CommonDXFObject } from '../types.ts';
+import type { RecordCloneFlag } from '../consts.ts';
 
 export interface XRecordDXFObject extends CommonDXFObject {
   subclassMarker: "AcDbXrecord";

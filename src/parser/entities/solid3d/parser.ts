@@ -1,11 +1,11 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets, createLongStringSnippet } from '../shared';
-import type { Solid3DEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets, createLongStringSnippet } from '../shared.ts'
+import type { Solid3DEntity } from './types.ts'
 
 const SolidEntityParserSnippets: DXFParserSnippet[] = [
     {

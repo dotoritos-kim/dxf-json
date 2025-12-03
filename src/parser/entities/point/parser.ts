@@ -1,11 +1,11 @@
-import type { DxfArrayScanner, ScannerGroup } from "../../DxfArrayScanner";
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts';
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets } from '../shared.ts'
 
 const DefaultPointEntity = {
     thickness: 0,

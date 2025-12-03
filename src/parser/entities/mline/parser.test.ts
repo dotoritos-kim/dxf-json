@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { MLineEntityParser } from './parser'
-import { MLineJustification } from './consts';
-import type { MLineEntity } from './types';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { MLineEntityParser } from './parser.ts'
+import { MLineJustification } from './consts.ts'
+import type { MLineEntity } from './types.ts'
 
 describe('MLineDXFEntity parser', () => {
   test('tc0', () => {

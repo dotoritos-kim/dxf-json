@@ -1,17 +1,15 @@
-export type * from "./types";
-
-import type { DxfArrayScanner, ScannerGroup } from "../../DxfArrayScanner";
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts';
 import {
   createParser,
   DXFParserSnippet,
   Identity,
   PointParser,
   ToBoolean,
-} from "../../shared/parserGenerator";
-import { CommonEntitySnippets } from "../shared";
-import { parseBoundaryPathData } from "./boundaryPathData";
-import { parsePatternData } from "./patternData";
-import type { HatchEntity } from "./types";
+} from "../../shared/parserGenerator.ts";
+import { CommonEntitySnippets } from '../shared.ts';
+import { parseBoundaryPathData } from './boundaryPathData/parser.ts';
+import { parsePatternData } from './patternData.ts';
+import type { HatchEntity } from './types/hatch.ts';
 
 const DefaultHathEntity = {
   extrusionDirection: { x: 0, y: 0, z: 1 },

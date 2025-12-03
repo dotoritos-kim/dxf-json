@@ -1,8 +1,8 @@
-import { DimStyleVariablesSchema } from '../../tables/dimStyle';
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { Abort, DXFParser, DXFParserSnippet, Identity, PointParser, createParser } from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
-import type { DimensionEntity } from './types';
+import { DimStyleVariablesSchema } from '../../tables/dimStyle/consts.ts'
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { Abort, DXFParser, DXFParserSnippet, Identity, PointParser, createParser } from '../../shared/parserGenerator.ts'
+import { CommonEntitySnippets } from '../shared.ts'
+import type { DimensionEntity } from './types.ts'
 
 export const CommonDimensionSnippets: DXFParserSnippet[] = [
     {

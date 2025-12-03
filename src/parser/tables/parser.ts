@@ -1,17 +1,17 @@
-import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner.ts'
 import {
 	createParser,
 	DXFParserSnippet,
 	Identity,
-} from "../shared/parserGenerator";
-import { isMatched } from "../shared";
-import type { DxfTable } from "./types";
-import { parseBlockRecordTable } from "./blockRecord";
-import { parseDimStyle } from "./dimStyle";
-import { parseLayerTable } from "./layer";
-import { parseLTypeTable } from "./ltype";
-import { parseStyleTable } from "./style";
-import { parseVPortTable } from "./vport";
+} from '../shared/parserGenerator.ts';
+import { isMatched } from '../shared/isMatched.ts';
+import type { DxfTable } from './types.ts';
+import { parseBlockRecordTable } from './blockRecord/parser.ts';
+import { parseDimStyle } from './dimStyle/parser.ts';
+import { parseLayerTable } from './layer/parser.ts';
+import { parseLTypeTable } from './ltype/parser.ts';
+import { parseStyleTable } from './style/parser.ts';
+import { parseVPortTable } from './vport/parser.ts';
 
 const TableParsers = {
 	BLOCK_RECORD: parseBlockRecordTable,

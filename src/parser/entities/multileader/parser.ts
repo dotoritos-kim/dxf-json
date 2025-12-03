@@ -1,13 +1,13 @@
-import type { DxfArrayScanner, ScannerGroup } from "../../DxfArrayScanner";
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts';
 import {
 	createParser,
 	DXFParserSnippet,
 	Identity,
 	PointParser,
 	ToBoolean,
-} from "../../shared/parserGenerator";
-import { CommonEntitySnippets } from "../shared";
-import type { MultiLeaderEntity } from "./types";
+} from "../../shared/parserGenerator.ts";
+import { CommonEntitySnippets } from '../shared.ts';
+import type { MultiLeaderEntity } from './types.ts';
 
 const DefaultMultiLeaderEntity = {};
 

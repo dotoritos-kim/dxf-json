@@ -2,9 +2,9 @@ import {
     createParser,
     DXFParserSnippet,
     Identity,
-} from '../../shared/parserGenerator';
-import { DimStyleVariablesSchema } from './consts';
-import { CommonTableEntryParserSnippets } from '../shared';
+} from '../../shared/parserGenerator.ts';
+import { DimStyleVariablesSchema } from './consts.ts'
+import { CommonTableEntryParserSnippets } from '../shared.ts'
 
 const DimStyleTableParserSnippets: DXFParserSnippet[] = [
     ...DimStyleVariablesSchema.map((schema) => ({

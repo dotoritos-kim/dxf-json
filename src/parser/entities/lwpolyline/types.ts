@@ -1,5 +1,5 @@
-import type { Point2D, Point3D } from '../../../types';
-import type { CommonDxfEntity } from '../shared';
+import type { Point2D, Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
 
 export interface LWPolylineEntity extends CommonDxfEntity {
     type: 'LWPOLYLINE';

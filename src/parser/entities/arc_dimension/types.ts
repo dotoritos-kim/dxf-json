@@ -1,5 +1,5 @@
-import type { Point3D } from "../../../types";
-import type { DimensionEntityCommon } from "../dimension";
+import type { Point3D } from '../../../types/shared.ts';
+import type { DimensionEntityCommon } from '../dimension/types.ts';
 
 /**
  * `ARC_DIMENSION` was introduced in DXF R2004 and is not documented in DXF reference.

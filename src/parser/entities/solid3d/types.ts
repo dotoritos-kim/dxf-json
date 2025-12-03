@@ -1,4 +1,4 @@
-import type { CommonDxfEntity } from '../shared';
+import type { CommonDxfEntity } from '../shared.ts'
 
 export interface Solid3DEntity extends CommonDxfEntity {
     type: '3DSOLID';

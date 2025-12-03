@@ -1,9 +1,8 @@
-export type * from './types'
-
-import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
-import { parseEntities } from '../entities';
-import { parsePoint } from '../shared/parsePoint';
-import { ensureHandle, isMatched } from '../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner.ts'
+import { parseEntities } from '../entities/parser.ts';
+import { parsePoint } from '../shared/parsePoint.ts'
+import { ensureHandle } from '../shared/ensureHandle.ts'
+import { isMatched } from '../shared/isMatched.ts';
 
 export function parseBlocks(curr: ScannerGroup, scanner: DxfArrayScanner) {
     let blocks: any = {};

@@ -1,13 +1,13 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { generateIntegers } from '../../../utils';
-import { CommonEntitySnippets } from '../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { generateIntegers } from '../../../utlis.ts'
+import { CommonEntitySnippets } from '../shared.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import type { SolidEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import type { SolidEntity } from './types.ts'
 
 const DefaultSolidEntity = {
     points: [],

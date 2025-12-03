@@ -1,11 +1,11 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { createParser } from '../../shared/parserGenerator'
-import { XRecordDXFObjectSnippet } from './parser'
-import { RecordCloneFlag } from '../consts'
-import type { XRecordDXFObject } from './types';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { createParser } from '../../shared/parserGenerator.ts'
+import { XRecordDXFObjectSnippet } from './parser.ts'
+import { RecordCloneFlag } from '../consts.ts'
+import type { XRecordDXFObject } from './types.ts'
 
 describe('XRecordParser parser', () => {
   test('tc0', () => {

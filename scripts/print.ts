@@ -12,7 +12,7 @@ if (!inputPath.endsWith('.dxf')) {
 
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path';
-import { DxfParser } from '../src/parser/DxfParser'
+import { DxfParser } from '../src/parser/DxfParser.ts'
 
 const dirPath = inputPath.split('/').slice(0, -1).join('/');
 const projectRoot = join(__dirname, '..');

@@ -1,8 +1,8 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { DxfArrayScanner } from '../../DxfArrayScanner';
-import { parseExtensions } from "./parser";
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { parseExtensions } from './parser.ts';
 
 describe('parseExtensions', () => {
   test('tc0', () => {

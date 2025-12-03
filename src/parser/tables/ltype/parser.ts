@@ -2,9 +2,9 @@ import {
     createParser,
     DXFParserSnippet,
     Identity,
-} from '../../shared/parserGenerator';
-import { CommonTableEntryParserSnippets } from '../shared';
-import type { LineTypeElement } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonTableEntryParserSnippets } from '../shared.ts'
+import type { LineTypeElement } from './types.ts'
 
 const LTypeElementParserSnippets: DXFParserSnippet[] = [
     {

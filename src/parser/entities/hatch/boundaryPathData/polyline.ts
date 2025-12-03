@@ -1,10 +1,10 @@
-import { parsePoint } from '../../../shared/parsePoint';
+import { parsePoint } from '../../../shared/parsePoint.ts'
 import {
     type DXFParserSnippet,
     Identity,
     ToBoolean,
-} from '../../../shared/parserGenerator';
-import { CommonBoundaryPathDataSnippets } from './shared';
+} from '../../../shared/parserGenerator.ts';
+import { CommonBoundaryPathDataSnippets } from './shared.ts'
 
 export const PolylineSnippets: DXFParserSnippet[] = [
     ...CommonBoundaryPathDataSnippets,

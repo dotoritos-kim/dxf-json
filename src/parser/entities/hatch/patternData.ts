@@ -1,9 +1,9 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
-} from '../../shared/parserGenerator';
+} from '../../shared/parserGenerator.ts';
 
 const PatternDataSnippets: DXFParserSnippet[] = [
     {

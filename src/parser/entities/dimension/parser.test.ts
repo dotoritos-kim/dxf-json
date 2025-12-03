@@ -1,15 +1,15 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { AttachmentPoint } from '../../../consts/dimension';
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { DimensionParser } from './parser'
+import { AttachmentPoint } from '../../../consts/dimension.ts'
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { DimensionParser } from './parser.ts'
 import type { 
   AlignedDimensionEntity, 
   AngularDimensionEntity, 
   OrdinateDimensionEntity, 
   RadialDiameterDimensionEntity 
-} from './types';
+} from './types.ts';
 
 
 describe('DIMENSION', () => {

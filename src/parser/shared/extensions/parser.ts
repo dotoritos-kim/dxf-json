@@ -1,5 +1,5 @@
-import type { DxfArrayScanner, ScannerGroup } from "../../DxfArrayScanner";
-import { isMatched } from "../isMatched";
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts';
+import { isMatched } from '../isMatched.ts';
 
 /** @internal */
 export function parseExtensions(curr: ScannerGroup, scanner: DxfArrayScanner, entity: any) {

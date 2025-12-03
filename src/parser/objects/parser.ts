@@ -1,18 +1,10 @@
-export type * from './types'
-export * from './consts'
-export * from './dictionary'
-export * from './layout'
-export * from './plotSettings'
-export * from './spatial_filter'
-export * from './xrecord'
-
-import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
-import { createParser, DXFParserSnippet } from '../shared/parserGenerator';
-import { LayoutSnippets } from './layout';
-import { PlotSettingsSnippets } from './plotSettings';
-import { DictionarySnippets } from './dictionary'
-import { SpatialFilterSnippets } from './spatial_filter';
-import { classify } from '../../utils';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner.ts'
+import { createParser, DXFParserSnippet } from '../shared/parserGenerator.ts'
+import { LayoutSnippets } from './layout/parser.ts'
+import { PlotSettingsSnippets } from './plotSettings/parser.ts'
+import { DictionarySnippets } from './dictionary/parser.ts'
+import { SpatialFilterSnippets } from './spatial_filter/parser.ts'
+import { classify } from '../../utlis.ts'
 
 const ObjectSchemas: Record<string, DXFParserSnippet[]> = {
     LAYOUT: LayoutSnippets,

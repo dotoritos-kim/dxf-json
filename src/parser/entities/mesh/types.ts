@@ -1,5 +1,5 @@
-import type { Point3D } from '../../../types';
-import type { CommonDxfEntity } from '../shared';
+import type { Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
 
 // todo: check what the hack is Subdivision
 export interface MeshEntity extends CommonDxfEntity {

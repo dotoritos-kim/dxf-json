@@ -1,14 +1,14 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { isMatched } from '../../shared';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { isMatched } from '../../shared/isMatched.ts'
 import {
     Abort,
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
-import { VertexParser } from '../vertex';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets } from '../shared.ts'
+import { VertexParser } from '../vertex/parser.ts'
 
 const DefaultPolylineEntity = {
     thickness: 0,

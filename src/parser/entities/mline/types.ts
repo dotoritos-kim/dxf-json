@@ -1,6 +1,6 @@
-import type { Point3D } from "../../../types"
-import type { CommonDxfEntity } from "../shared"
-import type { MLineJustification } from "./consts"
+import type { Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
+import type { MLineJustification } from './consts.ts'
 
 /**
  * MLINE describes parallel lines along defined segments.

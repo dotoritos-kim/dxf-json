@@ -1,7 +1,7 @@
-import type { AttachmentPoint } from '../../../consts';
-import type { Point3D } from '../../../types';
-import type { CommonDxfEntity } from '../shared';
-import type { MTextDrawingDirection } from './consts';
+import type { AttachmentPoint } from '../../../consts/dimension.ts'
+import type { Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
+import type { MTextDrawingDirection } from './consts.ts'
 
 export interface MTextEntity extends CommonDxfEntity {
     type: 'MTEXT';

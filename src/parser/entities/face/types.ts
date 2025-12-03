@@ -1,5 +1,5 @@
-import type { Point3D } from '../../..'; 
-import type { CommonDxfEntity } from '../shared';
+import type { Point3D } from '../../../types/shared.ts' 
+import type { CommonDxfEntity } from '../shared.ts'
 
 export interface FaceEntity extends CommonDxfEntity {
     subclassMarker: 'AcDbFace';

@@ -1,4 +1,4 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     Abort,
     createParser,
@@ -6,11 +6,11 @@ import {
     Identity,
     PointParser,
     ToBoolean,
-} from '../../shared/parserGenerator';
-import { isMatched } from '../../shared';
-import { CommonEntitySnippets } from '../shared';
-import { MTextEntityParserSnippets } from '../mtext';
-import type { AttributeEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import { isMatched } from '../../shared/isMatched.ts'
+import { CommonEntitySnippets } from '../shared.ts'
+import { MTextEntityParserSnippets } from '../mtext/parser.ts'
+import type { AttributeEntity } from './types.ts'
 
 const DefaultAttributeEntity = {
     thickness: 0,

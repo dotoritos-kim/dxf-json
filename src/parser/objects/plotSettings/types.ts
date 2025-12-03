@@ -1,5 +1,5 @@
-import type { CommonDXFObject } from "../types";
-import type { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from "./consts";
+import type { CommonDXFObject } from '../types.ts';
+import type { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from './consts.ts';
 
 export interface PlotSettingDXFObject extends CommonDXFObject {
     subclassMarker: 'AcDbPlotSettings';

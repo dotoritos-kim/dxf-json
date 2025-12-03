@@ -2,9 +2,9 @@ import {
     DXFParserSnippet,
     Identity,
     ToBoolean,
-} from '../../shared/parserGenerator';
-import { CommonObjectSnippets } from '../shared';
-import type { DictionaryDXFObject } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonObjectSnippets } from '../shared.ts'
+import type { DictionaryDXFObject } from './types.ts'
 
 export const DictionarySnippets: DXFParserSnippet[] = [
     {

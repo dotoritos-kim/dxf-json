@@ -1,12 +1,12 @@
-import type { Point2D, Point3D } from '../../../types'
+import type { Point2D, Point3D } from '../../../types/shared.ts'
 import type {
     DefaultLightingType,
     OrthographicType,
     RenderMode,
     UCSPerViewport,
-} from '../../../consts';
-import type { ShadePlotMode } from '../../../parser/objects';
-import type { CommonDxfEntity } from '../shared';
+} from '../../../consts/viewport.ts';
+import type { ShadePlotMode } from '../../../parser/objects/plotSettings/consts.ts'
+import type { CommonDxfEntity } from '../shared.ts'
 
 export interface ViewportEntity extends CommonDxfEntity {
     type: 'VIEWPORT';

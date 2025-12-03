@@ -1,7 +1,7 @@
 
-import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner';
-import { isMatched } from './isMatched';
-import { parsePoint } from './parsePoint';
+import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner.ts'
+import { isMatched } from './isMatched.ts'
+import { parsePoint } from './parsePoint.ts'
 
 
 export const Abort = Symbol();

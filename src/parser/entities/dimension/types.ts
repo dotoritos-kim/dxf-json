@@ -1,10 +1,10 @@
 import type {
     AttachmentPoint,
     DimensionTextLineSpacing,
-} from '../../../consts';
-import type { Point3D } from '../../../types';
-import type { DimStyleVariables } from '../../tables/dimStyle/types';
-import type { CommonDxfEntity } from '../shared';
+} from '../../../consts/dimension.ts';
+import type { Point3D } from '../../../types/shared.ts'
+import type { DimStyleVariables } from '../../tables/dimStyle/types.ts'
+import type { CommonDxfEntity } from '../shared.ts'
 
 /**
  * Base type of *DIMENSION* entities.

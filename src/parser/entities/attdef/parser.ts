@@ -1,13 +1,13 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
     ToBoolean,
-} from '../../shared/parserGenerator';
-import { DefaultTextEntity, TextEntityParserSnippets } from '../text';
-import type { AttdefEntity } from './types';
+} from '../../shared/parserGenerator.ts'; 
+import { DefaultTextEntity, TextEntityParserSnippets } from '../text/parser.ts';
+import type { AttdefEntity } from './types.ts'
 
 const DefaultAttDefEntity = {
     ...DefaultTextEntity,

@@ -3,8 +3,8 @@ import {
     DXFParserSnippet,
     Identity,
     ToBoolean,
-} from '../../shared/parserGenerator';
-import { CommonTableEntryParserSnippets } from '../shared';
+} from '../../shared/parserGenerator.ts';
+import { CommonTableEntryParserSnippets } from '../shared.ts'
 
 const LayerTableParserSnippets: DXFParserSnippet[] = [
     {

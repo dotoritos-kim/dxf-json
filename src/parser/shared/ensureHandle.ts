@@ -1,7 +1,3 @@
-export * from './isMatched'
-export * from './xdata'
-export * from './extensions/parser'
-
 let lastHandle = 0;
 
 export function ensureHandle(entity: any) {

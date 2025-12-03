@@ -1,5 +1,5 @@
-import { isMatched } from '../../shared';
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import { isMatched } from '../../shared/isMatched.ts'
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     createParser,
     DXFParserSnippet,
@@ -7,9 +7,9 @@ import {
     PointParser,
     ToBoolean,
     Trim,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
-import type { MeshEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets } from '../shared.ts'
+import type { MeshEntity } from './types.ts'
 
 
 const MeshEntityParserSnippets: DXFParserSnippet[] = [

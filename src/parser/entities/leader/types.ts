@@ -1,6 +1,6 @@
-import type { Point3D } from '../../../types';
-import type { CommonDxfEntity } from '../shared';
-import type { LeaderCreationFlag } from './consts';
+import type { Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
+import type { LeaderCreationFlag } from './consts.ts'
 
 export interface LeaderEntity extends CommonDxfEntity {
     type: 'LEADER';

@@ -2,8 +2,8 @@ import {
     createParser,
     DXFParserSnippet,
     Identity,
-} from '../../shared/parserGenerator';
-import { CommonTableEntryParserSnippets } from '../shared';
+} from '../../shared/parserGenerator.ts';
+import { CommonTableEntryParserSnippets } from '../shared.ts'
 
 const BlockRecordTableParserSnippets: DXFParserSnippet[] = [
     {

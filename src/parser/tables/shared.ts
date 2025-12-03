@@ -1,8 +1,8 @@
 import {
     DXFParserSnippet,
     Identity,
-} from '../shared/parserGenerator';
-import { isMatched } from '../shared';
+} from '../shared/parserGenerator.ts';
+import { isMatched } from '../shared/isMatched.ts'
 
 export const CommonTableEntryParserSnippets: DXFParserSnippet[] = [
     {

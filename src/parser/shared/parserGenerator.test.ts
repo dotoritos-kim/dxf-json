@@ -1,6 +1,6 @@
 import { describe, it, test, expect } from 'vitest';
-import { DxfArrayScanner } from '../DxfArrayScanner';
-import { createParser, getObjectByPath, Identity } from './parserGenerator';
+import { DxfArrayScanner } from '../DxfArrayScanner.ts'
+import { createParser, getObjectByPath, Identity } from './parserGenerator.ts'
 
 describe('createParser', () => {
     it('snippet을 소모하고 name이 있으면 object에 넣어야 한다.', () => {

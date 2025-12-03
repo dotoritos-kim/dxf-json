@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { ArcDimensionParser } from './parser'
-import type { ArcDimensionEntity } from './types';
-import { AttachmentPoint } from '../../../consts';
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { ArcDimensionParser } from './parser.ts'
+import type { ArcDimensionEntity } from './types.ts'
+import { AttachmentPoint } from '../../../consts/dimension.ts'
 
 describe('ARC_DIMENSION', () => {
   test('tc0', () => {

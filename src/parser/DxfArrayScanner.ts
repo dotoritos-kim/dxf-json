@@ -1,4 +1,4 @@
-import { isMatched } from "./shared";
+import { isMatched } from './shared/isMatched.ts'
 
 export interface ScannerGroup {
 	code: number;

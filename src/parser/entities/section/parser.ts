@@ -3,9 +3,9 @@ import {
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets } from '../shared.ts'
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 
 const DefaultSectionEntity = {
     vertices: [],

@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
 import { readFileSync } from "fs";
 import { join } from "path";
-import { DxfArrayScanner } from "../../DxfArrayScanner";
-import { createParser } from "../../shared/parserGenerator";
-import { SpatialFilterSnippets } from "./parser";
-import type { SpatialFilterDXFObject } from "./types";
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts';
+import { createParser } from '../../shared/parserGenerator.ts';
+import { SpatialFilterSnippets } from './parser.ts';
+import type { SpatialFilterDXFObject } from './types.ts';
 
 describe("SPATIAL_FILTER", () => {
   test("tc0", () => {

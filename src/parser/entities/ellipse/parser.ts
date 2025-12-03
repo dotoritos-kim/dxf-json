@@ -1,12 +1,12 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
     createParser,
     DXFParserSnippet,
     Identity,
     PointParser,
-} from '../../shared/parserGenerator';
-import { CommonEntitySnippets } from '../shared';
-import type { EllipseEntity } from './types';
+} from '../../shared/parserGenerator.ts';
+import { CommonEntitySnippets } from '../shared.ts'
+import type { EllipseEntity } from './types.ts'
 
 const DefaultEllipseEnitty = {
     extrusionDirection: { x: 0, y: 0, z: 1 },

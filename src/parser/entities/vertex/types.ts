@@ -1,6 +1,6 @@
-import type { Point3D } from '../../../types';
-import type { CommonDxfEntity } from '../shared';
-import type { VertexFlag } from './consts';
+import type { Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
+import type { VertexFlag } from './consts.ts'
 
 export interface VertexEntity extends CommonDxfEntity, Point3D {
     subclassMarker: 'AcDb2dVertex' | 'AcDb3dPolylineVertex';
