@@ -6,7 +6,11 @@
         "strict": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "isolatedModules": true
+        "isolatedModules": true,
+        "declaration": true,
+        "declarationMap": true,
+        "emitDeclarationOnly": true,
+        "allowImportingTsExtensions": true,
     },
     "include": [
         "./src/**/*",
