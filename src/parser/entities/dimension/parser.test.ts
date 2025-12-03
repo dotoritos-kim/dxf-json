@@ -1,24 +1,26 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest'
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import { AttachmentPoint } from '../../../consts/dimension.ts'
 import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
 import { DimensionParser } from './parser.ts'
-import type { 
-  AlignedDimensionEntity, 
-  AngularDimensionEntity, 
-  OrdinateDimensionEntity, 
-  RadialDiameterDimensionEntity 
-} from './types.ts';
-
+import type {
+  AlignedDimensionEntity,
+  AngularDimensionEntity,
+  OrdinateDimensionEntity,
+  RadialDiameterDimensionEntity,
+} from './types.ts'
 
 describe('DIMENSION', () => {
   test('AcDbAlignedDimension - Linear', () => {
-    const content = readFileSync(join(__dirname, './linear.partial_dxf'), 'utf-8')
+    const content = readFileSync(
+      join(__dirname, './linear.partial_dxf'),
+      'utf-8',
+    )
     const scanner = new DxfArrayScanner(content.split('\n'))
     const parser = new DimensionParser()
 
-    let curr = scanner.next() 
+    let curr = scanner.next()
     curr = scanner.next() // skip first line
     const entity = parser.parseEntity(scanner, curr)
     entity.type = 'DIMENSION'
@@ -48,11 +50,14 @@ describe('DIMENSION', () => {
   })
 
   test('AcDb3PointAngularDimension', () => {
-    const content = readFileSync(join(__dirname, './angular3p.partial_dxf'), 'utf-8')
+    const content = readFileSync(
+      join(__dirname, './angular3p.partial_dxf'),
+      'utf-8',
+    )
     const scanner = new DxfArrayScanner(content.split('\n'))
     const parser = new DimensionParser()
 
-    let curr = scanner.next() 
+    let curr = scanner.next()
     curr = scanner.next() // skip first line
     const entity = parser.parseEntity(scanner, curr)
     entity.type = 'DIMENSION'
@@ -81,11 +86,14 @@ describe('DIMENSION', () => {
   })
 
   test('AcDb2LineAngularDimension', () => {
-    const content = readFileSync(join(__dirname, './angular-tc1.partial_dxf'), 'utf-8')
+    const content = readFileSync(
+      join(__dirname, './angular-tc1.partial_dxf'),
+      'utf-8',
+    )
     const scanner = new DxfArrayScanner(content.split('\n'))
     const parser = new DimensionParser()
 
-    let curr = scanner.next() 
+    let curr = scanner.next()
     curr = scanner.next() // skip first line
     const entity = parser.parseEntity(scanner, curr)
     entity.type = 'DIMENSION'
@@ -113,17 +121,20 @@ describe('DIMENSION', () => {
       DIMSE1: 0,
       extensions: {
         ACAD_XDICTIONARY: [{ code: 360, value: '2D1' }],
-        ACAD_REACTORS: [{ code: 330, value: '2DB' }]
-      }
+        ACAD_REACTORS: [{ code: 330, value: '2DB' }],
+      },
     })
   })
 
   test('AcDbAlignedDimension - Aligned', () => {
-    const content = readFileSync(join(__dirname, './aligned.partial_dxf'), 'utf-8')
+    const content = readFileSync(
+      join(__dirname, './aligned.partial_dxf'),
+      'utf-8',
+    )
     const scanner = new DxfArrayScanner(content.split('\n'))
     const parser = new DimensionParser()
 
-    let curr = scanner.next() 
+    let curr = scanner.next()
     curr = scanner.next() // skip first line
     const entity = parser.parseEntity(scanner, curr)
     entity.type = 'DIMENSION'
@@ -152,11 +163,14 @@ describe('DIMENSION', () => {
   })
 
   test('AcDbDiametricDimension', () => {
-    const content = readFileSync(join(__dirname, './diametric.partial_dxf'), 'utf-8')
+    const content = readFileSync(
+      join(__dirname, './diametric.partial_dxf'),
+      'utf-8',
+    )
     const scanner = new DxfArrayScanner(content.split('\n'))
     const parser = new DimensionParser()
 
-    let curr = scanner.next() 
+    let curr = scanner.next()
     curr = scanner.next() // skip first line
     const entity = parser.parseEntity(scanner, curr)
     entity.type = 'DIMENSION'
@@ -191,18 +205,21 @@ describe('DIMENSION', () => {
           {
             code: 330,
             value: '35E',
-          }
-        ]
-      }
+          },
+        ],
+      },
     })
   })
 
   test('AcDbOrdinateDimension', () => {
-    const content = readFileSync(join(__dirname, './ordinate.partial_dxf'), 'utf-8')
+    const content = readFileSync(
+      join(__dirname, './ordinate.partial_dxf'),
+      'utf-8',
+    )
     const scanner = new DxfArrayScanner(content.split('\n'))
     const parser = new DimensionParser()
 
-    let curr = scanner.next() 
+    let curr = scanner.next()
     curr = scanner.next() // skip first line
     const entity = parser.parseEntity(scanner, curr)
     entity.type = 'DIMENSION'

@@ -1,33 +1,38 @@
-import { describe, test, expect } from 'vitest';
-import { readFileSync } from "fs";
-import { join } from "path";
-import { DxfArrayScanner } from '../../DxfArrayScanner.ts';
-import { createParser } from '../../shared/parserGenerator.ts';
+import { describe, test, expect } from 'vitest'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { createParser } from '../../shared/parserGenerator.ts'
 import { LayoutSnippets } from './parser.ts'
 import type { LayoutDXFObject } from './types.ts'
-import { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from '../plotSettings/consts.ts'
+import {
+  PlotPaperUnit,
+  PlotType,
+  ShadePlotMode,
+  ShadePlotResolution,
+} from '../plotSettings/consts.ts'
 import { LayoutControlFlag } from './consts.ts'
 import { OrthographicType } from '../../../consts/viewport.ts'
 
-describe("PLOTSETTINGS", () => {
-  test("tc0", () => {
-    const content = readFileSync(join(__dirname, "./tc0.partial_dxf"), "utf-8");
-    const scanner = new DxfArrayScanner(content.split("\n"));
-    const parser = createParser(LayoutSnippets);
-    let curr = scanner.next();
-    curr = scanner.next(); // skip 0 code
+describe('PLOTSETTINGS', () => {
+  test('tc0', () => {
+    const content = readFileSync(join(__dirname, './tc0.partial_dxf'), 'utf-8')
+    const scanner = new DxfArrayScanner(content.split('\n'))
+    const parser = createParser(LayoutSnippets)
+    let curr = scanner.next()
+    curr = scanner.next() // skip 0 code
 
-    const obj = { name: 'LAYOUT' } as any;
+    const obj = { name: 'LAYOUT' } as any
 
-    const isReadOnce = parser(curr, scanner, obj);
+    const isReadOnce = parser(curr, scanner, obj)
 
     expect(obj).toMatchObject<LayoutDXFObject>({
       name: 'LAYOUT',
-      subclassMarker: "AcDbLayout",
+      subclassMarker: 'AcDbLayout',
       handle: 'D9B071D01A0ACD3B',
       extensions: {
-        ACAD_REACTORS: [{ code: 330, value: "D9B071D01A0ACD33" }],
-        ACAD_XDICTIONARY: [{ code: 360, value: "D9B071D01A0C52C8" }],
+        ACAD_REACTORS: [{ code: 330, value: 'D9B071D01A0ACD33' }],
+        ACAD_XDICTIONARY: [{ code: 360, value: 'D9B071D01A0C52C8' }],
       },
       ownerObjectId: 'D9B071D01A0ACD33',
       pageSetupName: '',
@@ -48,7 +53,7 @@ describe("PLOTSETTINGS", () => {
       windowAreaYMax: 400000,
       printScaleNumerator: 9999,
       printScaleDenominator: 8888,
-      layoutFlag: 0x2EB4,
+      layoutFlag: 0x2eb4,
       plotPaperUnit: PlotPaperUnit.INCHES,
       plotRotation: 2,
       plotType: PlotType.DRAWING_EXTENTS,
@@ -65,17 +70,17 @@ describe("PLOTSETTINGS", () => {
       tabOrder: 0,
       minLimit: { x: 1, y: 2 },
       maxLimit: { x: 3, y: 4 },
-      insertionPoint: { x: 1, y: 2, z: 3},
+      insertionPoint: { x: 1, y: 2, z: 3 },
       minExtent: { x: 11, y: 22, z: 33 },
       maxExtent: { x: 44, y: 55, z: 66 },
       elevation: 999,
       ucsOrigin: { x: 11, y: 22, z: 33 },
-      ucsXAxis: { x: 1, y: 0, z: 0},
-      ucsYAxis: { x: 0, y: 1, z: 0},
+      ucsXAxis: { x: 1, y: 0, z: 0 },
+      ucsYAxis: { x: 0, y: 1, z: 0 },
       orthographicType: OrthographicType.NON_ORTHOGRAPHIC,
       paperSpaceTableId: 'D9B071D01A0ACD38',
-      viewportId: 'D9B071D01A0C032B'
-    });
-    expect(isReadOnce).toBe(true);
-  });
-});
+      viewportId: 'D9B071D01A0C032B',
+    })
+    expect(isReadOnce).toBe(true)
+  })
+})

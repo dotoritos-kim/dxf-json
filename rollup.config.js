@@ -17,16 +17,16 @@ export default {
       tsconfig: 'tsconfig.build.json',
       jsc: {
         parser: {
-          syntax: "typescript",
+          syntax: 'typescript',
         },
       },
       isModule: true,
       module: {
-        type: "es6",
-        strictMode: true
+        type: 'es6',
+        strictMode: true,
       },
       sourceMaps: true,
       minify: true,
-  }),
+    }),
   ],
 }

@@ -3,7 +3,7 @@
 */
 
 import DxfParser from 'dxf-json'
-import { 
+import {
   // consts
   BlockTypeFlag,
   ColorCode,
@@ -69,11 +69,11 @@ import {
   // TABLE
   DimStyleVariable,
   LineTypeElementType,
-  getAcadColor
+  getAcadColor,
 } from 'dxf-json'
 
 // types
-import type { 
+import type {
   // BLOCK
   DxfBlock,
   // ENTITY
@@ -160,5 +160,5 @@ import type {
   DxfHeader,
   Point2D,
   Point3D,
-  Bound
+  Bound,
 } from 'dxf-json'

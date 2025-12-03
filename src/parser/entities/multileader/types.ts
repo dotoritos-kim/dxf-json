@@ -1,38 +1,38 @@
-import type { Point3D } from '../../../types/shared.ts'; 
-import type { CommonDxfEntity } from '../shared.ts';
+import type { Point3D } from '../../../types/shared.ts'
+import type { CommonDxfEntity } from '../shared.ts'
 
 export interface MultiLeaderEntity extends CommonDxfEntity {
-	type: "MULTILEADER";
-	multileaderType: number;
-	doglegEnabled: boolean;
-	doglegLength: number;
-	contentType: number;
-	landingPoint?: Point3D;
-	doglegVector?: Point3D;
-	textContent?: {
-		text: string;
-		anchorPoint: Point3D;
-	};
-	blockContent?: {
-		blockHandle: string;
-		position: Point3D;
-	};
-	leaders?: MultiLeaderLeaderSection[];
+  type: 'MULTILEADER'
+  multileaderType: number
+  doglegEnabled: boolean
+  doglegLength: number
+  contentType: number
+  landingPoint?: Point3D
+  doglegVector?: Point3D
+  textContent?: {
+    text: string
+    anchorPoint: Point3D
+  }
+  blockContent?: {
+    blockHandle: string
+    position: Point3D
+  }
+  leaders?: MultiLeaderLeaderSection[]
 }
 
 export interface MultiLeaderLeaderSection {
-	landingPoint?: Point3D;
-	doglegVector?: Point3D;
-	doglegLength?: number;
-	leaderLines: MultiLeaderLeaderLine[];
+  landingPoint?: Point3D
+  doglegVector?: Point3D
+  doglegLength?: number
+  leaderLines: MultiLeaderLeaderLine[]
 }
 
 export interface MultiLeaderLeaderLine {
-	vertices: Point3D[];
-	breaks?: MultiLeaderBreak[];
+  vertices: Point3D[]
+  breaks?: MultiLeaderBreak[]
 }
 
 export interface MultiLeaderBreak {
-	start: Point3D;
-	end: Point3D;
+  start: Point3D
+  end: Point3D
 }

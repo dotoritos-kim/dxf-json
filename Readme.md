@@ -14,7 +14,7 @@
 
 DXF parser with rich type definitions.
 
-> [!CAUTION] 
+> [!CAUTION]
 > This is parser is not in stable state yet. Until version 1.0, we may often change name or type of the variables. We're adding rich unit/integration test, but there might be unexpected bug or uncovered situation. Note that [official DXF specification](https://documentation.help/AutoCAD-DXF/) is poorly documented, so that many informations are missing and even errors exist. Use your own risk. Thank you for your consideration.
 
 ## Quick Start
@@ -27,12 +27,14 @@ npm i dxf-json # or your loved package manager
 import { readFileSync } from 'fs'
 import { DxfParser } from 'dxf-json'
 
-const content = readFileSync('foo.dxf', 'utf-8');
+const content = readFileSync('foo.dxf', 'utf-8')
 const parser = new DxfParser()
 const parsedDxf = parser.parseSync(content)
 
 // play with your dxf file
-const lwPolylines = parsedDxf.entities.filter(entity => entity.type === 'LWPOLYLINE')
+const lwPolylines = parsedDxf.entities.filter(
+  (entity) => entity.type === 'LWPOLYLINE',
+)
 ```
 
 ## Features
@@ -41,7 +43,7 @@ const lwPolylines = parsedDxf.entities.filter(entity => entity.type === 'LWPOLYL
 - Support both ESM and CJS
 - Support TypeScript
 
-> [!NOTE] 
+> [!NOTE]
 > We support standard specification of dxf and AutoCAD features only. We're trying our best to support universal dxf files, but we don't support 3rd party specification.
 
 <details><summary>Current Coverage</summary>
@@ -147,7 +149,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
 
 </details>
 
-> [!NOTE] 
+> [!NOTE]
 > The documentation is not ready, but you can check the source code for used types [#1](https://github.com/dotoritos-kim/dxf-json/blob/main/src/parser/types.ts) and [#2](https://github.com/dotoritos-kim/dxf-json/blob/main/integration-test/src/types/import-test.ts)
 
 ### `parseSync`
@@ -161,16 +163,16 @@ return parser.parseSync(buffer)
 
 ```ts
 import fs from 'fs'
-const parser = new DxfParser();
-const fileStream = fs.createReadStream("dxf file path", { encoding: 'utf8' });
-return await parser.parseStream(fileStream);
+const parser = new DxfParser()
+const fileStream = fs.createReadStream('dxf file path', { encoding: 'utf8' })
+return await parser.parseStream(fileStream)
 ```
 
 ### `parseUrl`
 
 ```ts
-const parser = new DxfParser();
-return await parser.parseFromUrl(url, encoding, RequestInit);
+const parser = new DxfParser()
+return await parser.parseFromUrl(url, encoding, RequestInit)
 ```
 
 ## Contribution

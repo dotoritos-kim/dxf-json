@@ -1,66 +1,66 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
-    createParser,
-    DXFParserSnippet,
-    Identity,
-    PointParser,
-} from '../../shared/parserGenerator.ts';
+  createParser,
+  DXFParserSnippet,
+  Identity,
+  PointParser,
+} from '../../shared/parserGenerator.ts'
 import { CommonEntitySnippets } from '../shared.ts'
 import type { EllipseEntity } from './types.ts'
 
 const DefaultEllipseEnitty = {
-    extrusionDirection: { x: 0, y: 0, z: 1 },
-};
+  extrusionDirection: { x: 0, y: 0, z: 1 },
+}
 
 const EllipseEntityParserSnippets: DXFParserSnippet[] = [
-    {
-        code: 42,
-        name: 'endAngle',
-        parser: Identity,
-    },
-    {
-        code: 41,
-        name: 'startAngle',
-        parser: Identity,
-    },
-    {
-        code: 40,
-        name: 'axisRatio',
-        parser: Identity,
-    },
-    {
-        code: 210,
-        name: 'extrusionDirection',
-        parser: PointParser,
-    },
-    {
-        code: 11,
-        name: 'majorAxisEndPoint',
-        parser: PointParser,
-    },
-    {
-        code: 10,
-        name: 'center',
-        parser: PointParser,
-    },
-    {
-        code: 100,
-        name: 'subclassMarker',
-        parser: Identity,
-    },
-    ...CommonEntitySnippets,
-];
+  {
+    code: 42,
+    name: 'endAngle',
+    parser: Identity,
+  },
+  {
+    code: 41,
+    name: 'startAngle',
+    parser: Identity,
+  },
+  {
+    code: 40,
+    name: 'axisRatio',
+    parser: Identity,
+  },
+  {
+    code: 210,
+    name: 'extrusionDirection',
+    parser: PointParser,
+  },
+  {
+    code: 11,
+    name: 'majorAxisEndPoint',
+    parser: PointParser,
+  },
+  {
+    code: 10,
+    name: 'center',
+    parser: PointParser,
+  },
+  {
+    code: 100,
+    name: 'subclassMarker',
+    parser: Identity,
+  },
+  ...CommonEntitySnippets,
+]
 
 export class EllipseEntityParser {
-    static ForEntityName = 'ELLIPSE';
-    private parser = createParser(
-        EllipseEntityParserSnippets,
-        DefaultEllipseEnitty,
-    );
+  static ForEntityName = 'ELLIPSE'
+  private parser = createParser(
+    EllipseEntityParserSnippets,
+    DefaultEllipseEnitty,
+  )
 
-    parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup) {
-        const entity = {} as any;
-        this.parser(curr, scanner, entity);
-        return entity as EllipseEntity;
-    }
+  parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup) {
+    const entity = {} as any
+    this.parser(curr, scanner, entity)
+    return entity as EllipseEntity
+  }
 }

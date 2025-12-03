@@ -6,14 +6,14 @@ import type { DxfArrayScanner } from './DxfArrayScanner.ts'
  * @param scanner
  */
 export function skipEmbeddedObject(scanner: DxfArrayScanner) {
-    /* Ensure proper start group. */
-    scanner.rewind();
-    let curr = scanner.next();
-    if (curr.code !== 101) {
-        throw new Error('Bad call for skipEmbeddedObject()');
-    }
-    do {
-        curr = scanner.next();
-    } while (curr.code !== 0);
-    scanner.rewind();
+  /* Ensure proper start group. */
+  scanner.rewind()
+  let curr = scanner.next()
+  if (curr.code !== 101) {
+    throw new Error('Bad call for skipEmbeddedObject()')
+  }
+  do {
+    curr = scanner.next()
+  } while (curr.code !== 0)
+  scanner.rewind()
 }

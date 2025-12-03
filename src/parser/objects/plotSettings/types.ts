@@ -1,37 +1,42 @@
-import type { CommonDXFObject } from '../types.ts';
-import type { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from './consts.ts';
+import type { CommonDXFObject } from '../types.ts'
+import type {
+  PlotPaperUnit,
+  PlotType,
+  ShadePlotMode,
+  ShadePlotResolution,
+} from './consts.ts'
 
 export interface PlotSettingDXFObject extends CommonDXFObject {
-    subclassMarker: 'AcDbPlotSettings';
-    pageSetupName: string;
-    configName: string;
-    paperSize: string;
-    plotViewName: string;
-    marginLeft: number;
-    marginBottom: number;
-    marginRight: number;
-    marginTop: number;
-    paperWidth: number;
-    paperHeight: number;
-    plotOriginX: number;
-    plotOriginY: number;
-    windowAreaXMin: number;
-    windowAreaYMin: number;
-    windowAreaXMax: number;
-    windowAreaYMax: number;
-    printScaleNumerator: number;
-    printScaleDenominator: number;
-    layoutFlag: number;
-    plotPaperUnit: PlotPaperUnit;
-    plotRotation: 0 | 1 | 2 | 3;
-    plotType: PlotType;
-    currentStyleSheet: string;
-    standardScaleType: number; // see https://help.autodesk.com/view/OARX/2023/ENU/?guid=GUID-1113675E-AB07-4567-801A-310CDE0D56E9
-    shadePlotMode: ShadePlotMode;
-    shadePlotResolution: ShadePlotResolution;
-    shadePlotCustomDPI?: number; // 100 ~ 32767
-    scaleFactor: number;
-    imageOriginX: number;
-    imageOriginY: number;
-    shadePlotId?: string;
+  subclassMarker: 'AcDbPlotSettings'
+  pageSetupName: string
+  configName: string
+  paperSize: string
+  plotViewName: string
+  marginLeft: number
+  marginBottom: number
+  marginRight: number
+  marginTop: number
+  paperWidth: number
+  paperHeight: number
+  plotOriginX: number
+  plotOriginY: number
+  windowAreaXMin: number
+  windowAreaYMin: number
+  windowAreaXMax: number
+  windowAreaYMax: number
+  printScaleNumerator: number
+  printScaleDenominator: number
+  layoutFlag: number
+  plotPaperUnit: PlotPaperUnit
+  plotRotation: 0 | 1 | 2 | 3
+  plotType: PlotType
+  currentStyleSheet: string
+  standardScaleType: number // see https://help.autodesk.com/view/OARX/2023/ENU/?guid=GUID-1113675E-AB07-4567-801A-310CDE0D56E9
+  shadePlotMode: ShadePlotMode
+  shadePlotResolution: ShadePlotResolution
+  shadePlotCustomDPI?: number // 100 ~ 32767
+  scaleFactor: number
+  imageOriginX: number
+  imageOriginY: number
+  shadePlotId?: string
 }

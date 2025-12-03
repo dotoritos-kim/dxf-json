@@ -1,15 +1,15 @@
-let isOn = false;
+let isOn = false
 
 export function enableSelectiveLog() {
-    isOn = true;
+  isOn = true
 }
 
 export function disableSelectiveLog() {
-    isOn = false;
+  isOn = false
 }
 
 export function selectiveLog(s: any, mode: 'log' | 'error' | 'warn' = 'log') {
-    if (isOn) {
-        console[mode](s);
-    }
+  if (isOn) {
+    console[mode](s)
+  }
 }

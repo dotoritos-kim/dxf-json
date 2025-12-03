@@ -1,19 +1,19 @@
 import type { Point2D, Point3D } from './types/shared.ts'
 
 export function classify<T>(
-    iterable: Iterable<T>,
-    keySelector: (value: T) => string | undefined,
+  iterable: Iterable<T>,
+  keySelector: (value: T) => string | undefined,
 ) {
-    const result: Record<string, T[]> = {};
-    for (const value of iterable) {
-        const key = keySelector(value);
+  const result: Record<string, T[]> = {}
+  for (const value of iterable) {
+    const key = keySelector(value)
 
-        if (key != null) {
-            result[key] ??= [];
-            result[key].push(value);
-        }
+    if (key != null) {
+      result[key] ??= []
+      result[key].push(value)
     }
-    return result;
+  }
+  return result
 }
 
 /**
@@ -24,13 +24,13 @@ export function classify<T>(
  * @param increment Default = 1
  */
 export function* generateIntegers(
-    start: number,
-    end: number = Infinity,
-    increment: number = 1,
+  start: number,
+  end: number = Infinity,
+  increment: number = 1,
 ) {
-    for (let n = start; n !== end; n += increment) {
-        yield n;
-    }
+  for (let n = start; n !== end; n += increment) {
+    yield n
+  }
 }
 
 /**
@@ -40,9 +40,9 @@ export function* generateIntegers(
  * @param point Any data parsed by `parsePoint`
  */
 export function ensurePoint3D(point: Partial<Point2D | Point3D>): Point3D {
-    return {
-        x: point.x ?? 0,
-        y: point.y ?? 0,
-        z: (point as Point3D).z ?? 0,
-    }
+  return {
+    x: point.x ?? 0,
+    y: point.y ?? 0,
+    z: (point as Point3D).z ?? 0,
+  }
 }

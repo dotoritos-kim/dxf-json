@@ -1,54 +1,54 @@
 import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
 import {
-    createParser,
-    DXFParserSnippet,
-    Identity,
-    PointParser,
-} from '../../shared/parserGenerator.ts';
+  createParser,
+  DXFParserSnippet,
+  Identity,
+  PointParser,
+} from '../../shared/parserGenerator.ts'
 import { CommonEntitySnippets } from '../shared.ts'
 import type { LineEntity } from './types.ts'
 
 const DefaultLineEntity = {
-    thickness: 0,
-    extrusionDirection: { x: 0, y: 0, z: 1 },
-};
+  thickness: 0,
+  extrusionDirection: { x: 0, y: 0, z: 1 },
+}
 
 const LineEntityParserSnippets: DXFParserSnippet[] = [
-    {
-        code: 210,
-        name: 'extrusionDirection',
-        parser: PointParser,
-    },
-    {
-        code: 11,
-        name: 'endPoint',
-        parser: PointParser,
-    },
-    {
-        code: 10,
-        name: 'startPoint',
-        parser: PointParser,
-    },
-    {
-        code: 39,
-        name: 'thickness',
-        parser: Identity,
-    },
-    {
-        code: 100,
-        name: 'subclassMarker',
-        parser: Identity,
-    },
-    ...CommonEntitySnippets,
-];
+  {
+    code: 210,
+    name: 'extrusionDirection',
+    parser: PointParser,
+  },
+  {
+    code: 11,
+    name: 'endPoint',
+    parser: PointParser,
+  },
+  {
+    code: 10,
+    name: 'startPoint',
+    parser: PointParser,
+  },
+  {
+    code: 39,
+    name: 'thickness',
+    parser: Identity,
+  },
+  {
+    code: 100,
+    name: 'subclassMarker',
+    parser: Identity,
+  },
+  ...CommonEntitySnippets,
+]
 
 export class LineEntityParser {
-    static ForEntityName = 'LINE';
-    private parser = createParser(LineEntityParserSnippets, DefaultLineEntity);
+  static ForEntityName = 'LINE'
+  private parser = createParser(LineEntityParserSnippets, DefaultLineEntity)
 
-    parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup) {
-        const entity = {} as any;
-        this.parser(curr, scanner, entity);
-        return entity as LineEntity;
-    }
+  parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup) {
+    const entity = {} as any
+    this.parser(curr, scanner, entity)
+    return entity as LineEntity
+  }
 }

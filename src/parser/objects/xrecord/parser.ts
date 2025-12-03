@@ -1,4 +1,7 @@
-import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator.ts'
+import {
+  type DXFParserSnippet,
+  Identity,
+} from '../../shared/parserGenerator.ts'
 import { CommonObjectSnippets } from '../shared.ts'
 
 /*
@@ -16,21 +19,21 @@ export const XRecordDXFObjectSnippet: DXFParserSnippet[] = [
       curr = scanner.next()
       entity.data = []
 
-      while (checkXRecordGroup(curr.code)) {  
+      while (checkXRecordGroup(curr.code)) {
         entity.data.push(curr)
         curr = scanner.next()
       }
 
       scanner.rewind()
       return flag
-    }
+    },
   },
   {
     code: 100,
     name: 'subclassMarker',
     parser: Identity,
   },
-  ...CommonObjectSnippets
+  ...CommonObjectSnippets,
 ]
 
 function checkXRecordGroup(code: number): boolean {

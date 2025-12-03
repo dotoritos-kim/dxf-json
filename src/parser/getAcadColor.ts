@@ -1,4 +1,4 @@
-import type { ColorIndex, ColorInstance } from '../types/color.ts';
+import type { ColorIndex, ColorInstance } from '../types/color.ts'
 import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex.ts'
 
 /**
@@ -7,5 +7,5 @@ import AUTO_CAD_COLOR_INDEX from './AutoCadColorIndex.ts'
  * @return truecolor value as a number
  */
 export function getAcadColor(index: ColorIndex): ColorInstance {
-  return AUTO_CAD_COLOR_INDEX[index];
+  return AUTO_CAD_COLOR_INDEX[index]
 }
