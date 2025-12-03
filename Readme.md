@@ -157,12 +157,47 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [ ] VISUALSTYLE
   - [ ] WIPEOUTVARIABLES
   - [x] XRECORD
-- [ ] THUMBNAILIMAGE Section
+- [x] THUMBNAILIMAGE Section
 
 </details>
 
 > [!NOTE]
 > The documentation is not ready, but you can check the source code for used types [#1](https://github.com/dotoritos-kim/dxf-json/blob/main/src/parser/types.ts) and [#2](https://github.com/dotoritos-kim/dxf-json/blob/main/integration-test/src/types/import-test.ts)
+
+## Parsing Options
+
+### Thumbnail Image Format
+
+You can configure how the `THUMBNAILIMAGE` section is parsed by setting the `thumbnailImageFormat` option:
+
+```ts
+import { DxfParser } from 'dxf-json'
+
+// Default: base64 format (ready for web display)
+const parser1 = new DxfParser()
+const result1 = parser1.parseSync(dxfContent)
+// result1.thumbnailImage is a base64 string
+// Usage: <img src="data:image/bmp;base64,${result1.thumbnailImage}" />
+
+// Hex format (raw hexadecimal string)
+const parser2 = new DxfParser({ thumbnailImageFormat: 'hex' })
+const result2 = parser2.parseSync(dxfContent)
+// result2.thumbnailImage is a hex string
+
+// Buffer format (Node.js Buffer object)
+const parser3 = new DxfParser({ thumbnailImageFormat: 'buffer' })
+const result3 = parser3.parseSync(dxfContent)
+// result3.thumbnailImage is a Buffer
+// Save to file: fs.writeFileSync('thumbnail.bmp', result3.thumbnailImage)
+```
+
+**Available formats:**
+- `'base64'` (default): Base64-encoded string, ideal for web applications
+- `'hex'`: Raw hexadecimal string from the DXF file
+- `'buffer'`: Node.js Buffer object for file operations
+
+> [!NOTE]
+> The thumbnail image in DXF files is typically in BMP format.
 
 ### `parseSync`
 

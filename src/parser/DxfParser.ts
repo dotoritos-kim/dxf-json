@@ -19,13 +19,21 @@ export class DxfParserOptions {
    * will substitute malformed data with a replacement character.
    */
   encodingFailureFatal: boolean = false
+  /** Thumbnail image format.
+   * - 'base64': Base64-encoded string (default, ready for web display)
+   * - 'hex': Raw hexadecimal string
+   * - 'buffer': Node.js Buffer object
+   */
+  thumbnailImageFormat: 'base64' | 'hex' | 'buffer' = 'base64'
 }
 
 export class DxfParser extends EventTarget {
   private readonly _decoder: TextDecoder
+  private readonly _options: DxfParserOptions
 
   constructor(options: DxfParserOptions = new DxfParserOptions()) {
     super()
+    this._options = options
     this._decoder = new TextDecoder(options.encoding, {
       fatal: options.encodingFailureFatal,
     })
@@ -118,7 +126,7 @@ export class DxfParser extends EventTarget {
           dxf.objects = parseObjects(curr, scanner)
         } else if (isMatched(curr, 2, 'THUMBNAILIMAGE')) {
           curr = scanner.next()
-          dxf.thumbnailImage = parseThumbnailImage(curr, scanner)
+          dxf.thumbnailImage = parseThumbnailImage(curr, scanner, this._options.thumbnailImageFormat)
         }
       }
       curr = scanner.next()
