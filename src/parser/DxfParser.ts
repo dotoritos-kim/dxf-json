@@ -4,6 +4,7 @@ import { parseTables } from './tables/parser.ts'
 import { parseBlocks } from './blocks/parser.ts'
 import { parseEntities } from './entities/parser.ts'
 import { parseObjects } from './objects/parser.ts'
+import { parseThumbnailImage } from './thumbnailImage/parser.ts'
 import { isMatched } from './shared/isMatched.ts'
 import type { ParsedDxf } from './types.ts'
 import type { Readable } from 'readable-stream'
@@ -115,6 +116,9 @@ export class DxfParser extends EventTarget {
         } else if (isMatched(curr, 2, 'OBJECTS')) {
           curr = scanner.next()
           dxf.objects = parseObjects(curr, scanner)
+        } else if (isMatched(curr, 2, 'THUMBNAILIMAGE')) {
+          curr = scanner.next()
+          dxf.thumbnailImage = parseThumbnailImage(curr, scanner)
         }
       }
       curr = scanner.next()
