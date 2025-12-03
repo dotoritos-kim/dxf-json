@@ -3,8 +3,8 @@
   "compilerOptions": {
     "rootDir": "./src",
     "declarationDir": "./dist/cjs/types",
-    "module": "nodenext",
-    "moduleResolution": "nodenext"
+    "module": "node16",
+    "moduleResolution": "node16"
   },
   "include": ["./src/**/*"],
   "exclude": ["**/*.test.ts"]

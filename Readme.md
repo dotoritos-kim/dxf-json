@@ -37,6 +37,18 @@ const lwPolylines = parsedDxf.entities.filter(
 )
 ```
 
+### About `moduleResolution` in TypeScript
+
+It's impossible to support both ESM and CJS with `node16`, because they detect type of modules only by `type` field in `package.json` or the extension of files. To support CJS with `node16`, we have to rename every `.d.ts` files into `.d.cts`, not only the file name but also every `import` expression in source files.
+
+But Node16 is already deprecated, and to maintain the open source society healthy, we decided not to support `require` at that version. Also we **highly recommend to use ESM styled `import`** consistently throughout your source code.
+
+| Module Resolution | From ESM | From CJS |
+| ----------------- | -------- | -------- |
+| `node10`          | ✅       | ✅       |
+| `node16`          | ✅       | ❌       |
+| `bundler`         | ✅       | ✅       |
+
 ## Features
 
 - Synchronous parsing, asynchronous parsing, and url fetch are possible.

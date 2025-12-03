@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "perfect dxf parser",
   "type": "module",
-  "main": "./dist/bundle.cjs",
-  "module": "./dist/bundle.mjs",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/cjs/bundle.cjs",
+  "module": "./dist/esm/bundle.mjs",
+  "types": "./dist/cjs/types/index.d.ts",
   "exports": {
     "import": {
       "types": "./dist/esm/types/index.d.ts",
