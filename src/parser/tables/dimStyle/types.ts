@@ -999,6 +999,6 @@ export type DimStyleVariables = {
 
 export type DimStylesTableEntry = DimStyleVariables &
   CommonDxfTableEntry & {
-    styleName: string
+    name: string
     subclassMarker: 'AcDbDimStyleTableRecord'
   }
