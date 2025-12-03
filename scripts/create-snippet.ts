@@ -31,21 +31,15 @@ function capitalize(name: string): string {
 
 mkdirSync(fullPath, { recursive: true });
 
-const indexContent = `export type * from './types'
-export * from './consts'
-export * from './parser'
-`;
-
 const entityName = `${moduleName}DXF${Singular[moduleType]}`
 const snippetName = `${entityName}Snippet`
 
-writeFileSync(join(fullPath, 'index.ts'), indexContent);
 writeFileSync(join(fullPath, 'types.ts'), `export interface ${entityName} {}`);
 writeFileSync(join(fullPath, 'consts.ts'), 'export {}');
 
 // Create a parser file
 writeFileSync(join(fullPath, 'parser.ts'), `import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator';
+import { type DXFParserSnippet, Identity } from '../../shared/parserGenerator.ts'
 
 export const ${snippetName}: DXFParserSnippet[] = [
   {
@@ -63,10 +57,10 @@ const requiredDefaultSnippets = moduleType === 'objects' ? 'CommonObjectSnippets
 
 writeFileSync(join(fullPath, 'parser.test.ts'), `import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { createParser } from '../../shared/parserGenerator'
-import { ${snippetName} } from './parser'
-import { ${requiredDefaultSnippets} } from '../shared'
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { createParser } from '../../shared/parserGenerator.ts'
+import { ${snippetName} } from './parser.ts'
+import { ${requiredDefaultSnippets} } from '../shared.ts'
 
 describe('${entityName} parser', () => {
   test('tc0', () => {
