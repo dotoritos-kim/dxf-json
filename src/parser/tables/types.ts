@@ -9,7 +9,6 @@ export interface DxfTable<T extends CommonDxfTableEntry> {
 }
 
 export interface CommonDxfTableEntry {
-  name: string
   handle: string
   ownerObjectId: string
 }
