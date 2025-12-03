@@ -6,6 +6,7 @@ import {
 } from '../shared/parserGenerator.ts'
 import { isMatched } from '../shared/isMatched.ts'
 import type { DxfTable } from './types.ts'
+import { parseAppIdTableEntry } from './appId/parser.ts'
 import { parseBlockRecordTable } from './blockRecord/parser.ts'
 import { parseDimStyle } from './dimStyle/parser.ts'
 import { parseLayerTable } from './layer/parser.ts'
@@ -14,6 +15,7 @@ import { parseStyleTable } from './style/parser.ts'
 import { parseVPortTable } from './vport/parser.ts'
 
 const TableParsers = {
+  APPID: parseAppIdTableEntry,
   BLOCK_RECORD: parseBlockRecordTable,
   DIMSTYLE: parseDimStyle,
   LAYER: parseLayerTable,
