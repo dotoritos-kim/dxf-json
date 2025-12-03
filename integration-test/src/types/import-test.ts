@@ -67,6 +67,10 @@ import {
   // shared
   isMatched,
   // TABLE
+  AppIdTableEntry,
+  AppIdTableEntryFlag,
+  AppIdTableParserSnippets,
+  parseAppIdTableEntry,
   DimStyleVariable,
   LineTypeElementType,
   getAcadColor,
