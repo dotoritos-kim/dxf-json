@@ -67,7 +67,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
 - [x] HEADER Section
 - [ ] CLASSES Section
 - [ ] TABLES Section
-  - [ ] APPID
+  - [x] APPID
   - [x] BLOCK_RECORD
   - [x] DIMSTYLE
   - [x] LAYER

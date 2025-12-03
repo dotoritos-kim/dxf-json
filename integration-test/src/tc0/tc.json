@@ -573,7 +573,64 @@
       "maxNumberOfEntries": 0
     },
     "APPID": {
-      "entries": [],
+      "entries": [
+        {
+          "handle": "12",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "ACAD",
+          "flag": 0
+        },
+        {
+          "handle": "9E",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "ACAD_PSEXT",
+          "flag": 0
+        },
+        {
+          "handle": "133",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "AcadAnnoPO",
+          "flag": 0
+        },
+        {
+          "handle": "134",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "AcadAnnotative",
+          "flag": 0
+        },
+        {
+          "handle": "135",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "ACAD_DSTYLE_DIMJAG",
+          "flag": 0
+        },
+        {
+          "handle": "136",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "ACAD_DSTYLE_DIMTALN",
+          "flag": 0
+        },
+        {
+          "handle": "165",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "ACAD_MLEADERVER",
+          "flag": 0
+        },
+        {
+          "handle": "217",
+          "ownerObjectId": "9",
+          "subclassMarker": "AcDbRegAppTableRecord",
+          "appName": "ACAD_NAV_VCDISPLAY",
+          "flag": 0
+        }
+      ],
       "name": "APPID",
       "handle": "9",
       "ownerObjectId": "0",
