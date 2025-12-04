@@ -7,7 +7,6 @@ export * from './consts/header.ts'
 export * from './consts/lineweight.ts'
 export * from './consts/measurement.ts'
 export * from './consts/obscuredLineTypes.ts'
-export * from './consts/scene.ts'
 export * from './consts/viewport.ts'
 export * from './consts/plotStyleType.ts'
 
