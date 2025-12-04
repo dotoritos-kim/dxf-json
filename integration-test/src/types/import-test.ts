@@ -68,9 +68,11 @@ import {
   isMatched,
   // TABLE
   AppIdTableEntry,
-  AppIdTableEntryFlag,
+  TableEntryDependencyFlag,
   AppIdTableParserSnippets,
+  UcsTableEntryParserSnippets,
   parseAppIdTableEntry,
+  parseUcsTableEntry,
   DimStyleVariable,
   LineTypeElementType,
   getAcadColor,
@@ -155,6 +157,7 @@ import type {
   LTypeTableEntry,
   LineTypeElement,
   StyleTableEntry,
+  UcsTableEntry,
   VPortTableEntry,
   // shared
   ParsedDxf,

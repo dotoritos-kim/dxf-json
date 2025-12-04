@@ -1,4 +1,4 @@
-export enum AppIdTableEntryFlag {
+export enum TableEntryDependencyFlag {
   /**
    * If set, table entry is externally dependent on an xref
    */
