@@ -68,7 +68,7 @@ import {
   isMatched,
   // TABLE
   AppIdTableEntry,
-  AppIdTableEntryFlag,
+  TableEntryDependencyFlag,
   AppIdTableParserSnippets,
   parseAppIdTableEntry,
   DimStyleVariable,

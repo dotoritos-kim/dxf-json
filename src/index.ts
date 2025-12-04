@@ -138,7 +138,6 @@ export * from './parser/objects/xrecord/parser.ts'
 export * from './parser/objects/xrecord/types.ts'
 
 export * from './parser/tables/appId/types.ts'
-export * from './parser/tables/appId/consts.ts'
 export * from './parser/tables/appId/parser.ts'
 export * from './parser/tables/parser.ts'
 export * from './parser/tables/types.ts'
@@ -157,6 +156,7 @@ export * from './parser/tables/style/parser.ts'
 export * from './parser/tables/style/types.ts'
 export * from './parser/tables/vport/parser.ts'
 export * from './parser/tables/vport/types.ts'
+export * from './parser/tables/consts.ts'
 
 export * from './stream-parser/DxfStreamParser.ts'
 
