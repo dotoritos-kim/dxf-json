@@ -71,8 +71,10 @@ import {
   TableEntryDependencyFlag,
   AppIdTableParserSnippets,
   UcsTableEntryParserSnippets,
+  ViewTableParserSnippets,
   parseAppIdTableEntry,
   parseUcsTableEntry,
+  parseViewTableEntry,
   DimStyleVariable,
   LineTypeElementType,
   getAcadColor,
@@ -158,6 +160,7 @@ import type {
   LineTypeElement,
   StyleTableEntry,
   UcsTableEntry,
+  ViewTableEntry,
   VPortTableEntry,
   // shared
   ParsedDxf,
