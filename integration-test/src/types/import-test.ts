@@ -31,7 +31,6 @@ import {
   ReservedLineweight,
   Measurement,
   ObscuredLineTypes,
-  INDEXED_CHUNK_SIZE,
   ViewportStatusFlag,
   RenderMode,
   UCSPerViewport,
