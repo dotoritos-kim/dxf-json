@@ -31,11 +31,12 @@ export class DxfParser extends EventTarget {
   private readonly _decoder: TextDecoder
   private readonly _options: DxfParserOptions
 
-  constructor(options: DxfParserOptions = new DxfParserOptions()) {
+  constructor(options: Partial<DxfParserOptions> = {}) {
     super()
-    this._options = options
-    this._decoder = new TextDecoder(options.encoding, {
-      fatal: options.encodingFailureFatal,
+    const defaults = new DxfParserOptions()
+    this._options = Object.assign(defaults, options)
+    this._decoder = new TextDecoder(this._options.encoding, {
+      fatal: this._options.encodingFailureFatal,
     })
   }
   parseSync(dxfString: string, isDebugMode = false): ParsedDxf {

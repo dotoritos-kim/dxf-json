@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { DxfParser } from '../../../src/index'
+import { DxfParser } from 'dxf-json'
 import { join } from 'path'
 import { readFileSync } from 'fs'
 
