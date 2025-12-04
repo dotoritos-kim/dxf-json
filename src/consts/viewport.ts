@@ -23,6 +23,11 @@ export enum ViewportStatusFlag {
   GRID_FOLLOWS_WORKPLANE = 0x200000,
 }
 
+/**
+ * In AutoCAD, all rendering modes except 2D Optimized engage the new 3D graphics pipeline.
+ *
+ * These values directly correspond to the `SHADEMODE` command.
+ */
 export enum RenderMode {
   OPTIMIZED_2D = 0, // classic 2D
   WIREFRAME = 1,
