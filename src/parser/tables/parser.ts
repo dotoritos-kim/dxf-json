@@ -12,6 +12,7 @@ import { parseDimStyle } from './dimStyle/parser.ts'
 import { parseLayerTable } from './layer/parser.ts'
 import { parseLTypeTable } from './ltype/parser.ts'
 import { parseStyleTable } from './style/parser.ts'
+import { parseUcsTableEntry } from './ucs/parser.ts'
 import { parseVPortTable } from './vport/parser.ts'
 
 const TableParsers = {
@@ -21,6 +22,7 @@ const TableParsers = {
   LAYER: parseLayerTable,
   LTYPE: parseLTypeTable,
   STYLE: parseStyleTable,
+  UCS: parseUcsTableEntry,
   VPORT: parseVPortTable,
 }
 
