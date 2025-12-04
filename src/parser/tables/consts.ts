@@ -1,4 +1,4 @@
-export enum AppIdTableEntryFlag {
+export enum TableEntryDependencyFlag {
   /**
    * If set, table entry is externally dependent on an xref
    */
@@ -17,4 +17,22 @@ export enum AppIdTableEntryFlag {
    * that write DXF files.
    */
   Referenced = 64,
+}
+
+export enum ViewMode {
+  Off = 0,
+  Perspective = 1,
+  ClipFront = 2,
+  ClipBack = 4,
+  UcsFollow = 8,
+  /**
+   * Determines the behavior of front clipping plane.
+   *
+   * - If turned on, `FRONTZ` determines the front clipping plane.
+   * - If turned off, `FRONTZ` is ignored, and the front clipping plane
+   *   may pass through the camera point.
+   *
+   * This setting is ignored if `ViewMode.ClipFront` is off.
+   */
+  ClipFrontByFrontZ = 16,
 }

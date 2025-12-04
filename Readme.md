@@ -66,15 +66,15 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
 
 - [x] HEADER Section
 - [ ] CLASSES Section
-- [ ] TABLES Section
+- [x] TABLES Section
   - [x] APPID
   - [x] BLOCK_RECORD
   - [x] DIMSTYLE
   - [x] LAYER
   - [x] LTYPE
   - [x] STYLE
-  - [ ] UCS
-  - [ ] VIEW
+  - [x] UCS
+  - [x] VIEW
   - [x] VPORT
 - [x] BLOCKS Section
 - [ ] ENTITIES Section

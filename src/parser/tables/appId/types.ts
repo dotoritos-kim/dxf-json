@@ -10,11 +10,11 @@ export interface AppIdTableEntry extends CommonDxfTableEntry {
    */
   appName: string
   /**
-   * Bitwise combination of `AppIdTableEntryFlag` which indicates xref status.
+   * Bitwise combination of `TableEntryDependencyFlag` which indicates xref status.
    *
    * Parsed by group code `70`.
    *
-   * @see AppIdTableEntryFlag
+   * @see TableEntryDependencyFlag
    */
   flag: number
 }
