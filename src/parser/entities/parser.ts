@@ -15,6 +15,7 @@ import { ImageEntityParser } from './image/parser.ts'
 import { InsertEntityParser } from './insert/parser.ts'
 import { LeaderEntityParser } from './leader/parser.ts'
 import { LineEntityParser } from './line/parser.ts'
+import { LightEntityParser } from './light/parser.ts'
 import { LWPolylineParser } from './lwpolyline/parser.ts'
 import { MeshEntityParser } from './mesh/parser.ts'
 import { MLineEntityParser } from './mline/parser.ts'
@@ -52,6 +53,7 @@ const Parsers = Object.fromEntries(
     InsertEntityParser,
     LeaderEntityParser,
     LineEntityParser,
+    LightEntityParser,
     LWPolylineParser,
     MeshEntityParser,
     MLineEntityParser,
