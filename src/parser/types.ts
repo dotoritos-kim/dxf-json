@@ -26,5 +26,8 @@ export interface ParsedDxf {
     byName: Record<string, CommonDXFObject[]>
     byTree?: CommonDXFObject
   }
-  thumbnailImage?: string | Buffer
+  thumbnailImage?: {
+    size: number
+    data: string | Buffer
+  }
 }

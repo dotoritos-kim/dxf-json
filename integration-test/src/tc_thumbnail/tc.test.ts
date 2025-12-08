@@ -10,12 +10,14 @@ describe('Thumbnail Image Parsing', () => {
     const parser = new DxfParser()
     const result = parser.parseSync(dxfContent)
     const expectedBase64 = Buffer.from('01020304', 'hex').toString('base64')
-    expect(result.thumbnailImage).toBe(expectedBase64)
+    expect(result.thumbnailImage?.data).toBe(expectedBase64)
+    expect(result.thumbnailImage?.size).toBe(4)
   })
 
   it('should parse thumbnail image as hex when specified', () => {
     const parser = new DxfParser({ thumbnailImageFormat: 'hex' })
     const result = parser.parseSync(dxfContent)
-    expect(result.thumbnailImage).toBe('01020304')
+    expect(result.thumbnailImage?.data).toBe('01020304')
+    expect(result.thumbnailImage?.size).toBe(4)
   })
 })

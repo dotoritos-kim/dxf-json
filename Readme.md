@@ -176,19 +176,19 @@ import { DxfParser } from 'dxf-json'
 // Default: base64 format (ready for web display)
 const parser1 = new DxfParser()
 const result1 = parser1.parseSync(dxfContent)
-// result1.thumbnailImage is a base64 string
-// Usage: <img src="data:image/bmp;base64,${result1.thumbnailImage}" />
+// result1.thumbnailImage.data is a base64 string
+// Usage: <img src="data:image/bmp;base64,${result1.thumbnailImage.data}" />
 
 // Hex format (raw hexadecimal string)
 const parser2 = new DxfParser({ thumbnailImageFormat: 'hex' })
 const result2 = parser2.parseSync(dxfContent)
-// result2.thumbnailImage is a hex string
+// result2.thumbnailImage.data is a hex string
 
 // Buffer format (Node.js Buffer object)
 const parser3 = new DxfParser({ thumbnailImageFormat: 'buffer' })
 const result3 = parser3.parseSync(dxfContent)
-// result3.thumbnailImage is a Buffer
-// Save to file: fs.writeFileSync('thumbnail.bmp', result3.thumbnailImage)
+// result3.thumbnailImage.data is a Buffer
+// Save to file: fs.writeFileSync('thumbnail.bmp', result3.thumbnailImage.data)
 ```
 
 **Available formats:**

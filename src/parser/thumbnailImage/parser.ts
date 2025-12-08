@@ -5,31 +5,39 @@ export function parseThumbnailImage(
   curr: ScannerGroup,
   scanner: DxfArrayScanner,
   format: 'base64' | 'hex' | 'buffer' = 'base64'
-): string | Buffer {
+): { size: number; data: string | Buffer } {
   let hexString = ''
+  let size = 0
 
   while (!isMatched(curr, 0, 'EOF')) {
     if (isMatched(curr, 0, 'ENDSEC')) {
       break
     }
 
-    if (curr.code === 310) {
+    if (curr.code === 90) {
+      size = curr.value as number
+    } else if (curr.code === 310) {
       hexString += curr.value
     }
     curr = scanner.next()
   }
 
   // Convert hex string to requested format
+  let data: string | Buffer
   if (format === 'hex') {
-    return hexString
+    data = hexString
+  } else {
+    const buffer = Buffer.from(hexString, 'hex')
+    if (format === 'buffer') {
+      data = buffer
+    } else {
+      // Default: base64
+      data = buffer.toString('base64')
+    }
   }
 
-  const buffer = Buffer.from(hexString, 'hex')
-
-  if (format === 'buffer') {
-    return buffer
+  return {
+    size,
+    data,
   }
-
-  // Default: base64
-  return buffer.toString('base64')
 }
