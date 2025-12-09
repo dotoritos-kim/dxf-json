@@ -114,7 +114,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [ ] SHAPE
   - [x] SOLID
   - [x] SPLINE
-  - [ ] SUND
+  - [x] SUN
   - [ ] SURFACE
   - [ ] TABLE
   - [x] TEXT
