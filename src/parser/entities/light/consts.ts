@@ -9,8 +9,3 @@ export enum AttenuationType {
   InverseLinear = 1,
   InverseSquare = 2,
 }
-
-export enum ShadowType {
-  RayTrace = 0,
-  ShadowMap = 1,
-}

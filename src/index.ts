@@ -14,6 +14,7 @@ export * from './parser/classes/types.ts'
 export * from './parser/classes/consts.ts'
 export * from './parser/classes/parser.ts'
 
+export * from './parser/entities/consts.ts'
 export * from './parser/entities/arc/parser.ts'
 export * from './parser/entities/arc/types.ts'
 export * from './parser/entities/arc_dimension/types.ts'
