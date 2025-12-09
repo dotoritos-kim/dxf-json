@@ -1,5 +1,6 @@
 import { DxfArrayScanner } from './DxfArrayScanner.ts'
 import { parseHeader } from './header/parser.ts'
+import { parseDxfClasses } from './classes/parser.ts'
 import { parseTables } from './tables/parser.ts'
 import { parseBlocks } from './blocks/parser.ts'
 import { parseEntities } from './entities/parser.ts'
@@ -103,6 +104,9 @@ export class DxfParser extends EventTarget {
         if (isMatched(curr, 2, 'HEADER')) {
           curr = scanner.next()
           dxf.header = parseHeader(curr, scanner)
+        } else if (isMatched(curr, 2, 'CLASSES')) {
+          curr = scanner.next()
+          parseDxfClasses(curr, scanner, dxf)
         } else if (isMatched(curr, 2, 'BLOCKS')) {
           curr = scanner.next()
           dxf.blocks = parseBlocks(curr, scanner)

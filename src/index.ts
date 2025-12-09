@@ -10,6 +10,10 @@ export * from './consts/obscuredLineTypes.ts'
 export * from './consts/viewport.ts'
 export * from './consts/plotStyleType.ts'
 
+export * from './parser/classes/types.ts'
+export * from './parser/classes/consts.ts'
+export * from './parser/classes/parser.ts'
+
 export * from './parser/entities/arc/parser.ts'
 export * from './parser/entities/arc/types.ts'
 export * from './parser/entities/arc_dimension/types.ts'

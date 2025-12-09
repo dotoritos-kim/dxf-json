@@ -1,0 +1,36 @@
+  2
+CLASSES
+  0
+CLASS
+  1
+ACDBDETAILVIEWSTYLE
+  2
+AcDbDetailViewStyle
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        1
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+DIMASSOC
+  2
+AcDbDimAssoc
+  3
+some app name
+ 90
+        0
+ 91
+        3
+280
+     0
+281
+     0
+  0
+ENDSEC

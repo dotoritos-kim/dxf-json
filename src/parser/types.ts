@@ -1,4 +1,5 @@
 import type { DxfHeader } from '../types/dxfHeader.ts'
+import type { DxfClass } from './classes/types.ts'
 import type { DxfBlock } from './blocks/types.ts'
 import type { CommonDxfEntity } from './entities/shared.ts'
 import type { CommonDXFObject } from './objects/types.ts'
@@ -12,6 +13,7 @@ import type { DxfTable } from './tables/types.ts'
 
 export interface ParsedDxf {
   header: DxfHeader
+  classes: DxfClass[]
   blocks: Record<string, DxfBlock>
   entities: CommonDxfEntity[]
   tables: {

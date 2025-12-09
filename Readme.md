@@ -65,7 +65,7 @@ For `dev` branch status, see [#52](https://github.com/dotoritos-kim/dxf-json/iss
 Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/ENU/?guid=GUID-235B22E0-A567-4CF6-92D3-38A2306D73F3)
 
 - [x] HEADER Section
-- [ ] CLASSES Section
+- [x] CLASSES Section
 - [x] TABLES Section
   - [x] APPID
   - [x] BLOCK_RECORD
@@ -95,7 +95,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [x] IMAGE
   - [x] INSERT
   - [x] LEADER
-  - [ ] LIGHT
+  - [x] LIGHT
   - [x] LINE
   - [x] LWPOLYLINE
   - [x] MESH

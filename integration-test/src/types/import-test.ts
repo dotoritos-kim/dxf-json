@@ -38,6 +38,12 @@ import {
   MLineFlags,
   MLineJustification,
   DefaultLightingType,
+  // CLASSES
+  ProxyCapabilityFlag,
+  DxfClassParserSnippets,
+  parseDxfClass,
+  DxfClassesParserSnippets,
+  parseDxfClasses,
   // ENTITY
   ArcSymbolType,
   ShadowMode,
@@ -88,6 +94,8 @@ import {
 import type {
   // BLOCK
   DxfBlock,
+  // CLASSES
+  DxfClass,
   // ENTITY
   CommonDxfEntity,
   ArcEntity,
