@@ -1,0 +1,17 @@
+export enum ProxyCapabilityFlag {
+  NotAllowed = 0x0,
+  AllowErase = 0x1,
+  AllowTransform = 0x2,
+  AllowChangeColor = 0x4,
+  AllowChangeLayer = 0x8,
+  AllowChangeLinetype = 0x10,
+  AllowChangeLinetypeScale = 0x20,
+  AllowChangeVisibility = 0x40,
+  AllowClone = 0x80,
+  AllowChangeLineweight = 0x100,
+  AllowChangePlotStyleName = 0x200,
+  AllowAllExceptClone = 0x37f,
+  AllowAll = 0x3ff,
+  DisableProxyWarning = 0x400,
+  R13FormatProxy = 0x8000,
+}

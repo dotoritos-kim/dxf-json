@@ -362,6 +362,143 @@
     "$CSHADOW": 0,
     "$SHADOWPLANELOCATION": 0
   },
+  "classes": [
+    {
+      "name": "ACDBDICTIONARYWDFLT",
+      "cppClassName": "AcDbDictionaryWithDefault",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "DICTIONARYVAR",
+      "cppClassName": "AcDbDictionaryVar",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 13,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "TABLESTYLE",
+      "cppClassName": "AcDbTableStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 4095,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "MATERIAL",
+      "cppClassName": "AcDbMaterial",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1153,
+      "instanceCount": 3,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "VISUALSTYLE",
+      "cppClassName": "AcDbVisualStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 4095,
+      "instanceCount": 24,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "SCALE",
+      "cppClassName": "AcDbScale",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1153,
+      "instanceCount": 17,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "MLEADERSTYLE",
+      "cppClassName": "AcDbMLeaderStyle",
+      "appName": "ACDB_MLEADERSTYLE_CLASS",
+      "proxyFlag": 4095,
+      "instanceCount": 2,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "CELLSTYLEMAP",
+      "cppClassName": "AcDbCellStyleMap",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1152,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "EXACXREFPANELOBJECT",
+      "cppClassName": "ExAcXREFPanelObject",
+      "appName": "EXAC_ESW",
+      "proxyFlag": 1025,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "NPOCOLLECTION",
+      "cppClassName": "AcDbImpNonPersistentObjectsCollection",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1153,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "LAYER_INDEX",
+      "cppClassName": "AcDbLayerIndex",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "SPATIAL_INDEX",
+      "cppClassName": "AcDbSpatialIndex",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "IDBUFFER",
+      "cppClassName": "AcDbIdBuffer",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 0,
+      "instanceCount": 0,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "ACDBSECTIONVIEWSTYLE",
+      "cppClassName": "AcDbSectionViewStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1025,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    },
+    {
+      "name": "ACDBDETAILVIEWSTYLE",
+      "cppClassName": "AcDbDetailViewStyle",
+      "appName": "ObjectDBX Classes",
+      "proxyFlag": 1025,
+      "instanceCount": 1,
+      "wasProxy": false,
+      "isEntity": false
+    }
+  ],
   "blocks": {
     "*Model_Space": {
       "handle": "20",
