@@ -29,6 +29,7 @@ import { SectionEntityParser } from './section/parser.ts'
 import { SolidEntityParser } from './solid/parser.ts'
 import { Solid3DEntityParser } from './solid3d/parser.ts'
 import { SplineEntityParser } from './spline/parser.ts'
+import { SunEntityParser } from './sun/parser.ts'
 import { TextEntityParser } from './text/parser.ts'
 import { ToleranceEntityParser } from './tolerance/parser.ts'
 import { HatchEntityParser } from './hatch/parser.ts'
@@ -67,6 +68,7 @@ const Parsers = Object.fromEntries(
     SolidEntityParser,
     Solid3DEntityParser,
     SplineEntityParser,
+    SunEntityParser,
     TextEntityParser,
     ToleranceEntityParser,
     HatchEntityParser,

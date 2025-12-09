@@ -1,6 +1,7 @@
 import type { Point3D } from '../../../types/shared.ts'
+import type { ShadowType } from '../consts.ts'
 import type { CommonDxfEntity } from '../shared.ts'
-import type { AttenuationType, LightType, ShadowType } from './consts.ts'
+import type { AttenuationType, LightType } from './consts.ts'
 
 export interface LightEntity extends CommonDxfEntity {
   /** Parsed by group code `100` */

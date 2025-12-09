@@ -2,9 +2,10 @@ import { readFileSync } from 'fs'
 import { join } from 'path'
 import { describe, expect, test } from 'vitest'
 import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { ShadowType } from '../consts.ts'
 import { LightEntityParser } from './parser.ts'
 import type { LightEntity } from './types.ts'
-import { AttenuationType, LightType, ShadowType } from './consts.ts'
+import { AttenuationType, LightType } from './consts.ts'
 
 describe('LightDXFEntity parser', () => {
   test('tc0', () => {
