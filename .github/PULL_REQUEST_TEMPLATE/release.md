@@ -1,6 +1,6 @@
 # Release
 
-<!-- Uncomment each section when required -->
+<!-- ## Breaking Changes ## -->
 
 <!-- ## New Feature -->
 
@@ -11,13 +11,12 @@
 <!-- ## Chores -->
 
 <!--
-  This repository uses mathieudutour/github-tag-action to put tag automatically.
-  But we don't use BREAKING CHANGE for major versioning.
+  The title of PR must starts with one of these:
 
-  Set the title of pull request as following so that merge commit has message of
+  major: huge update!
+  feat: must contain new features or improvement
+  fix: only contains bug fixes
+  chore: changes not related to users
 
-  fix/chore/docs: ... - increases patch
-  feat: ... - increases minor
-
-  For more information, see https://github.com/mathieudutour/github-tag-action#bumping
+  Also DO CHANGE COMMIT MESSAGE
 -->
