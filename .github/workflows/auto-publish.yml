@@ -90,6 +90,8 @@ jobs:
     needs: tag
     runs-on: ubuntu-latest
     if: needs.tag.outputs.new_version != ''
+    permissions:
+      contents: write
     steps:
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
