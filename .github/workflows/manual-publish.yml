@@ -1,0 +1,38 @@
+name: Manual Publish
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get Latest Tag
+        id: tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null)
+          if [ -z "$TAG" ]; then
+            echo "No tag found"
+            exit 1
+          fi
+          echo "version=$TAG" >> $GITHUB_OUTPUT
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - run: npm install
+      - run: npm run build
+      - run: npm version ${{ steps.tag.outputs.version }} -f --no-git-tag-version
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
