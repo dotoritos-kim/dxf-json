@@ -1,0 +1,119 @@
+name: Auto Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # For safety, check build first
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run build
+
+  tag:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get Latest Tag
+        id: old_tag
+        run: |
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "latest_tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Decide Bump Type
+        id: bump
+        run: |
+          COMMIT_MSG=$(git log -1 --pretty=%B)
+
+          if echo "$COMMIT_MSG" | grep -q "major:"; then
+            echo "type=major" >> $GITHUB_OUTPUT
+          elif echo "$COMMIT_MSG" | grep -q "feat:"; then
+            echo "type=minor" >> $GITHUB_OUTPUT
+          elif echo "$COMMIT_MSG" | grep -q "fix:"; then
+            echo "type=patch" >> $GITHUB_OUTPUT
+          else
+            echo "type=none" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump Version
+        id: new_version
+        if: steps.bump.outputs.type != 'none'
+        run: |
+          CURRENT=${{ steps.old_tag.outputs.latest_tag }}
+          CURRENT=${CURRENT#v}
+
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT"
+
+          case "${{ steps.bump.outputs.type }}" in
+            major)
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            minor)
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            patch)
+              PATCH=$((PATCH + 1))
+              ;;
+          esac
+
+          echo "version=v${MAJOR}.${MINOR}.${PATCH}" >> $GITHUB_OUTPUT
+
+      - name: Create and push tag
+        if: steps.bump.outputs.type != 'none'
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
+          git tag ${{ steps.new_version.outputs.version }}
+          git push origin ${{ steps.new_version.outputs.version }}
+    outputs:
+      new_version: ${{ steps.new_version.outputs.version }}
+
+  release:
+    needs: tag
+    runs-on: ubuntu-latest
+    if: needs.tag.outputs.new_version != ''
+    steps:
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ needs.tag.outputs.new_version }}
+          name: Release ${{ needs.tag.outputs.new_version }}
+          body: ${{ github.event.head_commit.message }}
+
+  publish:
+    needs: tag
+    runs-on: ubuntu-latest
+    if: needs.tag.outputs.new_version != ''
+    permissions:
+      packages: write
+      contents: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+      - run: npm install
+      - run: npm run build
+      - run: npm version ${{ needs.tag.outputs.new_version }} -f --no-git-tag-version
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
