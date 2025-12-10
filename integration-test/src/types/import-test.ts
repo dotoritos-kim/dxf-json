@@ -3,7 +3,7 @@
 */
 
 import DxfParser from 'dxf-json'
-import { 
+import {
   // consts
   BlockTypeFlag,
   ColorCode,
@@ -31,7 +31,6 @@ import {
   ReservedLineweight,
   Measurement,
   ObscuredLineTypes,
-  INDEXED_CHUNK_SIZE,
   ViewportStatusFlag,
   RenderMode,
   UCSPerViewport,
@@ -39,6 +38,12 @@ import {
   MLineFlags,
   MLineJustification,
   DefaultLightingType,
+  // CLASSES
+  ProxyCapabilityFlag,
+  DxfClassParserSnippets,
+  parseDxfClass,
+  DxfClassesParserSnippets,
+  parseDxfClasses,
   // ENTITY
   ArcSymbolType,
   ShadowMode,
@@ -49,6 +54,13 @@ import {
   ImageClippingBoundaryType,
   ImageClipMode,
   LeaderCreationFlag,
+  LightEntitySnippet,
+  LightEntityParser,
+  LightType,
+  AttenuationType,
+  ShadowType,
+  SunEntityParserSnippets,
+  SunEntityParser,
   LWPolylineFlag,
   MTextDrawingDirection,
   PolylineFlag,
@@ -67,15 +79,25 @@ import {
   // shared
   isMatched,
   // TABLE
+  AppIdTableEntry,
+  TableEntryDependencyFlag,
+  AppIdTableParserSnippets,
+  UcsTableEntryParserSnippets,
+  ViewTableParserSnippets,
+  parseAppIdTableEntry,
+  parseUcsTableEntry,
+  parseViewTableEntry,
   DimStyleVariable,
   LineTypeElementType,
-  getAcadColor
+  getAcadColor,
 } from 'dxf-json'
 
 // types
-import type { 
+import type {
   // BLOCK
   DxfBlock,
+  // CLASSES
+  DxfClass,
   // ENTITY
   CommonDxfEntity,
   ArcEntity,
@@ -127,6 +149,7 @@ import type {
   SolidEntity,
   Solid3DEntity,
   SplineEntity,
+  SunEntity,
   TextEntity,
   ToleranceEntity,
   VertexEntity,
@@ -151,6 +174,8 @@ import type {
   LTypeTableEntry,
   LineTypeElement,
   StyleTableEntry,
+  UcsTableEntry,
+  ViewTableEntry,
   VPortTableEntry,
   // shared
   ParsedDxf,
@@ -160,5 +185,5 @@ import type {
   DxfHeader,
   Point2D,
   Point3D,
-  Bound
+  Bound,
 } from 'dxf-json'

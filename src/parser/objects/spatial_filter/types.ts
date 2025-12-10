@@ -1,5 +1,5 @@
-import type { Point2D, Point3D } from '../../../types'
-import type { CommonDXFObject } from '../types'
+import type { Point2D, Point3D } from '../../../types/shared.ts'
+import type { CommonDXFObject } from '../types.ts'
 
 export interface SpatialFilterDXFObject extends CommonDXFObject {
   subclassMarker: 'AcDbSpatialFilter'

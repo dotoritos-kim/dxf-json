@@ -1,9 +1,11 @@
 ## Overview
+
 <!---- Please briefly describe the changes and related issues. Please explain what and why you modified it rather than how. -->
 
 <!---- Resolves: #(Isuue Number) -->
 
 ## PR category
+
 What changes?
 
 - [ ] Add new features
@@ -18,6 +20,7 @@ What changes?
 - [ ] Delete file or folder
 
 ## PR Checklist
+
 Make sure your PR meets the following requirements:
 
 - [ ] Tested the changes (bug fixes/tested features).

@@ -1,103 +1,103 @@
-import type { DxfArrayScanner, ScannerGroup } from "../../DxfArrayScanner";
-import { isMatched } from "../../shared";
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { isMatched } from '../../shared/isMatched.ts'
 import {
   DXFParserSnippet,
   Identity,
   ToBoolean,
   PointParser,
-} from "../../shared/parserGenerator";
-import { CommonObjectSnippets } from "../shared";
+} from '../../shared/parserGenerator.ts'
+import { CommonObjectSnippets } from '../shared.ts'
 
 export const SpatialFilterSnippets: DXFParserSnippet[] = [
   {
     code: 40,
-    name: "wcsToOCSTransform",
+    name: 'wcsToOCSTransform',
     parser: matrixParser,
   },
   {
     code: 40,
-    name: "ocsToWCSTransform",
+    name: 'ocsToWCSTransform',
     parser: matrixParser,
   },
   {
     code: 41,
-    name: "backClippingDistance",
+    name: 'backClippingDistance',
     parser: Identity,
   },
   {
     code: 73,
-    name: "isBackClipping",
+    name: 'isBackClipping',
     parser: ToBoolean,
     pushContext: true,
   },
   {
     code: 40,
-    name: "frontClippingDistance",
+    name: 'frontClippingDistance',
     parser: Identity,
   },
   {
     code: 72,
-    name: "isFrontClipping",
+    name: 'isFrontClipping',
     parser: ToBoolean,
     pushContext: true,
   },
   {
     code: 71,
-    name: "isClipBoundaryDisplayed",
+    name: 'isClipBoundaryDisplayed',
     parser: ToBoolean,
   },
   {
     code: 11,
-    name: "position",
+    name: 'position',
     parser: PointParser,
   },
   {
     code: 210,
-    name: "normal",
+    name: 'normal',
     parser: PointParser,
   },
   {
     code: 10,
-    name: "boundaryVertices",
+    name: 'boundaryVertices',
     parser: PointParser,
     isMultiple: true,
   },
   {
     code: 70,
-    name: "boundaryCount",
+    name: 'boundaryCount',
     parser: Identity,
   },
   {
     code: 100,
-    name: "subclassMarker",
+    name: 'subclassMarker',
     parser: Identity,
   },
   {
     code: 100, // skip AcDbFilter
   },
-  ...CommonObjectSnippets
-];
+  ...CommonObjectSnippets,
+]
 
 function matrixParser(curr: ScannerGroup, scanner: DxfArrayScanner) {
   // 4 row x 3 column in column-major ordering
-  const matrix: number[][] = [];
+  const matrix: number[][] = []
   for (let i = 0; i < 3; ++i) {
-    if (!isMatched(curr, 40)) break;
+    if (!isMatched(curr, 40)) break
 
-    const row: number[] = [];
+    const row: number[] = []
 
     for (let j = 0; j < 4; ++j) {
-      if (!isMatched(curr, 40)) break;
+      if (!isMatched(curr, 40)) break
 
-      row.push(curr.value);
+      row.push(curr.value)
 
-      curr = scanner.next();
+      curr = scanner.next()
     }
-    matrix.push(row);
+    matrix.push(row)
   }
 
   // parser should not read next value
   // as it's handled by core engine
-  scanner.rewind();
-  return matrix;
+  scanner.rewind()
+  return matrix
 }

@@ -16,8 +16,16 @@
           "isClipBoundaryDisplayed": true,
           "isFrontClipping": false,
           "isBackClipping": false,
-          "wcsToOCSTransform": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]],
-          "ocsToWCSTransform": [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0]],
+          "wcsToOCSTransform": [
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0]
+          ],
+          "ocsToWCSTransform": [
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0]
+          ],
           "extensions": {
             "ACAD_REACTORS": [{ "code": 330, "value": "2D3" }]
           }

@@ -1,9 +1,15 @@
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { CommonEntitySnippets } from '../shared';
-import { type DXFParserSnippet, Identity, PointParser, ToBoolean, createParser } from '../../shared/parserGenerator';
-import { DimStyleVariablesSchema } from '../../tables/dimStyle';
-import { CommonDimensionSnippets } from '../dimension';
-import type { ArcDimensionEntity } from './types';
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import { CommonEntitySnippets } from '../shared.ts'
+import {
+  type DXFParserSnippet,
+  Identity,
+  PointParser,
+  ToBoolean,
+  createParser,
+} from '../../shared/parserGenerator.ts'
+import { DimStyleVariablesSchema } from '../../tables/dimStyle/consts.ts'
+import { CommonDimensionSnippets } from '../dimension/parser.ts'
+import type { ArcDimensionEntity } from './types.ts'
 
 export const ArcDimensionEntitySnippet: DXFParserSnippet[] = [
   // It's reported to have this code by LibreDWG documentation and it's usage is not known.
@@ -63,18 +69,21 @@ export const ArcDimensionEntitySnippet: DXFParserSnippet[] = [
     parser: Identity,
     pushContext: true,
   },
-  ...DimStyleVariablesSchema.map(schema => ({ ...schema, parser: Identity })),
+  ...DimStyleVariablesSchema.map((schema) => ({ ...schema, parser: Identity })),
   ...CommonDimensionSnippets,
-  ...CommonEntitySnippets
+  ...CommonEntitySnippets,
 ]
 
 export class ArcDimensionParser {
   static ForEntityName = 'ARC_DIMENSION'
 
-    parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup): ArcDimensionEntity {
-        const entity = {} as ArcDimensionEntity;
-        const parser = createParser(ArcDimensionEntitySnippet)
-        parser(curr, scanner, entity);
-        return entity
-    }
+  parseEntity(
+    scanner: DxfArrayScanner,
+    curr: ScannerGroup,
+  ): ArcDimensionEntity {
+    const entity = {} as ArcDimensionEntity
+    const parser = createParser(ArcDimensionEntitySnippet)
+    parser(curr, scanner, entity)
+    return entity
+  }
 }

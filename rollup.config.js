@@ -4,29 +4,29 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/bundle.mjs',
+      file: 'dist/esm/bundle.mjs',
       format: 'es',
     },
     {
-      file: 'dist/bundle.cjs',
+      file: 'dist/cjs/bundle.cjs',
       format: 'cjs',
     },
   ],
   plugins: [
     swc({
-      tsconfig: 'tsconfig.build.json',
+      tsconfig: 'tsconfig.json',
       jsc: {
         parser: {
-          syntax: "typescript",
+          syntax: 'typescript',
         },
       },
       isModule: true,
       module: {
-        type: "es6",
-        strictMode: true
+        type: 'es6',
+        strictMode: true,
       },
       sourceMaps: true,
       minify: true,
-  }),
+    }),
   ],
 }

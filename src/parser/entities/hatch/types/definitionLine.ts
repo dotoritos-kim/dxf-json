@@ -1,4 +1,4 @@
-import type { Point2D } from "../../../../types";
+import type { Point2D } from '../../../../types/shared.ts'
 
 /*
  * offset이란 선과 선 사이의 간격을 만드는 벡터이다.
@@ -6,9 +6,9 @@ import type { Point2D } from "../../../../types";
  * (angle과도 무관하다)
  */
 export interface HatchDefinitionLine {
-    angle: number; // degree
-    base: Point2D;
-    offset: Point2D;
-    numberOfDashLengths: number;
-    dashLengths: number[];
+  angle: number // degree
+  base: Point2D
+  offset: Point2D
+  numberOfDashLengths: number
+  dashLengths: number[]
 }

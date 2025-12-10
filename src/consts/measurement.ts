@@ -1,4 +1,4 @@
 export enum Measurement {
-    English = 0,
-    Metric = 1,
+  English = 0,
+  Metric = 1,
 }

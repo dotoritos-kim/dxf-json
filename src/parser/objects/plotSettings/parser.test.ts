@@ -1,30 +1,35 @@
-import { describe, test, expect } from 'vitest';
-import { readFileSync } from "fs";
-import { join } from "path";
-import { DxfArrayScanner } from "../../DxfArrayScanner";
-import { createParser } from "../../shared/parserGenerator";
-import { PlotSettingsSnippets } from './parser';
-import type { PlotSettingDXFObject } from './types';
-import { PlotPaperUnit, PlotType, ShadePlotMode, ShadePlotResolution } from '../plotSettings/consts';
+import { describe, test, expect } from 'vitest'
+import { readFileSync } from 'fs'
+import { join } from 'path'
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { createParser } from '../../shared/parserGenerator.ts'
+import { PlotSettingsSnippets } from './parser.ts'
+import type { PlotSettingDXFObject } from './types.ts'
+import {
+  PlotPaperUnit,
+  PlotType,
+  ShadePlotMode,
+  ShadePlotResolution,
+} from '../plotSettings/consts.ts'
 
-describe("PLOTSETTINGS", () => {
-  test("tc0", () => {
-    const content = readFileSync(join(__dirname, "./tc0.partial_dxf"), "utf-8");
-    const scanner = new DxfArrayScanner(content.split("\n"));
-    const parser = createParser(PlotSettingsSnippets);
-    let curr = scanner.next();
-    curr = scanner.next(); // skip 0 code
+describe('PLOTSETTINGS', () => {
+  test('tc0', () => {
+    const content = readFileSync(join(__dirname, './tc0.partial_dxf'), 'utf-8')
+    const scanner = new DxfArrayScanner(content.split('\n'))
+    const parser = createParser(PlotSettingsSnippets)
+    let curr = scanner.next()
+    curr = scanner.next() // skip 0 code
 
-    const obj = { name: 'PLOTSETTINGS' } as any;
+    const obj = { name: 'PLOTSETTINGS' } as any
 
-    const isReadOnce = parser(curr, scanner, obj);
+    const isReadOnce = parser(curr, scanner, obj)
 
     expect(obj).toMatchObject<PlotSettingDXFObject>({
       name: 'PLOTSETTINGS',
-      subclassMarker: "AcDbPlotSettings",
-      handle: 'D9B071D01A0C0BB2',      
+      subclassMarker: 'AcDbPlotSettings',
+      handle: 'D9B071D01A0C0BB2',
       extensions: {
-        ACAD_REACTORS: [{ code: 330, value: "D9B071D01A0ACD32" }],
+        ACAD_REACTORS: [{ code: 330, value: 'D9B071D01A0ACD32' }],
       },
       ownerObjectId: 'D9B071D01A0ACD32',
       pageSetupName: '(Model) 11x17 Final',
@@ -45,7 +50,7 @@ describe("PLOTSETTINGS", () => {
       windowAreaYMax: 313,
       printScaleNumerator: 1,
       printScaleDenominator: 26,
-      layoutFlag: 0x6B4,
+      layoutFlag: 0x6b4,
       plotPaperUnit: PlotPaperUnit.INCHES,
       plotRotation: 3,
       plotType: PlotType.LAST_SCREEN_DISPLAY,
@@ -57,7 +62,7 @@ describe("PLOTSETTINGS", () => {
       scaleFactor: 379,
       imageOriginX: 305,
       imageOriginY: 189,
-    });
-    expect(isReadOnce).toBe(true);
-  });
-});
+    })
+    expect(isReadOnce).toBe(true)
+  })
+})

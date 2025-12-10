@@ -14,7 +14,7 @@
 
 DXF parser with rich type definitions.
 
-> [!CAUTION] 
+> [!CAUTION]
 > This is parser is not in stable state yet. Until version 1.0, we may often change name or type of the variables. We're adding rich unit/integration test, but there might be unexpected bug or uncovered situation. Note that [official DXF specification](https://documentation.help/AutoCAD-DXF/) is poorly documented, so that many informations are missing and even errors exist. Use your own risk. Thank you for your consideration.
 
 ## Quick Start
@@ -27,13 +27,27 @@ npm i dxf-json # or your loved package manager
 import { readFileSync } from 'fs'
 import { DxfParser } from 'dxf-json'
 
-const content = readFileSync('foo.dxf', 'utf-8');
+const content = readFileSync('foo.dxf', 'utf-8')
 const parser = new DxfParser()
 const parsedDxf = parser.parseSync(content)
 
 // play with your dxf file
-const lwPolylines = parsedDxf.entities.filter(entity => entity.type === 'LWPOLYLINE')
+const lwPolylines = parsedDxf.entities.filter(
+  (entity) => entity.type === 'LWPOLYLINE',
+)
 ```
+
+### About `moduleResolution` in TypeScript
+
+It's impossible to support both ESM and CJS with `node16`, because they detect type of modules only by `type` field in `package.json` or the extension of files. To support CJS with `node16`, we have to rename every `.d.ts` files into `.d.cts`, not only the file name but also every `import` expression in source files.
+
+But Node16 is already deprecated, and to maintain the open source society healthy, we decided not to support `require` at that version. Also we **highly recommend to use ESM styled `import`** consistently throughout your source code.
+
+| Module Resolution | From ESM | From CJS |
+| ----------------- | -------- | -------- |
+| `node10`          | ✅       | ✅       |
+| `node16`          | ✅       | ❌       |
+| `bundler`         | ✅       | ✅       |
 
 ## Features
 
@@ -41,7 +55,7 @@ const lwPolylines = parsedDxf.entities.filter(entity => entity.type === 'LWPOLYL
 - Support both ESM and CJS
 - Support TypeScript
 
-> [!NOTE] 
+> [!NOTE]
 > We support standard specification of dxf and AutoCAD features only. We're trying our best to support universal dxf files, but we don't support 3rd party specification.
 
 <details><summary>Current Coverage</summary>
@@ -51,16 +65,16 @@ For `dev` branch status, see [#52](https://github.com/dotoritos-kim/dxf-json/iss
 Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/ENU/?guid=GUID-235B22E0-A567-4CF6-92D3-38A2306D73F3)
 
 - [x] HEADER Section
-- [ ] CLASSES Section
-- [ ] TABLES Section
-  - [ ] APPID
+- [x] CLASSES Section
+- [x] TABLES Section
+  - [x] APPID
   - [x] BLOCK_RECORD
   - [x] DIMSTYLE
   - [x] LAYER
   - [x] LTYPE
   - [x] STYLE
-  - [ ] UCS
-  - [ ] VIEW
+  - [x] UCS
+  - [x] VIEW
   - [x] VPORT
 - [x] BLOCKS Section
 - [ ] ENTITIES Section
@@ -81,7 +95,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [x] IMAGE
   - [x] INSERT
   - [x] LEADER
-  - [ ] LIGHT
+  - [x] LIGHT
   - [x] LINE
   - [x] LWPOLYLINE
   - [x] MESH
@@ -100,7 +114,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [ ] SHAPE
   - [x] SOLID
   - [x] SPLINE
-  - [ ] SUND
+  - [x] SUN
   - [ ] SURFACE
   - [ ] TABLE
   - [x] TEXT
@@ -143,12 +157,47 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [ ] VISUALSTYLE
   - [ ] WIPEOUTVARIABLES
   - [x] XRECORD
-- [ ] THUMBNAILIMAGE Section
+- [x] THUMBNAILIMAGE Section
 
 </details>
 
-> [!NOTE] 
+> [!NOTE]
 > The documentation is not ready, but you can check the source code for used types [#1](https://github.com/dotoritos-kim/dxf-json/blob/main/src/parser/types.ts) and [#2](https://github.com/dotoritos-kim/dxf-json/blob/main/integration-test/src/types/import-test.ts)
+
+## Parsing Options
+
+### Thumbnail Image Format
+
+You can configure how the `THUMBNAILIMAGE` section is parsed by setting the `thumbnailImageFormat` option:
+
+```ts
+import { DxfParser } from 'dxf-json'
+
+// Default: base64 format (ready for web display)
+const parser1 = new DxfParser()
+const result1 = parser1.parseSync(dxfContent)
+// result1.thumbnailImage.data is a base64 string
+// Usage: <img src="data:image/bmp;base64,${result1.thumbnailImage.data}" />
+
+// Hex format (raw hexadecimal string)
+const parser2 = new DxfParser({ thumbnailImageFormat: 'hex' })
+const result2 = parser2.parseSync(dxfContent)
+// result2.thumbnailImage.data is a hex string
+
+// Buffer format (Node.js Buffer object)
+const parser3 = new DxfParser({ thumbnailImageFormat: 'buffer' })
+const result3 = parser3.parseSync(dxfContent)
+// result3.thumbnailImage.data is a Buffer
+// Save to file: fs.writeFileSync('thumbnail.bmp', result3.thumbnailImage.data)
+```
+
+**Available formats:**
+- `'base64'` (default): Base64-encoded string, ideal for web applications
+- `'hex'`: Raw hexadecimal string from the DXF file
+- `'buffer'`: Node.js Buffer object for file operations
+
+> [!NOTE]
+> The thumbnail image in DXF files is typically in BMP format.
 
 ### `parseSync`
 
@@ -161,16 +210,16 @@ return parser.parseSync(buffer)
 
 ```ts
 import fs from 'fs'
-const parser = new DxfParser();
-const fileStream = fs.createReadStream("dxf file path", { encoding: 'utf8' });
-return await parser.parseStream(fileStream);
+const parser = new DxfParser()
+const fileStream = fs.createReadStream('dxf file path', { encoding: 'utf8' })
+return await parser.parseStream(fileStream)
 ```
 
 ### `parseUrl`
 
 ```ts
-const parser = new DxfParser();
-return await parser.parseFromUrl(url, encoding, RequestInit);
+const parser = new DxfParser()
+return await parser.parseFromUrl(url, encoding, RequestInit)
 ```
 
 ## Contribution

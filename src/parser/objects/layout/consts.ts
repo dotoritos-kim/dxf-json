@@ -1,5 +1,4 @@
 export enum LayoutControlFlag {
-    PSLTSCALE = 1,
-    LIMCHECK = 2,
+  PSLTSCALE = 1,
+  LIMCHECK = 2,
 }
-

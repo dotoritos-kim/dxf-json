@@ -1,8 +1,8 @@
-import { describe, test, expect } from 'vitest';
+import { describe, test, expect } from 'vitest'
 import { readFileSync } from 'fs'
 import { join } from 'path'
-import { DxfArrayScanner } from '../../DxfArrayScanner'
-import { MeshEntityParser } from "./parser"
+import { DxfArrayScanner } from '../../DxfArrayScanner.ts'
+import { MeshEntityParser } from './parser.ts'
 
 describe('MESH', () => {
   test('tc0', () => {
@@ -11,7 +11,7 @@ describe('MESH', () => {
     const parser = new MeshEntityParser()
 
     let curr = scanner.next() // skip first line
-    curr = scanner.next() 
+    curr = scanner.next()
     const entity = parser.parseEntity(scanner, curr)
 
     expect(entity).toMatchObject({

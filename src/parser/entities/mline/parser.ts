@@ -1,7 +1,12 @@
-import { CommonEntitySnippets } from '../shared';
-import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner';
-import { type DXFParserSnippet, Identity, PointParser, createParser } from '../../shared/parserGenerator';
-import type { MLineEntity } from './types';
+import { CommonEntitySnippets } from '../shared.ts'
+import type { DxfArrayScanner, ScannerGroup } from '../../DxfArrayScanner.ts'
+import {
+  type DXFParserSnippet,
+  Identity,
+  PointParser,
+  createParser,
+} from '../../shared/parserGenerator.ts'
+import type { MLineEntity } from './types.ts'
 
 export const MLineElementParser: DXFParserSnippet[] = [
   {
@@ -54,7 +59,7 @@ export const MLineSegmentParser: DXFParserSnippet[] = [
     code: 11,
     name: 'position',
     parser: PointParser,
-  }
+  },
 ]
 
 export const MLineDXFEntitySnippet: DXFParserSnippet[] = [
