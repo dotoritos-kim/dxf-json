@@ -1,26 +1,45 @@
 ## Overview
 
-<!---- Please briefly describe the changes and related issues. Please explain what and why you modified it rather than how. -->
+<!--
+  Please describe your pull request, may include followings:
 
-<!---- Resolves: #(Isuue Number) -->
+  - Why I created this PR
+  - Why my changes are required
+  - The issue numbers related to this PR (Add with #)
 
-## PR category
+  We highly recommend to pile an issue before open PR
+-->
 
-What changes?
+## Changes
+
+Check the relevants of your pull request
 
 - [ ] Add new features
-- [ ] Bug fix
-- [ ] Changes that do not affect the code (correct typos, change tab size, change variable names)
-- [ ] Code refactoring
-- [ ] Add and edit comments
-- [ ] Edit document
-- [ ] Add tests, refactor tests
+- [ ] Fix bug
+- [ ] Refactor which doesn't change internal behavior (indent, typo)
+- [ ] Refactor which do changes internal behavior
+- [ ] Edit the existing documents/comments
 - [ ] Edit the build part or package manager
-- [ ] Edit file or folder name
-- [ ] Delete file or folder
 
-## PR Checklist
+## Approval Requirement
 
-Make sure your PR meets the following requirements:
+- Title of the PR must start with one of them: (choose the most important one of above changes)
+  - `feat: `
+  - `fix: `
+  - `chore: `
+  - `refactor: `
+- You must apply prettier
+- You should add test cases for new feature(s) (especially for complex cases)
+- You should add **jsdoc comment** to `function`, `type`, `interface` and constants.
+- You must add followings to `import-test.ts` and **pass the test**
+  - New parser snippets
+  - New `enum` and constants
+  - New parse `function`
+  - Helper functions or internal things are optional, but the maintainer would request to add them.
 
-- [ ] Tested the changes (bug fixes/tested features).
+You can test by yourself in local, by executing following commands:
+
+```
+npm run build
+npm run test
+```
