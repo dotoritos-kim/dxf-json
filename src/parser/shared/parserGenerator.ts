@@ -85,8 +85,7 @@ export function createParser(
         const [leaf, fieldName] = getObjectByPath(target, name)
 
         if (isMultiple && !isReducible) {
-          // default value is injected via prototype, therefore have to check their own properties
-          if (!Object.prototype.hasOwnProperty.call(leaf, fieldName)) {
+          if (!leaf.hasOwnProperty(fieldName)) {
             leaf[fieldName] = []
           }
           leaf[fieldName].push(parsedValue)
@@ -104,11 +103,27 @@ export function createParser(
     }
 
     if (defaultObject) {
-      Object.setPrototypeOf(target, defaultObject)
+      for (const prop in defaultObject) {
+        if (target.hasOwnProperty(prop)) continue
+
+        target[prop] = deepCopy(defaultObject[prop])
+      }
     }
 
     return isReadOnce
   }
+}
+
+function deepCopy(obj: any): any {
+  if (obj === null || typeof obj !== 'object') {
+    return obj
+  }
+  if (Array.isArray(obj)) {
+    return obj.map(deepCopy)
+  }
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [key, deepCopy(value)]),
+  )
 }
 
 function createSnippetMaps(snippets: DXFParserSnippet[], isDebugMode = false) {
