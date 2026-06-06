@@ -21,7 +21,13 @@ export interface VPortTableEntry extends CommonDxfTableEntry {
   lensLength: number
   frontClippingPlane: number
   backClippingPlane: number
+  /** View height in model-space DCS (DXF group 40 or 45). */
   viewHeight: number
+  /**
+   * View width ÷ view height (VPORT table DXF group 41 only).
+   * Not VIEW-table width (group 41) or VIEWPORT-entity height (group 41).
+   */
+  aspectRatio?: number
   snapRotationAngle: number
   viewTwistAngle: number
   circleSides: number

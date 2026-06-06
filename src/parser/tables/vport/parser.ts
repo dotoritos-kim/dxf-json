@@ -7,6 +7,38 @@ import {
 } from '../../shared/parserGenerator.ts'
 import { CommonTableEntryParserSnippets } from '../shared.ts'
 
+/**
+ * Parser for the VPORT symbol table (`AcDbViewportTableRecord`).
+ *
+ * The `*ACTIVE` entry stores the model-space view AutoCAD restores on open
+ * (center, height, aspect ratio). See also `applyVPortTableEntryDefaults`.
+ *
+ * ## View height and aspect ratio (groups 40 / 41 / 45)
+ *
+ * AutoCAD emits view height under **two** group codes depending on version:
+ * - **40** — view height (legacy; still written by current AutoCAD, e.g. when
+ *   group 45 is absent)
+ * - **45** — view height (same meaning as 40 in newer DXF references)
+ *
+ * Both map to `viewHeight`; if a file contains both, the later group wins.
+ *
+ * - **41** — viewport aspect ratio (view width ÷ view height). Used to compute
+ *   the visible WCS width: `viewWidth = viewHeight × aspectRatio`.
+ *
+ * The online ObjectARX VPORT page may not list 40/41, but they appear in real
+ * files and in the archived R12 DXF reference.
+ *
+ * ## Do not confuse with other DXF objects that reuse 40/41
+ *
+ * | Object            | Group 40        | Group 41           |
+ * |-------------------|-----------------|--------------------|
+ * | VPORT table       | view height     | aspect ratio       |
+ * | VIEW table        | view height     | view **width**     |
+ * | VIEWPORT entity   | paper **width** | paper **height**   |
+ *
+ * Group **45** on a **VIEWPORT entity** is model-space view height — that is a
+ * different subclass (`AcDbViewport`), not this table parser.
+ */
 const VPortTableParserSnippets: DXFParserSnippet[] = [
   {
     code: [63, 421, 431],
@@ -124,6 +156,7 @@ const VPortTableParserSnippets: DXFParserSnippet[] = [
     name: 'snapRotationAngle',
     parser: Identity,
   },
+  // View height — newer DXF; same semantic as group 40 below.
   {
     code: 45,
     name: 'viewHeight',
@@ -142,6 +175,18 @@ const VPortTableParserSnippets: DXFParserSnippet[] = [
   {
     code: 42,
     name: 'lensLength',
+    parser: Identity,
+  },
+  // Aspect ratio (width / height). Not VIEW-table width (41) or VIEWPORT height.
+  {
+    code: 41,
+    name: 'aspectRatio',
+    parser: Identity,
+  },
+  // View height — legacy; AutoCAD still writes this when 45 is omitted.
+  {
+    code: 40,
+    name: 'viewHeight',
     parser: Identity,
   },
   {
