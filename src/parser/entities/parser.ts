@@ -26,6 +26,7 @@ import { PolylineParser } from './polyline/parser.ts'
 import { RayParser } from './ray/parser.ts'
 import { RegionEntityParser } from './region/parser.ts'
 import { SectionEntityParser } from './section/parser.ts'
+import { ShapeEntityParser } from './shape/parser.ts'
 import { SolidEntityParser } from './solid/parser.ts'
 import { Solid3DEntityParser } from './solid3d/parser.ts'
 import { SplineEntityParser } from './spline/parser.ts'
@@ -65,6 +66,7 @@ const Parsers = Object.fromEntries(
     RayParser,
     RegionEntityParser,
     SectionEntityParser,
+    ShapeEntityParser,
     SolidEntityParser,
     Solid3DEntityParser,
     SplineEntityParser,
