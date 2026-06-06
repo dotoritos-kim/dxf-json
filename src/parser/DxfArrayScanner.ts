@@ -123,27 +123,29 @@ export function parseGroupValue(
   value: string,
   isDebugMode = false,
 ) {
-  if (code <= 9) return value
+  const normalizedValue = normalizeGroupString(value)
+
+  if (code <= 9) return normalizedValue
   if (code >= 10 && code <= 59) return parseFloat(value.trim())
   if (code >= 60 && code <= 99) return parseInt(value.trim())
-  if (code >= 100 && code <= 109) return value
+  if (code >= 100 && code <= 109) return normalizedValue
   if (code >= 110 && code <= 149) return parseFloat(value.trim())
   if (code >= 160 && code <= 179) return parseInt(value.trim())
   if (code >= 210 && code <= 239) return parseFloat(value.trim())
   if (code >= 270 && code <= 289) return parseInt(value.trim())
   if (code >= 290 && code <= 299) return parseBoolean(value.trim())
-  if (code >= 300 && code <= 369) return value
+  if (code >= 300 && code <= 369) return normalizedValue
   if (code >= 370 && code <= 389) return parseInt(value.trim())
-  if (code >= 390 && code <= 399) return value
+  if (code >= 390 && code <= 399) return normalizedValue
   if (code >= 400 && code <= 409) return parseInt(value.trim())
-  if (code >= 410 && code <= 419) return value
+  if (code >= 410 && code <= 419) return normalizedValue
   if (code >= 420 && code <= 429) return parseInt(value.trim())
-  if (code >= 430 && code <= 439) return value
+  if (code >= 430 && code <= 439) return normalizedValue
   if (code >= 440 && code <= 459) return parseInt(value.trim())
   if (code >= 460 && code <= 469) return parseFloat(value.trim())
-  if (code >= 470 && code <= 481) return value
-  if (code === 999) return value
-  if (code >= 1000 && code <= 1009) return value
+  if (code >= 470 && code <= 481) return normalizedValue
+  if (code === 999) return normalizedValue
+  if (code >= 1000 && code <= 1009) return normalizedValue
   if (code >= 1010 && code <= 1059) return parseFloat(value.trim())
   if (code >= 1060 && code <= 1071) return parseInt(value.trim())
 
@@ -153,7 +155,11 @@ export function parseGroupValue(
       value: value,
     })
   }
-  return value
+  return normalizedValue
+}
+
+function normalizeGroupString(value: string) {
+  return value.endsWith('\r') ? value.slice(0, -1) : value
 }
 
 /**
