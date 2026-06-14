@@ -16,6 +16,8 @@ export interface CommonDxfEntity {
   ownerBlockRecordSoftId?: string
   isInPaperSpace?: boolean
   layer: string
+  /** Layout tab name (group 410) */
+  layoutTabName?: string
   lineType?: string
   materialObjectHardId?: string
   colorIndex?: ColorIndex

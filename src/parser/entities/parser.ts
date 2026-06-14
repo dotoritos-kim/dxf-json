@@ -2,6 +2,7 @@ import type { DxfArrayScanner, ScannerGroup } from '../DxfArrayScanner.ts'
 import { ensureHandle } from '../shared/ensureHandle.ts'
 import { isMatched } from '../shared/isMatched.ts'
 
+import { AcadProxyEntityParser } from './acadProxyEntity/parser.ts'
 import { ArcEntityParser } from './arc/parser.ts'
 import { ArcDimensionParser } from './arc_dimension/parser.ts'
 import { AttDefEntityParser } from './attdef/parser.ts'
@@ -41,6 +42,7 @@ import { CommonDxfEntity } from './shared.ts'
 
 const Parsers = Object.fromEntries(
   [
+    AcadProxyEntityParser,
     ArcEntityParser,
     ArcDimensionParser,
     AttDefEntityParser,
