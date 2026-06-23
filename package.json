@@ -23,7 +23,8 @@
     "analyze": "depcruise src --include-only \".*(types|index|consts).ts\" -T dot | dot -Grankdir=TD -Gsplines=ortho -T svg > dependency-graph.svg",
     "new": "vite-node scripts/create-snippet.ts",
     "typetest": "npm --workspace=integration-test run build",
-    "print": "vite-node ./scripts/print.ts"
+    "print": "vite-node ./scripts/print.ts",
+    "verify:binary-dxf": "vite-node ./scripts/verify-binary-dxf.ts"
   },
   "repository": {
     "type": "git",

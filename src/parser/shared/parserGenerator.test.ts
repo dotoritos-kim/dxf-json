@@ -205,6 +205,47 @@ describe('createParser', () => {
     expect(obj.a).toBe('z')
     expect(obj.c).toBe('x')
   })
+
+  describe('should copy the default object if curtain properties are missing', () => {
+    const defaultObject = {
+      x: 'x',
+      y: ['y'],
+      z: { x: 1, y: 2 },
+    }
+    const parse = createParser(
+      [
+        {
+          code: 1,
+          name: 'x',
+          parser: Identity,
+        },
+        {
+          code: 2,
+          name: 'y',
+          isMultiple: true,
+          parser: Identity,
+        },
+        {
+          code: 10,
+          name: 'z',
+          parser: Identity,
+        },
+      ],
+      defaultObject,
+    )
+
+    test('tc0', () => {
+      const scanner = new DxfArrayScanner(['0', 'EOF'])
+
+      const out: any = {}
+      parse(scanner.next(), scanner, out)
+      expect(out.x).toBe('x')
+      expect(out.y).not.toBe(defaultObject.y)
+      expect(out.y).toMatchObject(['y'])
+      expect(out.z).not.toBe(defaultObject.z)
+      expect(out.z).toMatchObject({ x: 1, y: 2 })
+    })
+  })
 })
 
 describe('getObjectByPath', () => {

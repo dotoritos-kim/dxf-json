@@ -124,6 +124,8 @@ export * from './parser/blocks/types.ts'
 export * from './parser/header/parser.ts'
 
 export * from './parser/shared/ensureHandle.ts'
+export * from './parser/shared/binaryDxf.ts'
+export * from './parser/shared/dxfInput.ts'
 export * from './parser/shared/isMatched.ts'
 export * from './parser/shared/parsePoint.ts'
 export * from './parser/shared/parserGenerator.ts'

@@ -8,6 +8,7 @@ import { parseObjects } from './objects/parser.ts'
 import { parseThumbnailImage } from './thumbnailImage/parser.ts'
 import { isMatched } from './shared/isMatched.ts'
 import type { ParsedDxf } from './types.ts'
+import { asciiDxfToLines, dxfInputToLines } from './shared/dxfInput.ts'
 import type { Readable } from 'readable-stream'
 
 /** Options for {@link DxfParser} construction. */
@@ -29,41 +30,48 @@ export class DxfParserOptions {
 }
 
 export class DxfParser extends EventTarget {
-  private readonly _decoder: TextDecoder
   private readonly _options: DxfParserOptions
 
   constructor(options: Partial<DxfParserOptions> = {}) {
     super()
     const defaults = new DxfParserOptions()
     this._options = Object.assign(defaults, options)
-    this._decoder = new TextDecoder(this._options.encoding, {
-      fatal: this._options.encodingFailureFatal,
-    })
   }
   parseSync(dxfString: string, isDebugMode = false): ParsedDxf {
-    const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g)
-    const scanner = new DxfArrayScanner(dxfLinesArray, isDebugMode)
-    if (!scanner.hasNext()) {
-      throw Error('Empty file')
-    }
-
-    return this.parseAll(scanner)
+    return this.parseLines(asciiDxfToLines(dxfString), isDebugMode)
   }
+
+  parseBuffer(data: Uint8Array, isDebugMode = false): ParsedDxf {
+    return this.parseLines(
+      dxfInputToLines(data, {
+        encoding: this._options.encoding,
+        encodingFailureFatal: this._options.encodingFailureFatal,
+      }),
+      isDebugMode,
+    )
+  }
+
   parseStream(stream: Readable) {
-    let dxfString = ''
+    const chunks: Uint8Array[] = []
     const self = this
     return new Promise<ParsedDxf>((res, rej) => {
-      stream.on('data', (chunk) => {
-        dxfString += chunk
+      stream.on('data', (chunk: string | Uint8Array) => {
+        if (typeof chunk === 'string') {
+          chunks.push(new TextEncoder().encode(chunk))
+        } else {
+          chunks.push(chunk)
+        }
       })
       stream.on('end', () => {
         try {
-          const dxfLinesArray = dxfString.split(/\r\n|\r|\n/g)
-          const scanner = new DxfArrayScanner(dxfLinesArray)
-          if (!scanner.hasNext()) {
-            throw Error('Empty file')
+          const totalLength = chunks.reduce((sum, chunk) => sum + chunk.length, 0)
+          const data = new Uint8Array(totalLength)
+          let offset = 0
+          for (const chunk of chunks) {
+            data.set(chunk, offset)
+            offset += chunk.length
           }
-          res(self.parseAll(scanner))
+          res(self.parseBuffer(data))
         } catch (err) {
           rej(err)
         }
@@ -74,23 +82,33 @@ export class DxfParser extends EventTarget {
     })
   }
 
+  /**
+   * Fetch a DXF from `url` and parse it. Supports ASCII and binary DXF.
+   *
+   * @throws {Error} When the HTTP response is not ok, the body is empty, or parsing fails.
+   */
   async parseFromUrl(url: string, init?: RequestInit | undefined) {
     const response = await fetch(url, init)
 
-    if (!response.body) return null
-
-    const reader = response.body.getReader()
-    let buffer = ''
-
-    while (true) {
-      const { done, value } = await reader.read()
-      if (done) {
-        buffer += this._decoder.decode(new ArrayBuffer(0), { stream: false })
-        break
-      }
-      buffer += this._decoder.decode(value, { stream: true })
+    if (!response.ok) {
+      throw new Error(`Failed to fetch DXF: ${response.status} ${response.statusText}`)
     }
-    return this.parseSync(buffer)
+
+    const buffer = await response.arrayBuffer()
+    if (buffer.byteLength === 0) {
+      throw new Error(`Failed to fetch DXF: empty response body from ${url}`)
+    }
+
+    return this.parseBuffer(new Uint8Array(buffer))
+  }
+
+  private parseLines(dxfLinesArray: string[], isDebugMode = false) {
+    const scanner = new DxfArrayScanner(dxfLinesArray, isDebugMode)
+    if (!scanner.hasNext()) {
+      throw Error('Empty file')
+    }
+
+    return this.parseAll(scanner)
   }
 
   private parseAll(scanner: DxfArrayScanner) {
