@@ -14,6 +14,7 @@ export const CommonTableEntryParserSnippets: DXFParserSnippet[] = [
   },
   {
     code: 102,
+    isMultiple: true,
     parser(curr, scanner) {
       while (!isMatched(curr, 0, 'EOF') && !isMatched(curr, 102, '}')) {
         curr = scanner.next()
