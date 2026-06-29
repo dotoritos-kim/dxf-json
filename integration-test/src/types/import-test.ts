@@ -100,6 +100,7 @@ import type {
   DxfClass,
   // ENTITY
   CommonDxfEntity,
+  AcadProxyEntity,
   ArcEntity,
   ArcDimensionEntity,
   AttdefEntity,
