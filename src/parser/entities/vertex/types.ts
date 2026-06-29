@@ -69,5 +69,5 @@ export interface VertexEntity extends CommonDxfEntity, Point3D {
    *
    * Parsed by group code `91`
    */
-  id: number
+  id?: number
 }
