@@ -9,9 +9,6 @@ export interface VertexEntity extends CommonDxfEntity, Point3D {
   bulge: number
   flag: VertexFlag
   tangentDirection: number
-  polyfaceIndex0?: number
-  polyfaceIndex1?: number
-  polyfaceIndex2?: number
-  polyfaceIndex3?: number
+  faces?: number[]
   id: number
 }
