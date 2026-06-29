@@ -18,5 +18,5 @@ export interface SplineEntity extends CommonDxfEntity {
   knots: number[]
   weights?: number[]
   controlPoints: Point3D[]
-  fitPoints: number[]
+  fitPoints: Point3D[]
 }
