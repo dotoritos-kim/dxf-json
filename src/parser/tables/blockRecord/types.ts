@@ -7,5 +7,5 @@ export interface BlockRecordTableEntry extends CommonDxfTableEntry {
   insertionUnits: number
   explodability: number
   scalability: number
-  bmpPreview: string
+  bmpPreview?: string
 }
