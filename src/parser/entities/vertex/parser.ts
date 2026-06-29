@@ -12,6 +12,7 @@ const DefaultVertexEntity = {
   startWidth: 0,
   endWidth: 0,
   bulge: 0,
+  tangentDirection: 0,
 }
 
 const VertextParserSnippets: DXFParserSnippet[] = [
