@@ -24,7 +24,22 @@ export interface CommonDxfEntity {
   lineweight?: number // 문서에는 무조건 있다고 하는데, 실제로는 없는 경우 많음
   /** @default 1 If not presented */
   lineTypeScale?: number
+  /**
+   * `true` if this entity is **invisible**.
+   *
+   * The reason for inverted logic was early stage's misunderstanding.
+   *
+   * Parsed by group code `60`
+   *
+   * @deprecated Use `isInvisible` instead. This will be removed at v1.0.0
+   */
   isVisible?: boolean
+  /**
+   * `true` if this entity is **invisible**.
+   *
+   * Parsed by group code `60`
+   */
+  isInvisible?: boolean
   /**
    * Number of bytes in the proxy entity graphics represented in the sub-sequent `310` groups,
    * which are binary chunk records.
@@ -129,7 +144,11 @@ export const CommonEntitySnippets: DXFParserSnippet[] = [
   {
     code: 60,
     name: 'isVisible',
-    parser: ToBoolean,
+    parser: (curr, _, entity) => {
+      entity.isInvisible = curr.value === 1
+      /** see https://github.com/dotoritos-kim/dxf-json/issues/148 */
+      return !!entity.isInvisible
+    },
   },
   {
     code: 48,
