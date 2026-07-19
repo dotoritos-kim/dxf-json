@@ -9,7 +9,10 @@ const BlockRecordTableParserSnippets: DXFParserSnippet[] = [
   {
     code: 310,
     name: 'bmpPreview',
-    parser: Identity,
+    isMultiple: true,
+    isReducible: true,
+    // PreviewIcon may span multiple group-310 hex chunks; concatenate them.
+    parser: (curr, _, entity) => (entity.bmpPreview ?? '') + curr.value,
   },
   {
     code: 281,
