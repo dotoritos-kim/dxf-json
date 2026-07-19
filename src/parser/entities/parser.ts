@@ -22,6 +22,8 @@ import { MeshEntityParser } from './mesh/parser.ts'
 import { MLineEntityParser } from './mline/parser.ts'
 import { MTextEntityParser } from './mtext/parser.ts'
 import { MultiLeaderEntityParser } from './multileader/parser.ts'
+import { OleFrameEntityParser } from './oleframe/parser.ts'
+import { Ole2FrameEntityParser } from './ole2frame/parser.ts'
 import { PointEntityParser } from './point/parser.ts'
 import { PolylineParser } from './polyline/parser.ts'
 import { RayParser } from './ray/parser.ts'
@@ -63,6 +65,8 @@ const Parsers = Object.fromEntries(
     MLineEntityParser,
     MTextEntityParser,
     MultiLeaderEntityParser,
+    OleFrameEntityParser,
+    Ole2FrameEntityParser,
     PointEntityParser,
     PolylineParser,
     RayParser,
