@@ -30,9 +30,14 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
+      # Trusted publishing (OIDC) needs npm >= 11.5.1
+      - run: npm install -g npm@11
+      - run: npm --version
+
       - run: npm install
       - run: npm run build
       - run: npm version ${{ steps.tag.outputs.version }} -f --no-git-tag-version
+      # Authenticates via npm trusted publishing (OIDC, `id-token: write`);
+      # no NPM_TOKEN secret is used. The trusted publisher for this package
+      # must be configured on npmjs.com with this workflow file name.
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
