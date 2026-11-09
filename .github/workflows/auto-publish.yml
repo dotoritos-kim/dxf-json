@@ -100,24 +100,19 @@ jobs:
           name: Release ${{ needs.tag.outputs.new_version }}
           body: ${{ github.event.head_commit.message }}
 
+  # npm trusted publishing (OIDC) is bound to a single workflow file,
+  # manual-publish.yml, so the actual `npm publish` happens there.
+  # Dispatch it on the tag created above; it publishes that tag's version.
+  # (workflow_dispatch is one of the events GITHUB_TOKEN is allowed to trigger.)
   publish:
     needs: tag
     runs-on: ubuntu-latest
     if: needs.tag.outputs.new_version != ''
     permissions:
-      packages: write
-      contents: write
-      id-token: write
+      actions: write
 
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          registry-url: https://registry.npmjs.org
-      - run: npm install
-      - run: npm run build
-      - run: npm version ${{ needs.tag.outputs.new_version }} -f --no-git-tag-version
-      - run: npm publish
+      - name: Trigger Manual Publish for ${{ needs.tag.outputs.new_version }}
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run manual-publish.yml --repo "${{ github.repository }}" --ref "${{ needs.tag.outputs.new_version }}"
