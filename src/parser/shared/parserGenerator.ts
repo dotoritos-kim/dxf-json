@@ -193,6 +193,17 @@ export function getObjectByPath(
     const currentName = refineName(fragments[depth])
     const nextName = refineName(fragments[depth + 1])
 
+    // 프로토타입 오염 방지: 이 이름들로 내려가면 Object.prototype 등을 건드릴 수 있음
+    if (
+      currentName === '__proto__' ||
+      currentName === 'constructor' ||
+      currentName === 'prototype'
+    ) {
+      throw new Error(
+        `[parserGenerator::getObjectByPath] Unsafe path fragment "${currentName}" in "${path}"`,
+      )
+    }
+
     if (!Object.prototype.hasOwnProperty.call(parent, currentName)) {
       if (typeof nextName === 'number') {
         parent[currentName] = []
@@ -202,7 +213,18 @@ export function getObjectByPath(
     }
     parent = parent[currentName]
   }
-  return [parent, refineName(fragments[fragments.length - 1])]
+
+  const leafName = refineName(fragments[fragments.length - 1])
+  if (
+    leafName === '__proto__' ||
+    leafName === 'constructor' ||
+    leafName === 'prototype'
+  ) {
+    throw new Error(
+      `[parserGenerator::getObjectByPath] Unsafe path fragment "${leafName}" in "${path}"`,
+    )
+  }
+  return [parent, leafName]
 }
 
 function refineName(name: string): string | number {
