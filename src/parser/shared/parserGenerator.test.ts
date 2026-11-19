@@ -278,4 +278,19 @@ describe('getObjectByPath', () => {
       expect(getObjectByPath(root, 'x.0.z')).toMatchObject([root.x[0], 'z'])
     })
   })
+
+  describe('should reject prototype-polluting paths', () => {
+    test.each([
+      '__proto__',
+      '__proto__.polluted',
+      'x.__proto__.polluted',
+      'constructor.prototype.polluted',
+      'x.constructor',
+      'x.prototype.y',
+    ])('%s', (path) => {
+      const root = {} as any
+      expect(() => getObjectByPath(root, path)).toThrow(/Unsafe path fragment/)
+      expect(({} as any).polluted).toBeUndefined()
+    })
+  })
 })
