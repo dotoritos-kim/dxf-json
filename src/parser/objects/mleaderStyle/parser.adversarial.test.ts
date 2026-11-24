@@ -605,3 +605,62 @@ describe('MLEADERSTYLE 성능 (P)', () => {
     expect(s.description.length).toBe(1_000_000)
   })
 })
+
+describe('MLEADERSTYLE 완전성 보강 (C)', () => {
+  it('C-01 그룹코드 하나씩 단독 입력 시 정확히 그 필드 하나만 채워짐 (코드↔필드 교차 매핑 없음)', () => {
+    const body = FULL.slice(head().length)
+    for (const pair of body) {
+      const [s] = styles([...head(), pair])
+      const extra = Object.keys(s).filter(
+        (k) => !['name', 'handle', 'ownerObjectId', 'subclassMarker'].includes(k),
+      )
+      expect(extra, `code ${pair[0]}`).toHaveLength(1)
+      const key = extra[0] as keyof typeof FULL_EXPECTED
+      expect(s[key as keyof MLeaderStyleDXFObject], `code ${pair[0]}`).toEqual(
+        key === 'blockContentScale'
+          ? { [pair[0] === 47 ? 'x' : pair[0] === 49 ? 'y' : 'z']: (FULL_EXPECTED.blockContentScale as any)[pair[0] === 47 ? 'x' : pair[0] === 49 ? 'y' : 'z'] }
+          : FULL_EXPECTED[key],
+      )
+    }
+  })
+
+  it('C-02 29x boolean 을 전부 반전해도 정확히 반전 값으로 파싱 (FULL 값의 우연 통과 방지)', () => {
+    const bools = [290, 291, 292, 293, 294, 295, 296, 297, 298]
+    const flipped = FULL.map(([c, v]): Pair => (bools.includes(Number(c)) ? [c, v === 1 ? 0 : 1] : [c, v]))
+    const [s] = styles(flipped)
+    expect(s.landingEnabled).toBe(false)
+    expect(s.doglegEnabled).toBe(false)
+    expect(s.textFrameEnabled).toBe(true)
+    expect(s.textAlignAlwaysLeft).toBe(false)
+    expect(s.blockContentScaleEnabled).toBe(false)
+    expect(s.blockContentRotationEnabled).toBe(false)
+    expect(s.overwritePropertyValue).toBe(true)
+    expect(s.annotative).toBe(false)
+    expect((s as any).unknown2).toBe(false)
+  })
+
+  it('C-03 XDATA 안의 1000/1070 값이 본문 필드(description 등)를 덮어쓰지 않음', () => {
+    const [s] = styles([
+      ...FULL,
+      [1001, 'ACAD_MLEADERVER'],
+      [1070, 999],
+      [1000, 'EVIL'],
+    ])
+    expect(s.description).toBe('Standard')
+    expect(s.defaultMTextContents).toBe('Default text')
+    expect(s.contentType).toBe(2)
+  })
+
+  it('C-04 102 그룹 안에 MLEADERSTYLE 코드(3/340)가 있어도 본문 필드로 새지 않음', () => {
+    const [s] = styles([
+      ...head(),
+      [102, '{ACAD_REACTORS'],
+      [330, 'R1'],
+      [102, '}'],
+      [3, 'Real'],
+      [340, '14'],
+    ])
+    expect(s.description).toBe('Real')
+    expect(s.leaderLineTypeId).toBe('14')
+  })
+})
