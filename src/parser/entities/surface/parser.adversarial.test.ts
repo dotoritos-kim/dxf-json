@@ -688,3 +688,127 @@ describe('P: 성능', () => {
     expect(performance.now() - t).toBeLessThan(3000)
   })
 })
+
+// ---------------------------------------------------------------- C (완전성 보강)
+describe('C: 완전성 보강', () => {
+  test('C-01 310 숫자형 16진 청크도 문자열로 결합 (선행 0 보존)', () => {
+    const { entities } = parse([
+      ...header('REVOLVEDSURFACE'),
+      ...surfaceTail,
+      [100, 'AcDbRevolvedSurface'],
+      [90, 1],
+      [90, 4],
+      [310, '0012'],
+      [310, '3400'],
+      [40, 1],
+    ])
+    const e = entities[0] as any
+    expect(e.revolveEntityData).toBe('00123400')
+    expect(typeof e.revolveEntityData).toBe('string')
+    expect(e.revolveEntityDataSize).toBe(4)
+    expect(e.revolveAngle).toBe(1)
+  })
+
+  test('C-02 크기 0 블롭 (310 없음) → 빈 문자열, 다음 필드 유지', () => {
+    const { entities } = parse([
+      ...header('EXTRUDEDSURFACE'),
+      ...surfaceTail,
+      [100, 'AcDbExtrudedSurface'],
+      [90, 17],
+      [90, 0],
+      [10, 1], [20, 2], [30, 3],
+    ])
+    const e = entities[0] as any
+    expect(e.classId).toBe(17)
+    expect(e.sweepEntityDataSize).toBe(0)
+    expect(e.sweepEntityData).toBe('')
+    expect(e.sweepVector).toEqual({ x: 1, y: 2, z: 3 })
+  })
+
+  test('C-03 LOFTED 블롭에 310 없음 → {size, data:""}', () => {
+    const { entities } = parse([
+      ...header('LOFTEDSURFACE'),
+      ...surfaceTail,
+      [100, 'AcDbLoftedSurface'],
+      [90, 0],
+      [90, 2], [310, 'AB'],
+      [70, 2],
+    ])
+    const e = entities[0] as any
+    expect(e.entityData).toEqual([
+      { size: 0, data: '' },
+      { size: 2, data: 'AB' },
+    ])
+    expect(e.planeNormalLoftingType).toBe(2)
+  })
+
+  test('C-04 ACIS 데이터 1 이 숫자처럼 보여도 문자열, 임시 필드 제거', () => {
+    const { entities } = parse([
+      ...header('SURFACE'),
+      [1, '123'],
+      [3, '456'],
+      ...surfaceTail,
+    ])
+    const e = entities[0] as any
+    expect(typeof e.data).toBe('string')
+    expect(e.data).toContain('123')
+    expect(e._code1text).toBeUndefined()
+    expect(e._code3text).toBeUndefined()
+    expect(e.uIsolineCount).toBe(4)
+    expect(e.vIsolineCount).toBe(5)
+  })
+
+  test('C-05 350 히스토리 · 2 GUID · 290 정확한 값', () => {
+    const { entities } = parse([
+      [0, 'SURFACE'], [5, 'H1'], [100, 'AcDbEntity'], [8, 'L'],
+      [100, 'AcDbModelerGeometry'],
+      [70, 1], [1, 'X'], [290, 1], [2, '{ABC-123}'],
+      [100, 'AcDbSurface'], [71, 0], [72, 0],
+      [350, '2F'],
+    ])
+    const e = entities[0] as any
+    expect(e.handle).toBe('H1')
+    expect(e.layer).toBe('L')
+    expect(e.version).toBe(1)
+    expect(e.hasRevisionGuid).toBe(true)
+    expect(e.guid).toBe('{ABC-123}')
+    expect(e.uIsolineCount).toBe(0)
+    expect(e.vIsolineCount).toBe(0)
+  })
+
+  test('C-06 102 반응자 그룹이 헤더에 있어도 본문 필드 유지', () => {
+    const { entities, rest } = parse([
+      [0, 'SURFACE'], [5, 'R1'],
+      [102, '{ACAD_REACTORS'], [330, '9A'], [102, '}'],
+      [330, '1F'], [100, 'AcDbEntity'], [8, '0'],
+      [100, 'AcDbModelerGeometry'], [70, 1], [1, 'D'],
+      ...surfaceTail,
+    ])
+    expect(entities).toHaveLength(1)
+    const e = entities[0] as any
+    expect(e.handle).toBe('R1')
+    expect(e.data).toBe('D')
+    expect(e.uIsolineCount).toBe(4)
+    expect(rest.value).toBe('ENDSEC')
+  })
+
+  test('C-07 끝의 XDATA(1001) 뒤에도 다음 엔티티 유지', () => {
+    const { entities } = parse([
+      ...plain('X1'),
+      [1001, 'APP'], [1000, 'hello'],
+      ...line,
+    ])
+    expect(entities.map((e: any) => e.type)).toEqual(['SURFACE', 'LINE'])
+    expect((entities[0] as any).vIsolineCount).toBe(5)
+  })
+
+  test('C-08 isoline 음수 보존, 소수는 정수 코드라 절삭(2.5→2)', () => {
+    const { entities } = parse([
+      ...header('SURFACE'),
+      [100, 'AcDbSurface'], [71, -1], [72, 2.5],
+    ])
+    const e = entities[0] as any
+    expect(e.uIsolineCount).toBe(-1)
+    expect(e.vIsolineCount).toBe(2)
+  })
+})
