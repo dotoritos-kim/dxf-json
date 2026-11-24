@@ -95,15 +95,18 @@ export class TableEntityParser {
 
     while (curr.code !== 0) {
       const code = curr.code
-      if (code === 171) {
+      if (code === 1001) {
+        // 엔티티 끝의 XDATA(셀 뒤에 위치). 헤더 파서에 위임하면 xdata 로 수집된다.
+        this.parser(curr, scanner, entity)
+      } else if (code === 171) {
         cell = { cellType: curr.value as number }
         textChunks = ''
         entity.cells.push(cell)
       } else if (cell) {
         if (code === 301) {
           cell.value = parseCellValue(scanner)
-        } else if (code === 2) {
-          textChunks += curr.value as number
+        } else if (code === 2 || code === 3) {
+          textChunks += String(curr.value)
         } else if (code === 1) {
           cell.text = textChunks + String(curr.value)
           textChunks = ''
@@ -141,7 +144,8 @@ function parseCellValue(scanner: DxfArrayScanner): TableCellValue {
         value.dataType = curr.value as number
         break
       case 2:
-        chunks += curr.value as number
+      case 3:
+        chunks += String(curr.value)
         break
       case 1:
         value.string = chunks + String(curr.value)
