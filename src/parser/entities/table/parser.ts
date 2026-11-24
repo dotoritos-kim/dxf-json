@@ -135,7 +135,8 @@ function parseCellValue(scanner: DxfArrayScanner): TableCellValue {
   let chunks = ''
   let curr = scanner.next()
 
-  while (curr.code !== 0 && curr.code !== 304) {
+  // 304 가 빠진 손상 데이터에서 다음 셀(171)을 삼키지 않도록 171 에서도 멈춘다
+  while (curr.code !== 0 && curr.code !== 304 && curr.code !== 171) {
     switch (curr.code) {
       case 93:
         value.flags = curr.value as number
@@ -172,7 +173,7 @@ function parseCellValue(scanner: DxfArrayScanner): TableCellValue {
     }
     curr = scanner.next()
   }
-  if (curr.code === 0) scanner.rewind()
+  if (curr.code === 0 || curr.code === 171) scanner.rewind()
   if (chunks && value.string === undefined) value.string = chunks
   return value
 }

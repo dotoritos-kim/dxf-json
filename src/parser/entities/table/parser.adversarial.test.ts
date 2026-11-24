@@ -324,7 +324,8 @@ describe('ACAD_TABLE 기본값/누락(D)', () => {
     ])
     const t = doc.entities[0] as any
     expect(t.type).toBe('ACAD_TABLE')
-    expect(t.handle).toBeDefined()
+    expect(typeof t.handle).toBe('number') // ensureHandle 은 숫자 핸들 생성
+    expect(Number.isFinite(t.handle)).toBe(true)
   })
 })
 
@@ -1021,5 +1022,75 @@ describe('ACAD_TABLE 성능(P)', () => {
       [304, 'ACVALUE_END'],
     ])
     expect(entity.cells[0].value?.string?.length).toBe(1_000_001)
+  })
+})
+
+describe('ACAD_TABLE 완전성 보강(G)', () => {
+  test('T-G-01 304 없는 CELL_VALUE 뒤 다음 171 -> 다음 셀이 삼켜지지 않음', () => {
+    const { entity, next } = parseBody([
+      ...HEADER,
+      [171, 1],
+      [301, 'CELL_VALUE'],
+      [90, 4],
+      [1, 'A'],
+      ...textCell('B'),
+    ])
+    expect(entity.cells).toHaveLength(2)
+    expect(entity.cells[0].value).toEqual({ dataType: 4, string: 'A' })
+    expect(entity.cells[1].value?.string).toBe('B')
+    expect(next).toEqual({ code: 0, value: 'ENDSEC' })
+  })
+
+  test('T-G-02 CELL_VALUE 2D 점(11/21, 31 없음) 뒤 필드도 파싱', () => {
+    const { entity } = parseBody([
+      ...HEADER,
+      [171, 1],
+      [301, 'CELL_VALUE'],
+      [90, 16],
+      [11, 5],
+      [21, 6],
+      [94, 3],
+      [304, 'ACVALUE_END'],
+    ])
+    const v = entity.cells[0].value!
+    expect(v.point).toEqual({ x: 5, y: 6 })
+    expect(v.unitType).toBe(3)
+  })
+
+  test('T-G-03 셀 사이의 XDATA 뒤 셀 계속 파싱', () => {
+    const { entity, next } = parseBody([
+      ...HEADER,
+      ...textCell('A'),
+      [1001, 'APP'],
+      [1000, 'x'],
+      ...textCell('B'),
+    ])
+    expect(entity.cells.map((c) => c.value?.string)).toEqual(['A', 'B'])
+    expect(next).toEqual({ code: 0, value: 'ENDSEC' })
+  })
+
+  test('T-G-04 레거시 텍스트 1 두 번: 두 번째는 이전 청크를 포함하지 않음', () => {
+    const { entity } = parseBody([
+      ...HEADER,
+      [171, 1],
+      [2, 'x'],
+      [1, 'y'],
+      [1, 'z'],
+    ])
+    expect(entity.cells[0].text).toBe('z')
+  })
+
+  test('T-G-05 셀 경계에서 CELL_VALUE 청크 잔여물이 다음 셀로 새지 않음', () => {
+    const { entity } = parseBody([
+      ...HEADER,
+      [171, 1],
+      [301, 'CELL_VALUE'],
+      [2, 'left'],
+      [171, 1],
+      [1, 'own'],
+    ])
+    expect(entity.cells).toHaveLength(2)
+    expect(entity.cells[0].value?.string).toBe('left')
+    expect(entity.cells[1].text).toBe('own')
   })
 })
