@@ -64,7 +64,8 @@ function anomalies(t: any): string[] {
     out.push(`columnWidths=${t.columnWidths.length} != ${cols}`)
   for (const [i, c] of (t.cells ?? []).entries()) {
     for (const [k, v] of Object.entries(c)) {
-      if (typeof v === 'number' && Number.isNaN(v)) out.push(`cells[${i}].${k}=NaN`)
+      if (typeof v === 'number' && Number.isNaN(v))
+        out.push(`cells[${i}].${k}=NaN`)
     }
   }
   return out

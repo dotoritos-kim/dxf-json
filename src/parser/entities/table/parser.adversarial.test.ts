@@ -271,7 +271,11 @@ describe('ACAD_TABLE 기본값/누락(D)', () => {
   })
 
   test('T-D-02 141/142 없음 -> 빈 배열 기본값', () => {
-    const { entity } = parseBody([[5, 'A'], [8, '0'], [171, 1]])
+    const { entity } = parseBody([
+      [5, 'A'],
+      [8, '0'],
+      [171, 1],
+    ])
     expect(entity.rowHeights).toEqual([])
     expect(entity.columnWidths).toEqual([])
     expect(entity.cells).toHaveLength(1)
@@ -279,10 +283,20 @@ describe('ACAD_TABLE 기본값/누락(D)', () => {
 
   test('T-D-03 기본값 배열은 인스턴스마다 독립', () => {
     const p = new TableEntityParser()
-    const s1 = new DxfArrayScanner(lines([[5, 'A'], [0, 'ENDSEC']]))
+    const s1 = new DxfArrayScanner(
+      lines([
+        [5, 'A'],
+        [0, 'ENDSEC'],
+      ]),
+    )
     const e1 = p.parseEntity(s1, s1.next())
     e1.rowHeights.push(99)
-    const s2 = new DxfArrayScanner(lines([[5, 'B'], [0, 'ENDSEC']]))
+    const s2 = new DxfArrayScanner(
+      lines([
+        [5, 'B'],
+        [0, 'ENDSEC'],
+      ]),
+    )
     const e2 = p.parseEntity(s2, s2.next())
     expect(e2.rowHeights).toEqual([])
   })
@@ -303,7 +317,11 @@ describe('ACAD_TABLE 기본값/누락(D)', () => {
   })
 
   test('T-D-06 전체 파서 경유 handle 없음 -> ensureHandle', () => {
-    const doc = parseFull([[0, 'ACAD_TABLE'], [8, '0'], [171, 1]])
+    const doc = parseFull([
+      [0, 'ACAD_TABLE'],
+      [8, '0'],
+      [171, 1],
+    ])
     const t = doc.entities[0] as any
     expect(t.type).toBe('ACAD_TABLE')
     expect(t.handle).toBeDefined()
@@ -363,7 +381,11 @@ describe('ACAD_TABLE 경계값(B)', () => {
   })
 
   test('T-B-04 171 값이 NaN 이어도 셀은 생성', () => {
-    const { entity } = parseBody([[5, 'A'], [171, 'zz'], [172, 1]])
+    const { entity } = parseBody([
+      [5, 'A'],
+      [171, 'zz'],
+      [172, 1],
+    ])
     expect(entity.cells).toHaveLength(1)
     expect(entity.cells[0].cellType).toBeNaN()
     expect(entity.cells[0].flag).toBe(1)
@@ -371,7 +393,10 @@ describe('ACAD_TABLE 경계값(B)', () => {
 
   test('T-B-05 빈 문자열 텍스트', () => {
     const { entity } = parseBody([...HEADER, ...textCell('')])
-    expect(entity.cells[0].value).toMatchObject({ string: '', formattedValue: '' })
+    expect(entity.cells[0].value).toMatchObject({
+      string: '',
+      formattedValue: '',
+    })
   })
 
   test('T-B-06 유니코드/한글/이모지/\\U+ 이스케이프는 원문 유지', () => {
@@ -393,14 +418,23 @@ describe('ACAD_TABLE 경계값(B)', () => {
   })
 
   test('T-B-08 숫자 값 앞뒤 공백 패딩', () => {
-    const { entity } = parseBody([[5, 'A'], [91, '   3  '], [141, ' 7.5 '], [171, '  1']])
+    const { entity } = parseBody([
+      [5, 'A'],
+      [91, '   3  '],
+      [141, ' 7.5 '],
+      [171, '  1'],
+    ])
     expect(entity.rowCount).toBe(3)
     expect(entity.rowHeights).toEqual([7.5])
     expect(entity.cells[0].cellType).toBe(1)
   })
 
   test('T-B-09 0행 0열', () => {
-    const { entity } = parseBody([[5, 'A'], [91, 0], [92, 0]])
+    const { entity } = parseBody([
+      [5, 'A'],
+      [91, 0],
+      [92, 0],
+    ])
     expect(entity).toMatchObject({ rowCount: 0, columnCount: 0, cells: [] })
   })
 })
@@ -416,7 +450,9 @@ describe('ACAD_TABLE 청크 텍스트/병합/셀 수(C)', () => {
       [1, 'c'],
       [304, 'ACVALUE_END'],
     ])
-    expect(entity.cells[0].value?.string).toBe('a'.repeat(250) + 'b'.repeat(250) + 'c')
+    expect(entity.cells[0].value?.string).toBe(
+      'a'.repeat(250) + 'b'.repeat(250) + 'c',
+    )
   })
 
   test('T-C-02 CELL_VALUE 3 청크 + 1', () => {
@@ -499,7 +535,12 @@ describe('ACAD_TABLE 청크 텍스트/병합/셀 수(C)', () => {
   })
 
   test('T-C-08 셀 수 < 행x열: 있는 그대로 반환', () => {
-    const { entity } = parseBody([[5, 'A'], [91, 3], [92, 3], [171, 1]])
+    const { entity } = parseBody([
+      [5, 'A'],
+      [91, 3],
+      [92, 3],
+      [171, 1],
+    ])
     expect(entity.cells).toHaveLength(1)
     expect(entity.rowCount * entity.columnCount).toBe(9)
   })
@@ -543,7 +584,11 @@ describe('ACAD_TABLE 순서/중복(O)', () => {
       [175, 3],
       [172, 1],
     ])
-    expect(entity.cells[0]).toMatchObject({ borderWidth: 3, flag: 1, value: { string: 'v' } })
+    expect(entity.cells[0]).toMatchObject({
+      borderWidth: 3,
+      flag: 1,
+      value: { string: 'v' },
+    })
   })
 
   test('T-O-03 셀 스칼라 중복 -> 마지막 값', () => {
@@ -582,7 +627,14 @@ describe('ACAD_TABLE 순서/중복(O)', () => {
   test('T-O-06 같은 parser 인스턴스로 연속 파싱 시 헤더 스니펫 재사용', () => {
     const p = new TableEntityParser()
     for (const h of ['X', 'Y']) {
-      const s = new DxfArrayScanner(lines([[5, h], [91, 2], [92, 3], [0, 'ENDSEC']]))
+      const s = new DxfArrayScanner(
+        lines([
+          [5, h],
+          [91, 2],
+          [92, 3],
+          [0, 'ENDSEC'],
+        ]),
+      )
       const e = p.parseEntity(s, s.next())
       expect(e).toMatchObject({ handle: h, rowCount: 2, columnCount: 3 })
     }
@@ -614,7 +666,12 @@ describe('ACAD_TABLE 구조 적대적(S)', () => {
   })
 
   test('T-S-04 헤더 직후 EOF', () => {
-    const scanner = new DxfArrayScanner(lines([[5, 'A'], [0, 'EOF']]))
+    const scanner = new DxfArrayScanner(
+      lines([
+        [5, 'A'],
+        [0, 'EOF'],
+      ]),
+    )
     const entity = new TableEntityParser().parseEntity(scanner, scanner.next())
     expect(entity).toMatchObject({ handle: 'A', cells: [] })
     // 헤더 파서가 EOF 를 소비해도 이후 next() 는 EOF 를 돌려준다
@@ -640,7 +697,12 @@ describe('ACAD_TABLE 구조 적대적(S)', () => {
   })
 
   test('T-S-07 헤더 중간 알 수 없는 코드: 헤더 파싱 중단, 셀은 계속 (현재 동작)', () => {
-    const { entity } = parseBody([[5, 'A'], [177, 1], [91, 9], [171, 1]])
+    const { entity } = parseBody([
+      [5, 'A'],
+      [177, 1],
+      [91, 9],
+      [171, 1],
+    ])
     expect(entity.handle).toBe('A')
     expect(entity.rowCount).toBeUndefined()
     expect(entity.cells).toHaveLength(1)
@@ -678,7 +740,12 @@ describe('ACAD_TABLE 구조 적대적(S)', () => {
   })
 
   test('T-S-11 XDATA 가 셀 값을 오염시키지 않음', () => {
-    const { entity } = parseBody([...SIMPLE, [1001, 'APP'], [1000, 'x'], [1040, 1.5]])
+    const { entity } = parseBody([
+      ...SIMPLE,
+      [1001, 'APP'],
+      [1000, 'x'],
+      [1040, 1.5],
+    ])
     expect(entity.cells[1]).toMatchObject({ value: { string: 'B' } })
     expect(entity.cells[1].text).toBeUndefined()
   })
@@ -720,9 +787,19 @@ describe('ACAD_TABLE 구조 적대적(S)', () => {
       .map((l, i) => (i % 2 === 0 ? `  ${l}` : l))
       .join('\r\n')
     const doc = new DxfParser().parseSync(
-      ['  0', 'SECTION', '  2', 'ENTITIES', '  0', 'ACAD_TABLE', raw, '  0', 'ENDSEC', '  0', 'EOF'].join(
-        '\r\n',
-      ),
+      [
+        '  0',
+        'SECTION',
+        '  2',
+        'ENTITIES',
+        '  0',
+        'ACAD_TABLE',
+        raw,
+        '  0',
+        'ENDSEC',
+        '  0',
+        'EOF',
+      ].join('\r\n'),
     )
     const t = doc.entities[0] as any
     expect(t.cells).toHaveLength(2)
@@ -732,7 +809,16 @@ describe('ACAD_TABLE 구조 적대적(S)', () => {
 
   test('T-S-15 셀 뒤 표 레벨 override 그룹은 마지막 셀 필드를 덮어쓸 수 있음 (현재 동작 문서화)', () => {
     // tc0 처럼 셀 뒤에 70/40/41/280/281 등이 나오면 셀 필드가 아닌 것은 무시된다.
-    const { entity } = parseBody([...HEADER, [171, 1], [172, 1], [70, 0], [40, 1], [41, 1], [280, 0], [281, 0]])
+    const { entity } = parseBody([
+      ...HEADER,
+      [171, 1],
+      [172, 1],
+      [70, 0],
+      [40, 1],
+      [41, 1],
+      [280, 0],
+      [281, 0],
+    ])
     expect(entity.cells[0]).toEqual({ cellType: 1, flag: 1 })
   })
 
@@ -742,11 +828,18 @@ describe('ACAD_TABLE 구조 적대적(S)', () => {
   })
 
   test('T-S-17 304 가 셀 밖에 단독으로 등장', () => {
-    const { entity } = parseBody([...HEADER, [171, 1], [304, 'ACVALUE_END'], [172, 1]])
+    const { entity } = parseBody([
+      ...HEADER,
+      [171, 1],
+      [304, 'ACVALUE_END'],
+      [172, 1],
+    ])
     expect(entity.cells[0]).toEqual({ cellType: 1, flag: 1 })
   })
 
-  test.todo('T-S-18 290~299 불리언 코드에 0/1 외 값이면 스캐너가 TypeError (공통 스캐너 정책)')
+  test.todo(
+    'T-S-18 290~299 불리언 코드에 0/1 외 값이면 스캐너가 TypeError (공통 스캐너 정책)',
+  )
 })
 
 describe('ACAD_TABLE 연속/혼합/BLOCKS(M) - DxfParser.parseSync', () => {
@@ -812,7 +905,10 @@ describe('ACAD_TABLE 연속/혼합/BLOCKS(M) - DxfParser.parseSync', () => {
     ]).join('\n')
     const doc = new DxfParser().parseSync(content)
     const block = doc.blocks['*T1'] as any
-    expect(block.entities.map((e: any) => e.type)).toEqual(['ACAD_TABLE', 'LINE'])
+    expect(block.entities.map((e: any) => e.type)).toEqual([
+      'ACAD_TABLE',
+      'LINE',
+    ])
     expect(block.entities[0].cells).toHaveLength(2)
     expect(doc.entities.map((e) => e.type)).toEqual(['LINE'])
   })
@@ -834,7 +930,12 @@ describe('ACAD_TABLE 연속/혼합/BLOCKS(M) - DxfParser.parseSync', () => {
   })
 
   test('T-M-06 섹션이 EOF 로 잘려도 크래시 없음', () => {
-    const content = lines([[0, 'SECTION'], [2, 'ENTITIES'], [0, 'ACAD_TABLE'], ...SIMPLE]).join('\n')
+    const content = lines([
+      [0, 'SECTION'],
+      [2, 'ENTITIES'],
+      [0, 'ACAD_TABLE'],
+      ...SIMPLE,
+    ]).join('\n')
     expect(() => new DxfParser().parseSync(content)).not.toThrow()
   })
 })
@@ -859,9 +960,17 @@ describe('ACAD_TABLE 회귀(R)', () => {
   })
 
   test('T-R-02 TABLE 앞뒤 엔티티 개수 동일(TABLE 제거 시와 비교)', () => {
-    const others: G[] = [...LINE, ...LINE.map(([c, v]) => (c === 5 ? [5, 'L9'] : [c, v]) as G)]
+    const others: G[] = [
+      ...LINE,
+      ...LINE.map(([c, v]) => (c === 5 ? [5, 'L9'] : [c, v]) as G),
+    ]
     const without = parseFull(others)
-    const withTable = parseFull([...others.slice(0, LINE.length), [0, 'ACAD_TABLE'], ...SIMPLE, ...others.slice(LINE.length)])
+    const withTable = parseFull([
+      ...others.slice(0, LINE.length),
+      [0, 'ACAD_TABLE'],
+      ...SIMPLE,
+      ...others.slice(LINE.length),
+    ])
     expect(withTable.entities.length).toBe(without.entities.length + 1)
   })
 
@@ -879,7 +988,12 @@ describe('ACAD_TABLE 성능(P)', () => {
     const cells: G[] = []
     for (let i = 0; i < 10_000; i++) cells.push(...textCell(`c${i}`))
     const start = performance.now()
-    const { entity, next } = parseBody([[5, 'A'], [91, 100], [92, 100], ...cells])
+    const { entity, next } = parseBody([
+      [5, 'A'],
+      [91, 100],
+      [92, 100],
+      ...cells,
+    ])
     expect(performance.now() - start).toBeLessThan(2000)
     expect(entity.cells).toHaveLength(10_000)
     expect(entity.cells[9999].value?.string).toBe('c9999')
@@ -888,7 +1002,8 @@ describe('ACAD_TABLE 성능(P)', () => {
 
   test('T-P-02 TABLE 1천 개 반복(전체 파서)', () => {
     const ents: G[] = []
-    for (let i = 0; i < 1000; i++) ents.push([0, 'ACAD_TABLE'], [5, `H${i}`], ...textCell('x'))
+    for (let i = 0; i < 1000; i++)
+      ents.push([0, 'ACAD_TABLE'], [5, `H${i}`], ...textCell('x'))
     const doc = parseFull(ents)
     expect(doc.entities).toHaveLength(1000)
     expect((doc.entities[999] as any).handle).toBe('H999')
