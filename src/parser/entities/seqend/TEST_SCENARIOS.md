@@ -113,6 +113,18 @@ SEQEND 는 DXF 레퍼런스상 공통 엔티티 그룹만 가진다(5, 330, 100 
 | RW-01 | `D:\CADView_도면`(또는 `SEQEND_DXF_ROOT`) 아래 SEQEND 를 포함한 첫 .dxf | 원문 `0/SEQEND` 개수 = 파싱 개수(엔티티+블록), handle 문자열. 폴더 없으면 skip |
 | RW-02 | `npx vite-node scripts/verify-seqend.ts [경로]` | 전 파일 개수 비교·이상치(handle 자동부여, owner/layer 없음, 비유한 숫자) 리포트 |
 
+## G. 완전성 보강 (parser.gaps.test.ts)
+
+| ID | 입력 | 기대 결과 |
+|---|---|---|
+| G-01 | 92 + 310 청크 3개 | proxyEntity 는 청크를 순서대로 이은 문자열, proxyByte=4 |
+| G-02 | 160 123456 | proxyByte=123456 |
+| G-03 | 사용자 앱 `102 {MYAPP ... 102 }` | extensions.MYAPP 에 그룹 보존, 뒤 330/8 계속 파싱 |
+| G-04 | handle 없는 SEQEND 2개 | 비어 있지 않고 서로 다른 자동 handle (D-01 보강) |
+| G-05 | 닫히지 않은 `102 {ACAD_REACTORS` 뒤 LINE | SEQEND·LINE 둘 다 남음 (S-09 보강, 버그 수정) |
+| G-06 | SEQEND 에 10/20/30 | 기하 필드로 흘러들지 않음, 다음 LINE 보존 |
+| G-07 | 레이어·102 앱 이름·1001 앱 이름이 `__proto__` | 크래시·프로토타입 오염 없음 (버그 수정) |
+
 ## X. 범위 밖으로 기록
 
 | ID | 내용 |
@@ -123,3 +135,6 @@ SEQEND 는 DXF 레퍼런스상 공통 엔티티 그룹만 가진다(5, 330, 100 
 
 - SEQEND 파서 자체의 명백한 버그는 발견되지 않음(수정 없음).
 - 현재 동작으로 문서화한 것: 중복·미지원 그룹 이후 그룹 손실(O-02, S-05, 공통 파서 제너레이터 동작), 정수 코드의 지수 표기 절삭(B-04), 빈 handle 자동 교체(B-07), `\U+` 미디코딩(B-08).
+- (보강 단계에서 수정) 공통 확장 파서 `src/parser/shared/extensions/parser.ts`:
+  - 닫히지 않은 102 그룹이 EOF 까지 모든 그룹을 삼켜 뒤 엔티티를 잃던 문제 → 0 그룹에서 멈추고 되돌림(G-05).
+  - 앱 이름 `{__proto__` 에서 `groupCodes.push is not a function` 으로 크래시하던 문제 → 자기 속성으로만 등록(G-07).
