@@ -413,3 +413,49 @@ describe('TRACE 성능 (P)', () => {
     expect(elapsed).toBeLessThan(10000)
   })
 })
+
+describe('TRACE 보강 (C, 완전성 비평)', () => {
+  test('C-01 N-01 에 빠진 공통 그룹코드(430/347/390/380/284/410)', () => {
+    const { entity } = parseBody([
+      [5, '2F'], [100, 'AcDbEntity'], [8, 'L'], [410, 'Layout1'],
+      [430, 'RED_BOOK'], [347, 'M1'], [390, 'PS1'], [380, 1], [284, 2],
+      [100, 'AcDbTrace'], ...CORNERS,
+    ])
+    expect(entity).toMatchObject({
+      layoutTabName: 'Layout1',
+      colorName: 'RED_BOOK',
+      materialObjectHardId: 'M1',
+      plotStyleHardId: 'PS1',
+      plotStyleType: 1,
+      shadowMode: 2,
+    })
+    expect(entity.points).toHaveLength(4)
+  })
+  test('C-02 꼭짓점 좌표값 정확 비교(길이만이 아닌 값)', () => {
+    const { entity } = parseBody([[100, 'AcDbTrace'], ...CORNERS])
+    expect(entity.points).toEqual([
+      { x: 0, y: 0, z: 0 },
+      { x: 10, y: 0, z: 0 },
+      { x: 0, y: 5, z: 0 },
+      { x: 10, y: 5, z: 0 },
+    ])
+  })
+  test('C-03 꼭짓점 코드가 역순(13→10)이면 파일 순서대로 저장', () => {
+    const { entity } = parseBody([
+      [13, 4], [23, 4], [33, 0], [12, 3], [22, 3], [32, 0],
+      [11, 2], [21, 2], [31, 0], [10, 1], [20, 1], [30, 0],
+    ])
+    expect(entity.points.map((p) => p.x)).toEqual([4, 3, 2, 1])
+  })
+  test('C-04 z 생략(2D 점) 꼭짓점', () => {
+    const { entity } = parseBody([[10, 1], [20, 2], [11, 3], [21, 4]])
+    expect(entity.points).toHaveLength(2)
+    expect(entity.points[0]).toMatchObject({ x: 1, y: 2 })
+    expect(entity.points[1]).toMatchObject({ x: 3, y: 4 })
+  })
+  test('C-05 지수 표기/음수 두께·좌표', () => {
+    const { entity } = parseBody([[39, '-1.5E+2'], [10, '1e-3'], [20, '-2.5E1'], [30, 0]])
+    expect(entity.thickness).toBe(-150)
+    expect(entity.points[0]).toEqual({ x: 0.001, y: -25, z: 0 })
+  })
+})

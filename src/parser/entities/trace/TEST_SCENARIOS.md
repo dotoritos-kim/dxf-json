@@ -53,6 +53,11 @@ DXF 레퍼런스상 TRACE 그룹코드: 공통(5, 330, 100 AcDbEntity, 67, 8, 6,
 | R-02 | 회귀 | LINE | 결과 불변 |
 | R-03 | 회귀 | `100/AcDbBlockEnd` 없는 ENDBLK | **현재 동작**: 블록 파서가 끝까지 소비해 ENTITIES 유실 (TRACE 무관, 기존 블록 파서 한계) |
 | P-01 | 성능 | TRACE 20,000 + LINE 10,000 | 30,000개, 10초 이내 |
+| C-01 | 보강 | 430/347/390/380/284/410 | colorName·materialObjectHardId·plotStyleHardId·plotStyleType·shadowMode·layoutTabName 매핑 |
+| C-02 | 보강 | 정상 4 꼭짓점 | 길이뿐 아니라 좌표값 전체 일치 |
+| C-03 | 보강 | 13→10 역순 | 파일 순서대로 points 저장(코드 번호로 재정렬하지 않음) |
+| C-04 | 보강 | z(30~33) 생략 | x·y 정상 |
+| C-05 | 보강 | 지수 표기·음수 | -1.5E+2 → -150 등 정확 변환 |
 | V-01 | 실도면 | `scripts/verify-trace.ts` | 원문 `0/TRACE` 개수 = 파싱 개수(엔티티+블록), 비유한값·꼭짓점 수·돌출 벡터 길이 이상치 리포트 |
 
 ## 발견 사항
