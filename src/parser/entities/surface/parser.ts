@@ -186,7 +186,7 @@ function createSurfaceParserClass<T>(
 
   return class {
     static ForEntityName = entityName
-    private parser = createParser(snippets)
+    readonly parser = createParser(snippets)
 
     parseEntity(scanner: DxfArrayScanner, curr: ScannerGroup): T {
       const entity = {} as any
