@@ -180,7 +180,7 @@ describe('SHAPE / D 기본값·누락', () => {
     const list = parseList([[0, 'SHAPE'], ...line()])
     expect(list.map((e) => e.type)).toEqual(['SHAPE', 'LINE'])
     expect(list[0].xScale).toBe(1)
-    expect(list[0].handle).toBeDefined() // ensureHandle 가 채움
+    expect(typeof list[0].handle).toBe('number') // ensureHandle 가 채움
   })
 
   test('D-05 AcDbEntity 마커 없이 AcDbShape만 (현재 동작 문서화)', () => {
@@ -604,5 +604,103 @@ describe('SHAPE / P 성능', () => {
     expect(dxf.entities).toHaveLength(N)
     expect((dxf.entities[N - 1] as any).shapeName).toBe(`S${N - 1}`)
     expect(dt).toBeLessThan(10_000)
+  })
+})
+
+describe('SHAPE / C 완전성 보강', () => {
+  test('C-01 공통 엔티티 코드(6/62/420/440/370/48/67/410) 정확한 값', () => {
+    const { entity } = parseShape([
+      [5, 'C1'],
+      [100, 'AcDbEntity'],
+      [8, 'LYR'],
+      [6, 'DASHED'],
+      [62, 3],
+      [420, 255],
+      [440, 33554687],
+      [370, 25],
+      [48, 2.5],
+      [67, 1],
+      [410, 'Layout1'],
+      [100, 'AcDbShape'],
+      ...body('C'),
+    ])
+    expect(entity).toMatchObject({
+      layer: 'LYR',
+      lineType: 'DASHED',
+      colorIndex: 3,
+      color: 255,
+      transparency: 33554687,
+      lineweight: 25,
+      lineTypeScale: 2.5,
+      isInPaperSpace: true,
+      layoutTabName: 'Layout1',
+      shapeName: 'C',
+    })
+  })
+
+  test('C-02 코드 60=1 은 DXF 상 "보이지 않음"인데 isVisible=true 로 매핑 (공통 동작 문서화)', () => {
+    const { entity } = parseShape([...head(), [60, 1], ...body()])
+    expect(entity.isVisible).toBe(true)
+    const { entity: e0 } = parseShape([...head(), [60, 0], ...body()])
+    expect(e0.isVisible).toBe(false)
+  })
+
+  test('C-03 XDATA 구조 정확히 (appName, value 순서·타입)', () => {
+    const { entity } = parseShape([
+      ...head(),
+      ...body(),
+      [1001, 'MYAPP'],
+      [1000, 'hello'],
+      [1040, 3.5],
+    ])
+    expect(entity.xdata).toEqual([{ appName: 'MYAPP', value: ['hello', 3.5] }])
+  })
+
+  test('C-04 리액터·확장딕셔너리 구조 정확히', () => {
+    const { entity } = parseShape([
+      [5, 'R1'],
+      [102, '{ACAD_REACTORS'],
+      [330, '1F'],
+      [102, '}'],
+      [102, '{ACAD_XDICTIONARY'],
+      [360, '2F'],
+      [102, '}'],
+      [330, '1E'],
+      [100, 'AcDbEntity'],
+      [8, '0'],
+      [100, 'AcDbShape'],
+      ...body(),
+    ])
+    expect(entity.extensions).toEqual({
+      ACAD_REACTORS: [{ code: 330, value: '1F' }],
+      ACAD_XDICTIONARY: [{ code: 360, value: '2F' }],
+    })
+  })
+
+  test.each(['__proto__', 'constructor', 'prototype'])(
+    'C-05 shapeName %j 로 프로토타입 오염 없음',
+    (name) => {
+      const { entity } = parseShape([...head(), ...body(name)])
+      expect(entity.shapeName).toBe(name)
+      expect(({} as any).polluted).toBeUndefined()
+      expect(Object.getPrototypeOf(entity)).toBe(Object.prototype)
+    },
+  )
+
+  test('C-06 extrusion 210/220/230 각 축 값 정확히 매핑', () => {
+    const { entity } = parseShape([...head(), ...body(), [210, 0.1], [220, -0.2], [230, 0.3]])
+    expect(entity.extrusionDirection).toEqual({ x: 0.1, y: -0.2, z: 0.3 })
+  })
+
+  test('C-07 thickness·obliqueAngle·xScale 개별 지정 시 기본값 덮음', () => {
+    const { entity } = parseShape([...head(), [39, 7], ...body(), [41, 0.5], [51, -15]])
+    expect(entity).toMatchObject({ thickness: 7, xScale: 0.5, obliqueAngle: -15, rotation: 0 })
+  })
+
+  test('C-08 D-04 보강: 빈 SHAPE 에 ensureHandle 이 채운 handle 은 고유한 숫자(현재 동작, 문자열 handle 과 타입 다름)', () => {
+    const list = parseList([[0, 'SHAPE'], [0, 'SHAPE'], ...line()])
+    expect(typeof list[0].handle).toBe('number')
+    expect(list[1].handle).toBe(list[0].handle + 1)
+    expect(list[0].handle).not.toBe(list[1].handle)
   })
 })
