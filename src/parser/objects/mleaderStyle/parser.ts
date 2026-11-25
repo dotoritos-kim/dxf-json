@@ -3,9 +3,11 @@ import {
   Identity,
   ToBoolean,
 } from '../../shared/parserGenerator.ts'
+import { XDataParserSnippets } from '../../shared/xdata/parser.ts'
 import { CommonObjectSnippets } from '../shared.ts'
 
 export const MLeaderStyleSnippets: DXFParserSnippet[] = [
+  ...XDataParserSnippets,
   {
     code: 179,
     name: 'unknown1',
