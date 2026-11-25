@@ -1,4 +1,5 @@
 import type { Point3D } from '../../../types/shared.ts'
+import type { XData } from '../../shared/xdata/types.ts'
 import type { CommonDXFObject } from '../types.ts'
 
 /**
@@ -247,4 +248,9 @@ export interface MLeaderStyleDXFObject extends CommonDXFObject {
    * MLEADERSTYLE objects.
    */
   unknown2?: boolean
+
+  /**
+   * Group code 1001: extended data (e.g. ACAD_MLEADERVER style version).
+   */
+  xdata?: XData[]
 }
