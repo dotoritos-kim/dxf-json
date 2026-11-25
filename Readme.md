@@ -80,7 +80,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
 - [ ] ENTITIES Section
   - [x] 3DFACE
   - [x] 3DSOLID
-  - [ ] ACAD_PROXY_ENTITY
+  - [x] ACAD_PROXY_ENTITY
   - [x] ARC
   - [x] ARC_DIMENSION
   - [x] ATTDEF
@@ -100,7 +100,6 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [x] LWPOLYLINE
   - [x] MESH
   - [x] MLEADER
-  - [ ] MLEADERSTYLE
   - [x] MLINE
   - [x] MTEXT
   - [ ] OLEFRAME
@@ -110,16 +109,16 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [x] RAY
   - [x] REGION
   - [x] SECTION
-  - [ ] SEQEND
-  - [ ] SHAPE
+  - [x] SEQEND
+  - [x] SHAPE
   - [x] SOLID
   - [x] SPLINE
   - [x] SUN
-  - [ ] SURFACE
-  - [ ] TABLE
+  - [x] SURFACE (also EXTRUDEDSURFACE, LOFTEDSURFACE, NURBSURFACE, PLANESURFACE, REVOLVEDSURFACE, SWEPTSURFACE)
+  - [x] TABLE
   - [x] TEXT
   - [x] TOLERANCE
-  - [ ] TRACE
+  - [x] TRACE
   - [ ] UNDERLAY
   - [x] VERTEX
   - [x] VIEWPORT
@@ -129,19 +128,20 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
   - [ ] DATATABLE
   - [x] DICTIONARY
   - [ ] DICTIONARYVAR
-  - [ ] DIMASSOC
+  - [x] DIMASSOC
   - [ ] FIELD
   - [ ] GEODATA
-  - [ ] GROUP
+  - [x] GROUP
   - [ ] IDBUFFER
-  - [ ] IMAGEDEF
+  - [x] IMAGEDEF
   - [ ] IMAGEDEF_REACTOR
-  - [ ] LAYER_FILTER
-  - [ ] LAYER_INDEX
+  - [x] LAYER_FILTER
+  - [x] LAYER_INDEX
   - [x] LAYOUT
   - [ ] LIGHTLIST
   - [ ] MATERIAL
-  - [ ] MLINESTYLE
+  - [x] MLEADERSTYLE
+  - [x] MLINESTYLE
   - [ ] OBJECT_PTR
   - [x] PLOTSETTINGS
   - [ ] RASTERVARIABLES
@@ -162,7 +162,7 @@ Based on [AutoCAD 2024 DXF Reference](https://help.autodesk.com/view/OARX/2024/E
 </details>
 
 > [!NOTE]
-> The documentation is not ready, but you can check the source code for used types [#1](https://github.com/dotoritos-kim/dxf-json/blob/main/src/parser/types.ts) and [#2](https://github.com/dotoritos-kim/dxf-json/blob/main/integration-test/src/types/import-test.ts)
+> See [docs/return-types.md](docs/return-types.md) for the returned TypeScript types (`ParsedDxf`, common entity fields, and field/group-code tables with real output examples for MLEADERSTYLE, SHAPE, SURFACE family, SEQEND, ACAD_TABLE and TRACE). For other types, check the source code [#1](https://github.com/dotoritos-kim/dxf-json/blob/main/src/parser/types.ts) and [#2](https://github.com/dotoritos-kim/dxf-json/blob/main/integration-test/src/types/import-test.ts)
 
 ## Parsing Options
 
