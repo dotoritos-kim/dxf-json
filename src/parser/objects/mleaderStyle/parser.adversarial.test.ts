@@ -278,9 +278,9 @@ describe('MLEADERSTYLE 경계값 (B)', () => {
     expect(s.description).toBe('  Spaced  ')
   })
 
-  it('B-13 boolean 코드 0/1 이외 값은 TypeError (스캐너 정책, 현재 동작 문서화)', () => {
-    expect(() => styles([...head(), [290, '2']])).toThrow(TypeError)
-    expect(() => styles([...head(), [296, 'true']])).toThrow(TypeError)
+  it('B-13 boolean 코드 0/1 이외 값은 0 이 아니면 true 로 관대 처리 (#189)', () => {
+    expect(styles([...head(), [290, '2']])[0]).toMatchObject({ landingEnabled: true })
+    expect(styles([...head(), [296, 'true']])[0]).toMatchObject({ annotative: true })
   })
 
   it('B-14 boolean 코드 값 앞뒤 공백은 허용', () => {
