@@ -24,6 +24,14 @@ export interface CommonDxfEntity {
   lineweight?: number // 문서에는 무조건 있다고 하는데, 실제로는 없는 경우 많음
   /** @default 1 If not presented */
   lineTypeScale?: number
+  /**
+   * Raw boolean of DXF group code 60 (`!!value`).
+   *
+   * NOTE: In DXF, 60 means *invisibility* (0 = visible, 1 = invisible).
+   * This field keeps the raw value for backward compatibility, so
+   * `isVisible === true` actually means the entity is **hidden**,
+   * and the field is absent when code 60 is not written (visible).
+   */
   isVisible?: boolean
   /**
    * Number of bytes in the proxy entity graphics represented in the sub-sequent `310` groups,
