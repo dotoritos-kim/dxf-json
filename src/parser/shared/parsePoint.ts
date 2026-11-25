@@ -15,14 +15,13 @@ export function parsePoint(scanner: DxfArrayScanner): Point3D | Point2D {
   point.x = curr.value as number
 
   curr = scanner.next()
-  if (curr.code !== firstCode + 10)
-    throw new Error(
-      'Expected code for point value to be ' +
-        20 +
-        ' but got ' +
-        curr.code +
-        '.',
-    )
+  if (curr.code !== firstCode + 10) {
+    // y 좌표 그룹이 없는 비정상 입력: 예외 대신 y=0 으로 보고
+    // 읽은 그룹은 호출자가 다시 처리하도록 되돌린다.
+    point.y = 0
+    scanner.rewind()
+    return point
+  }
   point.y = curr.value as number
 
   curr = scanner.next()
