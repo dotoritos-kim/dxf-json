@@ -88,6 +88,7 @@ function scanRaw(lines: string[]) {
   const objects: number[][] = []
   let inObjects = false
   let current: number[] | null = null
+  let inBrace = false
   for (let i = 0; i + 1 < lines.length; i += 2) {
     const code = parseInt(lines[i], 10)
     const value = lines[i + 1].trim()
@@ -99,6 +100,13 @@ function scanRaw(lines: string[]) {
       else if (inObjects && value === 'MLEADERSTYLE') current = []
       continue
     }
+    // 102 {...} groups (ACAD_XDICTIONARY / ACAD_REACTORS / app data) are
+    // consumed by the shared parseExtensions snippet; skip their inner codes.
+    if (code === 102) {
+      inBrace = value.startsWith('{')
+      continue
+    }
+    if (inBrace) continue
     current?.push(code)
   }
   if (current) objects.push(current)
