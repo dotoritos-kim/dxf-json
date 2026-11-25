@@ -2,7 +2,7 @@
  * Local-only SHAPE regression verifier. Not part of the vitest suite.
  *
  * Usage:
- *   npx vite-node ./scripts/verify-shape.ts [file-or-folder]
+ *   npx vite-node ./scripts/verify-shape.ts [file-or-folder ...] [@list.txt]
  *
  * Default folder: D:\CADView_도면 (searched recursively). Only ASCII .dxf files
  * that contain a SHAPE entity are parsed. For each file it compares the raw
@@ -61,13 +61,25 @@ function anomalies(e: any): string[] {
   return out
 }
 
-const root = resolve(process.argv[2] ?? DEFAULT_ROOT)
-if (!existsSync(root)) {
-  console.log(`[verify-shape] skip: ${root} not found`)
-  process.exit(0)
+// Args: any number of files/folders, or @list.txt (one path per line).
+const args = process.argv.slice(2)
+const roots = (args.length ? args : [DEFAULT_ROOT]).flatMap((a) =>
+  a.startsWith('@')
+    ? readFileSync(a.slice(1), 'utf-8')
+        .replace(/^﻿/, '')
+        .split(/\r?\n/)
+        .map((s) => s.trim())
+        .filter(Boolean)
+    : [a],
+)
+const files: string[] = []
+for (const r of roots.map((x) => resolve(x))) {
+  if (!existsSync(r)) {
+    console.log(`[verify-shape] skip: ${r} not found`)
+    continue
+  }
+  collect(r, files)
 }
-
-const files = collect(root)
 let checked = 0
 let mismatched = 0
 let failed = 0
