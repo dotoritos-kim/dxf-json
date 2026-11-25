@@ -348,13 +348,10 @@ describe('SHAPE / O 순서·중복', () => {
     expect(list[0].insertionPoint).toBeUndefined()
   })
 
-  test('O-05 10 다음 30 (20 누락) → 공용 parsePoint 가 throw (현재 동작, 스펙 위반 입력)', () => {
-    expect(() => parseShape([...head(), [10, 1], [30, 3], [40, 1]])).toThrow(
-      /Expected code for point value/,
-    )
+  test('O-05 10 다음 30 (20 누락) → throw 하지 않고 y=0 으로 복구 (#189)', () => {
+    const { entity: e } = parseShape([...head(), [10, 1], [30, 3], [40, 1]])
+    expect(e.insertionPoint).toMatchObject({ x: 1, y: 0 })
   })
-
-  test.todo('O-06 깨진 좌표 그룹에서 throw 대신 복구할지 결정 (전 엔티티 공통 parsePoint 정책)')
 })
 
 describe('SHAPE / S 구조 적대적', () => {
