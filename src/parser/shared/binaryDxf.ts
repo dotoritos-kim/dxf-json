@@ -247,7 +247,7 @@ function readValue(
   }
 
   if (INT64_CODES.has(code)) {
-    return [String(Number(view.getBigInt64(index, true))), index + 8]
+    return [view.getBigInt64(index, true).toString(), index + 8]
   }
 
   if (DOUBLE_CODES.has(code)) {

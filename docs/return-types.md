@@ -561,3 +561,37 @@ Example (`trace/tc0.partial_dxf`):
   next entity is parsed normally. A field missing from the output can mean the
   code came after an unknown one.
 - **`isVisible` is inverted.** See section 2: `true` means hidden.
+
+## 5. Numeric precision
+
+- **Reals are JavaScript `number` (IEEE 754 double).** Real group codes
+  (10-59, 110-149, 210-239, 460-469, 1010-1059) are read from the decimal
+  string with correct rounding, so the value is the double nearest to the text
+  in the file. A DXF writer that prints the shortest round-trip string of a
+  double (17 significant digits or fewer) is read back to exactly the same
+  double. Text with more digits than a double can hold is rounded; that is a
+  limit of `number`, not of the parser. Binary DXF reals are read directly as
+  little-endian float64 and are exact.
+- **Malformed reals become `NaN`.** A real value that is not a plain decimal or
+  exponent number (for example `1,5`, MSVC `1.#INF` / `-1.#IND` / `1.#QNAN`,
+  `0x10`, `12.5mm`, or an empty string) is returned as `NaN`. Before this
+  change such text was cut at the first bad character and gave a wrong finite
+  number (`1,5` -> `1`). `Infinity` / `-Infinity` are still accepted. Note that
+  `JSON.stringify` writes `NaN` as `null`.
+- **64-bit integers (160-169) are `number`.** Values above
+  `Number.MAX_SAFE_INTEGER` (2^53 - 1) are rounded to the nearest double
+  (`9007199254740993` -> `9007199254740992`). Fixing this would need `bigint` or
+  `string`, which would change the return type, so it is a known limit. In
+  practice these codes hold byte counts and stay far below 2^53. The binary DXF
+  reader now passes the exact decimal text on, so only the final conversion to
+  `number` rounds.
+- **Other integers** (60-99, 170-179, 270-289, 370-389, 400-409, 420-429,
+  440-459, 1060-1071) are 16/32-bit and are exact.
+- **Handles are strings.** Handles (codes 5, 105, 320-369, 390-399, 480-481,
+  1005) stay as hex strings, so no precision is lost. Generated handles for
+  entities without code 5 are numbers (see Readme "Parsing Notes").
+- **`DxfStreamParser` returns the full result.** It used to fill only scalar
+  HEADER variables (`entities`, `blocks`, `tables` were empty and point header
+  variables such as `$EXTMIN` were missing). It now collects all chunks and
+  parses them with the same code as `DxfParser.parseBuffer`, so its `dxf` equals
+  the `DxfParser` result. It keeps the whole file in memory until the last chunk.

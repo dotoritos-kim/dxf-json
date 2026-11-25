@@ -1,10 +1,5 @@
-import {
-  parseGroupValue,
-  type ScannerGroup,
-} from '../parser/DxfArrayScanner.ts'
-import { isMatched } from '../parser/shared/isMatched.ts'
+import { DxfParser } from '../parser/DxfParser.ts'
 import type { ParsedDxf } from '../parser/types.ts'
-import { parsePoint } from './streamShared/parseData.ts'
 
 type ErrorOptions =
   | {
@@ -39,6 +34,15 @@ export class DxfParsingError extends Error {
   }
 }
 
+/**
+ * Chunked front end for {@link DxfParser}.
+ *
+ * Chunks passed to {@link DxfStreamParser.FeedFile} are collected and, when the
+ * final chunk arrives, parsed with the same code path as
+ * `DxfParser.parseBuffer`. The resulting `dxf` is therefore identical to what
+ * `DxfParser` returns (header, tables, blocks, entities and objects). Earlier
+ * versions only filled scalar HEADER variables.
+ */
 export class DxfStreamParser extends EventTarget {
   public dxf: ParsedDxf = {
     // @ts-ignore
@@ -52,179 +56,54 @@ export class DxfStreamParser extends EventTarget {
     },
   }
 
-  private readonly _decoder: TextDecoder
-  private readonly _pointParser: parsePoint
+  private readonly _options: DxfStreamParserOptions
+  private _chunks: Uint8Array[] = []
+  private _finalChunkSeen = false
 
   constructor(options: DxfStreamParserOptions = new DxfStreamParserOptions()) {
     super()
-    this._decoder = new TextDecoder(options.encoding, {
-      fatal: options.encodingFailureFatal,
-    })
-    this._pointParser = new parsePoint()
+    this._options = options
   }
-
-  private _finalChunkSeen: boolean = false
-  private _curChunk: string = ''
-  private _curGroupCode: number | null = null
-  private _curLineNum = 1
-
-  private _eof = false
-  private _curValue: ScannerGroup = { code: 0, value: 0 }
-  private _curSection: string = ''
-  private _currVarName: string = ''
 
   private Feed(input: ArrayBuffer | null, isFinalChunk = false): void {
-    const s = this._decoder.decode(input ?? undefined, {
-      stream: !isFinalChunk,
-    })
-    this.FeedString(s, isFinalChunk)
-  }
-
-  /** Feed next string chunk to the parser. */
-  private FeedString(input: string, isFinalChunk = false): void {
     if (this._finalChunkSeen) {
       throw new Error('Data fed after final chunk processed')
     }
+    if (input) this._chunks.push(new Uint8Array(input))
     if (isFinalChunk) {
       this._finalChunkSeen = true
-    }
-    this._curChunk += input
-    this._ProcessCurChunk()
-    if (isFinalChunk) {
       this._Finalize()
     }
   }
-  private _Finalize() {}
+
+  private _Finalize() {
+    const total = this._chunks.reduce((n, c) => n + c.byteLength, 0)
+    const data = new Uint8Array(total)
+    let offset = 0
+    for (const c of this._chunks) {
+      data.set(c, offset)
+      offset += c.byteLength
+    }
+    this._chunks = []
+    const parser = new DxfParser({
+      encoding: this._options.encoding,
+      encodingFailureFatal: this._options.encodingFailureFatal,
+    })
+    this.dxf = parser.parseBuffer(data)
+  }
 
   async FeedFile(file: ArrayBuffer, abortSignal?: AbortSignal): Promise<void> {
     const size = file.byteLength
+    if (size === 0) {
+      this.Feed(null, true)
+      return
+    }
     const CHUNK_SIZE = 0x10000
     for (let offset = 0; offset < size; offset += CHUNK_SIZE) {
       abortSignal?.throwIfAborted()
       const chunkSize = Math.min(size - offset, CHUNK_SIZE)
-      const buf = await file.slice(offset, offset + chunkSize)
+      const buf = file.slice(offset, offset + chunkSize)
       this.Feed(buf, offset + chunkSize >= size)
     }
-  }
-
-  private _ProcessCurChunk(): void {
-    for (const s of this._ConsumeCurChunkLines()) {
-      this._ProcessLine(s)
-      this._curLineNum++
-      if (!this._eof) {
-        switch (this._curSection) {
-          case 'HEADER':
-            let headerValue = this._curValue.value
-            if (this._curValue.code === 9) {
-              this._currVarName = headerValue
-            } else if (this._curValue.code === 10) {
-              this._pointParser.parseStart(this._curValue)
-            } else if (
-              this._pointParser.startCode === this._curValue.code ||
-              this._pointParser.startCode + 10 === this._curValue.code ||
-              this._pointParser.startCode + 20 === this._curValue.code
-            ) {
-              headerValue = this._pointParser.setPoint(this._curValue)
-            } else {
-              if (this._currVarName)
-                this.dxf.header[this._currVarName] = headerValue
-            }
-            break
-          case 'BLOCKS':
-            break
-          case 'ENTITIES':
-            break
-          case 'TABLES':
-            break
-          case 'OBJECTS':
-            break
-        }
-      }
-    }
-  }
-
-  private *_ConsumeCurChunkLines(): IterableIterator<string> {
-    let pos = 0
-    const n = this._curChunk.length
-    while (pos < n) {
-      let sepPos = this._curChunk.indexOf('\r', pos)
-      let nextPos = 0
-      if (sepPos >= 0) {
-        nextPos = sepPos + 1
-        if (nextPos < n && this._curChunk.charAt(nextPos) == '\n') {
-          nextPos++
-        }
-      } else {
-        sepPos = this._curChunk.indexOf('\n', pos)
-        if (sepPos >= 0) {
-          nextPos = sepPos + 1
-        }
-      }
-      if (sepPos < 0) {
-        break
-      }
-      yield this._curChunk.substring(pos, sepPos)
-      pos = nextPos
-    }
-    if (pos != 0) {
-      this._curChunk = this._curChunk.substring(pos)
-    }
-  }
-  private _ProcessLine(line: string): void {
-    if (this._curGroupCode === null) {
-      const codeStr = line.trim()
-      this._curGroupCode = parseInt(codeStr)
-      if (isNaN(this._curGroupCode)) {
-        this._Error('Bad group code: ' + codeStr)
-      }
-      return
-    }
-    const token = new Token(this._curGroupCode, line)
-
-    if (!isMatched(token, 0, 'EOF')) {
-      switch (token.value) {
-        case 'SECTION':
-          this._curSection = 'SECTION'
-          break
-        case 'HEADER':
-          this._curSection = 'HEADER'
-          break
-        case 'BLOCKS':
-          this._curSection = 'BLOCKS'
-          break
-        case 'ENTITIES':
-          this._curSection = 'ENTITIES'
-          break
-        case 'TABLES':
-          this._curSection = 'TABLES'
-          break
-        case 'OBJECTS':
-          this._curSection = 'OBJECTS'
-          break
-      }
-      this._eof = false
-    }
-    if (isMatched(token, 0, 'EOF')) {
-      this._eof = true
-    }
-    this._curValue = token
-    this._curGroupCode = null
-  }
-  private _Error(msg: string, cause: any | null = null) {
-    let options = undefined
-    if (cause) {
-      options = { cause }
-    }
-    throw new DxfParsingError(msg, this._curLineNum, options)
-  }
-}
-
-class Token {
-  readonly code: number
-  readonly value: string | number | boolean
-
-  constructor(code: number, valueStr: string) {
-    this.code = code
-    this.value = parseGroupValue(code, valueStr)
   }
 }

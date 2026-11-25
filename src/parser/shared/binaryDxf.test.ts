@@ -186,6 +186,15 @@ describe('binaryDxf', () => {
     expect(lines).toContain('7')
   })
 
+  it('emits the exact decimal string for int64 values above 2^53', () => {
+    const binary = encodeBinaryDxf([
+      { code: 0, value: 'SECTION' },
+      { code: 160, value: '9007199254740993' },
+      { code: 0, value: 'EOF' },
+    ])
+    expect(binaryDxfToLines(binary)).toContain('9007199254740993')
+  })
+
   it('decodes binary chunk groups as hex strings', () => {
     const binary = encodeBinaryDxf([
       { code: 0, value: 'SECTION' },

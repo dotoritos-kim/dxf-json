@@ -173,9 +173,9 @@ describe('TRACE 경계값 (B)', () => {
     expect(entity.extrusionDirection.x).toBeNaN()
     expect(scanner.next()).toMatchObject({ code: 0, value: 'EOF' })
   })
-  test('B-05 숫자 뒤 쓰레기 문자는 parseFloat 규칙으로 앞부분만', () => {
+  test('B-05 숫자 뒤 쓰레기 문자는 잘라 읽지 않고 NaN', () => {
     const { entity } = parseBody([[39, '12.5mm']])
-    expect(entity.thickness).toBe(12.5)
+    expect(entity.thickness).toBeNaN()
   })
   test('B-06 빈 레이어 이름', () => {
     const { entity } = parseBody([[8, '']])

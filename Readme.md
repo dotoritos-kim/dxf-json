@@ -243,6 +243,22 @@ Malformed input that is tolerated:
 - A point whose `20` (y) group is missing gets `y = 0` instead of throwing.
 - `ENDBLK` without `100 AcDbBlockEnd` (R12) ends the block at the next `0` group.
 
+Numeric precision:
+
+- Real values are JavaScript `number` (IEEE 754 double), read with correct
+  rounding, so a shortest round-trip string written by a CAD program is read
+  back to exactly the same double. Binary DXF reals are exact.
+- A malformed real (`1,5`, `1.#INF`, `-1.#IND`, `12.5mm`, empty) becomes `NaN`
+  instead of a truncated finite number. `Infinity` is still accepted.
+- 64-bit integer codes (160-169) are `number`, so values above 2^53 are rounded.
+  This is a known limit; changing it would change the return type.
+- Handles stay hex strings and are never rounded.
+- `DxfStreamParser` now returns the same full result as `DxfParser` (it used to
+  fill only scalar header variables). It holds the whole file in memory until
+  the last chunk.
+
+See [docs/return-types.md](docs/return-types.md#5-numeric-precision) for details.
+
 ## Contribution
 
 See [CONTRIBUTING.md](https://github.com/dotoritos-kim/dxf-json/blob/main/CONTRIBUTING.md)
