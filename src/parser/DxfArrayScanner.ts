@@ -118,7 +118,7 @@ export class DxfArrayScanner {
  * @param value
  * @returns {*}
  */
-const REAL_PATTERN = /^[+-]?(?:(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?|Infinity)$/
+const REAL_PATTERN = /^[+-]?(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|Infinity)$/
 
 /**
  * Parses a DXF real (double) value.
