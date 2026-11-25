@@ -42,7 +42,8 @@ export function parseObjects(curr: ScannerGroup, scanner: DxfArrayScanner) {
 
       if (parser(curr, scanner, parsedObject)) {
         result.push(parsedObject)
-        curr = scanner.peek()
+        // 객체가 EOF 직전에 끝나면(ENDSEC 누락) peek 가 throw 하므로 EOF 로 종료
+        curr = scanner.isEOF() ? { code: 0, value: 'EOF' } : scanner.peek()
       } else {
         curr = scanner.next()
       }
