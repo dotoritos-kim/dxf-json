@@ -118,6 +118,21 @@ export class DxfArrayScanner {
  * @param value
  * @returns {*}
  */
+const REAL_PATTERN = /^[+-]?(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?|Infinity)$/
+
+/**
+ * Parses a DXF real (double) value.
+ *
+ * Well-formed decimal/exponent strings give the same double as `parseFloat`
+ * (correctly rounded IEEE 754). Malformed strings such as `1,5`, MSVC
+ * `1.#INF` / `-1.#IND` or `0x10` give `NaN` instead of being silently
+ * truncated to a wrong finite number.
+ */
+export function parseReal(value: string): number {
+  const s = value.trim()
+  return REAL_PATTERN.test(s) ? Number(s) : NaN
+}
+
 export function parseGroupValue(
   code: number,
   value: string,
@@ -126,12 +141,12 @@ export function parseGroupValue(
   const normalizedValue = normalizeGroupString(value)
 
   if (code <= 9) return normalizedValue
-  if (code >= 10 && code <= 59) return parseFloat(value.trim())
+  if (code >= 10 && code <= 59) return parseReal(value)
   if (code >= 60 && code <= 99) return parseInt(value.trim())
   if (code >= 100 && code <= 109) return normalizedValue
-  if (code >= 110 && code <= 149) return parseFloat(value.trim())
+  if (code >= 110 && code <= 149) return parseReal(value)
   if (code >= 160 && code <= 179) return parseInt(value.trim())
-  if (code >= 210 && code <= 239) return parseFloat(value.trim())
+  if (code >= 210 && code <= 239) return parseReal(value)
   if (code >= 270 && code <= 289) return parseInt(value.trim())
   if (code >= 290 && code <= 299) return parseBoolean(value.trim())
   if (code >= 300 && code <= 369) return normalizedValue
@@ -142,11 +157,11 @@ export function parseGroupValue(
   if (code >= 420 && code <= 429) return parseInt(value.trim())
   if (code >= 430 && code <= 439) return normalizedValue
   if (code >= 440 && code <= 459) return parseInt(value.trim())
-  if (code >= 460 && code <= 469) return parseFloat(value.trim())
+  if (code >= 460 && code <= 469) return parseReal(value)
   if (code >= 470 && code <= 481) return normalizedValue
   if (code === 999) return normalizedValue
   if (code >= 1000 && code <= 1009) return normalizedValue
-  if (code >= 1010 && code <= 1059) return parseFloat(value.trim())
+  if (code >= 1010 && code <= 1059) return parseReal(value)
   if (code >= 1060 && code <= 1071) return parseInt(value.trim())
 
   if (isDebugMode) {

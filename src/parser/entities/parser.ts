@@ -33,8 +33,18 @@ import { SolidEntityParser } from './solid/parser.ts'
 import { Solid3DEntityParser } from './solid3d/parser.ts'
 import { TraceEntityParser } from './trace/parser.ts'
 import { SplineEntityParser } from './spline/parser.ts'
+import {
+  ExtrudedSurfaceEntityParser,
+  LoftedSurfaceEntityParser,
+  NurbSurfaceEntityParser,
+  PlaneSurfaceEntityParser,
+  RevolvedSurfaceEntityParser,
+  SurfaceEntityParser,
+  SweptSurfaceEntityParser,
+} from './surface/parser.ts'
 import { SunEntityParser } from './sun/parser.ts'
 import { TextEntityParser } from './text/parser.ts'
+import { TableEntityParser } from './table/parser.ts'
 import { ToleranceEntityParser } from './tolerance/parser.ts'
 import { HatchEntityParser } from './hatch/parser.ts'
 import { VertexParser } from './vertex/parser.ts'
@@ -76,7 +86,15 @@ const Parsers = Object.fromEntries(
     Solid3DEntityParser,
     SplineEntityParser,
     SunEntityParser,
+    SurfaceEntityParser,
+    PlaneSurfaceEntityParser,
+    NurbSurfaceEntityParser,
+    ExtrudedSurfaceEntityParser,
+    SweptSurfaceEntityParser,
+    RevolvedSurfaceEntityParser,
+    LoftedSurfaceEntityParser,
     TextEntityParser,
+    TableEntityParser,
     ToleranceEntityParser,
     TraceEntityParser,
     HatchEntityParser,
