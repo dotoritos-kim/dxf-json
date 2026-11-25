@@ -227,8 +227,10 @@ describe('TRACE 순서 뒤섞임·중복 (O)', () => {
 })
 
 describe('TRACE 구조 적대적 (S)', () => {
-  test('S-01 점의 y 누락(10 다음 바로 11) → 예외', () => {
-    expect(() => parseBody([[10, 1], [11, 2], [21, 2]])).toThrow(/Expected code/)
+  test('S-01 점의 y 누락(10 다음 바로 11) → 예외 없이 y=0 으로 복구 (#189)', () => {
+    const { entity } = parseBody([[10, 1], [11, 2], [21, 2]])
+    expect((entity as any).points[0]).toMatchObject({ x: 1, y: 0 })
+    expect((entity as any).points[1]).toMatchObject({ x: 2, y: 2 })
   })
   test('S-02 0/EOF 직후(본문 없는 TRACE) parseSync', () => {
     const dxf = new DxfParser().parseSync(
@@ -369,7 +371,7 @@ describe('TRACE 연속·혼합·BLOCKS (M)', () => {
 })
 
 describe('TRACE 회귀 (R)', () => {
-  test('R-03 AcDbBlockEnd 없는 ENDBLK 는 이후 섹션을 삼킴(현재 동작, TRACE 무관)', () => {
+  test('R-03 AcDbBlockEnd 없는 ENDBLK 도 이후 섹션을 삼키지 않음 (#189)', () => {
     const text = lines([
       [0, 'SECTION'], [2, 'BLOCKS'],
       [0, 'BLOCK'], [2, 'BLK'], ...trace(), [0, 'ENDBLK'],
@@ -379,7 +381,7 @@ describe('TRACE 회귀 (R)', () => {
     ]).join(String.fromCharCode(10))
     const dxf = new DxfParser().parseSync(text)
     expect(dxf.blocks?.BLK?.entities?.[0]?.type).toBe('TRACE')
-    expect(dxf.entities ?? []).toHaveLength(0)
+    expect(dxf.entities.map((e) => e.type)).toEqual(['TRACE'])
   })
   test('R-01 SOLID 파싱 결과는 TRACE 추가와 무관', () => {
     const dxf = parseFull([

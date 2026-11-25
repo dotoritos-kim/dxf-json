@@ -31,7 +31,7 @@ DXF 레퍼런스상 TRACE 그룹코드: 공통(5, 330, 100 AcDbEntity, 67, 8, 6,
 | O-03 | 중복 | 10 이 한 번 더 | points 5개로 누적 |
 | O-04 | 중복 | 39 두 번 | **현재 동작**: 두 번째 39 에서 엔티티 종료, 이후 필드 유실. 다음 엔티티는 바깥 루프가 찾음 |
 | O-05 | 순서 | 8 이 꼭짓점 뒤 | 수용 |
-| S-01 | 구조 | 10 다음 20 없이 11 | `parsePoint` 예외 (공용 동작, 손상 파일로 간주) |
+| S-01 | 구조 | 10 다음 20 없이 11 | 예외 없이 y=0 으로 복구 (#189 공통 parsePoint 수정) |
 | S-02 | 구조 | `0/TRACE` 직후 `0/ENDSEC` | 빈 TRACE 1개, 크래시 없음 |
 | S-03 | 구조 | TRACE 직후 LINE | 두 엔티티 모두 파싱 |
 | S-04 | 구조 | 빈 TRACE 직후 TRACE | 2개, 두 번째 정상 |
@@ -51,7 +51,7 @@ DXF 레퍼런스상 TRACE 그룹코드: 공통(5, 330, 100 AcDbEntity, 67, 8, 6,
 | M-03 | BLOCKS | 블록 내부 TRACE+LINE, ENTITIES 에도 TRACE | 블록·모델공간 둘 다 정확 |
 | R-01 | 회귀 | SOLID | 결과 불변 |
 | R-02 | 회귀 | LINE | 결과 불변 |
-| R-03 | 회귀 | `100/AcDbBlockEnd` 없는 ENDBLK | **현재 동작**: 블록 파서가 끝까지 소비해 ENTITIES 유실 (TRACE 무관, 기존 블록 파서 한계) |
+| R-03 | 회귀 | `100/AcDbBlockEnd` 없는 ENDBLK | 다음 0 그룹에서 블록 종료, ENTITIES 유지 (#189 블록 파서 수정) |
 | P-01 | 성능 | TRACE 20,000 + LINE 10,000 | 30,000개, 10초 이내 |
 | C-01 | 보강 | 430/347/390/380/284/410 | colorName·materialObjectHardId·plotStyleHardId·plotStyleType·shadowMode·layoutTabName 매핑 |
 | C-02 | 보강 | 정상 4 꼭짓점 | 길이뿐 아니라 좌표값 전체 일치 |
@@ -64,5 +64,4 @@ DXF 레퍼런스상 TRACE 그룹코드: 공통(5, 330, 100 AcDbEntity, 67, 8, 6,
 
 - TRACE 전용 파서 버그는 발견되지 않음 (수정 없음).
 - 공용 동작으로 문서화만 한 것: 미지 그룹코드/중복 단일 코드에서 엔티티 조기 종료(S-05, O-04, S-15),
-  `ensureHandle` 이 숫자 handle 부여(D-05), AcDbBlockEnd 없는 ENDBLK 가 파일 나머지를 삼킴(R-03),
-  점의 y 누락 시 예외(S-01). 모두 다른 엔티티에도 똑같이 적용되므로 이 브랜치 범위 밖.
+  `ensureHandle` 이 숫자 handle 부여(D-05), (R-03·S-01 은 #189 에서 해결). 모두 다른 엔티티에도 똑같이 적용되므로 이 브랜치 범위 밖.
