@@ -27,10 +27,21 @@ import { PolylineParser } from './polyline/parser.ts'
 import { RayParser } from './ray/parser.ts'
 import { RegionEntityParser } from './region/parser.ts'
 import { SectionEntityParser } from './section/parser.ts'
+import { SeqendEntityParser } from './seqend/parser.ts'
 import { ShapeEntityParser } from './shape/parser.ts'
 import { SolidEntityParser } from './solid/parser.ts'
 import { Solid3DEntityParser } from './solid3d/parser.ts'
+import { TraceEntityParser } from './trace/parser.ts'
 import { SplineEntityParser } from './spline/parser.ts'
+import {
+  ExtrudedSurfaceEntityParser,
+  LoftedSurfaceEntityParser,
+  NurbSurfaceEntityParser,
+  PlaneSurfaceEntityParser,
+  RevolvedSurfaceEntityParser,
+  SurfaceEntityParser,
+  SweptSurfaceEntityParser,
+} from './surface/parser.ts'
 import { SunEntityParser } from './sun/parser.ts'
 import { TextEntityParser } from './text/parser.ts'
 import { TableEntityParser } from './table/parser.ts'
@@ -69,14 +80,23 @@ const Parsers = Object.fromEntries(
     RayParser,
     RegionEntityParser,
     SectionEntityParser,
+    SeqendEntityParser,
     ShapeEntityParser,
     SolidEntityParser,
     Solid3DEntityParser,
     SplineEntityParser,
     SunEntityParser,
+    SurfaceEntityParser,
+    PlaneSurfaceEntityParser,
+    NurbSurfaceEntityParser,
+    ExtrudedSurfaceEntityParser,
+    SweptSurfaceEntityParser,
+    RevolvedSurfaceEntityParser,
+    LoftedSurfaceEntityParser,
     TextEntityParser,
     TableEntityParser,
     ToleranceEntityParser,
+    TraceEntityParser,
     HatchEntityParser,
     VertexParser,
     ViewportParser,

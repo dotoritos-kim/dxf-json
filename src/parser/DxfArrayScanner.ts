@@ -163,12 +163,15 @@ function normalizeGroupString(value: string) {
 }
 
 /**
- * Parse a boolean according to a 1 or 0 value
- * @param str
- * @returns {boolean}
+ * Parse a boolean group value (codes 290-299).
+ * '0' -> false, '1' -> true. Other values are not rejected:
+ * a numeric value other than 0 is treated as true (like C), and
+ * a non-numeric value is true unless it is empty.
  */
-function parseBoolean(str: string) {
+export function parseBoolean(str: string) {
   if (str === '0') return false
   if (str === '1') return true
-  throw TypeError("String '" + str + "' cannot be cast to Boolean type")
+  const num = Number(str)
+  if (str !== '' && !Number.isNaN(num)) return num !== 0
+  return str !== ''
 }
