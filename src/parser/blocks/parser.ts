@@ -34,9 +34,15 @@ export function parseBlock(curr: ScannerGroup, scanner: DxfArrayScanner) {
     if (isMatched(curr, 0, 'ENDBLK')) {
       // 당장 ENDBLK 파싱이 없어서 임시로 대충 소비함
       // 소비 안하면 ENTITY에 딸려들어가서 문제 생김
+      // R12 등 '100 AcDbBlockEnd' 가 없는 파일도 있으므로
+      // 다음 0 그룹을 만나면 블록을 끝내고 그 그룹은 되돌린다.
       curr = scanner.next()
       while (!isMatched(curr, 0, 'EOF')) {
         if (isMatched(curr, 100, 'AcDbBlockEnd')) {
+          return block
+        }
+        if (curr.code === 0) {
+          scanner.rewind()
           return block
         }
         curr = scanner.next()
