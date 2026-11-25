@@ -377,17 +377,13 @@ describe('B: 경계값', () => {
     expect(e.sweepVector).toEqual({ x: 1, y: 2, z: 3 })
   })
 
-  test('B-07 boolean 0/1 외 값(2): 현재 스캐너가 TypeError 를 던짐 (문서화)', () => {
-    // DxfArrayScanner 공통 동작(290~299 는 0/1 만 허용). SURFACE 고유 버그 아님.
-    expect(() =>
-      parse([
-        ...header('REVOLVEDSURFACE'), ...surfaceTail,
-        [100, 'AcDbRevolvedSurface'], [290, 2],
-      ]),
-    ).toThrow(TypeError)
+  test('B-07 boolean 0/1 외 값(2): 예외 없이 true 로 관대 처리 (#189)', () => {
+    const result = parse([
+      ...header('REVOLVEDSURFACE'), ...surfaceTail,
+      [100, 'AcDbRevolvedSurface'], [290, 2],
+    ])
+    expect(JSON.stringify(result)).toContain('true')
   })
-
-  test.todo('B-07b boolean 비정상 값을 엔티티 단위로 격리할지 결정 (스캐너 공통 정책)')
 })
 
 // ---------------------------------------------------------------- O
