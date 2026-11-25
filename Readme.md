@@ -222,6 +222,27 @@ const parser = new DxfParser()
 return await parser.parseFromUrl(url, encoding, RequestInit)
 ```
 
+## Parsing Notes
+
+Behaviours kept for backward compatibility:
+
+- `isVisible` is the raw boolean of DXF group code 60. In DXF, `60 = 1` means
+  the entity is **invisible**, so `isVisible: true` actually means *hidden*.
+  When code 60 is not present the field is omitted (the entity is visible).
+- Entities/blocks without a handle (code 5, e.g. R12 files) get a generated
+  **numeric** handle (`0`, `1`, `2`, ...) from a counter shared by the process,
+  not a hex string.
+- When an entity or object contains a group code the parser does not know,
+  parsing of that entity stops at that code; the remaining groups of that
+  entity are skipped, but the following entities are parsed normally.
+
+Malformed input that is tolerated:
+
+- Boolean group codes (290-299) with values other than `0`/`1` are read as
+  `true` when non-zero instead of throwing.
+- A point whose `20` (y) group is missing gets `y = 0` instead of throwing.
+- `ENDBLK` without `100 AcDbBlockEnd` (R12) ends the block at the next `0` group.
+
 ## Contribution
 
 See [CONTRIBUTING.md](https://github.com/dotoritos-kim/dxf-json/blob/main/CONTRIBUTING.md)
